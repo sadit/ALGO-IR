@@ -1,7 +1,9 @@
-pandoc -c pandoc.css -i index.md  -o index.html -s
+./pandoc index.md -s --katex  -o index.html
 
 for index in U?/index.md
 do
-    html=$(dirname $index)/index.html
-    pandoc -c pandoc.css -i $index  -o $html -s
+    d=$(dirname $index)
+    cd $d
+    ../pandoc index.md -s --katex -o index.html
+    cd ..
 done

@@ -5,13 +5,163 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Búsqueda sobre listas ordenadas</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <link rel="stylesheet" href="pandoc.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
@@ -20,18 +170,22 @@
 <h2 id="objetivo">Objetivo</h2>
 <p>El alumno aprenderá a implementar, utilizar y caracterizar el desempeo de algoritmos peor caso y adaptativos para búsqueda.</p>
 <h1 id="introducción">Introducción</h1>
-<p>Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos <span class="math inline"><em>a</em>, <em>b</em>, <em>c</em></span> en el a arreglo se cumple lo siguiente:</p>
-<ul class="incremental">
-<li>reflexividad: <span class="math inline"><em>a</em> ≤ <em>a</em></span>.</li>
-<li>transitividad: <span class="math inline"><em>a</em> ≤ <em>b</em></span> y <span class="math inline"><em>b</em> ≤ <em>c</em></span> entonces <span class="math inline"><em>a</em> ≤ <em>c</em></span>.</li>
-<li>anti-simetría: $a b $ y $b a $ entonces <span class="math inline"><em>a</em> = <em>b</em></span>.</li>
-<li>completitud: $a b $ o $b a $.</li>
+<p>Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos <span class="math inline">a, b, c</span> en el a arreglo se cumple lo siguiente:</p>
+<ul>
+<li>reflexividad: <span class="math inline">a \le a</span>.</li>
+<li>transitividad: <span class="math inline">a \le b</span> y <span class="math inline">b \le c</span> entonces <span class="math inline">a \le c</span>.</li>
+<li>anti-simetría: <span class="math inline">a \leq b</span> y <span class="math inline">b \leq a</span> entonces <span class="math inline">a = b</span>.</li>
+<li>completitud: <span class="math inline">a \leq b</span> o <span class="math inline">b \leq a</span>.</li>
 </ul>
-<p>Note que dada la condición de arreglo consecutivo en memoria, para dos elementos <span class="math inline"><em>u</em><sub><em>i</em></sub></span> y <span class="math inline"><em>u</em><sub><em>j</em></sub></span>, donde <span class="math inline"><em>i</em></span> y <span class="math inline"><em>j</em></span> son posiciones: - <span class="math inline"><em>u</em><sub><em>i</em></sub> &lt; <em>u</em><sub><em>j</em></sub> ⇔ <em>i</em> &lt; <em>j</em></span>; note que el comparador es estricto. - <span class="math inline"><em>u</em><sub><em>i</em></sub> = <em>u</em><sub><em>j</em></sub> ⇔ <em>i</em> = <em>j</em></span>.</p>
+<p>Note que dada la condición de arreglo consecutivo en memoria, para dos elementos <span class="math inline">u_i</span> y <span class="math inline">u_j</span>, donde <span class="math inline">i</span> y <span class="math inline">j</span> son posiciones:</p>
+<ul>
+<li><span class="math inline">u_i &lt; u_j \iff i &lt; j</span>; note que el comparador es estricto.</li>
+<li><span class="math inline">u_i = u_j \iff i = j</span>.</li>
+</ul>
 <p>Los algoritmos tomarán ventaja de este hecho para localizar de manera precisa y eficiente elementos deseados, descritos mediante los mismos operadores.</p>
 <h2 id="listas-ordenadas">Listas ordenadas</h2>
 <p>En esta unidad se aborda la búsqueda en arreglos ordenados, y abusando del término, muchas veces les llamaremos <em>listas ordenadas</em>. Recuerde que a lo largo de este curso, esta será nuestra representación para conjuntos.</p>
-<p>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación <span class="math inline">≤</span> provoca costo constante <span class="math inline"><em>O</em>(1)</span>. Este curso no es la excepción. La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</p>
+<p>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación <span class="math inline">\le</span> provoca costo constante <span class="math inline">O(1)</span>. Este curso no es la excepción. La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</p>
 <p>Utilizaremos como base el artículo <span class="citation" data-cites="Bentley76">[@Bentley76]</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</p>
 <h1 id="material-audio-visual">Material audio-visual</h1>
 <p>En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.</p>
@@ -40,7 +194,7 @@
 <h1 id="actividades">Actividades</h1>
 <h2 id="actividad-0-sin-entrega">Actividad 0 [sin entrega]</h2>
 <p>Realizar las actividades de lectura y comprensión, apoyosé en el video de esta unidad. De preferencia realice los ejercicios de las secciones relacionadas.</p>
-<ul class="incremental">
+<ul>
 <li>El artículo sobre búsqueda no acotada, como representativo sobre búsqueda adaptativa <span class="citation" data-cites="Bentley76">[@Bentley76]</span>.</li>
 <li>Cap. 12 de <span class="citation" data-cites="Sedgewick98">[@Sedgewick98]</span>, en partícular Sec. 12.3 y 12.4.</li>
 <li>Cap. 6 de <span class="citation" data-cites="Knuth98">[@Knuth98]</span>, en partícular Sec. 6.1 y 6.2.</li>
@@ -49,34 +203,34 @@
 </ul>
 <h2 id="actividad-1-con-reporte">Actividad 1 [con reporte]</h2>
 <p>Realice y reporte el siguiente experimento:</p>
-<ul class="incremental">
+<ul>
 <li>Use el archivo <code>listas-posteo-100.json</code>, contiene las 100 listas de posteo más frecuentes, se encuentran en formato JSON.</li>
 <li>Utilice las listas (sin el término asociado).</li>
 <li>Los usuarios de Julia deberán asegurar que los tipos de los arreglos es <code>Int</code> y no <code>Any</code> para asegurar la velocidad adecuada</li>
-<li>Seleccione 1000 identificadores de documentos al azar, entre <span class="math inline">1</span> y <span class="math inline"><em>n</em></span>, recuerde que <span class="math inline"><em>n</em> = 50, 000</span>.</li>
-<li>Grafique el tiempo promedio de <em>buscar</em> los 1000 identificadores en todas las listas (un solo número que represente las <span class="math inline">100 × 1000</span> búsquedas). Nota: lo que determinará al buscar es la <em>posición de inserción</em> que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</li>
+<li>Seleccione 1000 identificadores de documentos al azar, entre <span class="math inline">1</span> y <span class="math inline">n</span>, recuerde que <span class="math inline">n=50,000</span>.</li>
+<li>Grafique el tiempo promedio de <em>buscar</em> los 1000 identificadores en todas las listas (un solo número que represente las <span class="math inline">100\times 1000</span> búsquedas). Nota: lo que determinará al buscar es la <em>posición de inserción</em> que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</li>
 <li>Los algoritmos que caracterizará son los siguientes (nombres con referencia a <span class="citation" data-cites="Bentley76">[@Bentley76]</span>):
-<ul class="incremental">
-<li>Búsqueda binaria acotada</li>
-<li>Búsqueda secuencial <span class="math inline"><em>B</em><sub>0</sub></span></li>
-<li>Búsqueda no acotada <span class="math inline"><em>B</em><sub>1</sub></span></li>
-<li><p>Búsqueda no acotada <span class="math inline"><em>B</em><sub>2</sub></span></p></li>
-<li><em>Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</em></li>
+<ul>
+<li><p>Búsqueda binaria acotada</p></li>
+<li><p>Búsqueda secuencial <span class="math inline">B_0</span></p></li>
+<li><p>Búsqueda no acotada <span class="math inline">B_1</span></p></li>
+<li><p>Búsqueda no acotada <span class="math inline">B_2</span></p></li>
+<li><p><em>Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</em></p></li>
 </ul></li>
-<li>Bosqueje en pseudo-código la implementación de la búsqueda casí optima <span class="math inline"><em>B</em><sub><em>k</em></sub></span></li>
+<li>Bosqueje en pseudo-código la implementación de la búsqueda casí optima <span class="math inline">B_k</span></li>
 </ul>
 <h3 id="entregable">Entregable</h3>
 <p>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.</p>
-<p>Nota: En las implementaciones podrá usar comparación <span class="math inline">&lt;,≤</span>, o incluso <span class="math inline"><em>c</em><em>m</em><em>p</em> → { − 1, 0, 1}</span>, teniendo en cuenta que <span class="math inline"><em>c</em><em>m</em><em>p</em></span> es común en lenguajes modernos, solo debe indicarlo.</p>
+<p>Nota: En las implementaciones podrá usar comparación <span class="math inline">&lt;, \leq</span>, o incluso <span class="math inline">cmp \rightarrow \{-1, 0, 1\}</span>, teniendo en cuenta que <span class="math inline">cmp</span> es común en lenguajes modernos, solo debe indicarlo.</p>
 <h2 id="actividad-2-sin-entrega">Actividad 2 [sin entrega]</h2>
 <p>Revisar el notebook <code>crear-indice-invertido.ipynb</code> para los detalles de como se generó la lista de posteo. Usted puede crear nuevas listas de posteo si lo desea usando los conjuntos de datos disponibles (listados en dicho notebook), y a su vez utilizarlas en las actividades de este Unidad. Solo deberá indicarlo; recuerde que los números de documentos y tamaño de vocabulario cambiarán.</p>
 <h2 id="leyendo-las-listas-de-posteo">Leyendo las listas de posteo</h2>
 <p>Usted no necesita generar las listas de posteo, solo leer las que se le han proporcionado en el archivo <code>listas-posteo-100.json</code> que corresponden a las 100 listas de posteo más pobladas (100 terminos más usados en el conjunto de datos). En el archivo <code>listas-posteo-100.json</code> , cada linea un JSON valido, donde se tiene el término y la lista de posteo.</p>
-<ul class="incremental">
+<ul>
 <li>En el notebook <code>lectura-listas-de-posteo.ipynb</code> se muestra como se leen las listas de posteo desde Julia</li>
 </ul>
 <h2 id="referencias">Referencias</h2>
-<ul class="incremental">
+<ul>
 <li><span class="citation" data-cites="Knuth98">[@Knuth98]</span>: Donald E. Knuth. 1998. The Art of Computer Programming, Volume 3: (2nd Ed.) Sorting and Searching. Addison Wesley Longman Publishing Co., Inc., Redwood City, CA, USA.</li>
 <li><span class="citation" data-cites="Bentley76">[@Bentley76]</span>: Jon Louis Bentley, Andrew Chi-Chih Yao. An almost optimal algorithm for unbounded searching. Information Processing Letters, Volume 5, Issue 3, 1976, Pages 82-87. ISSN 0020-0190. https://doi.org/10.1016/0020-0190(76)90071-5.</li>
 <li><span class="citation" data-cites="Bentley85">[@Bentley85]</span>: Bentley, J.L., McGeoch, C.C. Amortized analyses of self-organizing sequential search heuristics. (1985) Communications of the ACM, 28 (4), pp. 404-411. Doi: 10.1145/3341.3349.</li>

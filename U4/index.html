@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Algoritmos de ordenamiento</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Algoritmos de ordenamiento</h1>
+</header>
+<h2 id="objetivo">Objetivo</h2>
+<p>Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y adaptativos para ordenamiento de arreglos.</p>
+<h1 id="introducción">Introducción</h1>
+<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función <span class="math inline">\leq</span> tal que para dos elementos <span class="math inline">a</span> y <span class="math inline">b</span> se cumplen las siguientes propiedades:</p>
+<ul>
+<li>si <span class="math inline">u \leq v</span> y <span class="math inline">v \leq w</span> entonces <span class="math inline">u \leq w</span> (transitividad)</li>
+<li>tricotomia:
+<ul>
+<li>si <span class="math inline">u \leq v</span> y <span class="math inline">v \leq u</span> entonces <span class="math inline">u = v</span> (antisimetria)</li>
+<li>en otro caso, <span class="math inline">u \leq v</span> o <span class="math inline">v \leq u</span></li>
+</ul></li>
+</ul>
+<p>La idea es entonces, dado un arreglo <span class="math inline">A[1, n] = a_1, a_2, \cdots, a_n</span> obtener una permutación <span class="math inline">\pi</span> tal que <span class="math inline">a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}</span>. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando <span class="math inline">u = v</span>, entonces se tiene un ordenamiento estable.</p>
+<p>En terminos prácticos, la idea es reorganizar <span class="math inline">A</span>, mediante el cálculo implicito de <span class="math inline">\pi</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">A</span> esta ordenado, i.e., <span class="math inline">a_i \leq a_{i+1}</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que que modificar directamente <span class="math inline">A</span> es una buena opción. Utilizar <span class="math inline">\pi</span> de manera explicita solo es necesario cuando no es posible modificar <span class="math inline">A</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.</p>
+<p>En esta unidad se tendrá atención especial a aquellos algoritmos oportunistas que son capaces de obtener ventaja en instancias sencillas.</p>
+<h2 id="lecturas">Lecturas</h2>
+<p>Las lecturas de este tema corresponden al capítulo 5 de <span class="citation" data-cites="Knuth98">[@Knuth98]</span>, en específico 5.2 <em>Internal sorting</em>. También se recomienda leer y comprender la parte II de <span class="citation" data-cites="Cormen01">[@Cormen01]</span>, que corresponde a <em>Sorting and order statistics</em>, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <span class="citation" data-cites="SortWiki">[@SortWiki]</span> también puede ser consultado con la idea de encontrar una explicación rapida de los algoritmos.</p>
+<p>Como muchos sabrán, pocos algoritmos son mejores en la práctica que quicksort. En <span class="citation" data-cites="Loeser74">[@Loeser74]</span> se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.</p>
+<p>La parte adaptable, esto es para algoritmos <em>oportunistas</em> que toman ventaja de instancias simples, esta cubierta por el artículo <span class="citation" data-cites="Estivill90">[@Estivill90]</span>, en especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad. En <span class="citation" data-cites="Cook80">[@Cook80]</span> realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a <span class="citation" data-cites="Estivill90">[@Estivill90]</span> pero tiene experimentos que simplifican el entendimiento de los temas.</p>
+<h2 id="material-audio-visual-sobre-algoritmos-de-ordenamiento">Material audio-visual sobre algoritmos de ordenamiento</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<h2 id="actividad">Actividad</h2>
+<ol type="1">
+<li>Realizar las actividades de lectura y comprensión.</li>
+</ol>
+<ul>
+<li>De preferencia realice los ejercicios de los capítulos y secciones relacionadas.</li>
+</ul>
+<ol start="2" type="1">
+<li>Implemente los algoritmos, bubble sort, insertion sort, merge-sort y quick-sort. Expliquelos.</li>
+<li>Use el archivo <code>listas-posteo-100.json</code>, generado en la actividad del Tema 3.</li>
+</ol>
+<ul>
+<li>Los usuarios de Julia deberán asegurar que los tipos de los arreglos es <code>Int</code> y no <code>Any</code> para asegurar la velocidad adecuada.<br />
+</li>
+<li>Las listas de posteo serán los arreglos que se utilizaran para realizar las actividades.</li>
+</ul>
+<ol start="3" type="1">
+<li>Reporte el siguiente experimento.</li>
+</ol>
+<ul>
+<li>Sea <span class="math inline">p</span> una proporción entre las siguientes: <span class="math inline">0.01, 0.03, 0.10, 0.30</span>.</li>
+<li>Perturbe cada arreglo <span class="math inline">A</span> haciendo <span class="math inline">\lfloor p \times n \rfloor</span> intercambios de dos elementos aletorios de cada lista, i.e., cada intercambio consiste en seleccionar dos indices <strong>aleatorios</strong> entre 1 y <span class="math inline">n</span>, donde <span class="math inline">n</span> es el tamaño de cada lista. El intercambio consiste en <span class="math inline">A[i] \leftrightarrow A[j]</span> para dos indices <span class="math inline">i,j</span>. Asegurese que los rangos son validos para cada índice.</li>
+<li>Ordene con los algoritmos implementados para cada valor de <span class="math inline">p</span>.</li>
+<li>Grafique el número de comparaciones y el tiempo real necesario para cada algoritmo sobre las 100 listas, para cada <span class="math inline">p</span>.</li>
+<li><strong>Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.</strong></li>
+<li>Nota 2: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</li>
+</ul>
+<ol start="4" type="1">
+<li>Opcionales. Resuelva estos problemas para añadir puntos adicionales a su calificación global. La calificación de estos puntos es discrecional al profesor.
+<ul>
+<li>Al final de este notebook hay una implementación del algoritmo de búsqueda en un índice invertido; ésta hace uso del método <code>sort!</code>. Reemplacelo por la mejor de sus implementaciones y pruebe si obtiene un mejor desempeño. Muestre el desempeño resolviendo una gran cantidad de búsquedas.</li>
+<li>Discuta el problema que esta resolviendo la variable <code>res</code> en las funciones <code>search</code> y <code>union!</code>. Explique que hace, diga cuales son las operaciones y propiedades.</li>
+</ul></li>
+</ol>
+<p>El reporte deberá ser en formato notebook y con el PDF del mismo notebook. Para generar el PDF primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</p>
+<p>El notebook debe contener las implementaciones de los algoritmos de ordenamiento indicados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de las implementaciones y de los experimentos realizados, las observaciones y conclusiones; adicionalmente, añada las soluciones a las actividades opcionales si así lo desea.</p>
+<h2 id="ver-más">Ver más</h2>
+<ul>
+<li><a href="http://sphinxsearch.com/">SphinxSearch</a>; biblioteca para búsqueda escrita en C++, tiene conexiones con algunos motores de bases de datos relacionales.</li>
+<li><a href="https://www.elastic.co/es/">ElasticSearch</a>; biblioteca popular, adaptada como NoSQL.</li>
+<li><a href="https://lucene.apache.org/">Lucene</a>; biblioteca de la fundación apache, núcleo de diversas máquinas de búsqueda.</li>
+<li><a href="https://github.com/sadit/TextSearch.jl">TextSearch.jl</a>; implementación propia, con menos opciones que las anteriores, pero con la posibilidad de realizar modificaciones más profundas en sus partes.</li>
+</ul>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><span class="citation" data-cites="Knuth98">[@Knuth98]</span>: Donald E. Knuth. 1998. The Art of Computer Programming, Volume 3: (2nd Ed.) Sorting and Searching. Addison Wesley Longman Publishing Co., Inc., Redwood City, CA, USA.</li>
+<li><span class="citation" data-cites="Cormen01">[@Cormen01]</span>: Cormen et. al. Introduction to algorithms. MIT press 2001. 2nd edition.</li>
+<li><span class="citation" data-cites="Sedgewick98">[@Sedgewick98]</span>: Robert Sedgewick. Algorithms in C++ - Parts 1-4: Fundamentals, Data Structures, Sorting, Searching. Addison-Wesley-Longman, 1998. 3rd Edition.</li>
+<li><span class="citation" data-cites="Estivill92">[@Estivill92]</span> Vladimir Estivill-Castro, Deric Wood. A Survey of Adaptive Sorting Algorithms. ACM Computmg Surveys, Vol. 24, No. 4, December 1992.</li>
+<li><span class="citation" data-cites="Cook80">[@Cook80]</span> Curtis R. Cook, Do Jin Kim. Best Sorting Algorithm for Nearly Sorted Lists. Commun. ACM. Vol 23, number 11.</li>
+<li><span class="citation" data-cites="Loeser74">[@Loeser74]</span>: Loeser, Rudolf. 1974. Some Performance Tests of “Quicksort” and Descendants. Commun. ACM. Vol 17, number 3. pp 143-152. http://doi.acm.org/10.1145/360860.360870}.</li>
+<li><span class="citation" data-cites="SortWiki">[@SortWiki]</span>: https://en.wikipedia.org/wiki/Sorting_algorithm</li>
+</ul>
+</body>
+</html>

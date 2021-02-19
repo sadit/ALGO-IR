@@ -37,19 +37,19 @@ Instrucciones para la actividad (con entrega de reporte):
 
 1. Utilizar el notebook de Jupyter para generar las siguientes comparaciones de ordenes de crecimiento (una figura por comparación, i.e., cinco figuras)
 
-- $ O(1) ~vs~ O(\log n) $
-- $ O(n) ~vs~ O(n \log n) $
-- $ O(n^2) ~vs~ O(n^3) $
-- $ a^n ~vs~ n! $
-- $ n!  ~vs~ n^n $
+- $O(1)$ vs $O(\log n)$
+- $O(n)$ vs $O(n \log n)$
+- $O(n^2)$ vs $O(n^3)$
+- $a^n$ vs $n!$
+- $n!$  vs $n^n$
 
 Escoja los rangos adecuados para cada comparación. 
 
 
 2. Haga una tabla donde simule tiempos de ejecución suponiendo que cada operación tiene un costo de 1 micro-segundo:
 
- - Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo $ n $.
- - Use como los diferentes tamaños de entrada $n=100 $; $ n=1000 $; $ n=10000 $ y $ n=100000 $.
+ - Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo $n$.
+ - Use como los diferentes tamaños de entrada $n=100 $; $n=1000$; $n=10000$ y $n=100000$.
  - Note que para algunas fórmulas, los números pueden ser muy grandes (use el foro de dudas si llega a tener problemas)
 
 3. Dentro del notebook añada un breve ensayo o reflexión sobre los costos de computo necesarios sobre algoritmos que pudieran tener ordenes de crecimiento como los mostrados.
@@ -61,12 +61,13 @@ Reporte en formato Jupyter que debe contener el código creado y los resultados 
 Tenga en cuenta que los notebooks de Jupyter pueden alternar celdas del notebook con texto, código y resultados; además que el texto puede ser escrito en markdown.
 
 No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
+
 - Título del reporte, su nombre.
 - Introducción.
 - Código cercano a la presentación de resultados.
 - Figuras y comparación de los ordenes de crecimiento (instrucción 1). Explique los resultados obtenidos.
 - Simulación de costo en formato de tabla (instrucción 2), explique los resultados obtenidos.
-- Concluya con la reflexión (instrucción 3). La reflexión debe aboradar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una $ n $ variable y asintóticamente muy grande.
+- Concluya con la reflexión (instrucción 3). La reflexión debe aboradar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una $n$ variable y asintóticamente muy grande.
 - Bibliografía
 
 *Archivos a entregar:* Notebook de Jupyter y el PDF del notebook (favor de generarlo mediante el mismo Jupyter, no en un procesador de texto, para esto se puede exportar a html con el navegador, y luego el html a PDF).

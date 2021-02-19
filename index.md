@@ -24,12 +24,11 @@ A lo largo de los temas se abordarán darán detalles teóricos sobre los proble
 1. [Motivación](U1/index.html)
 2. [Análisis de la eficiencia de un algoritmo](U2/index.html)
 3. [Búsqueda sobre listas ordenadas](U3/index.html)
-4. Estructuras de datos para búsqueda
-5. Ordenamiento
-6. Buscar es codificar / ordenar es comprimir
-7. Algoritmos de intersección y unión
-8. Algoritmos para búsqueda de patrones en cadenas
-9. Proyecto integrador: construcción de un índice invertido
+4. [Algoritmos de ordenamiento](U4/index.html)
+5. Buscar es codificar / ordenar es comprimir
+6. Algoritmos de intersección y unión
+7. Algoritmos para búsqueda de patrones en cadenas
+8. Proyecto integrador: construcción de un índice invertido
 
 
 ## Sobre el lenguaje de programación

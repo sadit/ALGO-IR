@@ -15,10 +15,11 @@ Esta unidad esta dedicada a la implementación y análisis de algoritmos de bús
 
 - reflexividad: $a \le a$.
 - transitividad: $a \le b$ y $b \le c$ entonces $a \le c$.
-- anti-simetría: $a \leq b $ y $b \leq a $ entonces $a = b$.
-- completitud: $a \leq b $ o $b \leq a $.
+- anti-simetría: $a \leq b$ y $b \leq a$ entonces $a = b$.
+- completitud: $a \leq b$ o $b \leq a$.
 
 Note que dada la condición de arreglo consecutivo en memoria, para dos elementos $u_i$ y $u_j$, donde $i$ y $j$ son posiciones:
+
 - $u_i < u_j \iff i < j$; note que el comparador es estricto.
 - $u_i = u_j \iff i = j$.
 

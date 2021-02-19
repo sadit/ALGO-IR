@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Estructuras de datos y algoritmos</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Estructuras de datos y algoritmos</h1>
+</header>
+<h1 id="introducción">Introducción</h1>
+<p>El <em>Análisis de algoritmos y estructuras de datos</em> es una materia formativa diseñada para comprender el desempeño de los algoritmos bajo una cierta entrada. Su estudio nos permite identificar el problema algorítmico subyacente dentro de problemas reales, y por tanto, ser capaces de seleccionar, adaptar o construir una solución eficiente y eficaz para dicho problema. Es común que la solución adecuada sobre la solución ingenua permita optimizar de manera significativa los recursos computacionales, y que en última instancia, se pueden traducir como la reducción de costos de operación en un sistema o la posibilidad de procesar grandes cantidades de información de manera más eficiente.</p>
+<p>En el ciclo de proyectos de análisis de datos, la construcción e implementación de algoritmos constituye la base de la programación para prueba de la hipótesis y el modelado de problemas de análisis de datos. Los conocimientos adquiridos servirán para obtener las herramientas y la intuición necesaria para plantear la solución a un problema basado en un modelo de cómputo, en particular, determinar los recursos computacionales en dicho modelo para resolverlo de manera eficiente y escalable cuando sea posible.</p>
+<p>Al terminar este curso, se pretende que el alumno sea competente para seleccionar, diseñar, implementar y analizar algoritmos sobre secuencias, conjuntos y árboles para resolver problemas optimizando los recursos disponibles, en particular, memoria y tiempo de cómputo.</p>
+<p>A lo largo de las unidades que se revisarán, se mostrarán diversas técnicas de desarrollo y análisis de algoritmos aplicadas a problemas como búsqueda en arreglos ordenados, ordenamiento de los mismos, codificación de enteros, operaciones eficientes de conjuntos representados como arreglos ordenados.</p>
+<p>Se culminará el curso con un proyecto integrado: la creación de un índice invertido para búsqueda de texto completo. Los índices invertidos son estructuras que se distinguen por su versatilidad en el análisis de datos y su alto desempeño, son una parte fundamental de un motor de búsqueda, así como un posible componente para asegurar la eficiencia en algunos algoritmos de inteligencia computacional.</p>
+<p>A lo largo de los temas se abordarán darán detalles teóricos sobre los problemas y los algoritmos, así como también se motivará al estudiante a realizar sus propias implementaciones. En la mayoría de los temas se realizarán análisis experimentales de los mismos y reportes.</p>
+<h2 id="temario">Temario</h2>
+<ol type="1">
+<li><a href="U1/index.html">Motivación</a></li>
+<li><a href="U2/index.html">Análisis de la eficiencia de un algoritmo</a></li>
+<li><a href="U3/index.html">Búsqueda sobre listas ordenadas</a></li>
+<li><a href="U4/index.html">Algoritmos de ordenamiento</a></li>
+<li>Buscar es codificar / ordenar es comprimir</li>
+<li>Algoritmos de intersección y unión</li>
+<li>Algoritmos para búsqueda de patrones en cadenas</li>
+<li>Proyecto integrador: construcción de un índice invertido</li>
+</ol>
+<h2 id="sobre-el-lenguaje-de-programación">Sobre el lenguaje de programación</h2>
+<p>En princpio casi cualquier lenguaje de programación podría utilizarse para el curso, sin embargo, para efectos prácticos, nos limitaremos a dos lenguajes de programación:</p>
+<ul>
+<li>Python, se recomieda utilizar la distribución de https://www.anaconda.com/download/</li>
+<li>Julia, se recomienda utilizar la versión 1.5, o superior, https://julialang.org/</li>
+</ul>
+<p>Ambos lenguajes de programación son fáciles de aprender y altamente productivos. Python es un lenguaje excelente para realizar prototipos, o para cuando existen bibliotecas que resuelvan el problema que se este enfrentando. En particular, cuando se requiera evaluar la velocidad de un algoritmo, se recomienda utilizar Julia, ya que suele ser mucho más veloz para rutinas creadas directamente en el lenguaje, sin necesidad de un segundo lenguaje para operaciones a bajo nivel.</p>
+<p>Se hará uso intensivo de Jupyter Notebook (https://jupyter.org/) o JupyterLab (https://github.com/jupyterlab/jupyterlab) para las demostraciones y notas, así como también se pedirá que se realicen tareas con el mismo framework.</p>
+<p><strong>Nota:</strong> Aprender a programar no es el objetivo de este curso, por lo que si es necesario, el alumno deberá fortalecer sus capacidades con auto estudio. Sin embargo, se anima a la discusión en los foros sobre cualquier problema, ya sea de programación o relacionado a los conceptos y problemas del curso.</p>
+<h3 id="recursos-para-aprender-python-y-julia">Recursos para aprender Python y Julia</h3>
+<ul>
+<li>Documentación oficial, comenzar por el tutorial https://docs.python.org/3/</li>
+<li>Documentación oficial https://docs.julialang.org/en/stable/</li>
+<li>Curso “Introduction to computational thinking” https://computationalthinking.mit.edu/Fall20/</li>
+<li>Think Julia: How to Think Like a Computer Scientist https://benlauwens.github.io/ThinkJulia.jl/latest/book.html</li>
+</ul>
+</body>
+</html>
