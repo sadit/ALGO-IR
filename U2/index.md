@@ -16,11 +16,21 @@ La presente unidad esta dedicada a los fundamentos de análisis de algoritmos. E
 En los siguientes videos se introduce a los modelos de cómputo y se muestran diferentes tipos de análisis sobre algoritmos.
 
 
-- [Análisis - parte 1](https://www.youtube.com/watch?v=uUZnpaoEQXs)
-- [Análisis - parte 2](https://www.youtube.com/watch?v=CkvfliomNqk)
-- [Análisis - parte 3](https://www.youtube.com/watch?v=zRtjk2X2aDE)
-- [Ordenes de crecimiento](https://www.youtube.com/watch?v=mX7mZH0Dz8s)
-- [Estructuras de datos básicas](https://www.youtube.com/watch?v=fNdtauZa7Mc)
+### Análisis - parte 1
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uUZnpaoEQXs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Análisis - parte 2
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CkvfliomNqk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Análisis - parte 3
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zRtjk2X2aDE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Ordenes de crecimiento
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mX7mZH0Dz8s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Estructuras de datos básicas
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fNdtauZa7Mc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # Actividades
 

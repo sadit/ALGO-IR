@@ -39,7 +39,8 @@ En el siguiente video se adentraran en diferentes estrategías de búsqueda, not
 
 Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.
 
-[Algoritmos de búsqueda](https://www.youtube.com/watch?v=VZHlcPPKW5A")
+### Búsqueda
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VZHlcPPKW5A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # Actividades
 
