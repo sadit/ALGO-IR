@@ -1,10 +1,15 @@
-# Búsqueda sobre listas ordenadas
+---
+title: Búsqueda sobre listas ordenadas
+lang: es-MX
+
+...
+
 
 # Objetivo
 
 El alumno aprenderá a implementar, utilizar y caracterizar el desempeo de algoritmos peor caso y adaptativos para búsqueda.
 
-## Introducción
+# Introducción
 
 Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos $a, b, c$ en el a arreglo se cumple lo siguiente:
 
@@ -28,7 +33,7 @@ La comparación como unidad de costo es un excelente factorizador de las operaci
 
 Utilizaremos como base el artículo [@Bentley76], que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.
 
-## Material audio-visual
+# Material audio-visual
 En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.
 
 Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Análisis de la eficiencia de un algoritmo</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="../pandoc.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Análisis de la eficiencia de un algoritmo</h1>
+</header>
+<h1 id="objetivo">Objetivo</h1>
+<p>Obtener los criterios básicos para el análisis, diseño e implementación de algoritos.</p>
+<h1 id="introducción">Introducción</h1>
+<p>La presente unidad esta dedicada a los fundamentos de análisis de algoritmos. En particular se intentará que el concepto de modelo de cómputo se adopte, se conozca y maneje la notación asintótica. Es de vital importancia que se entienda su utilidad y el porque es importante para el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar répidamente algoritmos que resuelvan una tarea dada, así como darnos una idea de los recursos de computo necesarios para ejecutarlos. Finalmente, como parte de esta unidad, se dará un repaso a las estructuras de datos y a los algoritmos asociados, que dado nuestro contexto, son fundamentales y deberán ser comprendidos a cabalidad.</p>
+<h1 id="modelos-de-cómputo-y-tipos-de-análisis">Modelos de cómputo y tipos de análisis</h1>
+<p>En los siguientes videos se introduce a los modelos de cómputo y se muestran diferentes tipos de análisis sobre algoritmos.</p>
+<ul class="incremental">
+<li><a href="https://www.youtube.com/watch?v=uUZnpaoEQXs">Análisis - parte 1</a></li>
+<li><a href="https://www.youtube.com/watch?v=CkvfliomNqk">Análisis - parte 2</a></li>
+<li><a href="https://www.youtube.com/watch?v=zRtjk2X2aDE">Análisis - parte 3</a></li>
+<li><a href="https://www.youtube.com/watch?v=mX7mZH0Dz8s">Ordenes de crecimiento</a></li>
+<li><a href="https://www.youtube.com/watch?v=fNdtauZa7Mc">Estructuras de datos básicas</a></li>
+</ul>
+<h1 id="actividades">Actividades</h1>
+<h2 id="actividad-0-sin-entrega">Actividad 0 [sin entrega]</h2>
+<p>Instrucciones:</p>
+<p>Del libro “Introduction to algorithms” (ver bibliografía). Lee y resuelve los ejercicios de los capítulos 1, 2, 3, 4, 10 y 11. Resuelva ejercicios de dichos capítulos para ganar intuición Nota: En la Actividad 0 no hay entrega; use el Foro de dudas para discutir sus resultados y dudas.</p>
+<h2 id="actividad-1-con-reporte">Actividad 1 [con reporte]</h2>
+<p>Instrucciones para la actividad (con entrega de reporte):</p>
+<ol class="incremental" type="1">
+<li>Utilizar el notebook de Jupyter para generar las siguientes comparaciones de ordenes de crecimiento (una figura por comparación, i.e., cinco figuras)</li>
+</ol>
+<ul class="incremental">
+<li>$ O(1) <sub>vs</sub> O(n) $</li>
+<li>$ O(n) <sub>vs</sub> O(n n) $</li>
+<li>$ O(n^2) <sub>vs</sub> O(n^3) $</li>
+<li>$ a^n <sub>vs</sub> n! $</li>
+<li>$ n! <sub>vs</sub> n^n $</li>
+</ul>
+<p>Escoja los rangos adecuados para cada comparación.</p>
+<ol class="incremental" start="2" type="1">
+<li>Haga una tabla donde simule tiempos de ejecución suponiendo que cada operación tiene un costo de 1 micro-segundo:</li>
+</ol>
+<ul class="incremental">
+<li>Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo $ n $.</li>
+<li>Use como los diferentes tamaños de entrada $n=100 $; $ n=1000 $; $ n=10000 $ y $ n=100000 $.</li>
+<li>Note que para algunas fórmulas, los números pueden ser muy grandes (use el foro de dudas si llega a tener problemas)</li>
+</ul>
+<ol class="incremental" start="3" type="1">
+<li>Dentro del notebook añada un breve ensayo o reflexión sobre los costos de computo necesarios sobre algoritmos que pudieran tener ordenes de crecimiento como los mostrados.</li>
+</ol>
+<h3 id="entregable">Entregable</h3>
+<p>Reporte en formato Jupyter que debe contener el código creado y los resultados obtenidos: las figuras generadas, la tabla de simulación. No olvide concluir su reporte con la reflexión solicitada. Tenga en cuenta que los notebooks de Jupyter pueden alternar celdas del notebook con texto, código y resultados; además que el texto puede ser escrito en markdown.</p>
+<p>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos: - Título del reporte, su nombre. - Introducción. - Código cercano a la presentación de resultados. - Figuras y comparación de los ordenes de crecimiento (instrucción 1). Explique los resultados obtenidos. - Simulación de costo en formato de tabla (instrucción 2), explique los resultados obtenidos. - Concluya con la reflexión (instrucción 3). La reflexión debe aboradar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una $ n $ variable y asintóticamente muy grande. - Bibliografía</p>
+<p><em>Archivos a entregar:</em> Notebook de Jupyter y el PDF del notebook (favor de generarlo mediante el mismo Jupyter, no en un procesador de texto, para esto se puede exportar a html con el navegador, y luego el html a PDF).</p>
+</body>
+</html>
