@@ -5,7 +5,7 @@ lang: es-MX
 ...
 
 
-# Objetivo
+## Objetivo
 Obtener los criterios básicos para el análisis, diseño e implementación de algoritos.
 
 # Introducción

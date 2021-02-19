@@ -1,3 +1,10 @@
+---
+title: Estructuras de datos y algoritmos
+lang: es-MX
+
+...
+
+
 # Introducción
 
 El _Análisis de algoritmos y estructuras de datos_ es una materia formativa diseñada para comprender el desempeño de los algoritmos bajo una cierta entrada. Su estudio nos permite identificar el problema algorítmico subyacente dentro de problemas reales, y por tanto, ser capaces de seleccionar, adaptar o construir una solución eficiente y eficaz para dicho problema. Es común que la solución adecuada sobre la solución ingenua permita optimizar de manera significativa los recursos computacionales, y que en última instancia, se pueden traducir como la reducción de costos de operación en un sistema o la posibilidad de procesar grandes cantidades de información de manera más eficiente.
@@ -14,15 +21,15 @@ A lo largo de los temas se abordarán darán detalles teóricos sobre los proble
 
 
 ## Temario
-- 1. Motivación
-- 2. Análisis de la eficiencia de un algoritmo
-- 3. Búsqueda sobre listas ordenadas
-- 4. Estructuras de datos para búsqueda
-- 5. Ordenamiento
-- 6. Buscar es codificar / ordenar es comprimir
-- 7. Algoritmos de intersección y unión
-- 8. Algoritmos para búsqueda de patrones en cadenas
-- 9. Proyecto integrador: construcción de un índice invertido
+1. [Motivación](U1/index.html)
+2. [Análisis de la eficiencia de un algoritmo](U2/index.html)
+3. [Búsqueda sobre listas ordenadas](U3/index.html)
+4. Estructuras de datos para búsqueda
+5. Ordenamiento
+6. Buscar es codificar / ordenar es comprimir
+7. Algoritmos de intersección y unión
+8. Algoritmos para búsqueda de patrones en cadenas
+9. Proyecto integrador: construcción de un índice invertido
 
 
 ## Sobre el lenguaje de programación

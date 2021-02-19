@@ -5,7 +5,7 @@ lang: es-MX
 ...
 
 
-# Objetivo
+## Objetivo
 
 El alumno aprenderá a implementar, utilizar y caracterizar el desempeo de algoritmos peor caso y adaptativos para búsqueda.
 
