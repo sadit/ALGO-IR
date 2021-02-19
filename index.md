@@ -25,7 +25,7 @@ A lo largo de los temas se abordarán darán detalles teóricos sobre los proble
 2. [Análisis de la eficiencia de un algoritmo](U2/index.html)
 3. [Búsqueda sobre listas ordenadas](U3/index.html)
 4. [Algoritmos de ordenamiento](U4/index.html)
-5. Buscar es codificar / ordenar es comprimir
+5. [Buscar es codificar / ordenar es comprimir](U5/index.html)
 6. Algoritmos de intersección y unión
 7. Algoritmos para búsqueda de patrones en cadenas
 8. Proyecto integrador: construcción de un índice invertido
