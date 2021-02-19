@@ -17,6 +17,16 @@ Para este fin, es necesario analizar los recursos necesarios para aplicar un alg
 Durante el curso se estudiaran problemas y algoritmos simples, que suelen formar parte de algoritmos más complejos, y por lo tanto, si somos capaces de seleccionar adecuadamente estos bloques más simples, afectaremos directamente el desempeño de los sistemas. 
 
 # Material audio-visual
-- [Motivación - parte 1](https://youtu.be/ExoGW--OO5s)
-- [Motivación - parte 2](https://youtu.be/cNo0RK_jeuQ)
-- [Índices invertidos (proyecto integrador)](https://youtu.be/vUVjSO7GJw0)
+
+### Motivación - parte 1
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ExoGW--OO5s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+### Motivación - parte 2
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cNo0RK_jeuQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+### Índices invertidos (proyecto integrador del curso)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vUVjSO7GJw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
