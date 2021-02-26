@@ -14,22 +14,7 @@
     ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="../pandoc.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-   var mathElements = document.getElementsByClassName("math");
-   var macros = [];
-   for (var i = 0; i < mathElements.length; i++) {
-    var texText = mathElements[i].firstChild;
-    if (mathElements[i].tagName == "SPAN") {
-     katex.render(texText.data, mathElements[i], {
-      displayMode: mathElements[i].classList.contains('display'),
-      throwOnError: false,
-      macros: macros,
-      fleqn: false
-     });
-  }}});
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -41,17 +26,17 @@
 <h2 id="objetivo">Objetivo</h2>
 <p>Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y adaptativos para ordenamiento de arreglos.</p>
 <h1 id="introducción">Introducción</h1>
-<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función <span class="math inline">\leq</span> tal que para dos elementos <span class="math inline">a</span> y <span class="math inline">b</span> se cumplen las siguientes propiedades:</p>
+<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función <span class="math inline">\(\leq\)</span> tal que para dos elementos <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> se cumplen las siguientes propiedades:</p>
 <ul>
-<li>si <span class="math inline">u \leq v</span> y <span class="math inline">v \leq w</span> entonces <span class="math inline">u \leq w</span> (transitividad)</li>
+<li>si <span class="math inline">\(u \leq v\)</span> y <span class="math inline">\(v \leq w\)</span> entonces <span class="math inline">\(u \leq w\)</span> (transitividad)</li>
 <li>tricotomia:
 <ul>
-<li>si <span class="math inline">u \leq v</span> y <span class="math inline">v \leq u</span> entonces <span class="math inline">u = v</span> (antisimetria)</li>
-<li>en otro caso, <span class="math inline">u \leq v</span> o <span class="math inline">v \leq u</span></li>
+<li>si <span class="math inline">\(u \leq v\)</span> y <span class="math inline">\(v \leq u\)</span> entonces <span class="math inline">\(u = v\)</span> (antisimetria)</li>
+<li>en otro caso, <span class="math inline">\(u \leq v\)</span> o <span class="math inline">\(v \leq u\)</span></li>
 </ul></li>
 </ul>
-<p>La idea es entonces, dado un arreglo <span class="math inline">A[1, n] = a_1, a_2, \cdots, a_n</span> obtener una permutación <span class="math inline">\pi</span> tal que <span class="math inline">a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}</span>. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando <span class="math inline">u = v</span>, entonces se tiene un ordenamiento estable.</p>
-<p>En terminos prácticos, la idea es reorganizar <span class="math inline">A</span>, mediante el cálculo implicito de <span class="math inline">\pi</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">A</span> esta ordenado, i.e., <span class="math inline">a_i \leq a_{i+1}</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que que modificar directamente <span class="math inline">A</span> es una buena opción. Utilizar <span class="math inline">\pi</span> de manera explicita solo es necesario cuando no es posible modificar <span class="math inline">A</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.</p>
+<p>La idea es entonces, dado un arreglo <span class="math inline">\(A[1, n] = a_1, a_2, \cdots, a_n\)</span> obtener una permutación <span class="math inline">\(\pi\)</span> tal que <span class="math inline">\(a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}\)</span>. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando <span class="math inline">\(u = v\)</span>, entonces se tiene un ordenamiento estable.</p>
+<p>En terminos prácticos, la idea es reorganizar <span class="math inline">\(A\)</span>, mediante el cálculo implicito de <span class="math inline">\(\pi\)</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">\(A\)</span> esta ordenado, i.e., <span class="math inline">\(a_i \leq a_{i+1}\)</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que que modificar directamente <span class="math inline">\(A\)</span> es una buena opción. Utilizar <span class="math inline">\(\pi\)</span> de manera explicita solo es necesario cuando no es posible modificar <span class="math inline">\(A\)</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.</p>
 <p>En esta unidad se tendrá atención especial a aquellos algoritmos oportunistas que son capaces de obtener ventaja en instancias sencillas.</p>
 <h2 id="lecturas">Lecturas</h2>
 <p>Las lecturas de este tema corresponden al capítulo 5 de <span class="citation" data-cites="Knuth98">[@Knuth98]</span>, en específico 5.2 <em>Internal sorting</em>. También se recomienda leer y comprender la parte II de <span class="citation" data-cites="Cormen01">[@Cormen01]</span>, que corresponde a <em>Sorting and order statistics</em>, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <span class="citation" data-cites="SortWiki">[@SortWiki]</span> también puede ser consultado con la idea de encontrar una explicación rapida de los algoritmos.</p>
@@ -80,10 +65,10 @@
 <li>Reporte el siguiente experimento.</li>
 </ol>
 <ul>
-<li>Sea <span class="math inline">p</span> una proporción entre las siguientes: <span class="math inline">0.01, 0.03, 0.10, 0.30</span>.</li>
-<li>Perturbe cada arreglo <span class="math inline">A</span> haciendo <span class="math inline">\lfloor p \times n \rfloor</span> intercambios de dos elementos aletorios de cada lista, i.e., cada intercambio consiste en seleccionar dos indices <strong>aleatorios</strong> entre 1 y <span class="math inline">n</span>, donde <span class="math inline">n</span> es el tamaño de cada lista. El intercambio consiste en <span class="math inline">A[i] \leftrightarrow A[j]</span> para dos indices <span class="math inline">i,j</span>. Asegurese que los rangos son validos para cada índice.</li>
-<li>Ordene con los algoritmos implementados para cada valor de <span class="math inline">p</span>.</li>
-<li>Grafique el número de comparaciones y el tiempo real necesario para cada algoritmo sobre las 100 listas, para cada <span class="math inline">p</span>.</li>
+<li>Sea <span class="math inline">\(p\)</span> una proporción entre las siguientes: <span class="math inline">\(0.01, 0.03, 0.10, 0.30\)</span>.</li>
+<li>Perturbe cada arreglo <span class="math inline">\(A\)</span> haciendo <span class="math inline">\(\lfloor p \times n \rfloor\)</span> intercambios de dos elementos aletorios de cada lista, i.e., cada intercambio consiste en seleccionar dos indices <strong>aleatorios</strong> entre 1 y <span class="math inline">\(n\)</span>, donde <span class="math inline">\(n\)</span> es el tamaño de cada lista. El intercambio consiste en <span class="math inline">\(A[i] \leftrightarrow A[j]\)</span> para dos indices <span class="math inline">\(i,j\)</span>. Asegurese que los rangos son validos para cada índice.</li>
+<li>Ordene con los algoritmos implementados para cada valor de <span class="math inline">\(p\)</span>.</li>
+<li>Grafique el número de comparaciones y el tiempo real necesario para cada algoritmo sobre las 100 listas, para cada <span class="math inline">\(p\)</span>.</li>
 <li><strong>Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.</strong></li>
 <li>Nota 2: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</li>
 </ul>

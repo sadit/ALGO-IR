@@ -59,7 +59,7 @@ Escoja los rangos adecuados para cada comparación.
 2. Haga una tabla donde simule tiempos de ejecución suponiendo que cada operación tiene un costo de 1 micro-segundo:
 
  - Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo $n$.
- - Use como los diferentes tamaños de entrada $n=100 $; $n=1000$; $n=10000$ y $n=100000$.
+ - Use como los diferentes tamaños de entrada $n=100$; $n=1000$; $n=10000$ y $n=100000$.
  - Note que para algunas fórmulas, los números pueden ser muy grandes (use el foro de dudas si llega a tener problemas)
 
 3. Dentro del notebook añada un breve ensayo o reflexión sobre los costos de computo necesarios sobre algoritmos que pudieran tener ordenes de crecimiento como los mostrados.

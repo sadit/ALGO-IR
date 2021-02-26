@@ -14,22 +14,7 @@
     ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="../pandoc.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-   var mathElements = document.getElementsByClassName("math");
-   var macros = [];
-   for (var i = 0; i < mathElements.length; i++) {
-    var texText = mathElements[i].firstChild;
-    if (mathElements[i].tagName == "SPAN") {
-     katex.render(texText.data, mathElements[i], {
-      displayMode: mathElements[i].classList.contains('display'),
-      throwOnError: false,
-      macros: macros,
-      fleqn: false
-     });
-  }}});
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -69,19 +54,19 @@
 <li>Utilizar el notebook de Jupyter para generar las siguientes comparaciones de ordenes de crecimiento (una figura por comparación, i.e., cinco figuras)</li>
 </ol>
 <ul>
-<li><span class="math inline">O(1)</span> vs <span class="math inline">O(\log n)</span></li>
-<li><span class="math inline">O(n)</span> vs <span class="math inline">O(n \log n)</span></li>
-<li><span class="math inline">O(n^2)</span> vs <span class="math inline">O(n^3)</span></li>
-<li><span class="math inline">a^n</span> vs <span class="math inline">n!</span></li>
-<li><span class="math inline">n!</span> vs <span class="math inline">n^n</span></li>
+<li><span class="math inline">\(O(1)\)</span> vs <span class="math inline">\(O(\log n)\)</span></li>
+<li><span class="math inline">\(O(n)\)</span> vs <span class="math inline">\(O(n \log n)\)</span></li>
+<li><span class="math inline">\(O(n^2)\)</span> vs <span class="math inline">\(O(n^3)\)</span></li>
+<li><span class="math inline">\(a^n\)</span> vs <span class="math inline">\(n!\)</span></li>
+<li><span class="math inline">\(n!\)</span> vs <span class="math inline">\(n^n\)</span></li>
 </ul>
 <p>Escoja los rangos adecuados para cada comparación.</p>
 <ol start="2" type="1">
 <li>Haga una tabla donde simule tiempos de ejecución suponiendo que cada operación tiene un costo de 1 micro-segundo:</li>
 </ol>
 <ul>
-<li>Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo <span class="math inline">n</span>.</li>
-<li>Use como los diferentes tamaños de entrada $n=100 $; <span class="math inline">n=1000</span>; <span class="math inline">n=10000</span> y <span class="math inline">n=100000</span>.</li>
+<li>Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo <span class="math inline">\(n\)</span>.</li>
+<li>Use como los diferentes tamaños de entrada <span class="math inline">\(n=100\)</span>; <span class="math inline">\(n=1000\)</span>; <span class="math inline">\(n=10000\)</span> y <span class="math inline">\(n=100000\)</span>.</li>
 <li>Note que para algunas fórmulas, los números pueden ser muy grandes (use el foro de dudas si llega a tener problemas)</li>
 </ul>
 <ol start="3" type="1">
@@ -96,7 +81,7 @@
 <li>Código cercano a la presentación de resultados.</li>
 <li>Figuras y comparación de los ordenes de crecimiento (instrucción 1). Explique los resultados obtenidos.</li>
 <li>Simulación de costo en formato de tabla (instrucción 2), explique los resultados obtenidos.</li>
-<li>Concluya con la reflexión (instrucción 3). La reflexión debe aboradar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una <span class="math inline">n</span> variable y asintóticamente muy grande.</li>
+<li>Concluya con la reflexión (instrucción 3). La reflexión debe aboradar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una <span class="math inline">\(n\)</span> variable y asintóticamente muy grande.</li>
 <li>Bibliografía</li>
 </ul>
 <p><em>Archivos a entregar:</em> Notebook de Jupyter y el PDF del notebook (favor de generarlo mediante el mismo Jupyter, no en un procesador de texto, para esto se puede exportar a html con el navegador, y luego el html a PDF).</p>
