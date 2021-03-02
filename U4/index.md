@@ -50,11 +50,19 @@ Realizar las actividades de lectura y comprensión.
     
 ## Actividad 1 [con reporte]
 1. Implemente los algoritmos, bubble-sort, insertion-sort, merge-sort y quick-sort. Explíquelos.
-2. Carge los archivos `unsorted-list-p=*.json`, los cuales corresponden al archivo `listas-posteo-100.json` perturbado en cierta proporción: $p=0.01, 0.03, 0.10, 0.30$. En el notebook `perturbar-listas.ipynb` se encuentran el procedimiento que se utilizó para la perturbación. Nota: puede usar sus propias listas de posteo perturbadas para la actividad siempre y cuando sean comparables en tamaño. Recuerde que la unidad anterior se dió un notebook con el código para crear índices invertidos y las listas de posteo.
+
+2. Carge los archivos `unsorted-list-p=*.json`, los cuales corresponden al archivo `listas-posteo-100.json` perturbado en cierta proporción: $p=0.01, 0.03, 0.10, 0.30$.
+ - En el notebook `perturbar-listas.ipynb` se encuentran el procedimiento que se utilizó para la perturbación.
+ - Nota: puede usar sus propias listas de posteo perturbadas para la actividad siempre y cuando sean comparables en tamaño.
+ - Recuerde que la unidad anterior se dió un notebook con el código para crear índices invertidos y las listas de posteo.
+
 3. Para cada archivo de listas desordenadas con cierta perturbación, realice el siguiente experimento:
-  - Ordene con los algoritmos implementados para cada valor de $p$ con cada.
-  - Grafique el número de comparaciones necesarias para ordenar las 100 listas.
-  - Grafique el tiempo en segundos necesario para ordenar las 100 listas.
+ - Ordene con los algoritmos implementados para cada valor de $p$ con cada.
+ - Grafique el número de comparaciones necesarias para ordenar las 100 listas.
+ - Grafique el tiempo en segundos necesario para ordenar las 100 listas.
+
+4. Muestre de manera agregada la información de todos los experimentos en una tabla.
+
 
 - Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.
 - Nota 2: Repita varias veces las operaciones de ordenamiento, esto es muy importante sobre para la estabilidad de los tiempos en segundos (vea Nota 1).
