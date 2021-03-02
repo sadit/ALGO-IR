@@ -72,7 +72,7 @@ Realice y reporte el siguiente experimento:
    - *Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.*
  - Bosqueje en pseudo-código la implementación de la búsqueda casí optima $B_k$
 
-  
+
 ### Entregable
 El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.
 

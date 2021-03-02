@@ -12,7 +12,7 @@ Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y ada
 
 # Introducción
 
-En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función $\leq$ tal que para dos elementos $a$ y $b$ se cumplen las siguientes propiedades:
+En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función $\leq$ tal que para dos elementos $a$ y $b$. Recuerde que se cumplen las siguientes propiedades:
 
 - si $u \leq v$ y $v \leq w$ entonces $u \leq w$ (transitividad)
 - tricotomia:
@@ -22,17 +22,18 @@ En este tema se aborda el ordenamiento basado en comparación, esto es, existe u
 La idea es entonces, dado un arreglo $A[1, n] = a_1, a_2, \cdots, a_n$ obtener una permutación $\pi$ tal que
 $a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}$. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando $u = v$, entonces se tiene un ordenamiento estable.
 
-En terminos prácticos, la idea es reorganizar $A$, mediante el cálculo implicito de $\pi$, de tal forma que después de terminar el proceso de ordenamiento se obtenga que $A$ esta ordenado, i.e., $a_i \leq a_{i+1}$. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que que modificar directamente $A$ es una buena opción. Utilizar $\pi$ de manera explicita solo es necesario cuando no es posible modificar $A$. También es muy común utilizar datos _satélite_ asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos. 
-
+En terminos prácticos, la idea es reorganizar $A$, mediante el cálculo implicito de $\pi$, de tal forma que después de terminar el proceso de ordenamiento se obtenga que $A$ esta ordenado, i.e., $a_i \leq a_{i+1}$. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que es común modificar directamente $A$.
+Utilizar $\pi$ solo es necesario cuando no es posible modificar $A$. También es muy común utilizar datos _satélite_ asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.
 
 En esta unidad se tendrá atención especial a aquellos algoritmos oportunistas que son capaces de obtener ventaja en instancias sencillas.
 
 ## Lecturas
-Las lecturas de este tema corresponden al capítulo 5 de [@Knuth98], en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen01], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia [@SortWiki] también puede ser consultado con la idea de encontrar una explicación rapida de los algoritmos. 
+Las lecturas de este tema corresponden al capítulo 5 de [@Knuth98], en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen01], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia [@SortWiki] también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.
 
-Como muchos sabrán, pocos algoritmos son mejores en la práctica que quicksort. En [@Loeser74] se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.
+En la práctica, pocos algoritmos son mejores que _quicksort_. En [@Loeser74] se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.
 
-La parte adaptable, esto es para algoritmos _oportunistas_ que toman ventaja de instancias simples, esta cubierta por el artículo [@Estivill90], en especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad. En [@Cook80] realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a [@Estivill90] pero tiene experimentos que simplifican el entendimiento de los temas.
+La parte adaptable, esto es para algoritmos _oportunistas_ que toman ventaja de instancias simples, esta cubierta por el artículo [@Estivill90]. En especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad.
+En [@Cook80] realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a [@Estivill90] pero tiene experimentos que simplifican el entendimiento de los temas.
 
 
 ## Material audio-visual sobre algoritmos de ordenamiento
@@ -40,35 +41,33 @@ La parte adaptable, esto es para algoritmos _oportunistas_ que toman ventaja de 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-## Actividad 
+# Actividades
 
-1. Realizar las actividades de lectura y comprensión.
-  - De preferencia realice los ejercicios de los capítulos y secciones relacionadas.
-2. Implemente los algoritmos, bubble sort, insertion sort, merge-sort y quick-sort. Expliquelos.
-3. Use el archivo `listas-posteo-100.json`, generado en la actividad del Tema 3.
-  - Los usuarios de Julia deberán asegurar que los tipos de los arreglos es `Int` y no `Any` para asegurar la velocidad adecuada.  
-  - Las listas de posteo serán los arreglos que se utilizaran para realizar las actividades.
-3. Reporte el siguiente experimento.
-  - Sea $p$ una proporción entre las siguientes: $0.01, 0.03, 0.10, 0.30$.
-  - Perturbe cada arreglo $A$ haciendo $\lfloor p \times n \rfloor$ intercambios de dos elementos aletorios de cada lista, i.e., cada intercambio consiste en seleccionar dos indices __aleatorios__ entre 1 y $n$, donde $n$ es el tamaño de cada lista. El intercambio consiste en $A[i] \leftrightarrow A[j]$ para dos indices $i,j$. Asegurese que los rangos son validos para cada índice.
-  - Ordene con los algoritmos implementados para cada valor de $p$.
-  - Grafique el número de comparaciones y el tiempo real necesario para cada algoritmo sobre las 100 listas, para cada $p$.
-  - __Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.__
-  - Nota 2: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.
-4. Opcionales. Resuelva estos problemas para añadir puntos adicionales a su calificación global. La calificación de estos puntos es discrecional al profesor.
-   - Al final de este notebook hay una implementación del algoritmo de búsqueda en un índice invertido; ésta hace uso del método `sort!`. Reemplacelo por la mejor de sus implementaciones y pruebe si obtiene un mejor desempeño. Muestre el desempeño resolviendo una gran cantidad de búsquedas.
-   - Discuta el problema que esta resolviendo la variable `res` en las funciones `search` y `union!`. Explique que hace, diga cuales son las operaciones y propiedades.
+## Actividad 0 [sin entrega]
 
-El reporte deberá ser en formato notebook y con el PDF del mismo notebook. Para generar el PDF primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.
+Realizar las actividades de lectura y comprensión.
+ - De preferencia realice los ejercicios de los capítulos y secciones relacionadas.
+    
+## Actividad 1 [con reporte]
+1. Implemente los algoritmos, bubble-sort, insertion-sort, merge-sort y quick-sort. Explíquelos.
+2. Carge los archivos `unsorted-list-p=*.json`, los cuales corresponden al archivo `listas-posteo-100.json` perturbado en cierta proporción: $p=0.01, 0.03, 0.10, 0.30$. En el notebook `perturbar-listas.ipynb` se encuentran el procedimiento que se utilizó para la perturbación. Nota: puede usar sus propias listas de posteo perturbadas para la actividad siempre y cuando sean comparables en tamaño. Recuerde que la unidad anterior se dió un notebook con el código para crear índices invertidos y las listas de posteo.
+3. Para cada archivo de listas desordenadas con cierta perturbación, realice el siguiente experimento:
+  - Ordene con los algoritmos implementados para cada valor de $p$ con cada.
+  - Grafique el número de comparaciones necesarias para ordenar las 100 listas.
+  - Grafique el tiempo en segundos necesario para ordenar las 100 listas.
 
-El notebook debe contener las implementaciones de los algoritmos de ordenamiento indicados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de las implementaciones y de los experimentos realizados, las observaciones y conclusiones; adicionalmente, añada las soluciones a las actividades opcionales si así lo desea.
+- Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.
+- Nota 2: Repita varias veces las operaciones de ordenamiento, esto es muy importante sobre para la estabilidad de los tiempos en segundos (vea Nota 1).
+- Nota 3: En las implementaciones podrá usar cualquier comparación que le convenga, i.e., $<, \leq$, $cmp \rightarrow \{-1, 0, 1\}$, etc.
+- Nota 4: Tome en cuenta que varios lenguajes de programación (Python y Julia) hacen copias de los arreglos cuando se usa _slicing_, i.e., `arr[i:j]` creará un nuevo arreglo y eso implica costos adicionales innecesarios:
+  - Python: use índices o arreglos de `numpy`.
+  - Julia: use índices o vistas, i.e., `@view`.
 
+### Entregable
+El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.
 
-## Ver más
-- [SphinxSearch](http://sphinxsearch.com/); biblioteca para búsqueda escrita en C++, tiene conexiones con algunos motores de bases de datos relacionales.
-- [ElasticSearch](https://www.elastic.co/es/); biblioteca popular, adaptada como NoSQL.
-- [Lucene](https://lucene.apache.org/); biblioteca de la fundación apache, núcleo de diversas máquinas de búsqueda.
-- [TextSearch.jl](https://github.com/sadit/TextSearch.jl); implementación propia, con menos opciones que las anteriores, pero con la posibilidad de realizar modificaciones más profundas en sus partes.
+Para generar el PDF primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.
+
 
 ## Referencias #
 - [@Knuth98]: Donald E. Knuth. 1998. The Art of Computer Programming, Volume 3: (2nd Ed.) Sorting and Searching. Addison Wesley Longman Publishing Co., Inc., Redwood City, CA, USA.
