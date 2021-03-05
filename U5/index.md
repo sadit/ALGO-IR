@@ -45,6 +45,12 @@ Para los experimentos utilizará los siguientes tres tipos de datos:
 - SIN1024: Datos sintéticos con diferencias aleatorias entre 1 y 1024, $n = 10^7$
 - Las comparaciones deberán realizarse mediante figuras y tablas que resuman la información.
 
+# Biblioteca para manejo de arreglos de bits:
+
+
+- Python: [bitarray](https://pypi.org/project/bitarray/)
+- Julia: [BitArray](https://docs.julialang.org/en/v1/base/arrays/#Base.BitArray)
+
 !!!!! ESTA NO ES LA ULTIMA VERSION !!!!
 Descargue el archivo del Elías 1975 que se encuentra en Materiales del tema 5 para realizar el reporte solicitado.
 

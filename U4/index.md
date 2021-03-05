@@ -12,7 +12,7 @@ Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y ada
 
 # Introducción
 
-En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función $\leq$ tal que para dos elementos $a$ y $b$. Recuerde que se cumplen las siguientes propiedades:
+En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función $\leq$. Recuerde que se cumplen las siguientes propiedades:
 
 - si $u \leq v$ y $v \leq w$ entonces $u \leq w$ (transitividad)
 - tricotomia:
