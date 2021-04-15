@@ -1,0 +1,87 @@
+---
+title: Algoritmos de intersección de conjuntos con representación de listas ordenadas
+lang: es-MX
+author: Eric S. Téllez
+
+...
+
+
+## Objetivo
+Se implementarán y compararán algoritmos de intersección de conjuntos representados como listas ordenadas, utilizando una variedad de algoritmos de búsqueda que dan diferentes propiedades a los algoritmos de intersección.
+
+## Introducción
+
+En este tema se conocerán, implementarán y compararán algoritmos de intersección de listas ordenadas. El cálculo de la intersección es un proceso costoso en una máquina de búsqueda, sin embargo, es un procedimiento esencial cuando se trabaja con grandes colecciones de datos.
+
+El índice invertido tal y como lo hemos creado, es capaz de manejar una cantidad razonablemente grande de documentos.
+Para asegurarnos del escalamiento con la cantidad de documentos, es necesario utilizar algoritmos de intersección que sean eficientes.
+Entonces, dadas las listas ordenadas $L_1, \cdots, L_k$ (e.g, correspondientes a las listas de posteo en un índice invertido), tomará dichas listas y producirá $L^* = \bigcap_i L_i$, esto es, si $u\in L^*$ entonces $u \in L_i$ para $1 \leq i \leq k$.
+
+Existen varios algoritmos prominentes para llevar a cabo esta operación. Uno de los trabajos seminales viene de Hwang & Lin, en su algoritmo de _merge_ entre dos conjuntos [@HL1971]. En este trabajo se replantea el costo como encontrar los _puntos_ de unión entre ambos conjuntos, esto se traslada de manera inmediata al problema de intersección.
+El problema correspondiente para intersectar dos conjuntos cualesquiera representados como conjuntos ordenados es entonces $\log{{n+m} \choose m}$, que usando la aproximación de Stirling se puede reescribir como
+$$n \log \frac{n}{m} + (n-m)\log \frac{n}{n-m},$$ donde $n$ y $m$ corresponden a al número de elementos en cada conjunto.
+
+Un algoritmo _naïve_ para realizar la intersección, puede ser buscar todos los elementos del conjunto más pequeño en el más grande. Si para la búsqueda se utiliza _búsqueda binaria_, tenemos un costo de $m \log n$. 
+
+
+Esta simple idea puede ser explotada y mejorada para obtener costos más bajos, por ejemplo, si en lugar de buscar sobre la lista más grande directamente, esta se divide en bloques de tamaño $m$ para encontrar el bloque que contiene cada elemento (recuerde que el arreglo esta ordenado), para después buscar dentro del bloque. Haciendo esto, el costo se convierte en
+$$ m \log \frac{n}{m} + m \log m$$
+cuyo costo se ajusta  mejor al costo del problema.  Este es el algoritmo propuesto, a groso modo, en [@HL1971].
+
+Cuando $k>2$, la intersección se puede realizar usando las $k$ listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son "más faciles" de intersectar con un algoritmo _na\"ive_. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy
+popular llamada _Small vs Small (SvS)_.
+
+Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En [@DLOPM2001], [@BLOL2006], [@BLOLS2010], y [@BYS2005] se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores [@DLOM2000], [@DLOPM2001], [@BK2002], [@BY2004].
+
+### Recursos audio-visuales de la unidad
+
+Parte 1: Algoritmos de intersección (y unión) de listas ordenadas
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Parte 2: Algoritmos de intersección y algunas aplicaciones
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Actividades
+Implementación y comparación de diferentes algoritmos de intersección de conjuntos.
+
+Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.
+
+
+### Actividad 0 [Sin entrega]
+
+1. Lea y comprenda los artículos relacionados (listados en la introducción).
+
+### Actividad 1 [Con reporte]
+1. Cargue el archivo `listas-posteo-100.json` de la actividad 3. Si lo desea, puede listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase la actividad 3 para recordar la naturaleza y propiedades de las listas.
+
+ - Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.
+ - Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.
+ - Sea $P^{(4)}$ el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria $C \subset P^{(4)}$, $|C| = 1000$.
+
+2. Implemente los algoritmos de las secciones 3.1 _Melding Algorithms_ y 3.2 _Search algorithms_ (en especial 3.2.1 y 3.2.2) de [@BLOLS2010].
+
+3. Realice y reporte los siguientes experimentos:
+ - Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
+ - Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
+ - Intersecte cada tetrapleta de listas $a, b, c, d \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.
+ - Cree una figura `boxplot` que describa el tiempo en segundos para los tres experimentos.
+ - Cree una figura `boxplot` que describa el número de comparaciones para los tres experimentos.
+ - Cree una figura `boxplot` que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.
+
+### Entregable:
+El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las
+implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una
+introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.
+
+_Nota sobre la generación del PDF_: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.
+
+# Referencias
+- [@BLOLS2010]: Jérémy Barbay, Alejandro López-Ortiz, Tyler Lu, and Alejandro Salinger. 2010. An experimental investigation of set intersection algorithms for text searching. J. Exp. Algorithmics 14, Article 7 (January 2010), 54 pages. DOI: https://doi.org/10.1145/1498698.1564507 (https://doi.org/10.1145/1498698.1564507)
+- [@BLOL2006]: Barbay J., López-Ortiz A., Lu T. (2006) Faster Adaptive Set Intersections for Text Searching. In: Àlvarez C., Serna M. (eds) Experimental Algorithms. WEA 2006. Lecture Notes in Computer Science, vol 4007. Springer, Berlin, Heidelberg
+- [@BYS2005]: Baeza-Yates R., Salinger A. (2005) Experimental Analysis of a Fast Intersection Algorithm for Sorted Sequences. In: Consens M., Navarro G. (eds) String Processing and Information Retrieval. SPIRE 2005. Lecture Notes in Computer Science, vol 3772. Springer, Berlin, Heidelberg
+- [@BY2004]: Baeza-Yates R. (2004) A Fast Set Intersection Algorithm for Sorted Sequences. In: Sahinalp S.C., Muthukrishnan S., Dogrusoz U. (eds) Combinatorial Pattern Matching. CPM 2004. Lecture Notes in Computer Science, vol 3109. Springer, Berlin, Heidelberg
+- [@BK2002]: Jérémy Barbay and Claire Kenyon. 2002. Adaptive intersection and t-threshold problems. In Proceedings of the thirteenth annual ACM-SIAM symposium on Discrete algorithms (SODA '02). Society for Industrial and Applied Mathematics, Philadelphia, PA, USA, 390-399.
+- [@DLOPM2001] Erik D. Demaine, Alejandro López-Ortiz, and J. Ian Munro. 2001. Experiments on Adaptive Set Intersections for Text Retrieval Systems. In Revised Papers from the Third International Workshop on Algorithm Engineering and Experimentation (ALENEX '01), Adam L. Buchsbaum and Jack Snoeyink (Eds.).
+Springer-Verlag, London, UK, UK, 91-104.
+- [@DLOM2000]: Erik D. Demaine, Alejandro López-Ortiz, and J. Ian Munro. 2000. Adaptive set intersections, unions, and differences. In Proceedings of the eleventh annual ACM-SIAM symposium on Discrete algorithms (SODA '00). Society for Industrial and Applied Mathematics, Philadelphia, PA, USA, 743-752
+- [@HL1971] Hwang, F. K., & Lin, S. (1971). Optimal merging of 2 elements with n elements. Acta Informatica, 1(2), 145-158.
