@@ -5,27 +5,29 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Algoritmos para codificación de enteros</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="../pandoc.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<header>
+<header id="title-block-header">
 <h1 class="title">Algoritmos para codificación de enteros</h1>
 </header>
 <h2 id="objetivos">Objetivos</h2>
 <ul>
-<li>Crear algoritmos de codificación de enteros y su relación con algoritmos de búsqueda</li>
-<li>Crear algoritmos de compresión de permutaciones y su relación con algoritmos de ordenamiento</li>
-<li>Optimización del espacio utilizado de índices invertidos</li>
+<li>Implementar algoritmos de codificación de enteros y su relación con algoritmos de búsqueda</li>
+<li>Implementar algoritmos de compresión de permutaciones y su relación con algoritmos de ordenamiento</li>
+<li>Optimización del espacio utilizado de índices invertidos m</li>
 </ul>
 <h1 id="introducción">Introducción</h1>
 <p>La codificación de enteros es una área intimamente relacionada con los algoritmos de búsqueda. En este bloque, se estudiará cómo variantes sobre los algoritmos de búsqueda generan codificaciones de enteros eficientes. Así mismo, se verá como la compresión de permutaciones esta relacionada con los algoritmos de ordenamiento.</p>
@@ -46,10 +48,11 @@
 <li>Comprimir las diferencias mediante Elias-<span class="math inline">\(\gamma\)</span>, Elias-<span class="math inline">\(\delta\)</span>, y las codificaciones inducidas por los algoritmos de búsqueda <span class="math inline">\(B_1\)</span> y <span class="math inline">\(B_2\)</span> (búsqueda exponencial en <span class="math inline">\(2^i\)</span> y <span class="math inline">\(2^2^i\)</span>)</li>
 </ul>
 <p>Reporte: - Tiempos de compresión y decompresión - Razón entre el tamaño comprimido y sin comprimir (<em>compression ratio</em>).</p>
-<p>Para los experimentos utilizará los siguientes tres tipos de datos:</p>
+<p>Para los experimentos utilizará los siguientes datos:</p>
 <ul>
 <li>REAL: Datos reales, puede usar <code>listas-posteo-100.json</code> o puede generarla (vea Unidad 2).</li>
-<li>SIN64: Datos sintéticos con diferencias aleatorias entre 1 y 64, <span class="math inline">\(n = 10^7\)</span></li>
+<li>SIN8: Datos sintéticos con diferencias aleatorias entre 1 y 8, <span class="math inline">\(n=10^7\)</span>.</li>
+<li>SIN64: Datos sintéticos con diferencias aleatorias entre 1 y 64, <span class="math inline">\(n = 10^7\)</span>.</li>
 <li>SIN1024: Datos sintéticos con diferencias aleatorias entre 1 y 1024, <span class="math inline">\(n = 10^7\)</span></li>
 <li>Las comparaciones deberán realizarse mediante figuras y tablas que resuman la información.</li>
 </ul>
@@ -58,8 +61,7 @@
 <li>Python: <a href="https://pypi.org/project/bitarray/">bitarray</a></li>
 <li>Julia: <a href="https://docs.julialang.org/en/v1/base/arrays/#Base.BitArray">BitArray</a></li>
 </ul>
-<p>!!!!! ESTA NO ES LA ULTIMA VERSION !!!! Descargue el archivo del Elías 1975 que se encuentra en Materiales del tema 5 para realizar el reporte solicitado.</p>
-<p>Los videos que aparecen en Material de Apoyo permitirán entender mejor los contenidos del artículo y realizar la actividad.</p>
+<h1 id="sobre-el-reporte">Sobre el reporte</h1>
 <p>El reporte deberá contener:</p>
 <ul>
 <li>Resumen</li>

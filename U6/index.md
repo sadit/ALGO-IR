@@ -52,7 +52,7 @@ Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el r
 1. Lea y comprenda los artículos relacionados (listados en la introducción).
 
 ### Actividad 1 [Con reporte]
-1. Cargue el archivo `listas-posteo-100.json` de la actividad 3. Si lo desea, puede listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase la actividad 3 para recordar la naturaleza y propiedades de las listas.
+1. Cargue el archivo `listas-posteo-100.json` del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
 
  - Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.
  - Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.
@@ -63,7 +63,7 @@ Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el r
 3. Realice y reporte los siguientes experimentos:
  - Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
  - Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
- - Intersecte cada tetrapleta de listas $a, b, c, d \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.
+ - Intersecte cada tetrapleta de listas $a, b, c, d \in C$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.
  - Cree una figura `boxplot` que describa el tiempo en segundos para los tres experimentos.
  - Cree una figura `boxplot` que describa el número de comparaciones para los tres experimentos.
  - Cree una figura `boxplot` que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.

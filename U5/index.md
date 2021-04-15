@@ -7,9 +7,9 @@ lang: es-MX
 
 ## Objetivos
 
-- Crear algoritmos de codificación de enteros y su relación con algoritmos de búsqueda
-- Crear algoritmos de compresión de permutaciones y su relación con algoritmos de ordenamiento
-- Optimización del espacio utilizado de índices invertidos
+- Implementar algoritmos de codificación de enteros y su relación con algoritmos de búsqueda
+- Implementar algoritmos de compresión de permutaciones y su relación con algoritmos de ordenamiento
+- Optimización del espacio utilizado de índices invertidos m
 
 # Introducción
 La codificación de enteros es una área intimamente relacionada con los algoritmos de búsqueda. En este bloque, se estudiará cómo variantes sobre los algoritmos de búsqueda generan codificaciones de enteros eficientes. Así mismo, se verá como la compresión de permutaciones esta relacionada con los algoritmos de ordenamiento.
@@ -38,10 +38,11 @@ Reporte:
 - Tiempos de compresión y decompresión
 - Razón entre el tamaño comprimido y sin comprimir (_compression ratio_).
 
-Para los experimentos utilizará los siguientes tres tipos de datos:
+Para los experimentos utilizará los siguientes datos:
 
 - REAL: Datos reales, puede usar `listas-posteo-100.json` o puede generarla (vea Unidad 2).
-- SIN64: Datos sintéticos con diferencias aleatorias entre 1 y 64, $n = 10^7$
+- SIN8: Datos sintéticos con diferencias aleatorias entre 1 y 8, $n=10^7$.
+- SIN64: Datos sintéticos con diferencias aleatorias entre 1 y 64, $n = 10^7$.
 - SIN1024: Datos sintéticos con diferencias aleatorias entre 1 y 1024, $n = 10^7$
 - Las comparaciones deberán realizarse mediante figuras y tablas que resuman la información.
 
@@ -51,10 +52,7 @@ Para los experimentos utilizará los siguientes tres tipos de datos:
 - Python: [bitarray](https://pypi.org/project/bitarray/)
 - Julia: [BitArray](https://docs.julialang.org/en/v1/base/arrays/#Base.BitArray)
 
-!!!!! ESTA NO ES LA ULTIMA VERSION !!!!
-Descargue el archivo del Elías 1975 que se encuentra en Materiales del tema 5 para realizar el reporte solicitado.
-
-Los videos que aparecen en Material de Apoyo permitirán entender mejor los contenidos del artículo y realizar la actividad.
+# Sobre el reporte
 
 El reporte deberá contener:
 
