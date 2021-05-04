@@ -30,30 +30,64 @@ Dada una cadena larga $T[1,n]$ y una cadena corta $P[1,m]$, llamada _patrón_, e
 2. $T$ varia frecuentemente, o no esta acotado, por lo que la estrategía es apoyarse en una estructura sobre $P$ para resolver consultas de manera eficiente.
 
 
-Existen variaciones de ambos problemas, dónde es posible tener en consideración múltiples patrones, clases de caracteres, e.g., dígitos numéricos, caracteres alfabeticos, puntuaciones, o en general conjuntos de símbolos que se deseen agrupar. Así como soportar cualquier tipo de expresión regular. [Cita]
-
 ### Esquemas de búsqueda
 Para el primer problema, se puede crear algún índice tipo índice invertido si el texto ser divido en pequeñas piezas o tokens, e.g., palabras y símbolos de puntuación en texto escrito en lenguaje natural (y con pocas propiedades aglutinantes). De otra forma requerirá índices similares a árboles de sufijos o arreglos de sufijos. Estas últimas estructuras se basan en crear un árbol que contenga todos los sufijos (mediante punteros e índices al texto original).
 (Ver video)
 
-Para el segundo problema, la idea general es revisar la cadena $T$ en ventanas de tamaño $m$ y calcular una estructura sobre $P$ tal que usando la información de la ventana siendo analizada sea posible avanzar la ventana de manera segura (sin perder información) y rápida (moverla lo más posible). Para esto se usan los prefijos, sufijos y factores de $P$ y la ventana en cuestión.
+Para el segundo problema, la idea general es revisar la cadena $T$ en ventanas de tamaño $m$ y calcular una estructura sobre $P$ tal que usando la información de la ventana siendo analizada sea posible avanzar la ventana de manera segura (sin perder información) y rápida (moverla lo más posible). Para esto se usan los prefijos, sufijos y factores de $P$ y la ventana en cuestión. Esta unidad se enfoca en este segundo problema.
 
-Durante la actividad nos enfocaremos en el segundo problema. Dicho esto, nos remitiremos a una estructura conocida por muchos que es el _autómata finito_. 
+### Autómatas finitos y búsqueda de cadenas
 
-### Autómatas Finitos
+Muchos de los algoritmos de búsqueda de patrones en cadenas estan basados en algoritmos sobre autómatas finitos, por lo que nos remitiremos a dicha estructura, el _autómata finito_. 
+
+#### Autómatas Finitos
 Para nuestros propósitos, un autómata finito es una estructura discreta formada por una serie de estados $Q$, entre los cuales hay dos tipos de estados especiales. El estado inicial $I \in Q$ y los estados terminales $F \subseteq Q$.
-Entre cada par de estados puede existir una transición, etiquetada por elementos de un alfabeto $\Sigma \cup \{\epsilon\}$; estas transiciones son descritas de manera precisa mediante una función especial llamada función de transición $\mathcal{D}(q, \alpha) = \{q_1, \cdots, q_k\}$ esto es, asocia estados $Q$ por medio de un símbolos $\alpha \in \Sigma \cup \{\epsilon\}$. Un autómata es descrito por estas partes como $A = (Q, \Sigma, I, F, \mathcal{D})$.
+Entre cada par de estados puede existir una transición, etiquetada por elementos de un alfabeto $\Sigma \cup \{\epsilon\}$; estas transiciones son descritas de manera precisa mediante una función especial llamada función de transición $\mathcal{D}(q, \alpha) = \{q_1, \cdots, q_k\}$ esto es, asocia estados $Q$ por medio de símbolos $\alpha \in \Sigma \cup \{\epsilon\}$. Un autómata es descrito por estas partes como $A = (Q, \Sigma, I, F, \mathcal{D})$.
 
-Dependiendo de la función de transición, podemos distinguir dos tipos de autómatas, equivalentes en cuanto a su capacidad de expresión de cadenas, pero muy diferentes en cuanto a la expresividad gráfica. El autómata determinista es aquel donde $\mathcal{D}$ asocia pares de estados, mientras que el no determinista puede asociar diferentes estados usando el mismo cáracter de transición, $\mathcal{D}: Q \times \Sigma \rightarrow  \{q_1,\cdots,q_k\}$ para $k>1$, así como también cuando hay alguna transición definida por la cadena vacia, i.e., $\mathcal{D}(q, \epsilon)$.
+Dependiendo de la función de transición, podemos distinguir dos tipos de autómatas. El autómata determinista (DFA) es aquel donde $\mathcal{D}$ asocia pares de estados; y $\mathcal{D}$ puede definirse en terminos de una función parcial $\delta : Q \times \Sigma \rightarrow Q$. El no determinista (NFA) puede asociar diferentes estados usando el mismo cáracter de transición, $\mathcal{D}: Q \times \Sigma \rightarrow  \{q_1,\cdots,q_k\}$ para $k>1$, así como también cuando hay alguna transición definida por la cadena vacia, i.e., $\mathcal{D}(q, \epsilon)$. El NFA suele ser mucho más sucinto en cuanto a su descripción formal, lo que hace preferible para trabajar en la práctica; sin embargo, es necesario hacer notar que NFA y DFA son equivalentes en cuanto a su capacidad de expresión de cadenas.
+
+Las siguientes figuras muestran un par de autómatas finitos. El primero es un DFA que es capaz de reconocer las palabras `ABRACADABRA` y `CABRA`. El segundo autómata es no determininista (NFA) y reconoce `ABRACADABRA` y todos sus sufijos, i.e., `BRACADABRA`, `RACADABRA`, `ACADABRA`, `CADABRA`, `ADABRA`, `DABRA`, `ABRA`, `BRA`, `RA`, y `A`.
+
+![Autómatas DFA (arriba) y NFA (abajo)](AutomatasABRACADABRA.png)
 
 
-### Recursos audio-visuales de la unidad
+### Algoritmos
 
-Parte 1: Algoritmos de intersección (y unión) de listas ordenadas
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Muchos de los algoritmos que trabajan sobre textos que varian mucho, no estan acotados, o simplemente son demasiado grandes para poder ser preprocesado, utilizan alguna estructura basada en un autómata finito para acelerar la resolución de búsquedas.
 
-Parte 2: Algoritmos de intersección y algunas aplicaciones
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Como ya se había comentado, dichos algoritmos intentarán revisar el texto $T[1,n]$ usando ventanas $w$ del tamaño del patrón $P[1,m]$. Dichas ventanas deberan ser probadas en la estructura con el fin de observar si es posible o no un emparejamiento con $P$. El objetivo de la estructura y el algoritmo será avanzar tan adelante como sea posible la ventana sin perder posibles ocurrencias.
+
+Considere el siguiente ejemplo:
+```
+    1  2  3  4  5  6  7  8  9  10 11
+T = A  B  R  A  C  A  D  A  B  R  A
+    _______
+       _______  w
+          _______
+
+
+P = A B R
+
+```
+
+
+Se creará un autómata $(\{0, 1, 2, 3\}, \{A, B, C, D, R\}, 0, \{3\}, \mathcal{D})$. A continuación se ven dos posibles autómatas que pueden usarse para resolver las búsquedas:
+
+![Autómatas ABR](AutomataABR.png)
+
+La diferencia viene en la definición de $\mathcal{D}$. El primero puede consumir cáracter por cáracter de $T$ y reportar una ocurrencia cada vez que se toque el estado $F$ (reportar la posición en $T$ dónde ocurre). El segundo hace uso del concepto de ventana, para cada ventana solo existirá un emparejamiento si iniciando en $0$ se termina en el estado $3$. En parte, los algoritmos verán como avanzar la ventana de manera más eficaz; es posible leer las prefijos o sufijos de las ventanas, así mismo, es posible utilizar información de factores para mejorar el deslizamiento de la ventana. Para más información referirse a [NR02].
+
+Con la representación basada en autómatas es posible consider clases de caracteres, e.g., dígitos numéricos, caracteres alfabeticos, puntuaciones, o en general conjuntos de símbolos que se deseen agrupar. Así como soportar cualquier tipo de expresión regular [NR02].
+
+
+### El algoritmo _Shift-And_
+Una de los algoritmos más sencillos y eficientes es el algoritmos de Shift-And, el cual consiste en simular el NFA usando operaciones a nivel de bits. En particular, este algoritmo es muy veloz en patrones que quepan en la palabra de la computadora donde se aplica (e.g., 32 o 64 bits); cuando el patrón sea más largo que el tamaño de la palabra, las operaciones pueden ser implementadas teniendo en cuenta los corrimientos a nivel de bits que pudieran surgir en las operaciones.
+
+
+## Referencias
+- [NR02] Navarro, G., & Raffinot, M. (2002). Flexible pattern matching in strings: practical on-line search algorithms for texts and biological sequences. Cambridge university press.
+- [NR00] Navarro, G., & Raffinot, M. (2000). Fast and flexible string matching by combining bit-parallelism and suffix automata. Journal of Experimental Algorithmics (JEA), 5, 4-es.
+
 
 ## Actividades
 Implementación y comparación de diferentes algoritmos de intersección de conjuntos.
@@ -88,14 +122,3 @@ implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe
 introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.
 
 _Nota sobre la generación del PDF_: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.
-
-# Referencias
-- [@BLOLS2010]: Jérémy Barbay, Alejandro López-Ortiz, Tyler Lu, and Alejandro Salinger. 2010. An experimental investigation of set intersection algorithms for text searching. J. Exp. Algorithmics 14, Article 7 (January 2010), 54 pages. DOI: https://doi.org/10.1145/1498698.1564507 (https://doi.org/10.1145/1498698.1564507)
-- [@BLOL2006]: Barbay J., López-Ortiz A., Lu T. (2006) Faster Adaptive Set Intersections for Text Searching. In: Àlvarez C., Serna M. (eds) Experimental Algorithms. WEA 2006. Lecture Notes in Computer Science, vol 4007. Springer, Berlin, Heidelberg
-- [@BYS2005]: Baeza-Yates R., Salinger A. (2005) Experimental Analysis of a Fast Intersection Algorithm for Sorted Sequences. In: Consens M., Navarro G. (eds) String Processing and Information Retrieval. SPIRE 2005. Lecture Notes in Computer Science, vol 3772. Springer, Berlin, Heidelberg
-- [@BY2004]: Baeza-Yates R. (2004) A Fast Set Intersection Algorithm for Sorted Sequences. In: Sahinalp S.C., Muthukrishnan S., Dogrusoz U. (eds) Combinatorial Pattern Matching. CPM 2004. Lecture Notes in Computer Science, vol 3109. Springer, Berlin, Heidelberg
-- [@BK2002]: Jérémy Barbay and Claire Kenyon. 2002. Adaptive intersection and t-threshold problems. In Proceedings of the thirteenth annual ACM-SIAM symposium on Discrete algorithms (SODA '02). Society for Industrial and Applied Mathematics, Philadelphia, PA, USA, 390-399.
-- [@DLOPM2001] Erik D. Demaine, Alejandro López-Ortiz, and J. Ian Munro. 2001. Experiments on Adaptive Set Intersections for Text Retrieval Systems. In Revised Papers from the Third International Workshop on Algorithm Engineering and Experimentation (ALENEX '01), Adam L. Buchsbaum and Jack Snoeyink (Eds.).
-Springer-Verlag, London, UK, UK, 91-104.
-- [@DLOM2000]: Erik D. Demaine, Alejandro López-Ortiz, and J. Ian Munro. 2000. Adaptive set intersections, unions, and differences. In Proceedings of the eleventh annual ACM-SIAM symposium on Discrete algorithms (SODA '00). Society for Industrial and Applied Mathematics, Philadelphia, PA, USA, 743-752
-- [@HL1971] Hwang, F. K., & Lin, S. (1971). Optimal merging of 2 elements with n elements. Acta Informatica, 1(2), 145-158.
