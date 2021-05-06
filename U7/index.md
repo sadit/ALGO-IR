@@ -64,12 +64,10 @@ T = A  B  R  A  C  A  D  A  B  R  A
     _______
        _______  w
           _______
-
+             _______
 
 P = A B R
-
 ```
-
 
 Se creará un autómata $(\{0, 1, 2, 3\}, \{A, B, C, D, R\}, 0, \{3\}, \mathcal{D})$. A continuación se ven dos posibles autómatas que pueden usarse para resolver las búsquedas:
 
@@ -82,25 +80,99 @@ Con la representación basada en autómatas es posible consider clases de caract
 
 ### El algoritmo _Shift-And_
 Una de los algoritmos más sencillos y eficientes es el algoritmos de Shift-And, el cual consiste en simular el NFA usando operaciones a nivel de bits. En particular, este algoritmo es muy veloz en patrones que quepan en la palabra de la computadora donde se aplica (e.g., 32 o 64 bits); cuando el patrón sea más largo que el tamaño de la palabra, las operaciones pueden ser implementadas teniendo en cuenta los corrimientos a nivel de bits que pudieran surgir en las operaciones.
+Dado que las operaciones a nivel de bits se realizan de manera paralela, estas pueden realizarse de manera muy eficiente.
 
+```
+    1  2  3  4  5  6  7  8  9  10 11
+T = A  B  R  A  C  A  D  A  B  R  A
+
+P = A  B  R
+```
+
+Como se había observado, es suficiente tener 4 estados para este patrón.
+Es necesario crear la tabla $D$ que codifica $\mathcal{D}$. Para construirla, es necesario codificar el alfabeto en una matriz binaria de $|\Sigma| \times m$ elementos (i.e., longitud del alfabeto $\times$ longitud del patrón). Donde cada fila corresponde a los caracteres del alfabeto $\Sigma$ y las columnas a los estados (que a su vez corresponden con el patrón $P$); cada fila en $D$ codifica con 1 si para cada estado, el carácter se encuentra en el patrón en la columna correspondiente, y 0 si no lo hace.
+Adicionalmente, se debe considerar que el estado inicial tiene un transición a sí mismo con la cadena vacia $\epsilon$. Para nuestro ejemplo, la matriz quedaría como sigue:
+```
+    R  B  A        <- P reverso para su codificación
+    3  2  1  0     <- estados
+    F        I     <- estados de fin e inicio
+A   0  0  1  0   \
+B   0  1  0  0    |
+C   0  0  0  0    |  codificación de la función
+D   0  0  0  0    |  de transición D
+R   1  0  0  0    |  
+eps 0  0  0  1   /
+
+```
+El patrón y el contador estan revertidos para denotar su posición en la codificación binaria. Note que se ha añadido una transición de cadena vacia en el estado $0$. 
+
+![Autómatas ABR](AutomataABR1.png)
+
+Shift-And es un algoritmo bastante simple y eficiente, que recorre el texto por ventanas, haciendo uso del autómata del patrón.
+
+A continuación se muestra una implementación en lenguaje Julia.
+```julia
+function pattern(pat) ... end
+
+function search(text, pat, L=Int[])
+    D = pattern(pat)
+    S = 0
+    plen = length(pat)
+    m = 1 << (plen - 1)
+    for i in eachindex(text)
+        d = get(D, text[i], 0)
+        S = ((S << 1) | 1) & d
+        if S & m > 0
+            push!(L, i-plen+1)
+        end
+    end
+    L
+end
+```
+
+La función `pattern` construye de manera parcial la tabla $D$, mientras `search` implenta el algoritmo Shift-And. La operación más importante para entender del algoritmo esta en la línea `S = ((S << 1) | 1) & d`; donde la transición por $\epsilon$ en el estado cero se realiza mediante la operación a nivel de bits $| 1$, se simula las transiciones en el autómata mediante `S<<1` y `& d` hace el emparejamiento con el cáracter que esta siendo leído. Note también, que `d` se pone a cero cuando el cáracter no esta en $D$ (i.e., esta en $T$ pero no en $P$). Las ocurrencias se ponen en `L` y estas ocurren cuando `S` tiene un 1 en la última posición del patrón, i.e., el estado final $F$ esta activo.
+
+Al correr la función, tenemos lo siguiente
+```julia
+julia> search("ABRACADABRA", "ABR")
+2-element Vector{Int64}:
+ 1
+ 8
+
+julia> search("MISSISSIPPI", "SS")
+2-element Vector{Int64}:
+ 3
+ 6
+
+julia> search("MISSISSIPPI", "I")
+4-element Vector{Int64}:
+  2
+  5
+  8
+ 11
+```
+
+Por las características de Julia, podemos cambiar fácilmente el tipo de los datos y seguir obteniendo una buena eficiencia.
+```julia
+julia> A = rand(1:6, 1000_000_000)
+julia> @time search(A, [3,1,4,1,6]);
+31.544242 seconds (22 allocations: 2.001 MiB)
+```
 
 ## Referencias
 - [NR02] Navarro, G., & Raffinot, M. (2002). Flexible pattern matching in strings: practical on-line search algorithms for texts and biological sequences. Cambridge university press.
 - [NR00] Navarro, G., & Raffinot, M. (2000). Fast and flexible string matching by combining bit-parallelism and suffix automata. Journal of Experimental Algorithmics (JEA), 5, 4-es.
+- [KF03] Fredriksson, K. (2003). Shift-or string matching with super-alphabets. Information Processing Letters, 87(4), 201-204.
+- [FL12] Faro, S., & Lecroq, T. (2012). Twenty years of bit-parallelism in string matching. Festschrift for Borivoj Melichar, 72-101.
 
+# Actividades
 
-## Actividades
-Implementación y comparación de diferentes algoritmos de intersección de conjuntos.
-
-Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.
-
-
-### Actividad 0 [Sin entrega]
+## Actividad 0 [Sin entrega]
 
 1. Lea y comprenda los artículos relacionados (listados en la introducción).
 
-### Actividad 1 [Con reporte]
-1. Cargue el archivo `listas-posteo-100.json` del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
+## Actividad 1 [Con reporte]
+1. Cargue alguno de los archivos de datos del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
 
  - Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.
  - Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.

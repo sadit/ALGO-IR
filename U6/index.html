@@ -6,22 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Eric S. Téllez" />
   <title>Algoritmos de intersección de conjuntos con representación de listas ordenadas</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <link rel="stylesheet" href="../pandoc.css" />
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<header id="title-block-header">
+<header>
 <h1 class="title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</h1>
 <p class="author">Eric S. Téllez</p>
 </header>
@@ -33,7 +31,7 @@
 <p>Existen varios algoritmos prominentes para llevar a cabo esta operación. Uno de los trabajos seminales viene de Hwang &amp; Lin, en su algoritmo de <em>merge</em> entre dos conjuntos <span class="citation" data-cites="HL1971">[@HL1971]</span>. En este trabajo se replantea el costo como encontrar los <em>puntos</em> de unión entre ambos conjuntos, esto se traslada de manera inmediata al problema de intersección. El problema correspondiente para intersectar dos conjuntos cualesquiera representados como conjuntos ordenados es entonces <span class="math inline">\(\log{{n+m} \choose m}\)</span>, que usando la aproximación de Stirling se puede reescribir como <span class="math display">\[n \log \frac{n}{m} + (n-m)\log \frac{n}{n-m},\]</span> donde <span class="math inline">\(n\)</span> y <span class="math inline">\(m\)</span> corresponden a al número de elementos en cada conjunto.</p>
 <p>Un algoritmo <em>naïve</em> para realizar la intersección, puede ser buscar todos los elementos del conjunto más pequeño en el más grande. Si para la búsqueda se utiliza <em>búsqueda binaria</em>, tenemos un costo de <span class="math inline">\(m \log n\)</span>.</p>
 <p>Esta simple idea puede ser explotada y mejorada para obtener costos más bajos, por ejemplo, si en lugar de buscar sobre la lista más grande directamente, esta se divide en bloques de tamaño <span class="math inline">\(m\)</span> para encontrar el bloque que contiene cada elemento (recuerde que el arreglo esta ordenado), para después buscar dentro del bloque. Haciendo esto, el costo se convierte en <span class="math display">\[ m \log \frac{n}{m} + m \log m\]</span> cuyo costo se ajusta mejor al costo del problema. Este es el algoritmo propuesto, a groso modo, en <span class="citation" data-cites="HL1971">[@HL1971]</span>.</p>
-<p>Cuando <span class="math inline">\(k&gt;2\)</span>, la intersección se puede realizar usando las <span class="math inline">\(k\)</span> listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son “más faciles” de intersectar con un algoritmo <em>na"ive</em>. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy popular llamada <em>Small vs Small (SvS)</em>.</p>
+<p>Cuando <span class="math inline">\(k&gt;2\)</span>, la intersección se puede realizar usando las <span class="math inline">\(k\)</span> listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son “más faciles” de intersectar con un algoritmo <em>na&quot;ive</em>. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy popular llamada <em>Small vs Small (SvS)</em>.</p>
 <p>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="citation" data-cites="DLOPM2001">[@DLOPM2001]</span>, <span class="citation" data-cites="BLOL2006">[@BLOL2006]</span>, <span class="citation" data-cites="BLOLS2010">[@BLOLS2010]</span>, y <span class="citation" data-cites="BYS2005">[@BYS2005]</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="citation" data-cites="DLOM2000">[@DLOM2000]</span>, <span class="citation" data-cites="DLOPM2001">[@DLOPM2001]</span>, <span class="citation" data-cites="BK2002">[@BK2002]</span>, <span class="citation" data-cites="BY2004">[@BY2004]</span>.</p>
 <h3 id="recursos-audio-visuales-de-la-unidad">Recursos audio-visuales de la unidad</h3>
 <p>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas <iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
@@ -56,7 +54,7 @@
 </ul>
 <ol start="2" type="1">
 <li><p>Implemente los algoritmos de las secciones 3.1 <em>Melding Algorithms</em> y 3.2 <em>Search algorithms</em> (en especial 3.2.1 y 3.2.2) de <span class="citation" data-cites="BLOLS2010">[@BLOLS2010]</span>.</p></li>
-<li><p>Realice y reporte los siguientes experimentos:</p></li>
+<li>Realice y reporte los siguientes experimentos:</li>
 </ol>
 <ul>
 <li>Intersecte cada par de listas <span class="math inline">\(a, b \in A\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>

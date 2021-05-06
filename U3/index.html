@@ -5,22 +5,20 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Búsqueda sobre listas ordenadas</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <link rel="stylesheet" href="../pandoc.css" />
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<header id="title-block-header">
+<header>
 <h1 class="title">Búsqueda sobre listas ordenadas</h1>
 </header>
 <h2 id="objetivo">Objetivo</h2>
@@ -69,11 +67,11 @@
 <li>Grafique el tiempo promedio de <em>buscar</em> los 1000 identificadores en todas las listas (un solo número que represente las <span class="math inline">\(100\times 1000\)</span> búsquedas). Nota: lo que determinará al buscar es la <em>posición de inserción</em> que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</li>
 <li>Los algoritmos que caracterizará son los siguientes (nombres con referencia a <span class="citation" data-cites="Bentley76">[@Bentley76]</span>):
 <ul>
-<li><p>Búsqueda binaria acotada</p></li>
-<li><p>Búsqueda secuencial <span class="math inline">\(B_0\)</span></p></li>
-<li><p>Búsqueda no acotada <span class="math inline">\(B_1\)</span></p></li>
+<li>Búsqueda binaria acotada</li>
+<li>Búsqueda secuencial <span class="math inline">\(B_0\)</span></li>
+<li>Búsqueda no acotada <span class="math inline">\(B_1\)</span></li>
 <li><p>Búsqueda no acotada <span class="math inline">\(B_2\)</span></p></li>
-<li><p><em>Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</em></p></li>
+<li><em>Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</em></li>
 </ul></li>
 <li>Bosqueje en pseudo-código la implementación de la búsqueda casí optima <span class="math inline">\(B_k\)</span></li>
 </ul>
