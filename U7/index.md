@@ -112,7 +112,7 @@ Shift-And es un algoritmo bastante simple y eficiente, que recorre el texto por 
 
 A continuación se muestra una implementación en lenguaje Julia.
 ```julia
- function pattern(pat::T) where T
+function pattern(pat::T) where T
     D = Dict{eltype(pat),UInt64}()
     for i in eachindex(pat)
         c = pat[i]
