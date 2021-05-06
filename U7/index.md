@@ -7,7 +7,8 @@ author: Eric S. Téllez
 
 
 ## Objetivo
-Se introducirá implementarán y compararán algoritmos de búsqueda de patrones en cadenas de símbolos.
+Introducir y comparar algoritmos de búsqueda de patrones en cadenas de símbolos.
+
 
 ## Introducción
 
@@ -181,21 +182,25 @@ julia> @time search(A, [3,1,4,1,6]);
 1. Lea y comprenda los artículos relacionados (listados en la introducción).
 
 ## Actividad 1 [Con reporte]
-1. Cargue el archivo `politicos.json` de los archivos de datos del tema 3. Si lo desea, puede usar otro conjunto de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
+1. Sea $T$ el contenido del archivo `pi-1m.txt`, éste contiene el primer millón de dígitos de $\pi$ (tomado de https://newton.ex.ac.uk/research/qsystems/collabs/pi/). También puede usar los archivos de datos que hemos usado pero debería adaptar y explicar la adaptación en el reporte.
 
- - Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.
- - Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.
- - Sea $P^{(4)}$ el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria $C \subset P^{(4)}$, $|C| = 1000$.
+ - Considere que $\Sigma = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$
+ - Sea $A \subseteq \Sigma^4$, $|A| = 1000$; seleccione de manera aleatoria $A$.
+ - Sea $B \subseteq \Sigma^8$, $|B| = 1000$; seleccione de manera aleatoria $B$.
+ - Sea $C \subseteq \Sigma^{16}$, $|C| = 1000$; seleccione de manera aleatoria $C$.
+ - Sea $D \subseteq \Sigma^{32}$, $|D| = 1000$; seleccione de manera aleatoria $D$.
+ - Sea $E \subseteq \Sigma^{64}$, $|E| = 1000$; seleccione de manera aleatoria $E$.
 
-2. Implemente los algoritmos de las secciones 3.1 _Melding Algorithms_ y 3.2 _Search algorithms_ (en especial 3.2.1 y 3.2.2) de [@BLOLS2010].
+2. Implemente el algoritmo Shift-And o use el que se proporciona antes.
+3. Implemente el algoritmo naïve que consiste en verificar ventana a ventana por emparejamiento sin usar operaciones a nivel de bits y avanzando uno en uno los carácteres.
 
-3. Realice y reporte los siguientes experimentos:
- - Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
- - Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
- - Intersecte cada tetrapleta de listas $a, b, c, d \in C$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.
- - Cree una figura `boxplot` que describa el tiempo en segundos para los tres experimentos.
- - Cree una figura `boxplot` que describa el número de comparaciones para los tres experimentos.
- - Cree una figura `boxplot` que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.
+4. Realice y reporte los siguientes experimentos:
+ - Para cada $p \in A$ busque $p$ en $T$ y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras `boxplot`.
+ - Para cada $p \in B$ busque $p$ en $T$ y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras `boxplot`.
+ - Para cada $p \in C$ busque $p$ en $T$ y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras `boxplot`.
+ - Para cada $p \in D$ busque $p$ en $T$ y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras `boxplot`.
+ - Para cada $p \in E$ busque $p$ en $T$ y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras `boxplot`.
+
 
 ### Entregable:
 El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las

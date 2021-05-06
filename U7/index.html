@@ -89,7 +89,7 @@
 <p class="author">Eric S. Téllez</p>
 </header>
 <h2 id="objetivo">Objetivo</h2>
-<p>Se introducirá implementarán y compararán algoritmos de búsqueda de patrones en cadenas de símbolos.</p>
+<p>Introducir y comparar algoritmos de búsqueda de patrones en cadenas de símbolos.</p>
 <h2 id="introducción">Introducción</h2>
 <p>La presente unidad esta dedicada a los algoritmos de búsqueda de patrones en cadenas de símbolos. Antes de comenzar vamos a definir el problema:</p>
 <p>Dado un alfabeto de simbolos <span class="math inline">\(\Sigma = \{a_1, a_2, \cdots, a_\sigma \}\)</span> una cadena de tamaño <span class="math inline">\(T[1,n]\)</span> esta definida como la concatenación de <span class="math inline">\(n\)</span> símbolos, i.e., <span class="math inline">\(T \in \Sigma^n\)</span>. Esto es, si el alfabeto es binario, <span class="math inline">\(\Sigma = \{0, 1\}\)</span>, para <span class="math inline">\(n=3\)</span>, <span class="math inline">\(T\)</span> podría ser cualquiera de las siguientes cadenas de bits: <span class="math inline">\(\{ 000, 001, 010, 011, 100, 101, 110, 111 \}\)</span>.</p>
@@ -216,24 +216,27 @@ eps 0  0  0  1   /
 </ol>
 <h2 id="actividad-1-con-reporte">Actividad 1 [Con reporte]</h2>
 <ol type="1">
-<li>Cargue el archivo <code>politicos.json</code> de los archivos de datos del tema 3. Si lo desea, puede usar otro conjunto de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</li>
+<li>Sea <span class="math inline">\(T\)</span> el contenido del archivo <code>pi-1m.txt</code>, éste contiene el primer millón de dígitos de <span class="math inline">\(\pi\)</span> (tomado de https://newton.ex.ac.uk/research/qsystems/collabs/pi/). También puede usar los archivos de datos que hemos usado pero debería adaptar y explicar la adaptación en el reporte.</li>
 </ol>
 <ul>
-<li>Sea <span class="math inline">\(P^{(2)}\)</span> el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria <span class="math inline">\(A \subset P^{(2)}\)</span>, <span class="math inline">\(|A| = 1000\)</span>.</li>
-<li>Sea <span class="math inline">\(P^{(3)}\)</span> el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria <span class="math inline">\(B \subset P^{(3)}\)</span>, <span class="math inline">\(|B| = 1000\)</span>.</li>
-<li>Sea <span class="math inline">\(P^{(4)}\)</span> el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria <span class="math inline">\(C \subset P^{(4)}\)</span>, <span class="math inline">\(|C| = 1000\)</span>.</li>
+<li>Considere que <span class="math inline">\(\Sigma = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}\)</span></li>
+<li>Sea <span class="math inline">\(A \subseteq \Sigma^4\)</span>, <span class="math inline">\(|A| = 1000\)</span>; seleccione de manera aleatoria <span class="math inline">\(A\)</span>.</li>
+<li>Sea <span class="math inline">\(B \subseteq \Sigma^8\)</span>, <span class="math inline">\(|B| = 1000\)</span>; seleccione de manera aleatoria <span class="math inline">\(B\)</span>.</li>
+<li>Sea <span class="math inline">\(C \subseteq \Sigma^{16}\)</span>, <span class="math inline">\(|C| = 1000\)</span>; seleccione de manera aleatoria <span class="math inline">\(C\)</span>.</li>
+<li>Sea <span class="math inline">\(D \subseteq \Sigma^{32}\)</span>, <span class="math inline">\(|D| = 1000\)</span>; seleccione de manera aleatoria <span class="math inline">\(D\)</span>.</li>
+<li>Sea <span class="math inline">\(E \subseteq \Sigma^{64}\)</span>, <span class="math inline">\(|E| = 1000\)</span>; seleccione de manera aleatoria <span class="math inline">\(E\)</span>.</li>
 </ul>
 <ol start="2" type="1">
-<li><p>Implemente los algoritmos de las secciones 3.1 <em>Melding Algorithms</em> y 3.2 <em>Search algorithms</em> (en especial 3.2.1 y 3.2.2) de <span class="citation" data-cites="BLOLS2010">[@BLOLS2010]</span>.</p></li>
+<li><p>Implemente el algoritmo Shift-And o use el que se proporciona antes.</p></li>
+<li><p>Implemente el algoritmo naïve que consiste en verificar ventana a ventana por emparejamiento sin usar operaciones a nivel de bits y avanzando uno en uno los carácteres.</p></li>
 <li><p>Realice y reporte los siguientes experimentos:</p></li>
 </ol>
 <ul>
-<li>Intersecte cada par de listas <span class="math inline">\(a, b \in A\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>
-<li>Intersecte cada tripleta de listas <span class="math inline">\(a, b, c \in B\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>
-<li>Intersecte cada tetrapleta de listas <span class="math inline">\(a, b, c, d \in C\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>
-<li>Cree una figura <code>boxplot</code> que describa el tiempo en segundos para los tres experimentos.</li>
-<li>Cree una figura <code>boxplot</code> que describa el número de comparaciones para los tres experimentos.</li>
-<li>Cree una figura <code>boxplot</code> que describa las longitudes de las intersecciones resultantes para <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>.</li>
+<li>Para cada <span class="math inline">\(p \in A\)</span> busque <span class="math inline">\(p\)</span> en <span class="math inline">\(T\)</span> y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras <code>boxplot</code>.</li>
+<li>Para cada <span class="math inline">\(p \in B\)</span> busque <span class="math inline">\(p\)</span> en <span class="math inline">\(T\)</span> y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras <code>boxplot</code>.</li>
+<li>Para cada <span class="math inline">\(p \in C\)</span> busque <span class="math inline">\(p\)</span> en <span class="math inline">\(T\)</span> y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras <code>boxplot</code>.</li>
+<li>Para cada <span class="math inline">\(p \in D\)</span> busque <span class="math inline">\(p\)</span> en <span class="math inline">\(T\)</span> y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras <code>boxplot</code>.</li>
+<li>Para cada <span class="math inline">\(p \in E\)</span> busque <span class="math inline">\(p\)</span> en <span class="math inline">\(T\)</span> y reporte de manera acumulada el tiempo en segundos, compare Shift-And y el algoritmo naïve usando figuras <code>boxplot</code>.</li>
 </ul>
 <h3 id="entregable">Entregable:</h3>
 <p>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.</p>
