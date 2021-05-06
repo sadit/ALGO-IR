@@ -153,22 +153,31 @@ eps 0  0  0  1   /
 </figure>
 <p>Shift-And es un algoritmo bastante simple y eficiente, que recorre el texto por ventanas, haciendo uso del autómata del patrón.</p>
 <p>A continuación se muestra una implementación en lenguaje Julia.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">function</span> pattern(pat) ... <span class="kw">end</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">function</span> search(text, pat, L=<span class="dt">Int</span>[])</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">    D = pattern(pat)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">    S = <span class="fl">0</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">    plen = length(pat)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">    m = <span class="fl">1</span> &lt;&lt; (plen - <span class="fl">1</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="kw">for</span> i <span class="kw">in</span> eachindex(text)</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">        d = get(D, text[i], <span class="fl">0</span>)</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">        S = ((S &lt;&lt; <span class="fl">1</span>) | <span class="fl">1</span>) &amp; d</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">        <span class="kw">if</span> S &amp; m &gt; <span class="fl">0</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">            push!(L, i-plen+<span class="fl">1</span>)</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">        <span class="kw">end</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">    <span class="kw">end</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">    L</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw">end</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><a class="sourceLine" id="cb4-1" data-line-number="1"> <span class="kw">function</span> pattern(pat::T) where T</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    D = <span class="dt">Dict</span>{eltype(pat),UInt64}()</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="kw">for</span> i <span class="kw">in</span> eachindex(pat)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">        c = pat[i]</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">        d = get!(D, c, zero(UInt64))</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">        d |= <span class="fl">1</span> &lt;&lt; (i-<span class="fl">1</span>)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">        D[c] = d</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="kw">end</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    D</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">end</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw">function</span> search(text, pat, L=<span class="dt">Int</span>[])</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">    D = pattern(pat)</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">    S = <span class="fl">0</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">    plen = length(pat)</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">    m = <span class="fl">1</span> &lt;&lt; (plen - <span class="fl">1</span>)</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">    <span class="kw">for</span> i <span class="kw">in</span> eachindex(text)</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">        d = get(D, text[i], <span class="fl">0</span>)</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">        S = ((S &lt;&lt; <span class="fl">1</span>) | <span class="fl">1</span>) &amp; d</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">        <span class="kw">if</span> S &amp; m &gt; <span class="fl">0</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">            push!(L, i-plen+<span class="fl">1</span>)</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">        <span class="kw">end</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">    <span class="kw">end</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">    L</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="kw">end</span></a></code></pre></div>
 <p>La función <code>pattern</code> construye de manera parcial la tabla <span class="math inline">\(D\)</span>, mientras <code>search</code> implenta el algoritmo Shift-And. La operación más importante para entender del algoritmo esta en la línea <code>S = ((S &lt;&lt; 1) | 1) &amp; d</code>; donde la transición por <span class="math inline">\(\epsilon\)</span> en el estado cero se realiza mediante la operación a nivel de bits <span class="math inline">\(| 1\)</span>, se simula las transiciones en el autómata mediante <code>S&lt;&lt;1</code> y <code>&amp; d</code> hace el emparejamiento con el cáracter que esta siendo leído. Note también, que <code>d</code> se pone a cero cuando el cáracter no esta en <span class="math inline">\(D\)</span> (i.e., esta en <span class="math inline">\(T\)</span> pero no en <span class="math inline">\(P\)</span>). Las ocurrencias se ponen en <code>L</code> y estas ocurren cuando <code>S</code> tiene un 1 en la última posición del patrón, i.e., el estado final <span class="math inline">\(F\)</span> esta activo.</p>
 <p>Al correr la función, tenemos lo siguiente</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><a class="sourceLine" id="cb5-1" data-line-number="1">julia&gt; search(<span class="st">&quot;ABRACADABRA&quot;</span>, <span class="st">&quot;ABR&quot;</span>)</a>
@@ -205,7 +214,7 @@ eps 0  0  0  1   /
 </ol>
 <h2 id="actividad-1-con-reporte">Actividad 1 [Con reporte]</h2>
 <ol type="1">
-<li>Cargue alguno de los archivos de datos del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</li>
+<li>Cargue el archivo <code>politicos.json</code> de los archivos de datos del tema 3. Si lo desea, puede usar otro conjunto de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</li>
 </ol>
 <ul>
 <li>Sea <span class="math inline">\(P^{(2)}\)</span> el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria <span class="math inline">\(A \subset P^{(2)}\)</span>, <span class="math inline">\(|A| = 1000\)</span>.</li>

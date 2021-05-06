@@ -112,7 +112,16 @@ Shift-And es un algoritmo bastante simple y eficiente, que recorre el texto por 
 
 A continuación se muestra una implementación en lenguaje Julia.
 ```julia
-function pattern(pat) ... end
+ function pattern(pat::T) where T
+    D = Dict{eltype(pat),UInt64}()
+    for i in eachindex(pat)
+        c = pat[i]
+        d = get!(D, c, zero(UInt64))
+        d |= 1 << (i-1)
+        D[c] = d
+    end
+    D
+end
 
 function search(text, pat, L=Int[])
     D = pattern(pat)
@@ -172,7 +181,7 @@ julia> @time search(A, [3,1,4,1,6]);
 1. Lea y comprenda los artículos relacionados (listados en la introducción).
 
 ## Actividad 1 [Con reporte]
-1. Cargue alguno de los archivos de datos del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
+1. Cargue el archivo `politicos.json` de los archivos de datos del tema 3. Si lo desea, puede usar otro conjunto de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
 
  - Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.
  - Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.
