@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.0
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
@@ -13,23 +13,23 @@ md"""
 """
 
 # ╔═╡ 8ce3911e-7a1d-4866-925e-d6b5d1f6bd05
-"""
-	seqsearch(A, x, sp=1)
-
-Perform a sequential search, just for testing purposes
-"""
-function seqsearch(A, x, sp=1)
-	n = length(A)
-	while sp <= n
-		A[sp] > x && return sp
-		sp += 1
+function unary(A, x)
+	i = 1
+	while i < x
+		push!(A, 1)
+		i += 1
 	end
 	
-	sp
+	push!(A, 0)
+	A
 end
 
-# ╔═╡ f5ce7e7e-6a5a-4347-be3d-61df6c33d94f
-
+# ╔═╡ 0587cbe1-4d38-42d2-a968-9271da99f96f
+with_terminal() do
+	for i in 1:16
+		@info i => unary(BitArray(undef, 0), i)
+	end
+end
 
 # ╔═╡ 3126cd7a-56ab-4ee5-87c3-cc25c576e16c
 begin
@@ -1271,7 +1271,7 @@ version = "0.9.1+5"
 # ╠═87472976-1d40-11ec-18dd-af93e9965938
 # ╟─5b9fff26-d359-4cae-b818-2e2aa959397e
 # ╠═8ce3911e-7a1d-4866-925e-d6b5d1f6bd05
-# ╠═f5ce7e7e-6a5a-4347-be3d-61df6c33d94f
+# ╠═0587cbe1-4d38-42d2-a968-9271da99f96f
 # ╠═3126cd7a-56ab-4ee5-87c3-cc25c576e16c
 # ╠═3c0263d3-79dc-4fee-a5b3-9f9cb5c93c65
 # ╟─89180d9c-986e-40a4-9268-7f79356b539b
