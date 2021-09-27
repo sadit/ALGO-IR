@@ -126,7 +126,7 @@ end
 
 # ╔═╡ c7321f75-eb64-4363-9a6f-bade7b1f8d99
 md"""
-# Doubling search
+# Doubling search encoding
 """
 
 # ╔═╡ d41f045d-31a7-4e50-a684-b89e573b60dc
@@ -146,7 +146,7 @@ function doubling_encoding(A, x)
 end
 
 # ╔═╡ f54b827d-c83c-4b94-9e5e-6135f467fce0
-function doubling_decoding(A, x)
+function doubling_decoding(A)
 	i = 0
 	while read(A)
 		i += 1
@@ -162,7 +162,7 @@ with_terminal() do
 		#@info "====== encoding $i"
 		s = doubling_encoding(BitStream(), i)
 		#@info "s=$s"
-		d = doubling_decoding(s, 6)
+		d = doubling_decoding(s)
 		@show i => s => d
 		@assert d == i
 	end
@@ -262,87 +262,88 @@ begin
 end
 
 # ╔═╡ 63dd1f55-620e-4cc7-80bc-543a4f09fd73
-
-
-# ╔═╡ 8b204adf-02e9-46cd-87b8-0ebb04b1be08
-
-
-# ╔═╡ 460fee1b-2d85-4c28-990e-c0fd7cea513c
-function benchmark(fun, postinglists, queries)
-	s = 0  # avoid compiler optimizations
-	for q in queries
-		for lst in postinglists
-			s += fun(lst, q)
+begin
+	function encode_list(stream, enc, lst)
+		enc(stream, length(lst))
+		enc(stream, lst[1])
+		for i in 2:length(lst)
+			enc(stream, lst[i]-lst[i-1])
 		end
+
+		stream
 	end
 	
-	s
+	function decode_list(stream, dec, lst)
+		n = dec(stream)
+		push!(lst, dec(stream))
+		
+		for i in 2:n
+			m = dec(stream)
+			push!(lst, lst[end] + m)
+		end
+
+		lst
+	end
+	
+	function byte_encoding_list(lst)
+		encode_list(ByteStream(), byte_encoding, lst)
+	end
+	
+	function byte_decoding_list(stream)
+		decode_list(stream, byte_decoding, Int32[])
+	end
+
+	function doubling_encoding_list(lst)
+		encode_list(BitStream(), doubling_encoding, lst)
+	end
+		
+	function doubling_decoding_list(stream)
+		decode_list(stream, doubling_decoding, Int32[])
+	end
+end
+
+# ╔═╡ 44539e8f-b4f8-41d7-8433-78040494570b
+byte_encoding_list(L[1]).arr |> sizeof
+
+# ╔═╡ e39e06a7-f238-4542-b247-f221a3499321
+sizeof(L[1])
+
+# ╔═╡ 73b0d5c3-3ff4-4262-b036-9d129759e7f7
+doubling_encoding_list(L[1]).arr |> sizeof
+
+# ╔═╡ 8b204adf-02e9-46cd-87b8-0ebb04b1be08
+begin
+	@assert byte_decoding_list(byte_encoding_list(L[1])) == L[1]
+	@assert doubling_decoding_list(doubling_encoding_list(L[1])) == L[1]
+end
+
+# ╔═╡ 460fee1b-2d85-4c28-990e-c0fd7cea513c
+function benchmark(enc, postinglists)
+	mem = 0 
+	for lst in postinglists
+		mem += enc(lst)
+	end
+	
+	mem
 end
 
 # ╔═╡ 7d4a38cb-45ee-4738-8ccc-47d69aabaec6
 begin
-	nlist = [30, 100, 300, 1000, 3000, 10000, 30000, 50000]
-	T = Matrix{Float64}(undef, 3, length(nlist))
-	
-	for i in eachindex(nlist)
-		n = nlist[i]
-		Q = rand(1:n, 1000)
-		
-		T[1, i] = (@elapsed benchmark(seqsearch, L, Q))
-		T[2, i] = (@elapsed benchmark(binarysearch, L, Q))
-		T[3, i] = (@elapsed benchmark(doublingsearch, L, Q))
-	end
-	
-	T
+	t1 = @timed benchmark(sizeof, L)
+	t2 = @timed benchmark(l -> sizeof(byte_encoding_list(l).arr), L)
+	t3 = @timed benchmark(l -> sizeof(doubling_encoding_list(l).arr), L)
 end
+
+# ╔═╡ 074ba390-abd2-49d8-94f1-38f5d0fdbfdf
+
 
 # ╔═╡ d2a8adf3-e348-48eb-8b92-c08301abbb49
-
+bar([t1.time, t2.time, t3.time], xticks=(1:3, ["plain", "byte-enc", "B1-enc"]), label=nothing, title="Compression time")
 
 # ╔═╡ 70e5ca46-4f69-4161-92f9-88693f66d343
-
-
-# ╔═╡ 0c9a700a-049e-40ea-9997-39dbb252ecef
-begin
-	
-	labels = ["30" "100" "300" "1k" "3k" "10k" "30k" "50k"]
-	ticklabels = ["seqsearch", "binary", "doubling"]
-	
-	#groupedbar([measles mumps chickenPox], bar_position = :dodge, bar_width=0.7, xticks=(1:12, ticklabel))
-	G = groupedbar(T, xticks=(1:3, ticklabels), yscale=:log10, bar_width=0.5, legend = :outertopright, label=labels, ylabel="seconds")
-	G
-
-end
-
-
-# ╔═╡ 9378c400-e392-4694-af37-307247cd3e3c
-
-
-# ╔═╡ 9b349a63-4116-437b-8900-e87183acfc41
-
-
-# ╔═╡ dece0f6e-3a35-485f-b6b4-247ba54c1f43
-
-
-# ╔═╡ ccd13ec8-2070-41bb-a375-93bf462522ba
-
-
-# ╔═╡ 8474d270-aabc-4e5e-a81e-fdc2ea97cd0e
-
-
-# ╔═╡ a2097153-ae21-4930-b385-6f3b78876a5c
-
-
-# ╔═╡ 27d19f92-245a-4f1a-8b12-6f1cb0552d72
-
+bar([t1.value, t2.value, t3.value], xticks=(1:3, ["plain", "byte-enc", "B1-enc"]), label=nothing, title="Memory usage")
 
 # ╔═╡ 8d5b5ff2-0602-4591-ad75-5915516ebadf
-
-
-# ╔═╡ c2282144-e918-43f8-b123-1053db74561a
-
-
-# ╔═╡ 3aacaf7f-f8fe-4084-baeb-1b3f34563f2f
 
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -1428,7 +1429,7 @@ version = "0.9.1+5"
 # ╠═b74e0740-154c-4f1d-a755-6e192eace17f
 # ╠═bbf05d16-9041-4af4-ad7f-c5bc486d723e
 # ╠═433a322a-44d4-4523-a1e2-9303769b19cf
-# ╟─c7321f75-eb64-4363-9a6f-bade7b1f8d99
+# ╠═c7321f75-eb64-4363-9a6f-bade7b1f8d99
 # ╠═d41f045d-31a7-4e50-a684-b89e573b60dc
 # ╠═f54b827d-c83c-4b94-9e5e-6135f467fce0
 # ╠═cbfb08c6-4cf6-47ea-adb9-72b3b49db68d
@@ -1443,21 +1444,15 @@ version = "0.9.1+5"
 # ╟─f40c103f-c8d5-4a93-befd-f835498e4ed3
 # ╠═c18f0e6c-16c7-4b38-b904-67147e55d1b6
 # ╠═63dd1f55-620e-4cc7-80bc-543a4f09fd73
+# ╠═44539e8f-b4f8-41d7-8433-78040494570b
+# ╠═e39e06a7-f238-4542-b247-f221a3499321
+# ╠═73b0d5c3-3ff4-4262-b036-9d129759e7f7
 # ╠═8b204adf-02e9-46cd-87b8-0ebb04b1be08
 # ╠═460fee1b-2d85-4c28-990e-c0fd7cea513c
 # ╠═7d4a38cb-45ee-4738-8ccc-47d69aabaec6
+# ╠═074ba390-abd2-49d8-94f1-38f5d0fdbfdf
 # ╠═d2a8adf3-e348-48eb-8b92-c08301abbb49
 # ╠═70e5ca46-4f69-4161-92f9-88693f66d343
-# ╠═0c9a700a-049e-40ea-9997-39dbb252ecef
-# ╠═9378c400-e392-4694-af37-307247cd3e3c
-# ╠═9b349a63-4116-437b-8900-e87183acfc41
-# ╠═dece0f6e-3a35-485f-b6b4-247ba54c1f43
-# ╠═ccd13ec8-2070-41bb-a375-93bf462522ba
-# ╠═8474d270-aabc-4e5e-a81e-fdc2ea97cd0e
-# ╠═a2097153-ae21-4930-b385-6f3b78876a5c
-# ╠═27d19f92-245a-4f1a-8b12-6f1cb0552d72
 # ╠═8d5b5ff2-0602-4591-ad75-5915516ebadf
-# ╠═c2282144-e918-43f8-b123-1053db74561a
-# ╠═3aacaf7f-f8fe-4084-baeb-1b3f34563f2f
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
