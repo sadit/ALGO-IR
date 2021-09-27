@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.0
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
@@ -20,8 +20,7 @@ Perform a sequential search, just for testing purposes
 """
 function seqsearch(A, x, sp=1)
 	n = length(A)
-	while sp <= n
-		A[sp] > x && return sp
+	while sp <= n && x > A[sp]
 		sp += 1
 	end
 	
@@ -61,18 +60,24 @@ Finds the insertion position of `x` in `A` in the range `sp:ep`
 function binarysearch(A, x, sp=1, ep=length(A))
 	while sp < ep
 		mid = div(sp + ep, 2)
-		if x <= A[mid]
-			return binarysearch(A, x, sp, mid)
+		@inbounds if x <= A[mid]
+			ep = mid
 		else
-			return binarysearch(A, x, mid+1, ep)
+			sp = mid + 1
 		end
-	end	
+	end
 	
-	x < A[sp] ? sp : sp + 1
+	@inbounds x <= A[sp] ? sp : sp + 1
 end
 
 # ╔═╡ f3b5fa65-dcd1-46d1-af88-18e31d691172
-@assert [seqsearch(X, i) for i in 0:10] == [binarysearch(X, i) for i in 0:10]
+with_terminal() do
+	@info [binarysearch(X, i) for i in 0:10]
+	@assert [seqsearch(X, i) for i in 0:10] == [binarysearch(X, i) for i in 0:10]
+end
+
+# ╔═╡ 724de557-7137-45e8-b09c-1c78f5c67f0b
+
 
 # ╔═╡ c7321f75-eb64-4363-9a6f-bade7b1f8d99
 md"""
@@ -87,17 +92,15 @@ Finds the insertion position of `x` in `A`, starting at `sp`
 """
 function doublingsearch(A, x, sp=1)
     n = length(A)
+	p = 0
     i = 1
 
-    while sp+i <= n
-	    if A[sp+i] < x
-		    i += i
-	    else
-		    return binarysearch(A, x, sp + div(i, 2), sp+i)
-	    end
+    @inbounds while sp+i <= n && A[sp+i] < x
+		p = i
+		i += i
     end
 
-    binarysearch(A, x, sp + div(i, 2), n)
+    binarysearch(A, x, sp + p, min(n, sp+i))
 end
 
 # ╔═╡ cbfb08c6-4cf6-47ea-adb9-72b3b49db68d
@@ -163,7 +166,6 @@ begin
 	labels = ["30" "100" "300" "1k" "3k" "10k" "30k" "50k"]
 	ticklabels = ["seqsearch", "binary", "doubling"]
 	
-	#groupedbar([measles mumps chickenPox], bar_position = :dodge, bar_width=0.7, xticks=(1:12, ticklabel))
 	G = groupedbar(T, xticks=(1:3, ticklabels), yscale=:log10, bar_width=0.5, legend = :outertopright, label=labels, ylabel="seconds")
 	G
 
@@ -1277,6 +1279,7 @@ version = "0.9.1+5"
 # ╟─89180d9c-986e-40a4-9268-7f79356b539b
 # ╠═f701d298-92e2-4828-9a4f-70ce5d809d35
 # ╠═f3b5fa65-dcd1-46d1-af88-18e31d691172
+# ╠═724de557-7137-45e8-b09c-1c78f5c67f0b
 # ╟─c7321f75-eb64-4363-9a6f-bade7b1f8d99
 # ╠═d41f045d-31a7-4e50-a684-b89e573b60dc
 # ╠═cbfb08c6-4cf6-47ea-adb9-72b3b49db68d

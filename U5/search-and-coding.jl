@@ -7,51 +7,80 @@ using InteractiveUtils
 # ╔═╡ 87472976-1d40-11ec-18dd-af93e9965938
 using JSON, StatsPlots, PlutoUI
 
+# ╔═╡ 646d05e8-b496-4b23-a409-90cc5ef2763b
+begin
+	mutable struct BitStream
+		arr::BitArray
+		i::Int
+		
+		BitStream() = new(BitArray(undef, 0), 1)
+	end
+	
+	Base.write(B::BitStream, b) = push!(B.arr, b)
+	
+	function Base.read(B::BitStream)
+		b = B.arr[B.i]
+		B.i += 1
+		b
+	end
+end
+
 # ╔═╡ 5b9fff26-d359-4cae-b818-2e2aa959397e
 md"""
-# Sequential search
+# Encoding with sequential search
 """
 
 # ╔═╡ 8ce3911e-7a1d-4866-925e-d6b5d1f6bd05
 function unary_encoding(A, x)
 	i = 1
 	while i < x
-		push!(A, 1)
+		write(A, 1)
 		i += 1
 	end
 	
-	push!(A, 0)
+	write(A, 0)
 	A
 end
 
 # ╔═╡ 2e3bd593-30bc-4d28-8213-18f7cd63769c
+function unary_decoding(A)
+	i = 1
+	while read(A)
+		i += 1
+	end
+	
+	i
+end
 
+# ╔═╡ f5497b64-dd58-4f6e-b0a2-f394bad2a6f6
+for i in 1:20
+	@assert i == unary_decoding(unary_encoding(BitStream(), i))
+end
 
 # ╔═╡ 0587cbe1-4d38-42d2-a968-9271da99f96f
 with_terminal() do
 	for i in 1:16
-		@info i => unary_encoding(BitArray(undef, 0), i)
+		@info i => unary_encoding(BitStream(), i).arr
 	end
 end
 
-# ╔═╡ 93a65436-8056-4865-ad33-97a52bbefd73
-
-
 # ╔═╡ 89180d9c-986e-40a4-9268-7f79356b539b
 md"""
-# Binary search encoding
+# Encoding with binary search
 """
 
 # ╔═╡ f701d298-92e2-4828-9a4f-70ce5d809d35
-function binary_encoding(A, x, ep)
+
+function binary_encoding(A, x, nbits)
 	sp = 0
+	ep = (1 << nbits) - 1
 	while sp < ep
 		mid = div(sp + ep, 2)
-		if x < mid
-			push!(A, 0)
+		if x <= mid
+			write(A, 0)
 			ep = mid
 		else
-			push!(A, 1)
+			write(A, 1)
 			sp = mid+1
 		end
 	end	
@@ -59,73 +88,40 @@ function binary_encoding(A, x, ep)
 	A
 end
 
-# ╔═╡ 2bcb3a07-7428-483a-91b4-6a988e59bf98
+# ╔═╡ d2458baa-9f9f-4aa4-9960-b9ecc4898eb1
 
 
 # ╔═╡ 795f84d3-1816-4112-98f0-306c9d690e00
-
+function binary_decoding(A, nbits)
+	v = 0
+	for i in 1:nbits
+		if read(A)
+			v = (v << 1) | 1
+		else
+			v <<= 1
+		end
+	end	
+	
+	v
+end
 
 # ╔═╡ cafb215c-ecf5-43ca-ab1c-8920abfc4435
 
 
-# ╔═╡ f3b5fa65-dcd1-46d1-af88-18e31d691172
+# ╔═╡ b74e0740-154c-4f1d-a755-6e192eace17f
 
+
+# ╔═╡ bbf05d16-9041-4af4-ad7f-c5bc486d723e
 with_terminal() do
-	
-	for i in 0:16
-		@info i => binary_encoding(BitArray(undef, 0), i, 16)
+	for i in 1:30
+		s = binary_encoding(BitStream(), i, 5)
+		d = binary_decoding(s, 5)
+		@info i => s => d
+		@assert d == i
 	end
 end
 
-# ╔═╡ e15717c8-c98c-42e0-9e6e-1ae5caef6260
-
-
-# ╔═╡ 333f8d5d-e59b-4503-96ec-a9f81e980998
-
-
-# ╔═╡ db79cb69-1404-4d32-b277-3379cd04c070
-
-
-# ╔═╡ 956e10b4-bfda-4113-b06b-ed0006c4b906
-
-
-# ╔═╡ 70d0729d-01b4-40eb-965c-7fd1ee4cd6af
-
-
-# ╔═╡ 690e4faf-7484-406b-ad8c-111448c48f7e
-
-
-# ╔═╡ e60d6e0f-c500-4564-b164-b061cb236651
-
-
-# ╔═╡ b83f5b6f-2d70-4ff2-9343-c453e09fcd5b
-
-
-# ╔═╡ 1354bcc8-32cb-43f4-b2e1-d0402af9f5cc
-
-
-# ╔═╡ d0e2cf67-c51f-4dc2-9b15-cb46e215d7d8
-
-
-# ╔═╡ 71340230-b529-4343-8e2d-319d2d1084e2
-
-
-# ╔═╡ ca789450-9d28-4c71-8ce8-6a45521e2ddf
-
-
-# ╔═╡ c9448210-1e72-4df5-bb50-a13e7bc1c3ee
-
-
-# ╔═╡ 128633b8-34a5-49f5-bf6c-939574964040
-
-
-# ╔═╡ 76a1e7fc-f0d6-47e8-b40c-27ae099b8b59
-
-
-# ╔═╡ 66e8d0ee-67a1-4f9d-aab9-b0de20ab0064
-
-
-# ╔═╡ b5681e89-5eed-4300-a0c5-769a6e8e4f57
+# ╔═╡ 433a322a-44d4-4523-a1e2-9303769b19cf
 
 
 # ╔═╡ c7321f75-eb64-4363-9a6f-bade7b1f8d99
@@ -134,28 +130,120 @@ md"""
 """
 
 # ╔═╡ d41f045d-31a7-4e50-a684-b89e573b60dc
-"""
-	doublingsearch(A, x, sp=1)
-
-Finds the insertion position of `x` in `A`, starting at `sp`
-"""
-function doublingsearch(A, x, sp=1)
-    n = length(A)
+function doubling_encoding(A, x)
+	p = 0
     i = 1
 
-    while sp+i <= n
-	    if A[sp+i] < x
-		    i += i
-	    else
-		    return binarysearch(A, x, sp + div(i, 2), sp+i)
-	    end
+    while i < x
+		p = i
+		i += i
+		write(A, 1)
     end
 
-    binarysearch(A, x, sp + div(i, 2), n)
+	write(A, 0)
+	x = x - p - 1
+	binary_encoding(A, x, ceil(Int, log2(i-p)))
+end
+
+# ╔═╡ f54b827d-c83c-4b94-9e5e-6135f467fce0
+function doubling_decoding(A, x)
+	i = 0
+	while read(A)
+		i += 1
+    end
+
+	i -= 1
+	(1 << i) + binary_decoding(A, i) + 1
 end
 
 # ╔═╡ cbfb08c6-4cf6-47ea-adb9-72b3b49db68d
-@assert [seqsearch(X, i) for i in 0:10] == [doublingsearch(X, i) for i in 0:10]
+with_terminal() do
+	for i in 1:66
+		#@info "====== encoding $i"
+		s = doubling_encoding(BitStream(), i)
+		#@info "s=$s"
+		d = doubling_decoding(s, 6)
+		@show i => s => d
+		@assert d == i
+	end
+end
+
+# ╔═╡ 988f0a9f-a073-4684-997a-d5654a87abe4
+md"""
+# Byte encoding
+"""
+
+# ╔═╡ 2ecf788e-b0c2-4751-baf5-9f468d1f1233
+begin
+	mutable struct ByteStream
+		arr::Vector{UInt8}
+		i::Int
+
+		ByteStream() = new(Vector{UInt8}(undef, 0), 1)
+	end
+
+	Base.write(B::ByteStream, b::UInt8) = push!(B.arr, b)
+
+	function Base.read(B::ByteStream)
+		v = B.arr[B.i]
+		B.i += 1
+		v
+	end
+end
+
+
+# ╔═╡ 3ccccebd-e656-4071-9055-322c61107bef
+
+
+# ╔═╡ 02f54a3d-ba5b-4d88-8be7-e53c1a7e9d69
+function byte_encoding(A, x)
+	while x > 0
+		if x <= 127
+			write(A, UInt8(x))
+			break
+		else
+			write(A, UInt8((x & 0xff) | 0x80))
+			x >>= 7
+		end
+	end
+	
+	A
+end
+
+
+# ╔═╡ 8b220326-ca67-41fe-af50-82f99e69775e
+
+
+# ╔═╡ 9dd64b18-04df-4ca8-98e4-bb61d2e8be91
+function byte_decoding(A)::Int
+	u = 0
+	i = 0
+	while true
+		w = read(A)
+		if w <= 127
+			return u | (Int(w) << i)
+		else
+			u |= (Int(w & 0x7f) << i)
+			i += 7
+		end
+	end
+end
+
+# ╔═╡ de1fa708-6e56-45a0-966a-23b384d01476
+with_terminal() do
+	A = ByteStream()
+	for i in 1:10
+		@info (1<<i) => byte_encoding(A, 1<<i)
+	end
+	
+	for i in 1:10
+		A = ByteStream()
+		v = 1 << i
+		v += rand(1:v)
+		byte_encoding(A, v)
+		@assert v == byte_decoding(A)
+	end
+end
 
 # ╔═╡ 7bb07b42-dd3c-4d8e-8097-c2fb3bc0c782
 md"""
@@ -169,9 +257,12 @@ md"""
 
 # ╔═╡ c18f0e6c-16c7-4b38-b904-67147e55d1b6
 begin
-	L = last.(JSON.parse.(eachline("listas-posteo-100.json")))
+	L = last.(JSON.parse.(eachline("../datos/listas-posteo-100.json")))
 	plot(sort!(length.(L), rev=true), scale=:log10)
 end
+
+# ╔═╡ 63dd1f55-620e-4cc7-80bc-543a4f09fd73
+
 
 # ╔═╡ 8b204adf-02e9-46cd-87b8-0ebb04b1be08
 
@@ -1323,40 +1414,35 @@ version = "0.9.1+5"
 
 # ╔═╡ Cell order:
 # ╠═87472976-1d40-11ec-18dd-af93e9965938
+# ╠═646d05e8-b496-4b23-a409-90cc5ef2763b
 # ╟─5b9fff26-d359-4cae-b818-2e2aa959397e
 # ╠═8ce3911e-7a1d-4866-925e-d6b5d1f6bd05
 # ╠═2e3bd593-30bc-4d28-8213-18f7cd63769c
+# ╠═f5497b64-dd58-4f6e-b0a2-f394bad2a6f6
 # ╠═0587cbe1-4d38-42d2-a968-9271da99f96f
-# ╠═93a65436-8056-4865-ad33-97a52bbefd73
-# ╠═89180d9c-986e-40a4-9268-7f79356b539b
+# ╟─89180d9c-986e-40a4-9268-7f79356b539b
 # ╠═f701d298-92e2-4828-9a4f-70ce5d809d35
-# ╠═2bcb3a07-7428-483a-91b4-6a988e59bf98
+# ╠═d2458baa-9f9f-4aa4-9960-b9ecc4898eb1
 # ╠═795f84d3-1816-4112-98f0-306c9d690e00
 # ╠═cafb215c-ecf5-43ca-ab1c-8920abfc4435
-# ╠═f3b5fa65-dcd1-46d1-af88-18e31d691172
-# ╠═e15717c8-c98c-42e0-9e6e-1ae5caef6260
-# ╠═333f8d5d-e59b-4503-96ec-a9f81e980998
-# ╠═db79cb69-1404-4d32-b277-3379cd04c070
-# ╠═956e10b4-bfda-4113-b06b-ed0006c4b906
-# ╠═70d0729d-01b4-40eb-965c-7fd1ee4cd6af
-# ╠═690e4faf-7484-406b-ad8c-111448c48f7e
-# ╠═e60d6e0f-c500-4564-b164-b061cb236651
-# ╠═b83f5b6f-2d70-4ff2-9343-c453e09fcd5b
-# ╠═1354bcc8-32cb-43f4-b2e1-d0402af9f5cc
-# ╠═d0e2cf67-c51f-4dc2-9b15-cb46e215d7d8
-# ╠═71340230-b529-4343-8e2d-319d2d1084e2
-# ╠═ca789450-9d28-4c71-8ce8-6a45521e2ddf
-# ╠═c9448210-1e72-4df5-bb50-a13e7bc1c3ee
-# ╠═128633b8-34a5-49f5-bf6c-939574964040
-# ╠═76a1e7fc-f0d6-47e8-b40c-27ae099b8b59
-# ╠═66e8d0ee-67a1-4f9d-aab9-b0de20ab0064
-# ╠═b5681e89-5eed-4300-a0c5-769a6e8e4f57
+# ╠═b74e0740-154c-4f1d-a755-6e192eace17f
+# ╠═bbf05d16-9041-4af4-ad7f-c5bc486d723e
+# ╠═433a322a-44d4-4523-a1e2-9303769b19cf
 # ╟─c7321f75-eb64-4363-9a6f-bade7b1f8d99
 # ╠═d41f045d-31a7-4e50-a684-b89e573b60dc
+# ╠═f54b827d-c83c-4b94-9e5e-6135f467fce0
 # ╠═cbfb08c6-4cf6-47ea-adb9-72b3b49db68d
+# ╟─988f0a9f-a073-4684-997a-d5654a87abe4
+# ╠═2ecf788e-b0c2-4751-baf5-9f468d1f1233
+# ╠═3ccccebd-e656-4071-9055-322c61107bef
+# ╠═02f54a3d-ba5b-4d88-8be7-e53c1a7e9d69
+# ╠═8b220326-ca67-41fe-af50-82f99e69775e
+# ╠═9dd64b18-04df-4ca8-98e4-bb61d2e8be91
+# ╠═de1fa708-6e56-45a0-966a-23b384d01476
 # ╟─7bb07b42-dd3c-4d8e-8097-c2fb3bc0c782
 # ╟─f40c103f-c8d5-4a93-befd-f835498e4ed3
 # ╠═c18f0e6c-16c7-4b38-b904-67147e55d1b6
+# ╠═63dd1f55-620e-4cc7-80bc-543a4f09fd73
 # ╠═8b204adf-02e9-46cd-87b8-0ebb04b1be08
 # ╠═460fee1b-2d85-4c28-990e-c0fd7cea513c
 # ╠═7d4a38cb-45ee-4738-8ccc-47d69aabaec6
