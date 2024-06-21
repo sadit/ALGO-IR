@@ -1,4 +1,3 @@
-
 module MySorting
 
 using Base.Order
@@ -87,8 +86,7 @@ Bubble sort
 =======#
 function bubblesort!(A::AbstractVector, lo::Int, hi::Int, o::Ordering)
     swaps = 1
-    n = length(A)
-
+    
     @inbounds while swaps > 0
         swaps = 0
         for i in lo+1:hi
@@ -110,6 +108,5 @@ Base.sort!(A::AbstractVector, ::BubbleSort, o::Ordering=Forward) = bubblesort!(A
 Base.sort(A::AbstractVector, ::BubbleSort, o::Ordering=Forward) = bubblesort!(copy(A), 1, length(A), o)
 Base.sort!(A::AbstractVector, ::HeapSort, o::Ordering=Forward) = heapsort!(A, o)
 Base.sort(A::AbstractVector, ::HeapSort, o::Ordering=Forward) = heapsort!(copy(A), o)
-
 
 end
