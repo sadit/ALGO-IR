@@ -25,16 +25,6 @@ jobs:
         with:
           tinytex: true
           version: "pre-release"
-#      - name: Set up Python
-#        uses: conda-incubator/setup-miniconda@v2
-#        with:
-#          activate-environment: test
-#          auto-update-conda: true
-#          python-version: "3.10"
-#          channels: conda-forge
-#          allow-softlinks: true
-#          channel-priority: flexible
-#          show-channel-urls: true
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
@@ -44,7 +34,7 @@ jobs:
         run: |
           pwd
           JULIA_PROJECT=. julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
-          apt install librsvg2-bin
+          sudo apt-get install librsvg2-bin
       - uses: julia-actions/julia-buildpkg@v1
       # - name: Render and Publish
       #   run: |
