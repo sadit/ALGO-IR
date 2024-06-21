@@ -44,11 +44,21 @@ jobs:
         run: |
           pwd
           JULIA_PROJECT=. julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
+          apt install librsvg2-bin
       - uses: julia-actions/julia-buildpkg@v1
-      - name: Render and Publish
-        run: |
-          git config --global user.email "donsadit@gmail.com"
-          git config --global user.name "sadit"
-          quarto publish gh-pages .  --no-browser          
+      # - name: Render and Publish
+      #   run: |
+      #     git config --global user.email "donsadit@gmail.com"
+      #     git config --global user.name "sadit"
+      #     quarto publish gh-pages .  --no-browser          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
