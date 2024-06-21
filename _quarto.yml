@@ -1,0 +1,48 @@
+lang: es
+quarto-required: ">= 1.5.45"
+
+project:
+  type: book
+book:
+  title: "Análisis de Algoritmos y Estructuras de Datos"
+  author: 
+    - name: "Eric S. Téllez"
+      url: https://sadit.github.io
+      affiliation: INFOTEC Centro de Investigación e Innovación en Tecnologías de la Información y Comunicación    
+  chapters:
+    - index.qmd
+    - U1.qmd
+    - U2.qmd
+    - U3.qmd
+    - U4.qmd
+    - U5.qmd
+    - U6.qmd
+    - U7.qmd
+    - U8.qmd
+    - Urefs.qmd
+  site-url: https://sadit.github.io/ALGO-2024
+  repo-url: https://github.com/sadit/ALGO-2024
+  downloads: pdf
+  page-footer:
+    right: |
+      [![](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) <br/> Esta obra está bajo una [Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-sa/4.0/)
+
+
+
+bibliography: refs.bib
+title-block-banner: true
+highlight-style: pygments
+
+engine: julia
+
+format:
+  html:
+    theme: cosmo
+    code-tools: true
+    echo: true
+  pdf:
+    documentclass: scrreprt
+    echo: false
+
+execute:
+  freeze: auto

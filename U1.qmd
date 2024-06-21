@@ -1,0 +1,49 @@
+---
+title: Motivación y explicación del curso
+---
+
+## Objetivo {.unnumbered}
+Reconocer la importancia del estudio de algoritmos y estructuras de datos.
+
+## Motivación
+El análisis de grandes cúmulos de datos requiere del control completo sobre los algoritmos y las estructuras de datos que se utilicen para manejarlos, dado que los recursos disponibles, como la memoria o la velocidad de procesamiento, de una computadora son finitos y muchas veces pequeños con respecto a la cantidad de datos. 
+
+Para este fin, es necesario analizar los recursos necesarios para aplicar un algoritmo sobre una instancia del problema, y así poder seleccionar la mejor opción para dicha instancia, o en su defecto, modificar o crear un algoritmo para adaptarse mejor a las necesidades y recursos disponibles.
+
+Durante el curso se estudiaran problemas y algoritmos simples, que suelen formar parte de algoritmos más complejos, y por lo tanto, si somos capaces de seleccionar adecuadamente estos bloques más simples, afectaremos directamente el desempeño de los sistemas. 
+
+## Material audio-visual
+
+- Motivación - parte 1: <iframe width="560" height="315" src="https://www.youtube.com/embed/ExoGW--OO5s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+- Motivación - parte 2: <iframe width="560" height="315" src="https://www.youtube.com/embed/cNo0RK_jeuQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Índices invertidos (proyecto integrador del curso): <iframe width="560" height="315" src="https://www.youtube.com/embed/vUVjSO7GJw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Estructuras de datos básicas
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fNdtauZa7Mc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Sobre el lenguaje de programación
+
+En principio casi cualquier lenguaje de programación podría utilizarse para el curso, sin embargo, para efectos prácticos, nos limitaremos a dos lenguajes de programación:
+
+- Python, se recomieda utilizar la distribución de <https://www.anaconda.com/download/>
+- Julia, se recomienda utilizar la versión 1.10 o superior, <https://julialang.org/>
+
+
+Ambos lenguajes de programación son fáciles de aprender y altamente productivos. Python es un lenguaje excelente para realizar prototipos, o para cuando existen bibliotecas que resuelvan el problema que se este enfrentando. En particular, cuando se requiera evaluar la velocidad de un algoritmo, se recomienda utilizar Julia, ya que suele ser mucho más veloz para rutinas creadas directamente en el lenguaje, sin necesidad de un segundo lenguaje para operaciones a bajo nivel.
+
+Se hará uso intensivo de Quarto y Jupyter <https://jupyter.org/> para las notas y demostraciones. Los reportes y tareas se solicitaran en estos frameworks.
+
+
+### Recursos para aprender Python y Julia
+
+#### Python
+- Documentación oficial, comenzar por el tutorial <https://docs.python.org/3/>
+- Documentación oficial <https://docs.julialang.org/en/stable/>
+
+#### Julia
+- Información sobre como instalar Julia y flujos de trabajo simples (e.g., REPL, editores, etc.) para trabajar con este lenguaje de programación: _Modern Julia Workflows_ <https://modernjuliaworkflows.github.io/>.
+- Libro sobre julia _Think Julia: How to Think Like a Computer Scientist_ <https://benlauwens.github.io/ThinkJulia.jl/latest/book.html>.
+- Curso _Introduction to computational thinking_ <https://computationalthinking.mit.edu/Fall20/>
