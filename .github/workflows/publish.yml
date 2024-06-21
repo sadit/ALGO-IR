@@ -38,10 +38,11 @@ jobs:
         run: |
           pwd
           JULIA_PROJECT=. julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
+      - uses: julia-actions/julia-buildpkg@v1
       - name: Render and Publish
         run: |
           git config --global user.email "donsadit@gmail.com"
-          git config --global user.name "donsadit"
+          git config --global user.name "sadit"
           quarto publish gh-pages .  --no-browser          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
