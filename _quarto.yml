@@ -20,8 +20,8 @@ book:
     - U7.qmd
     - U8.qmd
     - Urefs.qmd
-  site-url: https://sadit.github.io/ALGO-2024
-  repo-url: https://github.com/sadit/ALGO-2024
+  site-url: https://sadit.github.io/ALGO-IR
+  repo-url: https://github.com/sadit/ALGO-IR
   downloads: pdf
   page-footer:
     right: |
