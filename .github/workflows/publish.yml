@@ -24,7 +24,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
-          # version: "pre-release"
+          version: "pre-release"
 #      - name: Set up Python
 #        uses: conda-incubator/setup-miniconda@v2
 #        with:
