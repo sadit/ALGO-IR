@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.46">
+<meta name="generator" content="quarto-1.7.2">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Algoritmos para codificación de enteros – Análisis de Algoritmos y Estructuras de Datos</title>
+<title>5&nbsp; Algoritmos de intersección de conjuntos con representación de listas ordenadas – Análisis de Algoritmos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -64,17 +84,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./U6.html" rel="next">
+<link href="./Urefs.html" rel="next">
 <link href="./U4.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-259ed8ca5725095a771ba0ccf2b6fd86.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b72aa43c4b700e74a32346e1c7109463.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -144,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./U5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./U5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -157,7 +177,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+      <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
                       </div>
   </div>
     
@@ -175,10 +195,10 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Análisis de Algoritmos y Estructuras de Datos</a> 
+      <a href="./">Análisis de Algoritmos</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/sadit/ALGO-IR" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
-    <a href="./Análisis-de-Algoritmos-y-Estructuras-de-Datos.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./Análisis-de-Algoritmos.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -198,49 +218,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Motivación y explicación del curso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción al análisis de algoritmos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análisis de la eficiencia de un algoritmo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis de la eficiencia de un algoritmo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U5.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./U6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./U7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Búsqueda en cadenas de texto</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./U8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Proyecto integrador</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -259,17 +261,14 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">5.1</span> Introducción</a></li>
-  <li><a href="#material-audio-visual" id="toc-material-audio-visual" class="nav-link" data-scroll-target="#material-audio-visual"><span class="header-section-number">5.2</span> Material audio-visual</a>
-  <ul class="collapse">
-  <li><a href="#codificación---parte-1" id="toc-codificación---parte-1" class="nav-link" data-scroll-target="#codificación---parte-1"><span class="header-section-number">5.2.1</span> Codificación - parte 1</a></li>
-  <li><a href="#codificación---parte-2" id="toc-codificación---parte-2" class="nav-link" data-scroll-target="#codificación---parte-2"><span class="header-section-number">5.2.2</span> Codificación - parte 2</a></li>
-  <li><a href="#codificación---parte-3" id="toc-codificación---parte-3" class="nav-link" data-scroll-target="#codificación---parte-3"><span class="header-section-number">5.2.3</span> Codificación - parte 3</a></li>
-  </ul></li>
+  <li><a href="#recursos-audio-visuales-de-la-unidad" id="toc-recursos-audio-visuales-de-la-unidad" class="nav-link" data-scroll-target="#recursos-audio-visuales-de-la-unidad"><span class="header-section-number">5.2</span> Recursos audio-visuales de la unidad</a></li>
   <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">5.3</span> Actividades</a>
   <ul class="collapse">
-  <li><a href="#reporte" id="toc-reporte" class="nav-link" data-scroll-target="#reporte"><span class="header-section-number">5.3.1</span> Reporte:</a></li>
+  <li><a href="#actividad-0-sin-entrega" id="toc-actividad-0-sin-entrega" class="nav-link" data-scroll-target="#actividad-0-sin-entrega"><span class="header-section-number">5.3.1</span> Actividad 0 [Sin entrega]</a></li>
+  <li><a href="#actividad-1-con-reporte" id="toc-actividad-1-con-reporte" class="nav-link" data-scroll-target="#actividad-1-con-reporte"><span class="header-section-number">5.3.2</span> Actividad 1 [Con reporte]</a></li>
+  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">5.3.3</span> Entregable</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -281,74 +280,92 @@ window.Quarto = {
 
 
 
-<section id="objetivos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="objetivos">Objetivos</h2>
-<ul>
-<li>Implementar algoritmos de codificación de enteros y su relación con algoritmos de búsqueda</li>
-<li>Implementar algoritmos de compresión de permutaciones y su relación con algoritmos de ordenamiento</li>
-<li>Optimización del memoria utilizado de índices invertidos</li>
-</ul>
+<section id="objetivo" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>Implementar y comparar algoritmos de intersección de conjuntos representados como listas ordenadas, utilizando una variedad de algoritmos de búsqueda que dan diferentes propiedades a los algoritmos de intersección.</p>
 </section>
 <section id="introducción" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">5.1</span> Introducción</h2>
-<p>La codificación de enteros es una área intimamente relacionada con los algoritmos de búsqueda. En este bloque, se estudiara la conexión entre algoritmos de búsqueda basados en comparaciones y codificaciones de enteros. Así mismo, se verá como la compresión de permutaciones esta relacionada con los algoritmos de ordenamiento.</p>
+<p>En este tema se conocerán, implementarán y compararán algoritmos de intersección de listas ordenadas. El cálculo de la intersección es un proceso costoso en una máquina de búsqueda, sin embargo, es un procedimiento esencial cuando se trabaja con grandes colecciones de datos.</p>
+<p>El índice invertido tal y como lo hemos creado, es capaz de manejar una cantidad razonablemente grande de documentos. Para asegurarnos del escalamiento con la cantidad de documentos, es necesario utilizar algoritmos de intersección que sean eficientes. Entonces, dadas las listas ordenadas <span class="math inline">\(L_1, \cdots, L_k\)</span> (e.g, correspondientes a las listas de posteo en un índice invertido), tomará dichas listas y producirá <span class="math inline">\(L^* = \bigcap_i L_i\)</span>, esto es, si <span class="math inline">\(u\in L^*\)</span> entonces <span class="math inline">\(u \in L_i\)</span> para <span class="math inline">\(1 \leq i \leq k\)</span>.</p>
+<p>Existen varios algoritmos prominentes para llevar a cabo esta operación. Uno de los trabajos seminales viene de Hwang &amp; Lin, en su algoritmo de <em>merge</em> entre dos conjuntos <span class="citation" data-cites="HL1971">(<a href="Urefs.html#ref-HL1971" role="doc-biblioref">Hwang y Lin 1971</a>)</span>. En este trabajo se replantea el costo como encontrar los <em>puntos</em> de unión entre ambos conjuntos, esto se traslada de manera inmediata al problema de intersección. El problema correspondiente para intersectar dos conjuntos cualesquiera representados como conjuntos ordenados es entonces <span class="math inline">\(\log{{n+m} \choose m}\)</span>, que usando la aproximación de Stirling se puede reescribir como <span class="math display">\[n \log \frac{n}{m} + (n-m)\log \frac{n}{n-m},\]</span> donde <span class="math inline">\(n\)</span> y <span class="math inline">\(m\)</span> corresponden a al número de elementos en cada conjunto.</p>
+<p>Un algoritmo <em>naïve</em> para realizar la intersección, puede ser buscar todos los elementos del conjunto más pequeño en el más grande. Si para la búsqueda se utiliza <em>búsqueda binaria</em>, tenemos un costo de <span class="math inline">\(m \log n\)</span>.</p>
+<p>Esta simple idea puede ser explotada y mejorada para obtener costos más bajos, por ejemplo, si en lugar de buscar sobre la lista más grande directamente, esta se divide en bloques de tamaño <span class="math inline">\(m\)</span> para encontrar el bloque que contiene cada elemento (recuerde que el arreglo esta ordenado), para después buscar dentro del bloque. Haciendo esto, el costo se convierte en <span class="math display">\[ m \log \frac{n}{m} + m \log m\]</span> cuyo costo se ajusta mejor al costo del problema. Este es el algoritmo propuesto, a groso modo, en <span class="citation" data-cites="HL1971">(<a href="Urefs.html#ref-HL1971" role="doc-biblioref">Hwang y Lin 1971</a>)</span>.</p>
+<p>Cuando <span class="math inline">\(k&gt;2\)</span>, la intersección se puede realizar usando las <span class="math inline">\(k\)</span> listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son “más faciles” de intersectar con un algoritmo <em>na"ive</em>. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy popular llamada <em>Small vs Small (SvS)</em>.</p>
+<p>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="citation" data-cites="DLOPM2001">(<a href="Urefs.html#ref-DLOPM2001" role="doc-biblioref">Demaine, López-Ortiz, y Ian Munro 2001</a>)</span>, <span class="citation" data-cites="BLOL2006">(<a href="Urefs.html#ref-BLOL2006" role="doc-biblioref">Barbay, López-Ortiz, y Lu 2006</a>)</span>, <span class="citation" data-cites="BLOLS2010">(<a href="Urefs.html#ref-BLOLS2010" role="doc-biblioref">Barbay et&nbsp;al. 2010</a>)</span>, y <span class="citation" data-cites="BYS2005">(<a href="Urefs.html#ref-BYS2005" role="doc-biblioref">Baeza-Yates y Salinger 2005</a>)</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="citation" data-cites="DLOM2000">(<a href="Urefs.html#ref-DLOM2000" role="doc-biblioref">Demaine, López-Ortiz, y Munro 2000</a>)</span>, <span class="citation" data-cites="DLOPM2001">(<a href="Urefs.html#ref-DLOPM2001" role="doc-biblioref">Demaine, López-Ortiz, y Ian Munro 2001</a>)</span>, <span class="citation" data-cites="BK2002">(<a href="Urefs.html#ref-BK2002" role="doc-biblioref">Barbay y Kenyon 2002</a>)</span>, <span class="citation" data-cites="BY2004">(<a href="Urefs.html#ref-BY2004" role="doc-biblioref">Baeza-Yates 2004</a>)</span>.</p>
 </section>
-<section id="material-audio-visual" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="material-audio-visual"><span class="header-section-number">5.2</span> Material audio-visual</h2>
-<section id="codificación---parte-1" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="codificación---parte-1"><span class="header-section-number">5.2.1</span> Codificación - parte 1</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FB2b3Vi7sgA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
-</iframe>
-</section>
-<section id="codificación---parte-2" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="codificación---parte-2"><span class="header-section-number">5.2.2</span> Codificación - parte 2</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-Qh3vJ9802I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
-</iframe>
-</section>
-<section id="codificación---parte-3" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="codificación---parte-3"><span class="header-section-number">5.2.3</span> Codificación - parte 3</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EyTr06FrrPc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
-</iframe>
-</section>
+<section id="recursos-audio-visuales-de-la-unidad" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="recursos-audio-visuales-de-la-unidad"><span class="header-section-number">5.2</span> Recursos audio-visuales de la unidad</h2>
+<p>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas <iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></p>
+<p>Parte 2: Algoritmos de intersección y algunas aplicaciones <iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></p>
 </section>
 <section id="actividades" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="actividades"><span class="header-section-number">5.3</span> Actividades</h2>
-<p>Considere las listas de posteo de un índice invertido. Como podrían ser aquellas del archivo <code>listas-posteo-100.json</code>.</p>
+<p>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</p>
+<p>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</p>
+<section id="actividad-0-sin-entrega" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="actividad-0-sin-entrega"><span class="header-section-number">5.3.1</span> Actividad 0 [Sin entrega]</h3>
+<ol type="1">
+<li>Lea y comprenda los artículos relacionados (listados en la introducción).</li>
+</ol>
+</section>
+<section id="actividad-1-con-reporte" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="actividad-1-con-reporte"><span class="header-section-number">5.3.2</span> Actividad 1 [Con reporte]</h3>
+<ol type="1">
+<li>Cargue el archivo <code>listas-posteo-100.json</code> del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</li>
+</ol>
 <ul>
-<li>Representar cada lista de posteo con las diferencias entre entradas contiguas.</li>
-<li>Comprimir las diferencias mediante Elias-<span class="math inline">\(\gamma\)</span>, Elias-<span class="math inline">\(\delta\)</span>, y las codificaciones inducidas por los algoritmos de búsqueda <span class="math inline">\(B_1\)</span> y <span class="math inline">\(B_2\)</span> (búsqueda exponencial en <span class="math inline">\(2^i\)</span> y <span class="math inline">\(2^{2^i}\)</span>)</li>
+<li>Sea <span class="math inline">\(P^{(2)}\)</span> el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria <span class="math inline">\(A \subset P^{(2)}\)</span>, <span class="math inline">\(|A| = 1000\)</span>.</li>
+<li>Sea <span class="math inline">\(P^{(3)}\)</span> el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria <span class="math inline">\(B \subset P^{(3)}\)</span>, <span class="math inline">\(|B| = 1000\)</span>.</li>
+<li>Sea <span class="math inline">\(P^{(4)}\)</span> el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria <span class="math inline">\(C \subset P^{(4)}\)</span>, <span class="math inline">\(|C| = 1000\)</span>.</li>
 </ul>
-<p>Nota: Consideré utilizar una biblioteca para manejo de arreglos de bits, por ejemplo - Python: <a href="https://pypi.org/project/bitarray/">bitarray</a> - Julia: <a href="https://docs.julialang.org/en/v1/base/arrays/#Base.BitArray">BitArray</a></p>
-<section id="reporte" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="reporte"><span class="header-section-number">5.3.1</span> Reporte:</h3>
+<ol start="2" type="1">
+<li><p>Implemente los algoritmos de las secciones 3.1 <em>Melding Algorithms</em> y 3.2 <em>Search algorithms</em> (en especial 3.2.1 y 3.2.2) de <span class="citation" data-cites="BLOLS2010">(<a href="Urefs.html#ref-BLOLS2010" role="doc-biblioref">Barbay et&nbsp;al. 2010</a>)</span>.</p></li>
+<li><p>Realice y reporte los siguientes experimentos:</p></li>
+</ol>
 <ul>
-<li>Tiempos de compresión y decompresión</li>
-<li>Razón entre el tamaño comprimido y sin comprimir (<em>compression ratio</em>).</li>
+<li>Intersecte cada par de listas <span class="math inline">\(a, b \in A\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>
+<li>Intersecte cada tripleta de listas <span class="math inline">\(a, b, c \in B\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>
+<li>Intersecte cada tetrapleta de listas <span class="math inline">\(a, b, c, d \in C\)</span>, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</li>
+<li>Cree una figura <code>boxplot</code> que describa el tiempo en segundos para los tres experimentos.</li>
+<li>Cree una figura <code>boxplot</code> que describa el número de comparaciones para los tres experimentos.</li>
+<li>Cree una figura <code>boxplot</code> que describa las longitudes de las intersecciones resultantes para <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>.</li>
 </ul>
-<p>Para los experimentos utilizará los siguientes datos:</p>
-<ul>
-<li>REAL: Datos reales, puede usar <code>listas-posteo-100.json</code> o puede generarla (vea Unidad 2).</li>
-<li>SIN8: Datos sintéticos con diferencias aleatorias entre 1 y 8, <span class="math inline">\(n=10^7\)</span>.</li>
-<li>SIN64: Datos sintéticos con diferencias aleatorias entre 1 y 64, <span class="math inline">\(n = 10^7\)</span>.</li>
-<li>SIN1024: Datos sintéticos con diferencias aleatorias entre 1 y 1024, <span class="math inline">\(n = 10^7\)</span></li>
-<li>Las comparaciones deberán realizarse mediante figuras y tablas que resuman la información.</li>
-</ul>
-<section id="sobre-el-reporte" class="level4" data-number="5.3.1.1">
-<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="sobre-el-reporte"><span class="header-section-number">5.3.1.1</span> Sobre el reporte</h4>
-<p>El reporte deberá contener:</p>
-<ul>
-<li>Resumen</li>
-<li>Introducción (debe incluir una clara motivación)</li>
-<li>Planteamiento del problema</li>
-<li>Algoritmos y análisis</li>
-<li>Conclusiones y perspectivas</li>
-<li>Referencias</li>
-</ul>
+</section>
+<section id="entregable" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5.3.3</span> Entregable</h3>
+<p>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.</p>
+<p><em>Nota sobre la generación del PDF</em>: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</p>
 
 
 <!-- -->
 
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-BY2004" class="csl-entry" role="listitem">
+Baeza-Yates, Ricardo. 2004. <span>“A fast set intersection algorithm for sorted sequences”</span>. En <em>Combinatorial Pattern Matching: 15th Annual Symposium, CPM 2004, Istanbul, Turkey, July 5-7, 2004. Proceedings 15</em>, 400–408. Springer.
+</div>
+<div id="ref-BYS2005" class="csl-entry" role="listitem">
+Baeza-Yates, Ricardo, y Alejandro Salinger. 2005. <span>“Experimental analysis of a fast intersection algorithm for sorted sequences”</span>. En <em>International Symposium on String Processing and Information Retrieval</em>, 13–24. Springer.
+</div>
+<div id="ref-BK2002" class="csl-entry" role="listitem">
+Barbay, Jérémy, y Claire Kenyon. 2002. <span>“Adaptive intersection and t-threshold problems”</span>. En <em>Proceedings of the Thirteenth Annual ACM-SIAM Symposium on Discrete Algorithms</em>, 390–99. SODA ’02. USA: Society for Industrial; Applied Mathematics.
+</div>
+<div id="ref-BLOL2006" class="csl-entry" role="listitem">
+Barbay, Jérémy, Alejandro López-Ortiz, y Tyler Lu. 2006. <span>“Faster adaptive set intersections for text searching”</span>. En <em>Experimental Algorithms: 5th International Workshop, WEA 2006, Cala Galdana, Menorca, Spain, May 24-27, 2006. Proceedings 5</em>, 146–57. Springer.
+</div>
+<div id="ref-BLOLS2010" class="csl-entry" role="listitem">
+Barbay, Jérémy, Alejandro López-Ortiz, Tyler Lu, y Alejandro Salinger. 2010. <span>“An experimental investigation of set intersection algorithms for text searching”</span>. <em>Journal of Experimental Algorithmics (JEA)</em> 14: 3–7.
+</div>
+<div id="ref-DLOPM2001" class="csl-entry" role="listitem">
+Demaine, Erik D, Alejandro López-Ortiz, y J Ian Munro. 2001. <span>“Experiments on adaptive set intersections for text retrieval systems”</span>. En <em>Algorithm Engineering and Experimentation: Third International Workshop, ALENEX 2001 Washington, DC, USA, January 5–6, 2001 Revised Papers 3</em>, 91–104. Springer.
+</div>
+<div id="ref-DLOM2000" class="csl-entry" role="listitem">
+Demaine, Erik D, Alejandro López-Ortiz, y J Ian Munro. 2000. <span>“Adaptive set intersections, unions, and differences”</span>. En <em>Proceedings of the eleventh annual ACM-SIAM symposium on Discrete algorithms</em>, 743–52.
+</div>
+<div id="ref-HL1971" class="csl-entry" role="listitem">
+Hwang, Frank K., y Shen Lin. 1971. <span>“Optimal merging of 2 elements with n elements”</span>. <em>Acta Informatica</em> 1 (2): 145–58.
+</div>
+</div>
 </section>
 </section>
 
@@ -435,8 +452,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -598,7 +613,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -826,75 +840,90 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./U4.html" class="pagination-link" aria-label="Algoritmos de ordenamiento">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span>
+      <a href="./U4.html" class="pagination-link" aria-label="Algoritmos para codificación de enteros">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./U6.html" class="pagination-link" aria-label="Algoritmos de intersección de conjuntos con representación de listas ordenadas">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Urefs.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Algoritmos para codificación de enteros</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos  {.unnumbered}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implementar algoritmos de codificación de enteros y su relación con algoritmos de búsqueda</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implementar algoritmos de compresión de permutaciones y su relación con algoritmos de ordenamiento</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimización del memoria utilizado de índices invertidos</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Implementar y comparar algoritmos de intersección de conjuntos representados como listas ordenadas, utilizando una variedad de algoritmos de búsqueda que dan diferentes propiedades a los algoritmos de intersección.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>La codificación de enteros es una área intimamente relacionada con los algoritmos de búsqueda. En este bloque, se estudiara la conexión entre algoritmos de búsqueda basados en comparaciones y codificaciones de enteros. Así mismo, se verá como la compresión de permutaciones esta relacionada con los algoritmos de ordenamiento.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Material audio-visual</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### Codificación - parte 1</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/FB2b3Vi7sgA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""&gt;&lt;/iframe&gt;</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### Codificación - parte 2</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/-Qh3vJ9802I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""&gt;&lt;/iframe&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>En este tema se conocerán, implementarán y compararán algoritmos de intersección de listas ordenadas. El cálculo de la intersección es un proceso costoso en una máquina de búsqueda, sin embargo, es un procedimiento esencial cuando se trabaja con grandes colecciones de datos.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>El índice invertido tal y como lo hemos creado, es capaz de manejar una cantidad razonablemente grande de documentos.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Para asegurarnos del escalamiento con la cantidad de documentos, es necesario utilizar algoritmos de intersección que sean eficientes.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Entonces, dadas las listas ordenadas $L_1, \cdots, L_k$ (e.g, correspondientes a las listas de posteo en un índice invertido), tomará dichas listas y producirá $L^* = \bigcap_i L_i$, esto es, si $u\in L^*$ entonces $u \in L_i$ para $1 \leq i \leq k$.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Existen varios algoritmos prominentes para llevar a cabo esta operación. Uno de los trabajos seminales viene de Hwang &amp; Lin, en su algoritmo de _merge_ entre dos conjuntos [@HL1971]. En este trabajo se replantea el costo como encontrar los _puntos_ de unión entre ambos conjuntos, esto se traslada de manera inmediata al problema de intersección.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>El problema correspondiente para intersectar dos conjuntos cualesquiera representados como conjuntos ordenados es entonces $\log{{n+m} \choose m}$, que usando la aproximación de Stirling se puede reescribir como</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>$$n \log \frac{n}{m} + (n-m)\log \frac{n}{n-m},$$ donde $n$ y $m$ corresponden a al número de elementos en cada conjunto.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Un algoritmo _naïve_ para realizar la intersección, puede ser buscar todos los elementos del conjunto más pequeño en el más grande. Si para la búsqueda se utiliza _búsqueda binaria_, tenemos un costo de $m \log n$. </span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Codificación - parte 3</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/EyTr06FrrPc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""&gt;&lt;/iframe&gt;</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Esta simple idea puede ser explotada y mejorada para obtener costos más bajos, por ejemplo, si en lugar de buscar sobre la lista más grande directamente, esta se divide en bloques de tamaño $m$ para encontrar el bloque que contiene cada elemento (recuerde que el arreglo esta ordenado), para después buscar dentro del bloque. Haciendo esto, el costo se convierte en</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>$$ m \log \frac{n}{m} + m \log m$$</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>cuyo costo se ajusta  mejor al costo del problema.  Este es el algoritmo propuesto, a groso modo, en <span class="co">[</span><span class="ot">@HL1971</span><span class="co">]</span>.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Considere las listas de posteo de un índice invertido. Como podrían ser aquellas del archivo <span class="in">`listas-posteo-100.json`</span>.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Representar cada lista de posteo con las diferencias entre entradas contiguas.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comprimir las diferencias mediante Elias-$\gamma$, Elias-$\delta$, y las codificaciones inducidas por los algoritmos de búsqueda $B_1$ y $B_2$ (búsqueda exponencial en $2^i$ y $2^{2^i}$)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Cuando $k&gt;2$, la intersección se puede realizar usando las $k$ listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son "más faciles" de intersectar con un algoritmo _na\"ive_. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>popular llamada _Small vs Small (SvS)_.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="co">[</span><span class="ot">@DLOPM2001</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BLOL2006</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BLOLS2010</span><span class="co">]</span>, y <span class="co">[</span><span class="ot">@BYS2005</span><span class="co">]</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="co">[</span><span class="ot">@DLOM2000</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@DLOPM2001</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BK2002</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BY2004</span><span class="co">]</span>.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Nota: Consideré utilizar una biblioteca para manejo de arreglos de bits, por ejemplo</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: <span class="co">[</span><span class="ot">bitarray</span><span class="co">](https://pypi.org/project/bitarray/)</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Julia: <span class="co">[</span><span class="ot">BitArray</span><span class="co">](https://docs.julialang.org/en/v1/base/arrays/#Base.BitArray)</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reporte:</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tiempos de compresión y decompresión</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Razón entre el tamaño comprimido y sin comprimir (_compression ratio_).</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recursos audio-visuales de la unidad</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Parte 2: Algoritmos de intersección y algunas aplicaciones</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>Para los experimentos utilizará los siguientes datos:</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>REAL: Datos reales, puede usar <span class="in">`listas-posteo-100.json`</span> o puede generarla (vea Unidad 2).</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SIN8: Datos sintéticos con diferencias aleatorias entre 1 y 8, $n=10^7$.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SIN64: Datos sintéticos con diferencias aleatorias entre 1 y 64, $n = 10^7$.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SIN1024: Datos sintéticos con diferencias aleatorias entre 1 y 1024, $n = 10^7$</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Las comparaciones deberán realizarse mediante figuras y tablas que resuman la información.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 0 [Sin entrega]</span></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sobre el reporte</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Lea y comprenda los artículos relacionados (listados en la introducción).</span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>El reporte deberá contener:</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Resumen</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introducción (debe incluir una clara motivación)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Planteamiento del problema</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Algoritmos y análisis</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conclusiones y perspectivas</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Referencias</span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 1 [Con reporte]</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cargue el archivo <span class="in">`listas-posteo-100.json`</span> del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(4)}$ el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria $C \subset P^{(4)}$, $|C| = 1000$.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Implemente los algoritmos de las secciones 3.1 _Melding Algorithms_ y 3.2 _Search algorithms_ (en especial 3.2.1 y 3.2.2) de <span class="co">[</span><span class="ot">@BLOLS2010</span><span class="co">]</span>.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Realice y reporte los siguientes experimentos:</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. </span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. </span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada tetrapleta de listas $a, b, c, d \in C$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa el tiempo en segundos para los tres experimentos.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa el número de comparaciones para los tres experimentos.</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>_Nota sobre la generación del PDF_: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
