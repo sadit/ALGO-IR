@@ -1,142 +1,116 @@
 ---
-title: Análisis de la eficiencia de un algoritmo
-lang: es-MX
+title: Estructuras de datos elementales
 engine: julia
 
 ---
 
 
 ## Objetivo {.unnumbered}
-Obtener los criterios básicos para el análisis, diseño e implementación de algoritos.
+
+Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos .
+
 
 ## Introducción
-La presente unidad esta dedicada a los fundamentos de análisis de algoritmos. En particular se intentará que el concepto de modelo de cómputo se adopte, se conozca y maneje la notación asintótica. Es de vital importancia que se entienda su utilidad y el porque es importante para el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar répidamente algoritmos que resuelvan una tarea dada, así como darnos una idea de los recursos de computo necesarios para ejecutarlos. Finalmente, como parte de esta unidad, se dará un repaso a las estructuras de datos y a los algoritmos asociados, que dado nuestro contexto, son fundamentales y deberán ser comprendidos a cabalidad.
 
-## Modelos de cómputo y tipos de análisis
-
-En los siguientes videos se introduce a los modelos de cómputo y se muestran diferentes tipos de análisis sobre algoritmos.
-
-
-- Parte 1:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uUZnpaoEQXs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-- Parte 2:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CkvfliomNqk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-- Parte 3:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zRtjk2X2aDE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### Ordenes de crecimiento
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mX7mZH0Dz8s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-En este punto se puede enfatizar que las constantes suelen ignorarse, esto porque el análisis suele ser asintótico, y es que llegará un momento cuando el tamaño de la entrada sea suficientemente grande, que no importarán las constantes, y las funciones con mayor orden de magnitud o crecimiento dominarán el costo.
-
-Los ordenes de crecimiento son maneras de categorizar la velocidad de crecimiento de una función, y más precisamente, de una función de costo como en nuestro caso. Junto con la notación asimptótica nos permite concentrarnos en razgos gruesos más que en los detalles, y no perder el punto de interés. A continuación veremos algunas funciones con crecimientos paradigmáticos; las observaremos de poco en poco para luego verlos en conjunto.
+En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. 
+La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar
+las particularidades de las estructuras.
 
 
-#### Costo constante, logaritmo y lineal
-La siguiente figura muestra un crecimiento nulo (constante), logaritmico y lineal. Note como la función logarítmica crece lentamente.
+## Estructuras de datos abstractas
+
+Los \textit{conjuntos} son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $\{a, b, c\}$. Un conjunto puede unirse con otro conjunto, e.g., $\{a, b\} \cup \{c\} = \{a, b, c\}$, así como puede intersectarse con otros conjuntos, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. El tamaño de una colección lo representamos con barras, e.g., $|\{a, b\}| = 2$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por la negación de membrsia, i.e., $a \not\in \{a, b, c\}$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. Tienen diferentes implementaciones, algunas de las cuales serán el centro de estudio de este curso, y es importante conocer a detalle las posibilidades de implementación más populares.
+
+Las \textit{tuplas} son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$-ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. Una estructura es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:
 
 ```{julia}
-
-using Plots, LaTeXStrings
-n = 300 # 300 puntos
-
-plot(1:n, [10 for x in 1:n], label=L"c")
-plot!(1:n, [log2(x) for x in 1:n], label=L"\log{n}")
-plot!(1:n, [x for x in 1:n], label=L"n")
+struct Point
+  x::Float32
+  y::Float32
+end
 ```
 
-#### Costo $n \log n$ y polinomial
-A continuación veremos tres funciones, una función con $n\log n$ y una función cuadrática y una cúbica. Note como para valores pequeños de $n$ las diferencias no son tan apreciables para como cuando comienza a crecer $n$; así mismo, observe los valores de $n$ de las figuras previas y de la siguiente, este ajuste de rangos se hizo para que las diferencias sean apreciables.
+Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.
 
+Los \textit{arreglos} son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. A diferencia de las tuplas, los arreglos suelen estar preparados para ser mutables, y pueden tener más que una dimensión, entonces representar fácilmente conceptos como vectores, matrices o tensores. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S[i, j]$. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.
 
-```{julia}
+Las \textit{listas} son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados \textit{cabeza} y \textit{cola}) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.
 
-using Plots, LaTeXStrings
-n = 7 # note que se usan menos puntos porque 300 serían demasiados para el rango
+Otras estructuras de datos elementales son los gráfos. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})$
 
-plot(1:n, [x * log2(x) for x in 1:n], label=L"n\log_2{n}")
-plot!(1:n, [x^2 for x in 1:n], label=L"n^2")
-plot!(1:n, [x^3 for x in 1:n], label=L"n^3")
+```{mermaid}
+%%| label: fig-grafo
+%%| fig-width: 6
+%%| fig-cap: |
+%%|   Un grafo dirigido simple
+graph LR
+  A(a) --> B(b)
+  B(b) --> C(c)
+  C(c) --> D(d)
+  D(d) --> A(a)
 ```
 
-#### Exponencial
-A continuación se compara el crecimiento de una función exponencial con una función polinomial. Note que la función polinomial es de grado 4 y que la función exponencial tiene como base 2; aún cuando para números menores de aproximadamente 16 la función polinomial es mayor, a partir de ese valor la función $2^n$ supera rapidamente a la polinomial.
+Los grafos son herramientas poderosas para representar de manera abstracta problemas que implican relaciones entre elementos.
+En algunos casos es útil asociar funciones a los vértices y las aristas. Tenga en cuenta los siguientes ejemplos:
 
+- $peso: V \rightarrow \mathbb{R}$, la cual podría usarse como $peso(a) = 1.5$.
+- $costo: V \times V \rightarrow \mathbb{R}$, la cual podría usarse como $costo(a, b) = 2.0$. 
 
-```{julia}
+La estructura del grafo puede accederse mediante las funciones:
 
-using Plots, LaTeXStrings
-n = 20
+- $in(G, v) = \{ u \mid (u, v) \in E\}$
+- $out(G, u) = \{ v \mid (u, v) \in E\}$
 
-plot(1:n, [x^4 for x in 1:n], label=L"n^4")
-plot!(1:n, [2^x for x in 1:n], label=L"2^n")
+así como el número de vertices que entran y salen como:
+
+- $indegree(G, v) = |in(G, v)|$.
+- $outdegree(G, u) = |out(G, u)|$.
+
+Un grafo puede tener aristas no dirigidas, el grafo con $B=(\{a, b, c, d\}, \{\{a, b\}, \{b, c\}, \{c, d\}, \{d, a\}\})$, no reconocerá orden en las aristas.
+
+```{mermaid}
+%%| label: fig-grafo-nodirigido
+%%| fig-width: 6
+%%| fig-cap: |
+%%|   Un grafo no dirigido
+graph LR
+  A(a) <--> B(b)
+  B(b) <--> C(c)
+  C(c) <--> D(d)
+  D(d) <--> A(a)
 ```
 
-#### Crecimiento factorial
+Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $\{a, b\} \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = \{ v \mid \{u, v\} \in E \}$.
 
-Vease como la función factorial crece mucho más rápido que la función exponencial para una $n$ relativamente pequeña. Vea las magnitudes que se alcanzan en el _eje_ $y$, y comparelas con aquellas con los anteriores crecimientos. 
+Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.
+Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. 
 
-```{julia}
+Existen otras representaciones como la lista de coordenadas, \textit{coordinate lists} (COO), o las representaciones dispersas compimidas, \textit{sparse row} (CSR) y \textit{compressed sparse column} (CSC) [@Scott2023]. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.
 
-using Plots, LaTeXStrings
-n = 20
+Un \textit{árbol} es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.
 
-plot(1:n, [2^x for x in 1:n], label=L"2^n")
-plot!(1:n, [factorial(x) for x in 1:n], label=L"n!")
+```{mermaid}
+%%| label: fig-arbol
+%%| fig-width: 6
+%%| fig-cap: |
+%%|   Árbol
+graph LR
+  A(a) <--> B(b)
+  B(b) <--> C(c)
+  A(a) <--> D(d)
 ```
 
-#### Un poco más sobre funciones de muy alto costo
-```{julia}
+En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = \{ v \mid (u, v) \in E \}$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.
 
-n = 10
-
-plot(1:n, [factorial(x) for x in 1:n], label=L"n!")
-plot!(1:n, [x^x for x in Int128(1):Int128(n)], label=L"n^n")
+```{mermaid}
+%%| label: fig-arbol-2
+%%| fig-width: 6
+%%| fig-cap: |
+%%|   Un grafo dirigido simple
+graph LR
+  A(a / raíz) --> B(b / inner)
+  B(b / inner) --> C(c / leaf)
+  A(a / raíz) --> D(d / leaf)
 ```
 
-Vea la figura anterior, donde se compara $n!$ con $n^n$, observe como es que cualquier constante se vuelve irrelevante rapidamente; aun para $n^n$ piense en $n^{n^n}$.
-
- Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuando es posible solucionarlos, o cuando se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordaran problemas con un costo menor, pero que por la cantidad de datos, i.e., $n$, se vuelven muy costosos y veremos como aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.
- 
-## Conclusiones
-
-Es importante conocer los ordenes de crecimiento más comunes de tal forma que podamos realizar comparaciones rápidas de costos, y dimensionar las diferencias de recursos entre diferentes tipos de costos. La notación asintótica hace uso extensivo de la diferencia entre diferentes ordenes de crecimiento para ignorar detalles y simplificar el análisis de algoritmos.
-
-
-## Actividades
-
-### Actividad 0 [sin entrega]
-Instrucciones:
-
-Del libro "Introduction to algorithms" (ver bibliografía). Lee y resuelve los ejercicios de los capítulos 1, 2, 3, 4, 10 y 11.
-Resuelva ejercicios de dichos capítulos para ganar intuición
-Nota: En la Actividad 0 no hay entrega; use el Foro de dudas para discutir sus resultados y dudas.
-
-### Actividad 1 [con reporte]
--- rehacer --
-
-2. Haga una tabla donde simule tiempos de ejecución suponiendo que cada operación tiene un costo de 1 micro-segundo:
-
- - Suponga que cada uno de los ordenes de crecimiento anteriores es una expresión que describe el costo de un algoritmo teniendo en cuenta el tamaño de la entrada del algoritmo $n$.
- - Use como los diferentes tamaños de entrada $n=100$; $n=1000$; $n=10000$ y $n=100000$.
- - Note que para algunas fórmulas, los números pueden ser muy grandes (use el foro de dudas si llega a tener problemas)
-
-3. Dentro del notebook añada un breve ensayo o reflexión sobre los costos de computo necesarios sobre algoritmos que pudieran tener ordenes de crecimiento como los mostrados.
-
-### Entregable
-
-Reporte en formato Jupyter que debe contener el código creado y los resultados obtenidos: las figuras generadas, la tabla de simulación. No olvide concluir su reporte con la reflexión solicitada.
-Tenga en cuenta que los notebooks de Jupyter pueden alternar celdas del notebook con texto, código y resultados; además que el texto puede ser escrito en markdown.
-
-No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
-
-- Título del reporte, su nombre.
-- Introducción.
-- Código cercano a la presentación de resultados.
-- Figuras y comparación de los ordenes de crecimiento (instrucción 1). Explique los resultados obtenidos.
-- Simulación de costo en formato de tabla (instrucción 2), explique los resultados obtenidos.
-- Concluya con la reflexión (instrucción 3). La reflexión debe aboradar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una $n$ variable y asintóticamente muy grande.
-- Bibliografía
-
-*Archivos a entregar:* Notebook de Quarto o Jupyter y el PDF del notebook (en el caso de Jupyter, favor de generarlo mediante el mismo Jupyter, no en un procesador de texto, para esto se puede exportar a html con el navegador, y luego el html a PDF).
-
+Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.

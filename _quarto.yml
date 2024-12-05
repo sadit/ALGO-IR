@@ -4,7 +4,7 @@ quarto-required: ">= 1.5.45"
 project:
   type: book
 book:
-  title: "Análisis de Algoritmos y Estructuras de Datos"
+  title: "Análisis de Algoritmos"
   author: 
     - name: "Eric S. Téllez"
       url: https://sadit.github.io
@@ -16,10 +16,9 @@ book:
     - U3.qmd
     - U4.qmd
     - U5.qmd
-    - U6.qmd
-    - U7.qmd
-    - U8.qmd
     - Urefs.qmd
+      #- U5.qmd
+      #- U6.qmd
   site-url: https://sadit.github.io/ALGO-IR
   repo-url: https://github.com/sadit/ALGO-IR
   downloads: pdf

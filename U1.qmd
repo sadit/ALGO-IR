@@ -1,49 +1,149 @@
 ---
-title: Motivación y explicación del curso
+title: Introducción al análisis de algoritmos
+lang: es-MX
+engine: julia
+
 ---
 
+
 ## Objetivo {.unnumbered}
-Reconocer la importancia del estudio de algoritmos y estructuras de datos.
+Obtener los criterios básicos para el análisis, diseño e implementación de algoritmos.
 
-## Motivación
-El análisis de grandes cúmulos de datos requiere del control completo sobre los algoritmos y las estructuras de datos que se utilicen para manejarlos, dado que los recursos disponibles, como la memoria o la velocidad de procesamiento, de una computadora son finitos y muchas veces pequeños con respecto a la cantidad de datos. 
+1.1 Concepto de algoritmo y estructura de datos
+1.2 Notación asintótica
+1.3 Costo en tiempo y espacio
 
-Para este fin, es necesario analizar los recursos necesarios para aplicar un algoritmo sobre una instancia del problema, y así poder seleccionar la mejor opción para dicha instancia, o en su defecto, modificar o crear un algoritmo para adaptarse mejor a las necesidades y recursos disponibles.
+## Introducción
+La presente unidad esta dedicada a los fundamentos de análisis de algoritmos. En particular se intentará que el concepto de modelo de cómputo se adopte, se conozca y maneje la notación asintótica. Es de vital importancia que se entienda su utilidad y el porque es importante para el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar répidamente algoritmos que resuelvan una tarea dada, así como darnos una idea de los recursos de computo necesarios para ejecutarlos. Finalmente, como parte de esta unidad, se dará un repaso a las estructuras de datos y a los algoritmos asociados, que dado nuestro contexto, son fundamentales y deberán ser comprendidos a cabalidad.
 
-Durante el curso se estudiaran problemas y algoritmos simples, que suelen formar parte de algoritmos más complejos, y por lo tanto, si somos capaces de seleccionar adecuadamente estos bloques más simples, afectaremos directamente el desempeño de los sistemas. 
+## Concepto de algoritmo y estructura de datos
+Los algoritmos son especificaciones formales de los pasos u operaciones que deben aplicarse a un conjunto de entradas para resolver un problema, obteniendo una solución correcta a dicho problema. Establecen los fundamentos de la programación y de la manera en como se diseñan los programas de computadoras. Dependiendo del problema, pueden existir múltiples algoritmos que lo resuelvan, cada uno de ellos con sus diferentes particularidades. Así mismo, un problema suele estar conformado por una cantidad enorme de instancias de dicho problema, por ejemplo, para una lista de $n$ números, existen $n!$ formas de acomodarlos, de tal forma que puedan ser la entrada a un algoritmo cuya entrada sea una lista de números donde el orden es importante. En ocasiones, los problemas pueden tener infinitas de instancias. En este curso nos enfocaremos en problemas que pueden ser simplificados a una cantidad finita instancias.
 
-## Material audio-visual
+Cada paso u operación en un algoritmo esta bien definido y puede ser aplicado o ejecutado para producir un resultado. A su vez, cada operación suele tener un costo, dependiente del módelo de computación. Conocer el número de operaciones necesarias para transformar la entrada en la salida esperada, i.e., resolver el problema, es de vital importancia para seleccionar el mejor algoritmo para dicho problema, o aun más, para instancias de dicho problema que cumplen con ciertas características.
 
-- Motivación - parte 1: <iframe width="560" height="315" src="https://www.youtube.com/embed/ExoGW--OO5s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Una estructura de datos es una abstracción en memoria de entidades matemáticas y lógicas que nos permite organizar, almacenar y procesar datos en una computadora. El objetivo es que la información representada puede ser manipulada de manera eficiente en un contexto específico, además de simplificar la aplicación de operaciones para la aplicación de algoritmos. 
 
+## Modelos de cómputo y tipos de análisis
 
-- Motivación - parte 2: <iframe width="560" height="315" src="https://www.youtube.com/embed/cNo0RK_jeuQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-- Índices invertidos (proyecto integrador del curso): <iframe width="560" height="315" src="https://www.youtube.com/embed/vUVjSO7GJw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## Estructuras de datos básicas
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fNdtauZa7Mc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## Sobre el lenguaje de programación
-
-En principio casi cualquier lenguaje de programación podría utilizarse para el curso, sin embargo, para efectos prácticos, nos limitaremos a dos lenguajes de programación:
-
-- Python, se recomieda utilizar la distribución de <https://www.anaconda.com/download/>
-- Julia, se recomienda utilizar la versión 1.10 o superior, <https://julialang.org/>
+En los siguientes videos se introduce a los modelos de cómputo y se muestran diferentes tipos de análisis sobre algoritmos.
 
 
-Ambos lenguajes de programación son fáciles de aprender y altamente productivos. Python es un lenguaje excelente para realizar prototipos, o para cuando existen bibliotecas que resuelvan el problema que se este enfrentando. En particular, cuando se requiera evaluar la velocidad de un algoritmo, se recomienda utilizar Julia, ya que suele ser mucho más veloz para rutinas creadas directamente en el lenguaje, sin necesidad de un segundo lenguaje para operaciones a bajo nivel.
+- Parte 1:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uUZnpaoEQXs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+- Parte 2:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CkvfliomNqk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+- Parte 3:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zRtjk2X2aDE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Se hará uso intensivo de Quarto y Jupyter <https://jupyter.org/> para las notas y demostraciones. Los reportes y tareas se solicitaran en estos frameworks.
+### Ordenes de crecimiento
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mX7mZH0Dz8s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Dado que la idea es realizar un análisis asintótico, las constantes suelen ignorarse, ya que cuando el tamaño de la entrada es suficientemente grande, los términos con mayor orden de magnitud o crecimiento dominarán el costo. Esto es, es una simplificación necesaría.
+
+Los ordenes de crecimiento son maneras de categorizar la velocidad de crecimiento de una función, y para nuestro caso, de una función de costo. Junto con la notación asimptótica nos permite concentrarnos en razgos gruesos que se mantienen para entradas grandes, más que en los detalles, y no perder el punto de interés. A continuación veremos algunas funciones con crecimientos paradigmáticos; las observaremos de poco en poco para luego verlos en conjunto.
 
 
-### Recursos para aprender Python y Julia
+#### Costo constante, logaritmo y lineal
+La siguiente figura muestra un crecimiento nulo (constante), logaritmico y lineal. Note como la función logarítmica crece lentamente.
 
-#### Python
-- Documentación oficial, comenzar por el tutorial <https://docs.python.org/3/>
-- Documentación oficial <https://docs.julialang.org/en/stable/>
+```{julia}
 
-#### Julia
-- Información sobre como instalar Julia y flujos de trabajo simples (e.g., REPL, editores, etc.) para trabajar con este lenguaje de programación: _Modern Julia Workflows_ <https://modernjuliaworkflows.github.io/>.
-- Libro sobre julia _Think Julia: How to Think Like a Computer Scientist_ <https://benlauwens.github.io/ThinkJulia.jl/latest/book.html>.
-- Curso _Introduction to computational thinking_ <https://computationalthinking.mit.edu/Fall20/>
+using Plots, LaTeXStrings
+n = 300 # 300 puntos
+
+plot(1:n, [10 for x in 1:n], label=L"c")
+plot!(1:n, [log2(x) for x in 1:n], label=L"\log{n}")
+plot!(1:n, [x for x in 1:n], label=L"n")
+```
+
+#### Costo $n \log n$ y polinomial
+A continuación veremos tres funciones, una función con $n\log n$ y una función cuadrática y una cúbica. Note como para valores pequeños de $n$ las diferencias no son tan apreciables para como cuando comienza a crecer $n$; así mismo, observe los valores de $n$ de las figuras previas y de la siguiente, este ajuste de rangos se hizo para que las diferencias sean apreciables.
+
+
+```{julia}
+
+using Plots, LaTeXStrings
+n = 7 # note que se usan menos puntos porque 300 serían demasiados para el rango
+
+plot(1:n, [x * log2(x) for x in 1:n], label=L"n\log_2{n}")
+plot!(1:n, [x^2 for x in 1:n], label=L"n^2")
+plot!(1:n, [x^3 for x in 1:n], label=L"n^3")
+```
+
+#### Exponencial
+A continuación se compara el crecimiento de una función exponencial con una función polinomial. Note que la función polinomial es de grado 4 y que la función exponencial tiene como base 2; aún cuando para números menores de aproximadamente 16 la función polinomial es mayor, a partir de ese valor la función $2^n$ supera rapidamente a la polinomial.
+
+
+```{julia}
+
+using Plots, LaTeXStrings
+n = 20
+
+plot(1:n, [x^4 for x in 1:n], label=L"n^4")
+plot!(1:n, [2^x for x in 1:n], label=L"2^n")
+```
+
+#### Crecimiento factorial
+
+Vease como la función factorial crece mucho más rápido que la función exponencial para una $n$ relativamente pequeña. Vea las magnitudes que se alcanzan en el _eje_ $y$, y comparelas con aquellas con los anteriores crecimientos. 
+
+```{julia}
+
+using Plots, LaTeXStrings
+n = 20
+
+plot(1:n, [2^x for x in 1:n], label=L"2^n")
+plot!(1:n, [factorial(x) for x in 1:n], label=L"n!")
+```
+
+#### Un poco más sobre funciones de muy alto costo
+```{julia}
+
+n = 10
+
+plot(1:n, [factorial(x) for x in 1:n], label=L"n!")
+plot!(1:n, [x^x for x in Int128(1):Int128(n)], label=L"n^n")
+```
+
+Vea la figura anterior, donde se compara $n!$ con $n^n$, observe como es que cualquier constante se vuelve irrelevante rapidamente; aun para $n^n$ piense en $n^{n^n}$.
+
+ Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuando es posible solucionarlos, o cuando se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordaran problemas con un costo menor, pero que por la cantidad de datos, i.e., $n$, se vuelven muy costosos y veremos como aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.
+ 
+## Conclusiones
+
+Es importante conocer los ordenes de crecimiento más comunes de tal forma que podamos realizar comparaciones rápidas de costos, y dimensionar las diferencias de recursos entre diferentes tipos de costos. La notación asintótica hace uso extensivo de la diferencia entre diferentes ordenes de crecimiento para ignorar detalles y simplificar el análisis de algoritmos.
+
+
+## Actividades
+Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
+
+- $O(1)$ vs $O(\log n)$
+- $O(n)$ vs $O(n \log n)$
+- $O(n^2)$ vs $O(n^3)$
+- $O(a^n)$ vs $O(n!)$
+- $O(n!)$ vs $O(n^n)$
+
+- Escoja los rangos adecuados para cada comparación, ya que como será evidente después, no es práctico fijar los rangos.
+- Cree una figura por comparación, i.e., cinco figuras. Discuta lo observado por figura.
+- Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.
+    - Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.
+    - Note que para algunas fórmulas, los números pueden ser muy grandes, tome decisiones en estos casos y defiendalas en el reporte.
+- Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información, en el mismo notebook.
+
+### Entregable
+
+
+Su trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
+
+No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
+- Título del reporte, su nombre.
+- Introducción.
+- Código cercano a la presentación de resultados.
+- Figuras y comparación de los órdenes de crecimiento.
+- Análisis y simulación de costo en formato de tabla.
+- Conclusión. Debe abordar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una $n$ variable y asintóticamente muy grande.
+- Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
+
+## Bibliografía
+- Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.
+Parte I: Cap. 1, 2, 3
