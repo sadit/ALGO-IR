@@ -158,7 +158,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -266,12 +266,20 @@ window.Quarto = {
   <ul>
   <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.1</span> Introducción</a></li>
-  <li><a href="#estructuras-de-datos-abstractas" id="toc-estructuras-de-datos-abstractas" class="nav-link" data-scroll-target="#estructuras-de-datos-abstractas"><span class="header-section-number">2.2</span> Estructuras de datos abstractas</a></li>
+  <li><a href="#estructuras-de-datos-abstractas" id="toc-estructuras-de-datos-abstractas" class="nav-link" data-scroll-target="#estructuras-de-datos-abstractas"><span class="header-section-number">2.2</span> Estructuras de datos abstractas</a>
+  <ul class="collapse">
+  <li><a href="#conjuntos" id="toc-conjuntos" class="nav-link" data-scroll-target="#conjuntos"><span class="header-section-number">2.2.1</span> Conjuntos</a></li>
+  <li><a href="#tuplas-y-estructuras" id="toc-tuplas-y-estructuras" class="nav-link" data-scroll-target="#tuplas-y-estructuras"><span class="header-section-number">2.2.2</span> Tuplas y estructuras</a></li>
+  <li><a href="#arreglos" id="toc-arreglos" class="nav-link" data-scroll-target="#arreglos"><span class="header-section-number">2.2.3</span> Arreglos</a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">2.2.4</span> Listas</a></li>
+  <li><a href="#grafos" id="toc-grafos" class="nav-link" data-scroll-target="#grafos"><span class="header-section-number">2.2.5</span> Grafos</a></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía"><span class="header-section-number">2.3</span> Bibliografía</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
@@ -285,41 +293,350 @@ window.Quarto = {
 <h2 data-number="2.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.1</span> Introducción</h2>
 <p>En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar las particularidades de las estructuras.</p>
 </section>
-<section id="estructuras-de-datos-abstractas" class="level2" data-number="2.2">
+<section id="estructuras-de-datos-abstractas" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="estructuras-de-datos-abstractas"><span class="header-section-number">2.2</span> Estructuras de datos abstractas</h2>
-<p>Los son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio (<span class="math inline">\(\emptyset\)</span>) o contener elementos, e.g., <span class="math inline">\(\{a, b, c\}\)</span>. Un conjunto puede unirse con otro conjunto, e.g., <span class="math inline">\(\{a, b\} \cup \{c\} = \{a, b, c\}\)</span>, así como puede intersectarse con otros conjuntos, e.g.&nbsp;<span class="math inline">\(\{a, b, c\} \cap \{b, d\} = \{b\}\)</span>. El tamaño de una colección lo representamos con barras, e.g., <span class="math inline">\(|\{a, b\}| = 2\)</span>. También es útil consultar por membresia <span class="math inline">\(a \in \{a, b, c\}\)</span> o por la negación de membrsia, i.e., <span class="math inline">\(a \not\in \{a, b, c\}\)</span>. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto <span class="math inline">\(S = \{a, b, c\}\)</span>, la función <span class="math inline">\(pop!(S, b)\)</span> resultaría en <span class="math inline">\(\{a, c\}\)</span>, y la función <span class="math inline">\(push!(S, d)\)</span> resultaría en <span class="math inline">\(\{a, c, d\}\)</span> al encadenar estas operaciones. Note que el símbolo <span class="math inline">\(!\)</span> solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla <span class="math inline">\(fun(arg1, arg2, ...)\)</span> para indicar la aplicación de una función u operación a una serie de argumentos. Tienen diferentes implementaciones, algunas de las cuales serán el centro de estudio de este curso, y es importante conocer a detalle las posibilidades de implementación más populares.</p>
-<p>Las son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., <span class="math inline">\(S = (a, b, c)\)</span>; podemos referirnos a la <span class="math inline">\(i\)</span>-ésima posición de la forma <span class="math inline">\(S_i\)</span>, o incluso <span class="math inline">\(S[i]\)</span>, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. Una estructura es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:</p>
-<div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Point</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">::</span><span class="dt">Float32</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  y<span class="op">::</span><span class="dt">Float32</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="conjuntos" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="conjuntos"><span class="header-section-number">2.2.1</span> Conjuntos</h3>
+<p>Los <em>conjuntos</em> son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio (<span class="math inline">\(\emptyset\)</span>) o contener elementos, e.g., <span class="math inline">\(\{a, b, c\}\)</span>. Un conjunto puede unirse con otro conjunto, e.g., <span class="math inline">\(\{a, b\} \cup \{c\} = \{a, b, c\}\)</span>, así como puede intersectarse con otros conjuntos, e.g.&nbsp;<span class="math inline">\(\{a, b, c\} \cap \{b, d\} = \{b\}\)</span>. El tamaño de una colección lo representamos con barras, e.g., <span class="math inline">\(|\{a, b\}| = 2\)</span>. También es útil consultar por membresia <span class="math inline">\(a \in \{a, b, c\}\)</span> o por la negación de membrsia, i.e., <span class="math inline">\(a \not\in \{a, b, c\}\)</span>. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto <span class="math inline">\(S = \{a, b, c\}\)</span>, la función <span class="math inline">\(pop!(S, b)\)</span> resultaría en <span class="math inline">\(\{a, c\}\)</span>, y la función <span class="math inline">\(push!(S, d)\)</span> resultaría en <span class="math inline">\(\{a, c, d\}\)</span> al encadenar estas operaciones. Note que el símbolo <span class="math inline">\(!\)</span> solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla <span class="math inline">\(fun(arg1, arg2, ...)\)</span> para indicar la aplicación de una función u operación a una serie de argumentos.</p>
+<p>Es importante hacer notar, que aunque es uno de los conceptos fundamentales, no existe una única manera de representar conjuntos, ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser la diferencia. Las implementaciones y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.</p>
+</section>
+<section id="tuplas-y-estructuras" class="level3 page-columns page-full" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="tuplas-y-estructuras"><span class="header-section-number">2.2.2</span> Tuplas y estructuras</h3>
+<p>Las <em>tuplas</em> son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., <span class="math inline">\(S = (a, b, c)\)</span>; podemos referirnos a la <span class="math inline">\(i\)</span>ésima posición de la forma <span class="math inline">\(S_i\)</span>, o incluso <span class="math inline">\(S[i]\)</span>, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., <span class="math inline">\((1, 2, 3)\)</span>.</p>
+<div id="cell-codigo-acceso-tupla" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>t[<span class="fl">1</span>] <span class="op">*</span> t[<span class="fl">3</span>] <span class="op">-</span> t[<span class="fl">2</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="codigo-acceso-tupla" class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>280</code></pre>
+<p>Definición y acceso a los campos de una tupla en Julia</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Dado que es amena para representarse de manera contigua en memoria, en los lenguajes de programación que aprovechen este hecho, una tupla puede enviarse como <em>valor</em> (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el <em>stack</em>, que es la memoria <em>inmediata</em> que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el <em>heap</em>, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y <em>duradera</em> entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación</p>
+</div></div><p>Una <em>estructura</em> es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:</p>
+<div id="ejemplo-estructura" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Point</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">::</span><span class="dt">Float32</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  y<span class="op">::</span><span class="dt">Float32</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.</p>
-<p>Los son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante <span class="math inline">\(O(1)\)</span> para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. A diferencia de las tuplas, los arreglos suelen estar preparados para ser mutables, y pueden tener más que una dimensión, entonces representar fácilmente conceptos como vectores, matrices o tensores. La notación para acceder a los elementos se extiende, e.g.&nbsp;para una matriz <span class="math inline">\(S\)</span> (arreglo bidimensional) <span class="math inline">\(S_{ij}\)</span> se refiere a la celda en la fija <span class="math inline">\(i\)</span> columna <span class="math inline">\(j\)</span>, lo mismo que <span class="math inline">\(S[i, j]\)</span>. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces <span class="math inline">\(S_{ij} \leftarrow a\)</span>, reemplazará el contenido de <span class="math inline">\(S\)</span> en la celda especificada por <span class="math inline">\(a\)</span>.</p>
-<p>Las son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al <span class="math inline">\(i\)</span>-ésimo elemento cuestan <span class="math inline">\(O(i)\)</span>. Se soportan inserciones y borrados. Por ejemplo, sea <span class="math inline">\(L = [a, b, c, d]\)</span> una lista con cuatro elementos, <span class="math inline">\(L_2 = b\)</span>, <span class="math inline">\(insert!(L, 2, z)\)</span> convertirá <span class="math inline">\(L = [a, z, b, c, d]\)</span> (note que <span class="math inline">\(b\)</span> se desplazó y no se reemplazó como se esperaría en un arreglo). Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados y ) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor <span class="math inline">\(succ\)</span> y predecedor <span class="math inline">\(pred\)</span>, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.</p>
-<p>Otras estructuras de datos elementales son los gráfos. Un grafo <span class="math inline">\(G = (V, E)\)</span> es una tupla compuesta por un conjunto de vertices <span class="math inline">\(V\)</span> y el conjunto de aristas <span class="math inline">\(E\)</span>. Por ejemplo, el grafo con <span class="math inline">\(A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})\)</span></p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  A(a) --&gt; B(b)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  B(b) --&gt; C(c)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  C(c) --&gt; D(d)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  D(d) --&gt; A(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En Julia, es posible definir funciones o métodos al rededor del tipo de tuplas y estructuras.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Es importante saber que si algunos de los campos o datos de una tupla o estructura estan en el <em>heap</em> entonces solo una parte estará en el <em>stack</em>; i.e., en el caso extremo solo serán referencias a datos en el <em>heap</em>. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.</p>
+</div></div><div id="cell-funcion-norma" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">  Calcula la norma de un vector representado</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  como un tupla</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">norm</span>(u<span class="op">::</span><span class="dt">Tuple</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> <span class="fl">0f0</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(u)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> u[i]<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(s)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">  Calcula la norma de un vector de 2 dimensiones</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">  representado como una estructura</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">norm</span>(u<span class="op">::</span><span class="dt">Point</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(u.x<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> u.y<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>(<span class="fu">norm</span>((<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>)), <span class="fu">norm</span>(<span class="fu">Point</span>(<span class="fl">1</span>, <span class="fl">1</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="funcion-norma" class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(1.0, 1.4142135f0)</code></pre>
+<p>Funciones sobre diferentes tipos de datos</p>
+</div>
+</div>
+<p>Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.</p>
+</section>
+<section id="arreglos" class="level3 page-columns page-full" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="arreglos"><span class="header-section-number">2.2.3</span> Arreglos</h3>
+<p>Los <em>arreglos</em> son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante <span class="math inline">\(O(1)\)</span> para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces <span class="math inline">\(S_{ij} \leftarrow a\)</span>, reemplazará el contenido de <span class="math inline">\(S\)</span> en la celda especificada por <span class="math inline">\(a\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete <em>Numeric Python</em> o <em>numpy</em>; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las <em>listas</em> nativas de Python.</p>
+</div></div><p>A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g.&nbsp;para una matriz <span class="math inline">\(S\)</span> (arreglo bidimensional) <span class="math inline">\(S_{ij}\)</span> se refiere a la celda en la fija <span class="math inline">\(i\)</span> columna <span class="math inline">\(j\)</span>, lo mismo que <span class="math inline">\(S[i, j]\)</span>. Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un <em>vector</em> de múltiples dimensiones, un arreglo bidimensional para representar una <em>mátriz</em> de tamaño <span class="math inline">\(m \times n\)</span>, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones serán representados cuyas partes pueden ser delimitadas mediante aritmética simple, e.g., una matriz de tamaño <span class="math inline">\(m \times n\)</span> necesitará una zona de memoria de <span class="math inline">\(m \times n\)</span> elementos, y se puede acceder a la primera columna mediante en la zona <span class="math inline">\(1,\dots,m\)</span>, la segunda columna en <span class="math inline">\(m+1,\dots,2m\)</span>, y la <span class="math inline">\(i\)</span>ésima en <span class="math inline">\((i-1)m+1,\dots,im\)</span>; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.</p>
+</div></div><div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-memoria" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-memoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-memoria">%%{init:{
+  'theme': 'base',
+  'themeVariables': {
+    'fontSize': '64px'
+  }
+}}%%
+
+block-beta
+  columns 18
+  mem["Memoria RAM"]:18
+  x["matriz x"]:16 e2["  "]:2
+  a["col 1 - x[:, 1]"]:4 b["col 2 - x[:, 2]"]:4 c["col 3: x[:, 3]"]:4 d["col 4 - x[:, 4]"]:4 e["... "]:2
+  x1["x[1,1]"]:1 x2["x[1,2]"]:1 x3["x[1,3]"]:1 x4["x[1,4]"]:1
+  x_1["x[2,1]"]:1 x_2["x[2,2]"]:1 x_3["x[2,3]"]:1 x_4["x[2,4]"]:1 
+  xx1["x[3,1]"]:1 xx2["x[3,2]"]:1 xx3["x[3,3]"]:1 xx4["x[3,4]"]:1
+  xx_1["x[4,1]"]:1 xx_2["x[4,2]"]:1 xx_3["x[4,3]"]:1 xx_4["x[4,4]"]:1
+
+  style e fill:white,stroke-width:0px
+  style e2 fill:white,stroke-width:0px
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-memoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.1: Memoria y segmentos continuos que representan una matriz
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La representación precisa en memoria es significativa en el desempeño de operaciones matriciales como pueden ser el producto entre matrices o la inversión de las mismas. La manera como se acceden los datos es crucial en el diseño de los algoritmos.</p>
+<p>El siguiente ejemplo define un vector <span class="math inline">\(u\)</span> de <span class="math inline">\(m\)</span> elementos y una matriz <span class="math inline">\(X\)</span> de tamaño <span class="math inline">\(m \times n\)</span>, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector <span class="math inline">\(u\)</span> a los vectores columna de <span class="math inline">\(X\)</span>:</p>
+<div id="8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mydot</span>(u, x)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> <span class="fl">0f0</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(u, x)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> u[i] <span class="op">*</span> x[i]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  s</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getmaxdot</span>(u<span class="op">::</span><span class="dt">Vector</span>, X<span class="op">::</span><span class="dt">Matrix</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  maxpos <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># en la siguiente linea, @view nos permite controlar que</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># no se copien los arreglos, y en su lugar, se usen referencias</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  maxdot <span class="op">=</span> <span class="fu">mydot</span>(u, <span class="pp">@view</span> X[<span class="op">:</span>, <span class="fl">1</span>])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># obtiene el número de columnas e itera apartir del 2do indice </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  mfilas, ncols <span class="op">=</span> <span class="fu">size</span>(X)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>ncols</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="fu">mydot</span>(u, <span class="pp">@view</span> X[<span class="op">:</span>, i]) </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> d <span class="op">&gt;</span> maxdot</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      maxpos <span class="op">=</span> i</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      maxdot <span class="op">=</span> d</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  (maxpos, maxdot)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: Este código arrojará diferentes resultados cada vez que lo corra.</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">getmaxdot</span>(<span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>), <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>, <span class="fl">1000</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(646, 1.4230489f0)</code></pre>
+</div>
+</div>
+<p>En este código puede verse como se separa el cálculo del producto punto en una función, esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función <span class="math inline">\(getmaxdot\)</span> se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere <span class="math inline">\(O(n)\)</span> comparaciones, para una mátriz de <span class="math inline">\(n\)</span> columnas. Esto implica que cada producto punto se cuenta como <span class="math inline">\(O(1)\)</span>, lo cual simplifica el razonamiento. Por la función <span class="math inline">\(mydot\)</span> podemos observar que el producto punto tiene un costo de <span class="math inline">\(O(m)\)</span>, por lo que la <span class="math inline">\(getmaxdot\)</span> tiene un costo de <span class="math inline">\(O(mn)\)</span> operaciones lógicas y aritméticas.</p>
+</section>
+<section id="listas" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="listas"><span class="header-section-number">2.2.4</span> Listas</h3>
+<p>Las <em>listas</em> son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al <span class="math inline">\(i\)</span>-ésimo elemento cuestan <span class="math inline">\(O(i)\)</span>. Se soportan inserciones y borrados. Por ejemplo, sea <span class="math inline">\(L = [a, b, c, d]\)</span> una lista con cuatro elementos, <span class="math inline">\(L_2 = b\)</span>, <span class="math inline">\(insert!(L, 2, z)\)</span> convertirá <span class="math inline">\(L = [a, z, b, c, d]\)</span> (note que <span class="math inline">\(b\)</span> se desplazó y no se reemplazó como se esperaría en un arreglo). La operación <span class="math inline">\(deleteat!(L, 2)\)</span> regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados <em>cabeza</em> y <em>cola</em>) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor <span class="math inline">\(succ\)</span> y predecedor <span class="math inline">\(pred\)</span>, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.</p>
+<div class="cell" data-fig-width="5" data-fig-height="2" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-lista" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lista-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="480" height="192" viewbox="0.00 0.00 513.09 235.14" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 199.14)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-199.14 477.09,-199.14 477.09,36 -36,36"></polygon>
+<!-- list -->
+<g id="node1" class="node">
+<title>list</title>
+<polygon fill="none" stroke="black" points="0,-72.57 0,-122.17 54,-122.17 54,-72.57 0,-72.57"></polygon>
+<text text-anchor="middle" x="26.71" y="-105.57" font-family="Times,serif" font-size="14.00">head</text>
+<polyline fill="none" stroke="black" points="0,-97.37 54,-97.37 "></polyline>
+<text text-anchor="middle" x="26.94" y="-80.77" font-family="Times,serif" font-size="14.00">tail</text>
+</g>
+<!-- a -->
+<g id="node2" class="node">
+<title>a</title>
+<polygon fill="none" stroke="black" points="90,-107.37 90,-143.37 144,-143.37 144,-107.37 90,-107.37"></polygon>
+<text text-anchor="middle" x="104.11" y="-121.27" font-family="Times,serif" font-size="14.00">a</text>
+<polyline fill="none" stroke="black" points="118.21,-107.57 118.21,-143.37 "></polyline>
+<text text-anchor="middle" x="130.96" y="-121.27" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- list&#45;&gt;a -->
+<g id="edge1" class="edge">
+<title>list:n-&gt;a:n</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M27,-123.37C27,-154.96 88.08,-175.07 101.44,-154.04"></path>
+<polygon fill="black" stroke="black" points="104.82,-154.93 104,-144.37 98.06,-153.14 104.82,-154.93"></polygon>
+</g>
+<!-- c -->
+<g id="node4" class="node">
+<title>c</title>
+<polygon fill="none" stroke="black" points="270,-107.37 270,-143.37 324,-143.37 324,-107.37 270,-107.37"></polygon>
+<text text-anchor="middle" x="284.11" y="-121.27" font-family="Times,serif" font-size="14.00">c</text>
+<polyline fill="none" stroke="black" points="298.21,-107.57 298.21,-143.37 "></polyline>
+<text text-anchor="middle" x="310.96" y="-121.27" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- list&#45;&gt;c -->
+<g id="edge2" class="edge">
+<title>list:s-&gt;c:s</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M27,-71.37C27,40.42 268.67,10.89 283.31,-96.12"></path>
+<polygon fill="black" stroke="black" points="279.83,-96.63 284,-106.37 286.82,-96.16 279.83,-96.63"></polygon>
+</g>
+<!-- b -->
+<g id="node3" class="node">
+<title>b</title>
+<polygon fill="none" stroke="black" points="180,-107.37 180,-143.37 234,-143.37 234,-107.37 180,-107.37"></polygon>
+<text text-anchor="middle" x="194" y="-121.27" font-family="Times,serif" font-size="14.00">b</text>
+<polyline fill="none" stroke="black" points="208,-107.57 208,-143.37 "></polyline>
+<text text-anchor="middle" x="220.75" y="-121.27" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge3" class="edge">
+<title>a:c-&gt;b:w</title>
+<path fill="none" stroke="black" d="M131,-125.37C131,-125.37 150.56,-125.37 169.78,-125.37"></path>
+<polygon fill="black" stroke="black" points="170,-128.87 180,-125.37 170,-121.87 170,-128.87"></polygon>
+</g>
+<!-- b&#45;&gt;c -->
+<g id="edge4" class="edge">
+<title>b:c-&gt;c:w</title>
+<path fill="none" stroke="black" d="M221,-125.37C221,-125.37 240.56,-125.37 259.78,-125.37"></path>
+<polygon fill="black" stroke="black" points="260,-128.87 270,-125.37 260,-121.87 260,-128.87"></polygon>
+</g>
+<!-- nothing -->
+<g id="node5" class="node">
+<title>nothing</title>
+<ellipse fill="none" stroke="black" stroke-dasharray="5,2" cx="400.54" cy="-125.37" rx="40.59" ry="18"></ellipse>
+<text text-anchor="middle" x="400.54" y="-121.17" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- c&#45;&gt;nothing -->
+<g id="edge5" class="edge">
+<title>c:c-&gt;nothing</title>
+<path fill="none" stroke="black" d="M311,-125.37C311,-125.37 329.56,-125.37 349.68,-125.37"></path>
+<polygon fill="black" stroke="black" points="349.93,-128.87 359.93,-125.37 349.93,-121.87 349.93,-128.87"></polygon>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lista-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.2: Una lista ligada simple
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-lista" class="quarto-xref">Figura&nbsp;<span>2.2</span></a> muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el <em>heap</em> de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los <em>nodos de de datos</em> contienen los elementos de la colección y referencias al siguiente nodo, también llamado <em>sucesor</em>. El nodo <em>nothing</em> es especial y significa que no hay más elementos.</p>
+<p>El siguiente código muestra como la definición de lista</p>
+<div id="10" class="cell" data-execution_count="1">
+<div id="lst-lista-ligada" class="julia cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lista-ligada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listado&nbsp;2.1: Código para una lista ligada simple
+</figcaption>
+<div aria-describedby="lst-lista-ligada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-lista-ligada"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="lst-lista-ligada-1"><a href="#lst-lista-ligada-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Nodo</span>
+<span id="lst-lista-ligada-2"><a href="#lst-lista-ligada-2" aria-hidden="true" tabindex="-1"></a>  data<span class="op">::</span><span class="dt">Int</span></span>
+<span id="lst-lista-ligada-3"><a href="#lst-lista-ligada-3" aria-hidden="true" tabindex="-1"></a>  next<span class="op">::</span><span class="dt">Union{Nodo,Nothing}</span></span>
+<span id="lst-lista-ligada-4"><a href="#lst-lista-ligada-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="lst-lista-ligada-5"><a href="#lst-lista-ligada-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-lista-ligada-6"><a href="#lst-lista-ligada-6" aria-hidden="true" tabindex="-1"></a>nodo <span class="op">=</span> <span class="fu">Nodo</span>(<span class="fl">10</span>, <span class="fu">Nodo</span>(<span class="fl">20</span>, <span class="fu">Nodo</span>(<span class="fl">30</span>, <span class="cn">nothing</span>)))</span>
+<span id="lst-lista-ligada-7"><a href="#lst-lista-ligada-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-lista-ligada-8"><a href="#lst-lista-ligada-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(nodo)</span>
+<span id="lst-lista-ligada-9"><a href="#lst-lista-ligada-9" aria-hidden="true" tabindex="-1"></a>(nodo.data, nodo.next.data, nodo.next.next.data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nodo(10, Nodo(20, Nodo(30, nothing)))</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(10, 20, 30)</code></pre>
+</div>
+</div>
+<p>En el <a href="#lst-lista-ligada" class="quarto-xref">Listado&nbsp;<span>2.1</span></a> se ignora la referencia a <em>tail</em> (<em>head</em> se guarda en <em>nodo</em>), por lo que las operaciones sobre <em>tail</em> requieren recorrer la lista completa, costando <span class="math inline">\(O(n)\)</span> en el peor caso para una lista de <span class="math inline">\(n\)</span> elementos.</p>
+<section id="ejercicios" class="level4" data-number="2.2.4.1">
+<h4 data-number="2.2.4.1" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">2.2.4.1</span> Ejercicios</h4>
+<ul>
+<li>Implemente <em>insert!</em> y <em>deleteat!</em></li>
+<li>¿Cuál sería la implementación de <em>succ</em> y <em>pred</em>?</li>
+<li>¿Cuales serían sus costos?</li>
+<li>Añadiendo más memoria, como podemos mejorar <em>pred</em>?</li>
+</ul>
+</section>
+</section>
+<section id="grafos" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="grafos"><span class="header-section-number">2.2.5</span> Grafos</h3>
+<p>Otras estructuras de datos elementales son los <em>grafos</em>. Un grafo <span class="math inline">\(G = (V, E)\)</span> es una tupla compuesta por un conjunto de vertices <span class="math inline">\(V\)</span> y el conjunto de aristas <span class="math inline">\(E\)</span>. Por ejemplo, el grafo con <span class="math inline">\(A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})\)</span></p>
+<div class="cell" data-fig-width="5" data-fig-height="1.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-grafo" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grafo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-grafo">graph LR
-  A(a) --&gt; B(b)
-  B(b) --&gt; C(c)
-  C(c) --&gt; D(d)
-  D(d) --&gt; A(a)
-</pre>
+<svg width="480" height="144" viewbox="0.00 0.00 396.00 145.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 109)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-109 360,-109 360,36 -36,36"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">a</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<ellipse fill="none" stroke="black" cx="117" cy="-55" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="117" y="-50.8" font-family="Times,serif" font-size="14.00">b</text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge1" class="edge">
+<title>a-&gt;b</title>
+<path fill="none" stroke="black" d="M50.21,-27.34C60.52,-31.67 72.98,-36.91 84.27,-41.66"></path>
+<polygon fill="black" stroke="black" points="83.23,-45.02 93.8,-45.67 85.94,-38.56 83.23,-45.02"></polygon>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-55" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-50.8" font-family="Times,serif" font-size="14.00">c</text>
+</g>
+<!-- b&#45;&gt;c -->
+<g id="edge2" class="edge">
+<title>b-&gt;c</title>
+<path fill="none" stroke="black" d="M144.4,-55C152.39,-55 161.31,-55 169.82,-55"></path>
+<polygon fill="black" stroke="black" points="169.92,-58.5 179.92,-55 169.92,-51.5 169.92,-58.5"></polygon>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<ellipse fill="none" stroke="black" cx="297" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="297" y="-13.8" font-family="Times,serif" font-size="14.00">d</text>
+</g>
+<!-- c&#45;&gt;d -->
+<g id="edge3" class="edge">
+<title>c-&gt;d</title>
+<path fill="none" stroke="black" d="M230.21,-45.66C240.52,-41.33 252.98,-36.09 264.27,-31.34"></path>
+<polygon fill="black" stroke="black" points="265.94,-34.44 273.8,-27.33 263.23,-27.98 265.94,-34.44"></polygon>
+</g>
+<!-- d&#45;&gt;a -->
+<g id="edge4" class="edge">
+<title>d-&gt;a</title>
+<path fill="none" stroke="black" d="M269.71,-18C221.6,-18 119.3,-18 64.48,-18"></path>
+<polygon fill="black" stroke="black" points="64.18,-14.5 54.18,-18 64.18,-21.5 64.18,-14.5"></polygon>
+</g>
+</g>
+</svg>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grafo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.1: Un grafo dirigido simple
+Figura&nbsp;2.3: Un grafo dirigido simple
 </figcaption>
 </figure>
 </div>
@@ -341,27 +658,66 @@ Figura&nbsp;2.1: Un grafo dirigido simple
 <li><span class="math inline">\(outdegree(G, u) = |out(G, u)|\)</span>.</li>
 </ul>
 <p>Un grafo puede tener aristas no dirigidas, el grafo con <span class="math inline">\(B=(\{a, b, c, d\}, \{\{a, b\}, \{b, c\}, \{c, d\}, \{d, a\}\})\)</span>, no reconocerá orden en las aristas.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  A(a) &lt;--&gt; B(b)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  B(b) &lt;--&gt; C(c)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  C(c) &lt;--&gt; D(d)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  D(d) &lt;--&gt; A(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-fig-width="5" data-fig-height="1.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-grafo-nodirigido" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grafo-nodirigido-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-grafo-nodirigido">graph LR
-  A(a) &lt;--&gt; B(b)
-  B(b) &lt;--&gt; C(c)
-  C(c) &lt;--&gt; D(d)
-  D(d) &lt;--&gt; A(a)
-</pre>
+<svg width="480" height="144" viewbox="0.00 0.00 396.00 145.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 109)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-109 360,-109 360,36 -36,36"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">a</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<ellipse fill="none" stroke="black" cx="117" cy="-55" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="117" y="-50.8" font-family="Times,serif" font-size="14.00">b</text>
+</g>
+<!-- a&#45;&#45;b -->
+<g id="edge1" class="edge">
+<title>a--b</title>
+<path fill="none" stroke="black" d="M50.21,-27.34C63.55,-32.95 80.46,-40.06 93.8,-45.67"></path>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-55" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-50.8" font-family="Times,serif" font-size="14.00">c</text>
+</g>
+<!-- b&#45;&#45;c -->
+<g id="edge2" class="edge">
+<title>b--c</title>
+<path fill="none" stroke="black" d="M144.4,-55C155.64,-55 168.72,-55 179.92,-55"></path>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<ellipse fill="none" stroke="black" cx="297" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="297" y="-13.8" font-family="Times,serif" font-size="14.00">d</text>
+</g>
+<!-- c&#45;&#45;d -->
+<g id="edge3" class="edge">
+<title>c--d</title>
+<path fill="none" stroke="black" d="M230.21,-45.66C243.55,-40.05 260.46,-32.94 273.8,-27.33"></path>
+</g>
+<!-- d&#45;&#45;a -->
+<g id="edge4" class="edge">
+<title>d--a</title>
+<path fill="none" stroke="black" d="M269.71,-18C218.39,-18 105.42,-18 54.18,-18"></path>
+</g>
+</g>
+</svg>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grafo-nodirigido-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.2: Un grafo no dirigido
+Figura&nbsp;2.4: Un grafo cuyas aristas no estan dirigidas
 </figcaption>
 </figure>
 </div>
@@ -369,58 +725,191 @@ Figura&nbsp;2.2: Un grafo no dirigido
 </div>
 <p>Por lo tanto, podremos decir que <span class="math inline">\((a, b) \in E_A\)</span> pero <span class="math inline">\((b, a) \not\in E_A\)</span>. Por otro lado tenemos que <span class="math inline">\(\{a, b\} \in E_B\)</span>, y forzando un poco la notación, <span class="math inline">\((a, b) \in E_B\)</span>, <span class="math inline">\((b, a) \in E_B\)</span>; para los conjuntos de aristas de <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>. La estructura puede ser accedida mediante <span class="math inline">\(neighbors(G, u) = \{ v \mid \{u, v\} \in E \}\)</span>.</p>
 <p>Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde <span class="math inline">\(S_{ij} = 1\)</span> si hay una arista entre los vértices <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>; y <span class="math inline">\(S_{ij} = 0\)</span> si no existe una arista. A esta representación se le llama matriz de adjacencia. Si el grafo tiene pocos <span class="math inline">\(1\)</span>’s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero.</p>
-<p>Existen otras representaciones como la lista de coordenadas, (COO), o las representaciones dispersas compimidas, (CSR) y (CSC) <span class="citation" data-cites="Scott2023">(<a href="Urefs.html#ref-Scott2023" role="doc-biblioref">Scott y Tůma 2023</a>)</span>. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.</p>
-<p>Un es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  A(a) &lt;--&gt; B(b)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  B(b) &lt;--&gt; C(c)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  A(a) &lt;--&gt; D(d)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Existen otras representaciones como la lista de coordenadas, <em>coordinate lists</em> (COO), o las representaciones dispersas compimidas, <em>sparse row</em> (CSR) y <em>compressed sparse column</em> (CSC) <span class="citation" data-cites="Scott2023">(<a href="Urefs.html#ref-Scott2023" role="doc-biblioref">Scott y Tůma 2023</a>)</span>. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.</p>
+<p>Un <em>árbol</em> es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.</p>
+<div class="cell" data-fig-width="5" data-fig-height="2" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-arbol" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-arbol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-arbol">graph LR
-  A(a) &lt;--&gt; B(b)
-  B(b) &lt;--&gt; C(c)
-  A(a) &lt;--&gt; D(d)
-</pre>
+<svg width="480" height="192" viewbox="0.00 0.00 306.00 252.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 216)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-216 270,-216 270,36 -36,36"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-126" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-121.8" font-family="Times,serif" font-size="14.00">a</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<ellipse fill="none" stroke="black" cx="117" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="117" y="-157.8" font-family="Times,serif" font-size="14.00">b</text>
+</g>
+<!-- a&#45;&#45;b -->
+<g id="edge1" class="edge">
+<title>a--b</title>
+<path fill="none" stroke="black" d="M50.66,-135.27C63.8,-140.65 80.29,-147.39 93.41,-152.76"></path>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<ellipse fill="none" stroke="black" cx="117" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="117" y="-85.8" font-family="Times,serif" font-size="14.00">d</text>
+</g>
+<!-- a&#45;&#45;d -->
+<g id="edge3" class="edge">
+<title>a--d</title>
+<path fill="none" stroke="black" d="M50.66,-116.73C63.8,-111.35 80.29,-104.61 93.41,-99.24"></path>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-157.8" font-family="Times,serif" font-size="14.00">c</text>
+</g>
+<!-- b&#45;&#45;c -->
+<g id="edge2" class="edge">
+<title>b--c</title>
+<path fill="none" stroke="black" d="M144.4,-162C155.64,-162 168.72,-162 179.92,-162"></path>
+</g>
+<!-- e -->
+<g id="node5" class="node">
+<title>e</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-85.8" font-family="Times,serif" font-size="14.00">e</text>
+</g>
+<!-- d&#45;&#45;e -->
+<g id="edge4" class="edge">
+<title>d--e</title>
+<path fill="none" stroke="black" d="M144.4,-90C155.64,-90 168.72,-90 179.92,-90"></path>
+</g>
+<!-- f -->
+<g id="node6" class="node">
+<title>f</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-13.8" font-family="Times,serif" font-size="14.00">f</text>
+</g>
+<!-- d&#45;&#45;f -->
+<g id="edge5" class="edge">
+<title>d--f</title>
+<path fill="none" stroke="black" d="M134.97,-76.12C150.55,-63.37 173.52,-44.58 189.08,-31.84"></path>
+</g>
+</g>
+</svg>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arbol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.3: Árbol
+Figura&nbsp;2.5: Árbol con aristas no dirigidas
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>En algunos casos, es conveniente identificar vértices especiales en un árbol <span class="math inline">\(T=(V, E)\)</span>. Un vértice es la raíz del árbol, <span class="math inline">\(root(T)\)</span>, es especial ya que seguramente se utilizará como acceso al árbol y por tanto contiene un camino a cada uno vértices en <span class="math inline">\(V\)</span>. Cada vértice puede tener o no hijos, <span class="math inline">\(children(T, u) = \{ v \mid (u, v) \in E \}\)</span>. Se dice que <span class="math inline">\(u\)</span> es un hoja (leaf) si <span class="math inline">\(children(T, u) = \emptyset\)</span>, e interno (inner) si no es ni raíz ni hoja.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  A(a / raíz) --&gt; B(b / inner)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  B(b / inner) --&gt; C(c / leaf)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  A(a / raíz) --&gt; D(d / leaf)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-fig-width="5" data-fig-height="2" data-layout-align="default">
 <div class="cell-output-display">
-<div id="fig-arbol-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-arbol-dirigido" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-arbol-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-arbol-dirigido-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-arbol-2">graph LR
-  A(a / raíz) --&gt; B(b / inner)
-  B(b / inner) --&gt; C(c / leaf)
-  A(a / raíz) --&gt; D(d / leaf)
-</pre>
+<svg width="480" height="192" viewbox="0.00 0.00 306.00 252.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 216)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-216 270,-216 270,36 -36,36"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-126" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-121.8" font-family="Times,serif" font-size="14.00">a</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<ellipse fill="none" stroke="black" cx="117" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="117" y="-157.8" font-family="Times,serif" font-size="14.00">b</text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge1" class="edge">
+<title>a-&gt;b</title>
+<path fill="none" stroke="black" d="M50.66,-135.27C60.82,-139.43 72.99,-144.4 84.05,-148.93"></path>
+<polygon fill="black" stroke="black" points="82.83,-152.21 93.41,-152.76 85.48,-145.73 82.83,-152.21"></polygon>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<ellipse fill="none" stroke="black" cx="117" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="117" y="-85.8" font-family="Times,serif" font-size="14.00">d</text>
+</g>
+<!-- a&#45;&gt;d -->
+<g id="edge3" class="edge">
+<title>a-&gt;d</title>
+<path fill="none" stroke="black" d="M50.66,-116.73C60.82,-112.57 72.99,-107.6 84.05,-103.07"></path>
+<polygon fill="black" stroke="black" points="85.48,-106.27 93.41,-99.24 82.83,-99.79 85.48,-106.27"></polygon>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-157.8" font-family="Times,serif" font-size="14.00">c</text>
+</g>
+<!-- b&#45;&gt;c -->
+<g id="edge2" class="edge">
+<title>b-&gt;c</title>
+<path fill="none" stroke="black" d="M144.4,-162C152.39,-162 161.31,-162 169.82,-162"></path>
+<polygon fill="black" stroke="black" points="169.92,-165.5 179.92,-162 169.92,-158.5 169.92,-165.5"></polygon>
+</g>
+<!-- e -->
+<g id="node5" class="node">
+<title>e</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-85.8" font-family="Times,serif" font-size="14.00">e</text>
+</g>
+<!-- d&#45;&gt;e -->
+<g id="edge4" class="edge">
+<title>d-&gt;e</title>
+<path fill="none" stroke="black" d="M144.4,-90C152.39,-90 161.31,-90 169.82,-90"></path>
+<polygon fill="black" stroke="black" points="169.92,-93.5 179.92,-90 169.92,-86.5 169.92,-93.5"></polygon>
+</g>
+<!-- f -->
+<g id="node6" class="node">
+<title>f</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-13.8" font-family="Times,serif" font-size="14.00">f</text>
+</g>
+<!-- d&#45;&gt;f -->
+<g id="edge5" class="edge">
+<title>d-&gt;f</title>
+<path fill="none" stroke="black" d="M134.97,-76.12C148.12,-65.36 166.52,-50.3 181.3,-38.21"></path>
+<polygon fill="black" stroke="black" points="183.56,-40.88 189.08,-31.84 179.13,-35.46 183.56,-40.88"></polygon>
+</g>
+</g>
+</svg>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arbol-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.4: Un grafo dirigido simple
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arbol-dirigido-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.6: Árbol con aristas dirigidas, note que es fácil saber si hay un vértice o nodo que se distinga como raíz, o nodos que sean hojas.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</p>
+<p>Los nodos y las aristas de un grafo pueden <em>recorrerse</em> de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas.</p>
+<p>El recorrido <em>primero a lo profundo</em>, Depth First Search (DFS), comienza en un #### Ejercicios - Implemente un grafo dirigido mediante listas de adyacencia. - Implemente un grafo no dirigido mediante lista de adyacencia. - Implemente el algoritmo de recorrido DFS y BFS.</p>
+</section>
+</section>
+<section id="bibliografía" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="bibliografía"><span class="header-section-number">2.3</span> Bibliografía</h2>
+<p>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</p>
+<ul>
+<li>Parte III: Cap 10 Elementary Data Structures.</li>
+<li>Parte VI: Cap 22 Elementary Graph Algorithms.</li>
+<li>Parte VII: Cap 28 Matrix Operations.</li>
+</ul>
 
 
 <!-- -->
@@ -913,122 +1402,363 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Estructuras de datos elementales</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos .</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. </span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>las particularidades de las estructuras.</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estructuras de datos abstractas</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>Los \textit{conjuntos} son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $<span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. Un conjunto puede unirse con otro conjunto, e.g., $<span class="sc">\{</span>a, b<span class="sc">\}</span> \cup <span class="sc">\{</span>c<span class="sc">\}</span> = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, así como puede intersectarse con otros conjuntos, e.g. $<span class="sc">\{</span>a, b, c<span class="sc">\}</span> \cap <span class="sc">\{</span>b, d<span class="sc">\}</span> = <span class="sc">\{</span>b<span class="sc">\}</span>$. El tamaño de una colección lo representamos con barras, e.g., $|<span class="sc">\{</span>a, b<span class="sc">\}</span>| = 2$. También es útil consultar por membresia $a \in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$ o por la negación de membrsia, i.e., $a \not\in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, la función $pop!(S, b)$ resultaría en $<span class="sc">\{</span>a, c<span class="sc">\}</span>$, y la función $push!(S, d)$ resultaría en $<span class="sc">\{</span>a, c, d<span class="sc">\}</span>$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. Tienen diferentes implementaciones, algunas de las cuales serán el centro de estudio de este curso, y es importante conocer a detalle las posibilidades de implementación más populares.</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>Las \textit{tuplas} son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$-ésima posición de la forma $S_i$, o incluso $S<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. Una estructura es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="in">struct Point</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="in">  x::Float32</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="in">  y::Float32</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>Los \textit{arreglos} son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. A diferencia de las tuplas, los arreglos suelen estar preparados para ser mutables, y pueden tener más que una dimensión, entonces representar fácilmente conceptos como vectores, matrices o tensores. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S<span class="co">[</span><span class="ot">i, j</span><span class="co">]</span>$. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>Las \textit{listas} son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = <span class="co">[</span><span class="ot">a, b, c, d</span><span class="co">]</span>$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = <span class="co">[</span><span class="ot">a, z, b, c, d</span><span class="co">]</span>$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados \textit{cabeza} y \textit{cola}) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>Otras estructuras de datos elementales son los gráfos. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{</span>(a, b), (b, c), (c, d), (d, a)<span class="sc">\}</span>)$</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: fig-grafo</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-width: 6</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-cap: |</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="in">%%|   Un grafo dirigido simple</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="in">  A(a) --&gt; B(b)</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="in">  B(b) --&gt; C(c)</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="in">  C(c) --&gt; D(d)</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="in">  D(d) --&gt; A(a)</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>Los grafos son herramientas poderosas para representar de manera abstracta problemas que implican relaciones entre elementos.</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>En algunos casos es útil asociar funciones a los vértices y las aristas. Tenga en cuenta los siguientes ejemplos:</span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$peso: V \rightarrow \mathbb{R}$, la cual podría usarse como $peso(a) = 1.5$.</span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$costo: V \times V \rightarrow \mathbb{R}$, la cual podría usarse como $costo(a, b) = 2.0$. </span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>La estructura del grafo puede accederse mediante las funciones:</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$in(G, v) = <span class="sc">\{</span> u \mid (u, v) \in E<span class="sc">\}</span>$</span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$out(G, u) = <span class="sc">\{</span> v \mid (u, v) \in E<span class="sc">\}</span>$</span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>así como el número de vertices que entran y salen como:</span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$indegree(G, v) = |in(G, v)|$.</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$outdegree(G, u) = |out(G, u)|$.</span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>Un grafo puede tener aristas no dirigidas, el grafo con $B=(<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{\{</span>a, b<span class="sc">\}</span>, <span class="sc">\{</span>b, c<span class="sc">\}</span>, <span class="sc">\{</span>c, d<span class="sc">\}</span>, <span class="sc">\{</span>d, a<span class="sc">\}\}</span>)$, no reconocerá orden en las aristas.</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: fig-grafo-nodirigido</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-width: 6</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-cap: |</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="in">%%|   Un grafo no dirigido</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="in">  A(a) &lt;--&gt; B(b)</span></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="in">  B(b) &lt;--&gt; C(c)</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="in">  C(c) &lt;--&gt; D(d)</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="in">  D(d) &lt;--&gt; A(a)</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $<span class="sc">\{</span>a, b<span class="sc">\}</span> \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = <span class="sc">\{</span> v \mid <span class="sc">\{</span>u, v<span class="sc">\}</span> \in E <span class="sc">\}</span>$.</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.</span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. </span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>Existen otras representaciones como la lista de coordenadas, \textit{coordinate lists} (COO), o las representaciones dispersas compimidas, \textit{sparse row} (CSR) y \textit{compressed sparse column} (CSC) <span class="co">[</span><span class="ot">@Scott2023</span><span class="co">]</span>. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.</span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>Un \textit{árbol} es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: fig-arbol</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-width: 6</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-cap: |</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="in">%%|   Árbol</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a><span class="in">  A(a) &lt;--&gt; B(b)</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="in">  B(b) &lt;--&gt; C(c)</span></span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="in">  A(a) &lt;--&gt; D(d)</span></span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = <span class="sc">\{</span> v \mid (u, v) \in E <span class="sc">\}</span>$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.</span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: fig-arbol-2</span></span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-width: 6</span></span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-cap: |</span></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="in">%%|   Un grafo dirigido simple</span></span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a><span class="in">  A(a / raíz) --&gt; B(b / inner)</span></span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="in">  B(b / inner) --&gt; C(c / leaf)</span></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="in">  A(a / raíz) --&gt; D(d / leaf)</span></span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</span>
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Estructuras de datos elementales</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos .</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>las particularidades de las estructuras.</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estructuras de datos abstractas</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conjuntos</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $<span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. Un conjunto puede unirse con otro conjunto, e.g., $<span class="sc">\{</span>a, b<span class="sc">\}</span> \cup <span class="sc">\{</span>c<span class="sc">\}</span> = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, así como puede intersectarse con otros conjuntos, e.g. $<span class="sc">\{</span>a, b, c<span class="sc">\}</span> \cap <span class="sc">\{</span>b, d<span class="sc">\}</span> = <span class="sc">\{</span>b<span class="sc">\}</span>$. El tamaño de una colección lo representamos con barras, e.g., $|<span class="sc">\{</span>a, b<span class="sc">\}</span>| = 2$. También es útil consultar por membresia $a \in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$ o por la negación de membrsia, i.e., $a \not\in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, la función $pop!(S, b)$ resultaría en $<span class="sc">\{</span>a, c<span class="sc">\}</span>$, y la función $push!(S, d)$ resultaría en $<span class="sc">\{</span>a, c, d<span class="sc">\}</span>$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>Es importante hacer notar, que aunque es uno de los conceptos fundamentales, no existe una única manera de representar conjuntos, ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser la diferencia. Las implementaciones  y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tuplas y estructuras</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: codigo-acceso-tupla</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Definición y acceso a los campos de una tupla en Julia</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="in">t = (10, 20, 30)</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="in">t[1] * t[3] - t[2]</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>Dado que es amena para representarse de manera contigua en memoria, en los lenguajes de programación que aprovechen este hecho, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>Una _estructura_ es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: ejemplo-estructura</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Ejemplo de estructura en Julia</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="in">struct Point</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="in">  x::Float32</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="in">  y::Float32</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>En Julia, es posible definir funciones o métodos al rededor del tipo de tuplas y estructuras.</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>Es importante saber que si algunos de los campos o datos de una tupla o estructura estan en el _heap_ entonces solo una parte estará en el _stack_; i.e., en el caso extremo solo serán referencias a datos en el _heap_. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: funcion-norma</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Funciones sobre diferentes tipos de datos</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="in">  Calcula la norma de un vector representado</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="in">  como un tupla</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">function norm(u::Tuple)</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="in">  s = 0f0</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in eachindex(u)</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="in">    s = u[i]^2</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="in">  sqrt(s)</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="in">  Calcula la norma de un vector de 2 dimensiones</span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="in">  representado como una estructura</span></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="in">function norm(u::Point)</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="in">  sqrt(u.x^2 + u.y^2)</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="in">(norm((1, 1, 1, 1)), norm(Point(1, 1)))</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Arreglos</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S<span class="co">[</span><span class="ot">i, j</span><span class="co">]</span>$. </span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un _vector_ de múltiples dimensiones, un arreglo bidimensional para representar una _mátriz_ de tamaño $m \times n$, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones serán representados cuyas partes pueden ser delimitadas mediante aritmética simple, e.g., una matriz de tamaño $m \times n$ necesitará una zona de memoria de $m \times n$ elementos, y se puede acceder a la primera columna mediante en la zona $1,\dots,m$, la segunda columna en $m+1,\dots,2m$, y la $i$ésima en $(i-1)m+1,\dots,im$; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.</span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: fig-memoria</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="in">%%| echo: false</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-cap: |</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="in">%%|   Memoria y segmentos continuos que representan una matriz</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="in">%%{init:{</span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="in">  'theme': 'base',</span></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="in">  'themeVariables': {</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="in">    'fontSize': '64px'</span></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="in">}}%%</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="in">block-beta</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="in">  columns 18</span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="in">  mem["Memoria RAM"]:18</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="in">  x["matriz x"]:16 e2["  "]:2</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="in">  a["col 1 - x[:, 1]"]:4 b["col 2 - x[:, 2]"]:4 c["col 3: x[:, 3]"]:4 d["col 4 - x[:, 4]"]:4 e["... "]:2</span></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="in">  x1["x[1,1]"]:1 x2["x[1,2]"]:1 x3["x[1,3]"]:1 x4["x[1,4]"]:1</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="in">  x_1["x[2,1]"]:1 x_2["x[2,2]"]:1 x_3["x[2,3]"]:1 x_4["x[2,4]"]:1 </span></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="in">  xx1["x[3,1]"]:1 xx2["x[3,2]"]:1 xx3["x[3,3]"]:1 xx4["x[3,4]"]:1</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="in">  xx_1["x[4,1]"]:1 xx_2["x[4,2]"]:1 xx_3["x[4,3]"]:1 xx_4["x[4,4]"]:1</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="in">  style e fill:white,stroke-width:0px</span></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="in">  style e2 fill:white,stroke-width:0px</span></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>La representación precisa en memoria es significativa en el desempeño de operaciones matriciales como pueden ser el producto entre matrices o la inversión de las mismas. La manera como se acceden los datos es crucial en el diseño de los algoritmos.</span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a>El siguiente ejemplo define un vector $u$ de $m$ elementos y una matriz $X$ de tamaño $m \times n$, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector $u$ a los vectores columna de $X$:</span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="in">function mydot(u, x)</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="in">  s = 0f0</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in eachindex(u, x)</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="in">    s += u[i] * x[i]</span></span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="in">  s</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="in">function getmaxdot(u::Vector, X::Matrix)</span></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="in">  maxpos = 1</span></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="in">  # en la siguiente linea, @view nos permite controlar que</span></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="in">  # no se copien los arreglos, y en su lugar, se usen referencias</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="in">  maxdot = mydot(u, @view X[:, 1])</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="in">  # obtiene el número de columnas e itera apartir del 2do indice </span></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="in">  mfilas, ncols = size(X)</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 2:ncols</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a><span class="in">    d = mydot(u, @view X[:, i]) </span></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="in">    if d &gt; maxdot</span></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="in">      maxpos = i</span></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="in">      maxdot = d</span></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="in">  (maxpos, maxdot)</span></span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="in"># Nota: Este código arrojará diferentes resultados cada vez que lo corra.</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="in">getmaxdot(rand(Float32, 4), rand(Float32, 4, 1000))</span></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>En este código puede verse como se separa el cálculo del producto punto en una función, </span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función $getmaxdot$ se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función $mydot$ podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la $getmaxdot$ tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="fu">### Listas</span></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _cabeza_ y _cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-lista</span></span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Una lista ligada simple</span></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="in">  node [shape=record];</span></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="in">  list [label="{&lt;head&gt; head} | {&lt;tail&gt; tail}"];</span></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="in">  a [label="{&lt;dat&gt; a | &lt;succ&gt; }"];</span></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="in">  b [label="{&lt;dat&gt; b | &lt;succ&gt; }"];</span></span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="in">  c [label="{&lt;dat&gt; c | &lt;succ&gt; }"];</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="in">  nothing [shape=ellipse, label="nothing", style=dashed];</span></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style=dashed, arrowsize=1, tailclip=false]</span></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="in">  list:head:n -&gt; a:dat:n [weight=0];</span></span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="in">  list:tail:s -&gt; c:dat:s [weight=0];</span></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="in">   </span></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style=""]</span></span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="in">  a:succ:c -&gt; b:dat:w [weight=3];</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="in">  b:succ:c -&gt; c:dat:w [weight=5];</span></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="in">  c:succ:c -&gt; nothing [weight=10];</span></span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a>La @fig-lista muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el _heap_ de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los _nodos de de datos_ contienen los elementos de la colección y referencias al siguiente nodo, también llamado _sucesor_. El nodo _nothing_ es especial y significa que no hay más elementos.</span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a>El siguiente código muestra como la definición de lista</span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-lista-ligada</span></span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Código para una lista ligada simple</span></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="in">struct Nodo</span></span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a><span class="in">  data::Int</span></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="in">  next::Union{Nodo,Nothing}</span></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="in">nodo = Nodo(10, Nodo(20, Nodo(30, nothing)))</span></span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="in">println(nodo)</span></span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="in">(nodo.data, nodo.next.data, nodo.next.next.data)</span></span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _nodo_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.</span>
+<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ejercicios</span></span>
+<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente _insert!_ y _deleteat!_</span>
+<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuál sería la implementación de _succ_ y _pred_?</span>
+<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuales serían sus costos?</span>
+<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Añadiendo más memoria, como podemos mejorar _pred_?</span>
+<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grafos</span></span>
+<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a>Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{</span>(a, b), (b, c), (c, d), (d, a)<span class="sc">\}</span>)$</span>
+<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-grafo</span></span>
+<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
+<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Un grafo dirigido simple</span></span>
+<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
+<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; b -&gt; c -&gt; d -&gt; a;  </span></span>
+<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a>Los grafos son herramientas poderosas para representar de manera abstracta problemas que implican relaciones entre elementos.</span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a>En algunos casos es útil asociar funciones a los vértices y las aristas. Tenga en cuenta los siguientes ejemplos:</span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$peso: V \rightarrow \mathbb{R}$, la cual podría usarse como $peso(a) = 1.5$.</span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$costo: V \times V \rightarrow \mathbb{R}$, la cual podría usarse como $costo(a, b) = 2.0$. </span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a>La estructura del grafo puede accederse mediante las funciones:</span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$in(G, v) = <span class="sc">\{</span> u \mid (u, v) \in E<span class="sc">\}</span>$</span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$out(G, u) = <span class="sc">\{</span> v \mid (u, v) \in E<span class="sc">\}</span>$</span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a>así como el número de vertices que entran y salen como:</span>
+<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$indegree(G, v) = |in(G, v)|$.</span>
+<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$outdegree(G, u) = |out(G, u)|$.</span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a>Un grafo puede tener aristas no dirigidas, el grafo con $B=(<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{\{</span>a, b<span class="sc">\}</span>, <span class="sc">\{</span>b, c<span class="sc">\}</span>, <span class="sc">\{</span>c, d<span class="sc">\}</span>, <span class="sc">\{</span>d, a<span class="sc">\}\}</span>)$, no reconocerá orden en las aristas.</span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-grafo-nodirigido</span></span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Un grafo cuyas aristas no estan dirigidas</span></span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a><span class="in">graph lista {</span></span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- b -- c -- d -- a;  </span></span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a>Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $<span class="sc">\{</span>a, b<span class="sc">\}</span> \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = <span class="sc">\{</span> v \mid <span class="sc">\{</span>u, v<span class="sc">\}</span> \in E <span class="sc">\}</span>$.</span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.</span>
+<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a>Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. </span>
+<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a>Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas compimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) <span class="co">[</span><span class="ot">@Scott2023</span><span class="co">]</span>. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.</span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a>Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.</span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-arbol</span></span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
+<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Árbol con aristas no dirigidas</span></span>
+<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a><span class="in">graph lista {</span></span>
+<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
+<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- b -- c;</span></span>
+<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- d -- {e; f}; </span></span>
+<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a>En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = <span class="sc">\{</span> v \mid (u, v) \in E <span class="sc">\}</span>$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.</span>
+<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-arbol-dirigido</span></span>
+<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
+<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Árbol con aristas dirigidas, note que es fácil saber si hay un vértice o nodo que se distinga como raíz, o nodos que sean hojas.</span></span>
+<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
+<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; b -&gt; c;</span></span>
+<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; d -&gt; {e; f}; </span></span>
+<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</span>
+<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a>Los nodos y las aristas de un grafo pueden _recorrerse_ de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas. </span>
+<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a>El recorrido _primero a lo profundo_, Depth First Search (DFS), comienza en un </span>
+<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ejercicios</span></span>
+<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente un grafo dirigido mediante listas de adyacencia.</span>
+<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente un grafo no dirigido mediante lista de adyacencia.</span>
+<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente el algoritmo de recorrido DFS y BFS.</span>
+<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliografía</span></span>
+<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</span>
+<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte III: Cap 10 Elementary Data Structures.</span>
+<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte VI: Cap 22 Elementary Graph Algorithms.</span>
+<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte VII: Cap 28 Matrix Operations.</span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
