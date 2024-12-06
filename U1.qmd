@@ -145,5 +145,6 @@ No olvide estructurar su reporte, en particular el reporte debe cubrir los sigui
 - Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
 
 ## Bibliografía
-- Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.
-Parte I: Cap. 1, 2, 3
+Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.
+
+- Parte I: Cap. 1, 2, 3

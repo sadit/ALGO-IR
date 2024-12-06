@@ -19,11 +19,35 @@ las particularidades de las estructuras.
 
 ## Estructuras de datos abstractas
 
-Los \textit{conjuntos} son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $\{a, b, c\}$. Un conjunto puede unirse con otro conjunto, e.g., $\{a, b\} \cup \{c\} = \{a, b, c\}$, así como puede intersectarse con otros conjuntos, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. El tamaño de una colección lo representamos con barras, e.g., $|\{a, b\}| = 2$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por la negación de membrsia, i.e., $a \not\in \{a, b, c\}$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. Tienen diferentes implementaciones, algunas de las cuales serán el centro de estudio de este curso, y es importante conocer a detalle las posibilidades de implementación más populares.
+### Conjuntos
+Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $\{a, b, c\}$. Un conjunto puede unirse con otro conjunto, e.g., $\{a, b\} \cup \{c\} = \{a, b, c\}$, así como puede intersectarse con otros conjuntos, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. El tamaño de una colección lo representamos con barras, e.g., $|\{a, b\}| = 2$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por la negación de membrsia, i.e., $a \not\in \{a, b, c\}$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. 
 
-Las \textit{tuplas} son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$-ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. Una estructura es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:
+Es importante hacer notar, que aunque es uno de los conceptos fundamentales, no existe una única manera de representar conjuntos, ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser la diferencia. Las implementaciones  y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.
+
+### Tuplas y estructuras
+Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
 
 ```{julia}
+#| label: codigo-acceso-tupla
+#| fig-cap: |
+#|   Definición y acceso a los campos de una tupla en Julia
+
+t = (10, 20, 30)
+
+t[1] * t[3] - t[2]
+```
+
+::: {.column-margin}
+Dado que es amena para representarse de manera contigua en memoria, en los lenguajes de programación que aprovechen este hecho, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación
+::: 
+
+Una _estructura_ es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:
+
+```{julia}
+#| label: ejemplo-estructura
+#| fig-cap: |
+#|   Ejemplo de estructura en Julia
+
 struct Point
   x::Float32
   y::Float32
@@ -32,22 +56,208 @@ end
 
 Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.
 
-Los \textit{arreglos} son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. A diferencia de las tuplas, los arreglos suelen estar preparados para ser mutables, y pueden tener más que una dimensión, entonces representar fácilmente conceptos como vectores, matrices o tensores. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S[i, j]$. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.
 
-Las \textit{listas} son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados \textit{cabeza} y \textit{cola}) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.
+En Julia, es posible definir funciones o métodos al rededor del tipo de tuplas y estructuras.
 
-Otras estructuras de datos elementales son los gráfos. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})$
+::: {.column-margin}
+Es importante saber que si algunos de los campos o datos de una tupla o estructura estan en el _heap_ entonces solo una parte estará en el _stack_; i.e., en el caso extremo solo serán referencias a datos en el _heap_. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.
+:::
+
+```{julia}
+#| label: funcion-norma
+#| fig-cap: |
+#|   Funciones sobre diferentes tipos de datos
+
+"""
+  Calcula la norma de un vector representado
+  como un tupla
+"""
+function norm(u::Tuple)
+  s = 0f0
+  for i in eachindex(u)
+    s = u[i]^2
+  end
+  sqrt(s)
+end
+
+"""
+  Calcula la norma de un vector de 2 dimensiones
+  representado como una estructura
+"""
+function norm(u::Point)
+  sqrt(u.x^2 + u.y^2)
+end
+
+(norm((1, 1, 1, 1)), norm(Point(1, 1)))
+```
+
+Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.
+
+### Arreglos
+Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.
+
+::: {.column-margin}
+Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.
+:::
+
+A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S[i, j]$. 
+Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un _vector_ de múltiples dimensiones, un arreglo bidimensional para representar una _mátriz_ de tamaño $m \times n$, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones serán representados cuyas partes pueden ser delimitadas mediante aritmética simple, e.g., una matriz de tamaño $m \times n$ necesitará una zona de memoria de $m \times n$ elementos, y se puede acceder a la primera columna mediante en la zona $1,\dots,m$, la segunda columna en $m+1,\dots,2m$, y la $i$ésima en $(i-1)m+1,\dots,im$; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.
+
+::: {.column-margin}
+Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.
+:::
 
 ```{mermaid}
-%%| label: fig-grafo
-%%| fig-width: 6
+%%| label: fig-memoria
+%%| echo: false
 %%| fig-cap: |
-%%|   Un grafo dirigido simple
-graph LR
-  A(a) --> B(b)
-  B(b) --> C(c)
-  C(c) --> D(d)
-  D(d) --> A(a)
+%%|   Memoria y segmentos continuos que representan una matriz
+%%{init:{
+  'theme': 'base',
+  'themeVariables': {
+    'fontSize': '64px'
+  }
+}}%%
+
+block-beta
+  columns 18
+  mem["Memoria RAM"]:18
+  x["matriz x"]:16 e2["  "]:2
+  a["col 1 - x[:, 1]"]:4 b["col 2 - x[:, 2]"]:4 c["col 3: x[:, 3]"]:4 d["col 4 - x[:, 4]"]:4 e["... "]:2
+  x1["x[1,1]"]:1 x2["x[1,2]"]:1 x3["x[1,3]"]:1 x4["x[1,4]"]:1
+  x_1["x[2,1]"]:1 x_2["x[2,2]"]:1 x_3["x[2,3]"]:1 x_4["x[2,4]"]:1 
+  xx1["x[3,1]"]:1 xx2["x[3,2]"]:1 xx3["x[3,3]"]:1 xx4["x[3,4]"]:1
+  xx_1["x[4,1]"]:1 xx_2["x[4,2]"]:1 xx_3["x[4,3]"]:1 xx_4["x[4,4]"]:1
+
+  style e fill:white,stroke-width:0px
+  style e2 fill:white,stroke-width:0px
+
+```
+
+La representación precisa en memoria es significativa en el desempeño de operaciones matriciales como pueden ser el producto entre matrices o la inversión de las mismas. La manera como se acceden los datos es crucial en el diseño de los algoritmos.
+
+El siguiente ejemplo define un vector $u$ de $m$ elementos y una matriz $X$ de tamaño $m \times n$, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector $u$ a los vectores columna de $X$:
+```{julia}
+function mydot(u, x)
+  s = 0f0
+  for i in eachindex(u, x)
+    s += u[i] * x[i]
+  end
+  s
+end
+
+function getmaxdot(u::Vector, X::Matrix)
+  maxpos = 1
+  # en la siguiente linea, @view nos permite controlar que
+  # no se copien los arreglos, y en su lugar, se usen referencias
+  maxdot = mydot(u, @view X[:, 1])
+  # obtiene el número de columnas e itera apartir del 2do indice 
+  mfilas, ncols = size(X)
+  for i in 2:ncols
+    d = mydot(u, @view X[:, i]) 
+    if d > maxdot
+      maxpos = i
+      maxdot = d
+    end
+  end
+
+  (maxpos, maxdot)
+end
+
+# Nota: Este código arrojará diferentes resultados cada vez que lo corra.
+getmaxdot(rand(Float32, 4), rand(Float32, 4, 1000))
+```
+
+En este código puede verse como se separa el cálculo del producto punto en una función, 
+esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función $getmaxdot$ se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función $mydot$ podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la $getmaxdot$ tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.
+
+
+### Listas
+Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _cabeza_ y _cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.
+
+```{dot}
+//| label: fig-lista
+//| fig-width: 5
+//| fig-height: 2
+//| echo: false
+//| fig-cap: |
+//|   Una lista ligada simple
+
+
+digraph lista {
+  rankdir=LR;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];
+  node [shape=record];
+  
+  //{rank=same; a; b; c; nothing;}
+  splines="true";
+
+  list [label="{<head> head} | {<tail> tail}"];
+  a [label="{<dat> a | <succ> }"];
+  b [label="{<dat> b | <succ> }"];
+  c [label="{<dat> c | <succ> }"];
+  nothing [shape=ellipse, label="nothing", style=dashed];
+  
+  edge [style=dashed, arrowsize=1, tailclip=false]
+  list:head:n -> a:dat:n [weight=0];
+  list:tail:s -> c:dat:s [weight=0];
+   
+  edge [style=""]
+  a:succ:c -> b:dat:w [weight=3];
+  b:succ:c -> c:dat:w [weight=5];
+  c:succ:c -> nothing [weight=10];
+  
+  //{rank=same; a; b; c; nothing;}
+}
+```
+
+La @fig-lista muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el _heap_ de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los _nodos de de datos_ contienen los elementos de la colección y referencias al siguiente nodo, también llamado _sucesor_. El nodo _nothing_ es especial y significa que no hay más elementos.
+
+El siguiente código muestra como la definición de lista
+```{julia}
+#| lst-label: lst-lista-ligada
+#| lst-cap: Código para una lista ligada simple
+
+struct Nodo
+  data::Int
+  next::Union{Nodo,Nothing}
+end
+
+nodo = Nodo(10, Nodo(20, Nodo(30, nothing)))
+
+println(nodo)
+(nodo.data, nodo.next.data, nodo.next.next.data)
+```
+
+En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _nodo_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.
+
+#### Ejercicios
+
+- Implemente _insert!_ y _deleteat!_
+- ¿Cuál sería la implementación de _succ_ y _pred_?
+- ¿Cuales serían sus costos?
+- Añadiendo más memoria, como podemos mejorar _pred_?
+
+### Grafos
+
+Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})$
+
+```{dot}
+//| label: fig-grafo
+//| echo: false
+//| fig-width: 5
+//| fig-height: 1.5
+//| fig-cap: |
+//|   Un grafo dirigido simple
+digraph lista {
+  rankdir=LR;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];
+  
+  //{rank=same; a; b; c; nothing;}
+  splines="true";
+
+  a -> b -> c -> d -> a;  
+}
 ```
 
 Los grafos son herramientas poderosas para representar de manera abstracta problemas que implican relaciones entre elementos.
@@ -68,16 +278,20 @@ así como el número de vertices que entran y salen como:
 
 Un grafo puede tener aristas no dirigidas, el grafo con $B=(\{a, b, c, d\}, \{\{a, b\}, \{b, c\}, \{c, d\}, \{d, a\}\})$, no reconocerá orden en las aristas.
 
-```{mermaid}
-%%| label: fig-grafo-nodirigido
-%%| fig-width: 6
-%%| fig-cap: |
-%%|   Un grafo no dirigido
-graph LR
-  A(a) <--> B(b)
-  B(b) <--> C(c)
-  C(c) <--> D(d)
-  D(d) <--> A(a)
+```{dot}
+//| label: fig-grafo-nodirigido
+//| echo: false
+//| fig-width: 5
+//| fig-height: 1.5
+//| fig-cap: |
+//|   Un grafo cuyas aristas no estan dirigidas
+
+graph lista {
+  rankdir=LR;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  
+  splines="true";
+  a -- b -- c -- d -- a;  
+}
 ```
 
 Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $\{a, b\} \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = \{ v \mid \{u, v\} \in E \}$.
@@ -85,32 +299,59 @@ Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por
 Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.
 Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. 
 
-Existen otras representaciones como la lista de coordenadas, \textit{coordinate lists} (COO), o las representaciones dispersas compimidas, \textit{sparse row} (CSR) y \textit{compressed sparse column} (CSC) [@Scott2023]. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.
+Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas compimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) [@Scott2023]. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.
 
-Un \textit{árbol} es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.
+Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.
 
-```{mermaid}
-%%| label: fig-arbol
-%%| fig-width: 6
-%%| fig-cap: |
-%%|   Árbol
-graph LR
-  A(a) <--> B(b)
-  B(b) <--> C(c)
-  A(a) <--> D(d)
+```{dot}
+//| label: fig-arbol
+//| echo: false
+//| fig-width: 5
+//| fig-height: 2
+//| fig-cap: |
+//|   Árbol con aristas no dirigidas
+
+graph lista {
+  rankdir=LR;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  
+  splines="true";
+  a -- b -- c;
+  a -- d -- {e; f}; 
+  }
 ```
 
 En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = \{ v \mid (u, v) \in E \}$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.
 
-```{mermaid}
-%%| label: fig-arbol-2
-%%| fig-width: 6
-%%| fig-cap: |
-%%|   Un grafo dirigido simple
-graph LR
-  A(a / raíz) --> B(b / inner)
-  B(b / inner) --> C(c / leaf)
-  A(a / raíz) --> D(d / leaf)
+```{dot}
+//| label: fig-arbol-dirigido
+//| echo: false
+//| fig-width: 5
+//| fig-height: 2
+//| fig-cap: |
+//|   Árbol con aristas dirigidas, note que es fácil saber si hay un vértice o nodo que se distinga como raíz, o nodos que sean hojas.
+
+digraph lista {
+  rankdir=LR;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  
+  splines="true";
+  a -> b -> c;
+  a -> d -> {e; f}; 
+  }
 ```
 
 Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.
+
+Los nodos y las aristas de un grafo pueden _recorrerse_ de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas. 
+
+El recorrido _primero a lo profundo_, Depth First Search (DFS), comienza en un 
+#### Ejercicios
+- Implemente un grafo dirigido mediante listas de adyacencia.
+- Implemente un grafo no dirigido mediante lista de adyacencia.
+- Implemente el algoritmo de recorrido DFS y BFS.
+
+## Bibliografía
+Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.
+
+- Parte III: Cap 10 Elementary Data Structures.
+- Parte VI: Cap 22 Elementary Graph Algorithms.
+- Parte VII: Cap 28 Matrix Operations.
