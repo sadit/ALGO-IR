@@ -122,9 +122,6 @@ div.csl-indent {
     "search-label": "Buscar"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -274,7 +271,8 @@ window.Quarto = {
   <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">2.2.4</span> Listas</a></li>
   <li><a href="#grafos" id="toc-grafos" class="nav-link" data-scroll-target="#grafos"><span class="header-section-number">2.2.5</span> Grafos</a></li>
   </ul></li>
-  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía"><span class="header-section-number">2.3</span> Bibliografía</a></li>
+  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">2.3</span> Actividades</a></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía"><span class="header-section-number">2.4</span> Bibliografía</a></li>
   </ul>
 </nav>
     </div>
@@ -366,37 +364,74 @@ window.Quarto = {
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.</p>
-</div></div><div class="cell" data-layout-align="default">
+</div></div><div class="cell" data-fig-width="6" data-fig-height="1.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-memoria" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-memoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-memoria">%%{init:{
-  'theme': 'base',
-  'themeVariables': {
-    'fontSize': '64px'
-  }
-}}%%
-
-block-beta
-  columns 18
-  mem["Memoria RAM"]:18
-  x["matriz x"]:16 e2["  "]:2
-  a["col 1 - x[:, 1]"]:4 b["col 2 - x[:, 2]"]:4 c["col 3: x[:, 3]"]:4 d["col 4 - x[:, 4]"]:4 e["... "]:2
-  x1["x[1,1]"]:1 x2["x[1,2]"]:1 x3["x[1,3]"]:1 x4["x[1,4]"]:1
-  x_1["x[2,1]"]:1 x_2["x[2,2]"]:1 x_3["x[2,3]"]:1 x_4["x[2,4]"]:1 
-  xx1["x[3,1]"]:1 xx2["x[3,2]"]:1 xx3["x[3,3]"]:1 xx4["x[3,4]"]:1
-  xx_1["x[4,1]"]:1 xx_2["x[4,2]"]:1 xx_3["x[4,3]"]:1 xx_4["x[4,4]"]:1
-
-  style e fill:white,stroke-width:0px
-  style e2 fill:white,stroke-width:0px
-
-</pre>
+<svg width="576" height="144" viewbox="0.00 0.00 896.29 83.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 79.4)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-79.4 892.29,-79.4 892.29,4 -4,4"></polygon>
+<!-- RAM -->
+<g id="node1" class="node">
+<title>RAM</title>
+<polygon fill="none" stroke="black" points="0,-0.5 0,-74.9 888.29,-74.9 888.29,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="444.15" y="-58.3" font-family="Times,serif" font-size="14.00">memoria RAM</text>
+<polyline fill="none" stroke="black" points="0,-50.1 888.29,-50.1 "></polyline>
+<text text-anchor="middle" x="22.78" y="-29.5" font-family="Times,serif" font-size="14.00">otros</text>
+<text text-anchor="middle" x="22.78" y="-12.7" font-family="Times,serif" font-size="14.00">datos</text>
+<polyline fill="none" stroke="black" points="45.55,-0.5 45.55,-50.1 "></polyline>
+<text text-anchor="middle" x="145.2" y="-33.5" font-family="Times,serif" font-size="14.00">columna 1 - x[:, 1]</text>
+<polyline fill="none" stroke="black" points="45.55,-25.3 244.85,-25.3 "></polyline>
+<text text-anchor="middle" x="70.46" y="-8.7" font-family="Times,serif" font-size="14.00">x[1,1]</text>
+<polyline fill="none" stroke="black" points="95.38,-0.5 95.38,-25.3 "></polyline>
+<text text-anchor="middle" x="120.29" y="-8.7" font-family="Times,serif" font-size="14.00">x[2,1]</text>
+<polyline fill="none" stroke="black" points="145.2,-0.5 145.2,-25.3 "></polyline>
+<text text-anchor="middle" x="170.11" y="-8.7" font-family="Times,serif" font-size="14.00">x[3,1]</text>
+<polyline fill="none" stroke="black" points="195.02,-0.5 195.02,-25.3 "></polyline>
+<text text-anchor="middle" x="219.94" y="-8.7" font-family="Times,serif" font-size="14.00">x[4,1]</text>
+<polyline fill="none" stroke="black" points="244.85,-0.5 244.85,-50.1 "></polyline>
+<text text-anchor="middle" x="344.5" y="-33.5" font-family="Times,serif" font-size="14.00">columna 2 - x[:, 2]</text>
+<polyline fill="none" stroke="black" points="244.85,-25.3 444.15,-25.3 "></polyline>
+<text text-anchor="middle" x="269.76" y="-8.7" font-family="Times,serif" font-size="14.00">x[1,2]</text>
+<polyline fill="none" stroke="black" points="294.67,-0.5 294.67,-25.3 "></polyline>
+<text text-anchor="middle" x="319.58" y="-8.7" font-family="Times,serif" font-size="14.00">x[2,2]</text>
+<polyline fill="none" stroke="black" points="344.5,-0.5 344.5,-25.3 "></polyline>
+<text text-anchor="middle" x="369.41" y="-8.7" font-family="Times,serif" font-size="14.00">x[3,2]</text>
+<polyline fill="none" stroke="black" points="394.32,-0.5 394.32,-25.3 "></polyline>
+<text text-anchor="middle" x="419.23" y="-8.7" font-family="Times,serif" font-size="14.00">x[4,2]</text>
+<polyline fill="none" stroke="black" points="444.15,-0.5 444.15,-50.1 "></polyline>
+<text text-anchor="middle" x="543.79" y="-33.5" font-family="Times,serif" font-size="14.00">columna 3 - x[:, 3]</text>
+<polyline fill="none" stroke="black" points="444.15,-25.3 643.44,-25.3 "></polyline>
+<text text-anchor="middle" x="469.06" y="-8.7" font-family="Times,serif" font-size="14.00">x[1,3]</text>
+<polyline fill="none" stroke="black" points="493.97,-0.5 493.97,-25.3 "></polyline>
+<text text-anchor="middle" x="518.88" y="-8.7" font-family="Times,serif" font-size="14.00">x[2,3]</text>
+<polyline fill="none" stroke="black" points="543.79,-0.5 543.79,-25.3 "></polyline>
+<text text-anchor="middle" x="568.71" y="-8.7" font-family="Times,serif" font-size="14.00">x[3,3]</text>
+<polyline fill="none" stroke="black" points="593.62,-0.5 593.62,-25.3 "></polyline>
+<text text-anchor="middle" x="618.53" y="-8.7" font-family="Times,serif" font-size="14.00">x[4,3]</text>
+<polyline fill="none" stroke="black" points="643.44,-0.5 643.44,-50.1 "></polyline>
+<text text-anchor="middle" x="743.09" y="-33.5" font-family="Times,serif" font-size="14.00">columna 4 - x[:, 4]</text>
+<polyline fill="none" stroke="black" points="643.44,-25.3 842.74,-25.3 "></polyline>
+<text text-anchor="middle" x="668.35" y="-8.7" font-family="Times,serif" font-size="14.00">x[1,4]</text>
+<polyline fill="none" stroke="black" points="693.27,-0.5 693.27,-25.3 "></polyline>
+<text text-anchor="middle" x="718.18" y="-8.7" font-family="Times,serif" font-size="14.00">x[2,4]</text>
+<polyline fill="none" stroke="black" points="743.09,-0.5 743.09,-25.3 "></polyline>
+<text text-anchor="middle" x="768" y="-8.7" font-family="Times,serif" font-size="14.00">x[3,4]</text>
+<polyline fill="none" stroke="black" points="792.92,-0.5 792.92,-25.3 "></polyline>
+<text text-anchor="middle" x="817.83" y="-8.7" font-family="Times,serif" font-size="14.00">x[4,4]</text>
+<polyline fill="none" stroke="black" points="842.74,-0.5 842.74,-50.1 "></polyline>
+<text text-anchor="middle" x="865.52" y="-29.5" font-family="Times,serif" font-size="14.00">otros</text>
+<text text-anchor="middle" x="865.52" y="-12.7" font-family="Times,serif" font-size="14.00">datos</text>
+</g>
+</g>
+</svg>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-memoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.1: Memoria y segmentos continuos que representan una matriz
+Figura&nbsp;2.1: Esquema de una matriz en memoria.
 </figcaption>
 </figure>
 </div>
@@ -405,39 +440,73 @@ Figura&nbsp;2.1: Memoria y segmentos continuos que representan una matriz
 <p>La representación precisa en memoria es significativa en el desempeño de operaciones matriciales como pueden ser el producto entre matrices o la inversión de las mismas. La manera como se acceden los datos es crucial en el diseño de los algoritmos.</p>
 <p>El siguiente ejemplo define un vector <span class="math inline">\(u\)</span> de <span class="math inline">\(m\)</span> elementos y una matriz <span class="math inline">\(X\)</span> de tamaño <span class="math inline">\(m \times n\)</span>, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector <span class="math inline">\(u\)</span> a los vectores columna de <span class="math inline">\(X\)</span>:</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mydot</span>(u, x)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> <span class="fl">0f0</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(u, x)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> u[i] <span class="op">*</span> x[i]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  s</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getmaxdot</span>(u<span class="op">::</span><span class="dt">Vector</span>, X<span class="op">::</span><span class="dt">Matrix</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  maxpos <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># en la siguiente linea, @view nos permite controlar que</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># no se copien los arreglos, y en su lugar, se usen referencias</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  maxdot <span class="op">=</span> <span class="fu">mydot</span>(u, <span class="pp">@view</span> X[<span class="op">:</span>, <span class="fl">1</span>])</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># obtiene el número de columnas e itera apartir del 2do indice </span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  mfilas, ncols <span class="op">=</span> <span class="fu">size</span>(X)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>ncols</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="fu">mydot</span>(u, <span class="pp">@view</span> X[<span class="op">:</span>, i]) </span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> d <span class="op">&gt;</span> maxdot</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      maxpos <span class="op">=</span> i</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      maxdot <span class="op">=</span> d</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  (maxpos, maxdot)</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: Este código arrojará diferentes resultados cada vez que lo corra.</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mydot</span>(u, x)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> <span class="fl">0f0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(u, x)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> u[i] <span class="op">*</span> x[i]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  s</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getmaxdot</span>(u<span class="op">::</span><span class="dt">Vector</span>, X<span class="op">::</span><span class="dt">Matrix</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  maxpos <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># en la siguiente linea, @view nos permite controlar que</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># no se copien los arreglos, y en su lugar, se usen referencias</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  maxdot <span class="op">=</span> <span class="fu">mydot</span>(u, <span class="pp">@view</span> X[<span class="op">:</span>, <span class="fl">1</span>])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># obtiene el número de columnas e itera apartir del 2do indice </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  mfilas, ncols <span class="op">=</span> <span class="fu">size</span>(X)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>ncols</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="fu">mydot</span>(u, <span class="pp">@view</span> X[<span class="op">:</span>, i]) </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> d <span class="op">&gt;</span> maxdot</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      maxpos <span class="op">=</span> i</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      maxdot <span class="op">=</span> d</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  (maxpos, maxdot)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">getmaxdot</span>(<span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>), <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>, <span class="fl">1000</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(646, 1.4230489f0)</code></pre>
+<pre><code>(635, 2.6559825f0)</code></pre>
 </div>
 </div>
 <p>En este código puede verse como se separa el cálculo del producto punto en una función, esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función <span class="math inline">\(getmaxdot\)</span> se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere <span class="math inline">\(O(n)\)</span> comparaciones, para una mátriz de <span class="math inline">\(n\)</span> columnas. Esto implica que cada producto punto se cuenta como <span class="math inline">\(O(1)\)</span>, lo cual simplifica el razonamiento. Por la función <span class="math inline">\(mydot\)</span> podemos observar que el producto punto tiene un costo de <span class="math inline">\(O(m)\)</span>, por lo que la <span class="math inline">\(getmaxdot\)</span> tiene un costo de <span class="math inline">\(O(mn)\)</span> operaciones lógicas y aritméticas.</p>
+<p>El producto entre matrices es un caso paradigmático por su uso en la resolución de problemas prácticos, donde hay una gran cantidad de trabajo al rededor de los costos necesarios para llevarlo a cabo. En particular, el algoritmo naïve, es un algoritmo con costo cúbico, como se puede ver a continuación:</p>
+<div id="cell-funcion-producto-matricial" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">myprod</span>(A<span class="op">::</span><span class="dt">Matrix</span>, B<span class="op">::</span><span class="dt">Matrix</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  mA, nA <span class="op">=</span> <span class="fu">size</span>(A)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  mB, nB <span class="op">=</span> <span class="fu">size</span>(B)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> nA <span class="op">==</span> mB</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  C <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float32}</span>(<span class="cn">undef</span>, mA, nB)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>mA</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>mB</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      rowA <span class="op">=</span> <span class="pp">@view</span> A[i, <span class="op">:</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      colB <span class="op">=</span> <span class="pp">@view</span> B[<span class="op">:</span>, i]</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      C[i, j] <span class="op">=</span> <span class="fu">mydot</span>(rowA, colB)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  C</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">5</span>, <span class="fl">3</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">5</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fu">myprod</span>(A, B)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="funcion-producto-matricial" class="cell-output cell-output-display">
+<pre><code>5×5 Matrix{Float32}:
+ 0.731678  0.731678  0.731678   0.0           3.0f-45
+ 0.376482  0.376482  0.376482  -4.66233f-10   0.0
+ 1.19044   1.19044   1.19044    4.5766f-41   -3.92464f-13
+ 1.01842   1.01842   1.01842    4.0f-45       4.5766f-41
+ 0.500424  0.500424  0.500424   0.0           1.0f-45</code></pre>
+<p>Funciones sobre diferentes tipos de datos</p>
+</div>
+</div>
+<p>Se pueden ver dos ciclos iterando a lo largo de filas y columnas, adicionalmente un producto punto, el cual tiene un costo lineal en la dimensión del vector, por lo que el costo es cúbico. Esta implementación es directa con la definición misma del producto matricial. Dado su implacto, existen diferentes algoritmos para hacer esta operación más eficiente, incluso hay áreas completas dedicadas a mejorar los costos para diferentes casos o características de las matrices.</p>
 </section>
 <section id="listas" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="listas"><span class="header-section-number">2.2.4</span> Listas</h3>
@@ -532,8 +601,8 @@ Figura&nbsp;2.2: Una lista ligada simple
 </div>
 </div>
 <p>La <a href="#fig-lista" class="quarto-xref">Figura&nbsp;<span>2.2</span></a> muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el <em>heap</em> de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los <em>nodos de de datos</em> contienen los elementos de la colección y referencias al siguiente nodo, también llamado <em>sucesor</em>. El nodo <em>nothing</em> es especial y significa que no hay más elementos.</p>
-<p>El siguiente código muestra como la definición de lista</p>
-<div id="10" class="cell" data-execution_count="1">
+<p>El siguiente código muestra como la definición de lista ligada.</p>
+<div id="12" class="cell" data-execution_count="1">
 <div id="lst-lista-ligada" class="julia cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lista-ligada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -560,11 +629,19 @@ Listado&nbsp;2.1: Código para una lista ligada simple
 </div>
 </div>
 <p>En el <a href="#lst-lista-ligada" class="quarto-xref">Listado&nbsp;<span>2.1</span></a> se ignora la referencia a <em>tail</em> (<em>head</em> se guarda en <em>nodo</em>), por lo que las operaciones sobre <em>tail</em> requieren recorrer la lista completa, costando <span class="math inline">\(O(n)\)</span> en el peor caso para una lista de <span class="math inline">\(n\)</span> elementos.</p>
+<p>Por su manera en la cual son accedidos los datos, se tienen dos tipos de listas muy útiles: las <em>colas</em> y las <em>pilas</em>. Las <em>colas</em> son listas que se acceden solo por sus extremos, y emulan la política de <em>el primero en entrar es el primero en salir</em> (first in - first out, FIFO), y es por eso que se les llama colas haciendo referencia a una cola para realizar un trámite o recibir un servicio. Las <em>pilas</em> o <em>stack</em> son listas con la política <em>el último en entrar es el último en salir</em> (last in - first out, LIFO). Mientras que cualquier lista puede ser útil para implementarlas, algunas maneras serán mejores que otras dependiendo de los requerimientos de los problemas siendo resueltos; sin embargo, es importante recordar sus políticas de acceso para comprender los algoritmos que las utilicen.</p>
+<p>En este curso, se tienen en cuenta las siguientes operaciones, nombrando diferente cada operación:</p>
+<ul>
+<li><em>push!(L, a)</em>: insertar <span class="math inline">\(a\)</span> al final de la lista <span class="math inline">\(L\)</span>.</li>
+<li><em>pop!(L)</em>: remueve el último elemento en <span class="math inline">\(L\)</span>.</li>
+<li><em>deleteat!(L, pos)</em>: remueve el elemento en la posición <span class="math inline">\(pos\)</span>, se desplazan los elementos.</li>
+<li><em>insert!(L, pos, valor)</em>: inserta <span class="math inline">\(valor\)</span> en la posición <span class="math inline">\(pos\)</span> desplazando los elementos anteriores.</li>
+</ul>
 <section id="ejercicios" class="level4" data-number="2.2.4.1">
 <h4 data-number="2.2.4.1" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">2.2.4.1</span> Ejercicios</h4>
 <ul>
 <li>Implemente <em>insert!</em> y <em>deleteat!</em></li>
-<li>¿Cuál sería la implementación de <em>succ</em> y <em>pred</em>?</li>
+<li>¿Cuál sería la implementación de <em>succ</em> y <em>pred</em> en una lista ligada?</li>
 <li>¿Cuales serían sus costos?</li>
 <li>Añadiendo más memoria, como podemos mejorar <em>pred</em>?</li>
 </ul>
@@ -899,11 +976,85 @@ Figura&nbsp;2.6: Árbol con aristas dirigidas, note que es fácil saber si hay u
 </div>
 <p>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</p>
 <p>Los nodos y las aristas de un grafo pueden <em>recorrerse</em> de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas.</p>
-<p>El recorrido <em>primero a lo profundo</em>, Depth First Search (DFS), comienza en un #### Ejercicios - Implemente un grafo dirigido mediante listas de adyacencia. - Implemente un grafo no dirigido mediante lista de adyacencia. - Implemente el algoritmo de recorrido DFS y BFS.</p>
+<p>El recorrido <em>primero a lo profundo</em>, Depth First Search (DFS), comienza en un nodo dado y de manera <em>voraz</em> avanzará recordando orden de visita y avanzando al ver un nuevo nodo repitiendo el procedimiento hasta que todos los vértices alcanzables sean visitados. El siguiente pseudo-código lo implementa:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-dfs</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Psudo-código DFS</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">operación!</span>(vértice)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#... operaciones sobre el vértice siendo visitado ...</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">DFS</span>(grafo, vértice, visitados)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">operación!</span>(vértice)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">push!</span>(visitados, vértice)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> v <span class="kw">in</span> <span class="fu">neighbors</span>(grafo, vértice)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="op">∉</span> visitados</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">operación!</span>(v)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">push!</span>(visitados, v)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">DFS</span>(grafo, v, visitados)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código de preparación del grafo</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>visitados <span class="op">=</span> <span class="fu">Set</span>()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">DFS</span>((vértices, aristas), vérticeinicial, visitados)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código posterior a la visita DFS</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Las llamadas recursivas a DFS tienen el efecto de <em>memorizar</em> el orden de visita anterior y regresarlo cuando se sale de este, por lo que hay una memoria implicita utilizada, implementanda por el <em>stack</em> de llamadas. La función <em>operación!</em> es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.</p>
+<p>El <em>recorrido a lo ancho</em>, Breadth First Search (BSF), visita los vértices locales primero que los alejados contrarío al avance voraz utilizado por DFS.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-bfs</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Psudo-código BFS</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">BFS</span>(grafo, vértice, visitados, cola)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">operación!</span>(vértice)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">push!</span>(visitados, vértice)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">push!</span>(cola, vértice)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="fu">length</span>(cola) <span class="op">&gt;</span> <span class="fl">0</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> <span class="fu">popfirst!</span>(cola)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> v <span class="kw">in</span> <span class="fu">neighbors</span>(grafo, u)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> v <span class="op">∉</span> visitados</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">operación!</span>(v)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(visitados, v)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(cola, v)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código de preparación del grafo</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>visitados <span class="op">=</span> <span class="fu">Set</span>()</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">BFS</span>((vértices, aristas), vérticeinicial, visitados)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código posterior a la visita BFS</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El BFS hace uso explícito de la memoria para guardar el orden en que se visitarán los vértices (<em>cola</em>); se utiliza un conjunto para marcar vértices ya visitados (<em>visitados</em>) con la finalidad de evitar un recorrido infinito.</p>
+<section id="ejercicios-1" class="level4" data-number="2.2.5.1">
+<h4 data-number="2.2.5.1" class="anchored" data-anchor-id="ejercicios-1"><span class="header-section-number">2.2.5.1</span> Ejercicios</h4>
+<ul>
+<li>Implemente un grafo dirigido mediante listas de adyacencia.</li>
+<li>Implemente un grafo no dirigido mediante lista de adyacencia.</li>
+<li>Implemente el algoritmo de recorrido DFS y BFS con implementaciones de grafos.</li>
+</ul>
 </section>
 </section>
-<section id="bibliografía" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="bibliografía"><span class="header-section-number">2.3</span> Bibliografía</h2>
+</section>
+<section id="actividades" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="actividades"><span class="header-section-number">2.3</span> Actividades</h2>
+<p>Implementar los siguientes algoritmos sobre matrices. - Multiplicación de matrices - Eliminación gaussiana / Gauss-Jordan Compare los desempeños de ambos algoritmos contando el número de operaciones y el tiempo real para matrices aleatorias de tamaño ( n n ) para ( n= 100, 300, 1000). Maneje de manera separada los datos de conteo de operaciones (multiplicaciones y sumas escalares) y las de tiempo real. Discuta sus resultados experimentales; ¿qué puede concluir? ¿Cuál es el impacto de acceder los elementos contiguos en memoria de una matriz? ¿Qué cambiaría si utiliza matrices dispersas? ¿Cuáles serían los costos?</p>
+<p><strong>Entregable</strong></p>
+<p>Su trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.</p>
+<p>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:</p>
+<ul>
+<li>Título del reporte, su nombre.</li>
+<li>Introducción.</li>
+<li>Código cercano a la presentación de resultados.</li>
+<li>Figuras y tablas</li>
+<li>Análisis de los resultados</li>
+<li>Conclusión, discusiones de las preguntas</li>
+<li>Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.</li>
+</ul>
+</section>
+<section id="bibliografía" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="bibliografía"><span class="header-section-number">2.4</span> Bibliografía</h2>
 <p>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</p>
 <ul>
 <li>Parte III: Cap 10 Elementary Data Structures.</li>
@@ -1402,363 +1553,486 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Estructuras de datos elementales</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos .</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. </span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>las particularidades de las estructuras.</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estructuras de datos abstractas</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conjuntos</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $<span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. Un conjunto puede unirse con otro conjunto, e.g., $<span class="sc">\{</span>a, b<span class="sc">\}</span> \cup <span class="sc">\{</span>c<span class="sc">\}</span> = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, así como puede intersectarse con otros conjuntos, e.g. $<span class="sc">\{</span>a, b, c<span class="sc">\}</span> \cap <span class="sc">\{</span>b, d<span class="sc">\}</span> = <span class="sc">\{</span>b<span class="sc">\}</span>$. El tamaño de una colección lo representamos con barras, e.g., $|<span class="sc">\{</span>a, b<span class="sc">\}</span>| = 2$. También es útil consultar por membresia $a \in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$ o por la negación de membrsia, i.e., $a \not\in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, la función $pop!(S, b)$ resultaría en $<span class="sc">\{</span>a, c<span class="sc">\}</span>$, y la función $push!(S, d)$ resultaría en $<span class="sc">\{</span>a, c, d<span class="sc">\}</span>$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. </span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>Es importante hacer notar, que aunque es uno de los conceptos fundamentales, no existe una única manera de representar conjuntos, ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser la diferencia. Las implementaciones  y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tuplas y estructuras</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: codigo-acceso-tupla</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Definición y acceso a los campos de una tupla en Julia</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="in">t = (10, 20, 30)</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="in">t[1] * t[3] - t[2]</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>Dado que es amena para representarse de manera contigua en memoria, en los lenguajes de programación que aprovechen este hecho, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>Una _estructura_ es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: ejemplo-estructura</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Ejemplo de estructura en Julia</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="in">struct Point</span></span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="in">  x::Float32</span></span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="in">  y::Float32</span></span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.</span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>En Julia, es posible definir funciones o métodos al rededor del tipo de tuplas y estructuras.</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>Es importante saber que si algunos de los campos o datos de una tupla o estructura estan en el _heap_ entonces solo una parte estará en el _stack_; i.e., en el caso extremo solo serán referencias a datos en el _heap_. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.</span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: funcion-norma</span></span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Funciones sobre diferentes tipos de datos</span></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="in">  Calcula la norma de un vector representado</span></span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="in">  como un tupla</span></span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">function norm(u::Tuple)</span></span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="in">  s = 0f0</span></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in eachindex(u)</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="in">    s = u[i]^2</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="in">  sqrt(s)</span></span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="in">  Calcula la norma de un vector de 2 dimensiones</span></span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="in">  representado como una estructura</span></span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="in">function norm(u::Point)</span></span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="in">  sqrt(u.x^2 + u.y^2)</span></span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="in">(norm((1, 1, 1, 1)), norm(Point(1, 1)))</span></span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.</span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Arreglos</span></span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.</span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.</span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S<span class="co">[</span><span class="ot">i, j</span><span class="co">]</span>$. </span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un _vector_ de múltiples dimensiones, un arreglo bidimensional para representar una _mátriz_ de tamaño $m \times n$, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones serán representados cuyas partes pueden ser delimitadas mediante aritmética simple, e.g., una matriz de tamaño $m \times n$ necesitará una zona de memoria de $m \times n$ elementos, y se puede acceder a la primera columna mediante en la zona $1,\dots,m$, la segunda columna en $m+1,\dots,2m$, y la $i$ésima en $(i-1)m+1,\dots,im$; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.</span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.</span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: fig-memoria</span></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="in">%%| echo: false</span></span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-cap: |</span></span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="in">%%|   Memoria y segmentos continuos que representan una matriz</span></span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="in">%%{init:{</span></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="in">  'theme': 'base',</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="in">  'themeVariables': {</span></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="in">    'fontSize': '64px'</span></span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="in">}}%%</span></span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="in">block-beta</span></span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="in">  columns 18</span></span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="in">  mem["Memoria RAM"]:18</span></span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="in">  x["matriz x"]:16 e2["  "]:2</span></span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="in">  a["col 1 - x[:, 1]"]:4 b["col 2 - x[:, 2]"]:4 c["col 3: x[:, 3]"]:4 d["col 4 - x[:, 4]"]:4 e["... "]:2</span></span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="in">  x1["x[1,1]"]:1 x2["x[1,2]"]:1 x3["x[1,3]"]:1 x4["x[1,4]"]:1</span></span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="in">  x_1["x[2,1]"]:1 x_2["x[2,2]"]:1 x_3["x[2,3]"]:1 x_4["x[2,4]"]:1 </span></span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="in">  xx1["x[3,1]"]:1 xx2["x[3,2]"]:1 xx3["x[3,3]"]:1 xx4["x[3,4]"]:1</span></span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="in">  xx_1["x[4,1]"]:1 xx_2["x[4,2]"]:1 xx_3["x[4,3]"]:1 xx_4["x[4,4]"]:1</span></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="in">  style e fill:white,stroke-width:0px</span></span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="in">  style e2 fill:white,stroke-width:0px</span></span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>La representación precisa en memoria es significativa en el desempeño de operaciones matriciales como pueden ser el producto entre matrices o la inversión de las mismas. La manera como se acceden los datos es crucial en el diseño de los algoritmos.</span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a>El siguiente ejemplo define un vector $u$ de $m$ elementos y una matriz $X$ de tamaño $m \times n$, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector $u$ a los vectores columna de $X$:</span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="in">function mydot(u, x)</span></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="in">  s = 0f0</span></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in eachindex(u, x)</span></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="in">    s += u[i] * x[i]</span></span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="in">  s</span></span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="in">function getmaxdot(u::Vector, X::Matrix)</span></span>
-<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="in">  maxpos = 1</span></span>
-<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="in">  # en la siguiente linea, @view nos permite controlar que</span></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="in">  # no se copien los arreglos, y en su lugar, se usen referencias</span></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="in">  maxdot = mydot(u, @view X[:, 1])</span></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="in">  # obtiene el número de columnas e itera apartir del 2do indice </span></span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="in">  mfilas, ncols = size(X)</span></span>
-<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 2:ncols</span></span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a><span class="in">    d = mydot(u, @view X[:, i]) </span></span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="in">    if d &gt; maxdot</span></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="in">      maxpos = i</span></span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="in">      maxdot = d</span></span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="in">  (maxpos, maxdot)</span></span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="in"># Nota: Este código arrojará diferentes resultados cada vez que lo corra.</span></span>
-<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="in">getmaxdot(rand(Float32, 4), rand(Float32, 4, 1000))</span></span>
-<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>En este código puede verse como se separa el cálculo del producto punto en una función, </span>
-<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función $getmaxdot$ se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función $mydot$ podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la $getmaxdot$ tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.</span>
-<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="fu">### Listas</span></span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _cabeza_ y _cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.</span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-lista</span></span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Una lista ligada simple</span></span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="in">  node [shape=record];</span></span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="in">  list [label="{&lt;head&gt; head} | {&lt;tail&gt; tail}"];</span></span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="in">  a [label="{&lt;dat&gt; a | &lt;succ&gt; }"];</span></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="in">  b [label="{&lt;dat&gt; b | &lt;succ&gt; }"];</span></span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="in">  c [label="{&lt;dat&gt; c | &lt;succ&gt; }"];</span></span>
-<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="in">  nothing [shape=ellipse, label="nothing", style=dashed];</span></span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style=dashed, arrowsize=1, tailclip=false]</span></span>
-<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="in">  list:head:n -&gt; a:dat:n [weight=0];</span></span>
-<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="in">  list:tail:s -&gt; c:dat:s [weight=0];</span></span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="in">   </span></span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style=""]</span></span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="in">  a:succ:c -&gt; b:dat:w [weight=3];</span></span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="in">  b:succ:c -&gt; c:dat:w [weight=5];</span></span>
-<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="in">  c:succ:c -&gt; nothing [weight=10];</span></span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a>La @fig-lista muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el _heap_ de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los _nodos de de datos_ contienen los elementos de la colección y referencias al siguiente nodo, también llamado _sucesor_. El nodo _nothing_ es especial y significa que no hay más elementos.</span>
-<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a>El siguiente código muestra como la definición de lista</span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-lista-ligada</span></span>
-<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Código para una lista ligada simple</span></span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="in">struct Nodo</span></span>
-<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a><span class="in">  data::Int</span></span>
-<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="in">  next::Union{Nodo,Nothing}</span></span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="in">nodo = Nodo(10, Nodo(20, Nodo(30, nothing)))</span></span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="in">println(nodo)</span></span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="in">(nodo.data, nodo.next.data, nodo.next.next.data)</span></span>
-<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _nodo_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.</span>
-<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ejercicios</span></span>
-<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente _insert!_ y _deleteat!_</span>
-<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuál sería la implementación de _succ_ y _pred_?</span>
-<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuales serían sus costos?</span>
-<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Añadiendo más memoria, como podemos mejorar _pred_?</span>
-<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grafos</span></span>
-<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a>Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{</span>(a, b), (b, c), (c, d), (d, a)<span class="sc">\}</span>)$</span>
-<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-grafo</span></span>
-<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
-<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
-<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Un grafo dirigido simple</span></span>
-<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
-<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
-<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
-<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
-<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
-<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; b -&gt; c -&gt; d -&gt; a;  </span></span>
-<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a>Los grafos son herramientas poderosas para representar de manera abstracta problemas que implican relaciones entre elementos.</span>
-<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a>En algunos casos es útil asociar funciones a los vértices y las aristas. Tenga en cuenta los siguientes ejemplos:</span>
-<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$peso: V \rightarrow \mathbb{R}$, la cual podría usarse como $peso(a) = 1.5$.</span>
-<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$costo: V \times V \rightarrow \mathbb{R}$, la cual podría usarse como $costo(a, b) = 2.0$. </span>
-<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a>La estructura del grafo puede accederse mediante las funciones:</span>
-<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$in(G, v) = <span class="sc">\{</span> u \mid (u, v) \in E<span class="sc">\}</span>$</span>
-<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$out(G, u) = <span class="sc">\{</span> v \mid (u, v) \in E<span class="sc">\}</span>$</span>
-<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a>así como el número de vertices que entran y salen como:</span>
-<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$indegree(G, v) = |in(G, v)|$.</span>
-<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$outdegree(G, u) = |out(G, u)|$.</span>
-<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a>Un grafo puede tener aristas no dirigidas, el grafo con $B=(<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{\{</span>a, b<span class="sc">\}</span>, <span class="sc">\{</span>b, c<span class="sc">\}</span>, <span class="sc">\{</span>c, d<span class="sc">\}</span>, <span class="sc">\{</span>d, a<span class="sc">\}\}</span>)$, no reconocerá orden en las aristas.</span>
-<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-grafo-nodirigido</span></span>
-<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
-<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
-<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Un grafo cuyas aristas no estan dirigidas</span></span>
-<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a><span class="in">graph lista {</span></span>
-<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
-<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
-<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
-<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- b -- c -- d -- a;  </span></span>
-<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a>Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $<span class="sc">\{</span>a, b<span class="sc">\}</span> \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = <span class="sc">\{</span> v \mid <span class="sc">\{</span>u, v<span class="sc">\}</span> \in E <span class="sc">\}</span>$.</span>
-<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.</span>
-<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a>Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. </span>
-<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a>Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas compimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) <span class="co">[</span><span class="ot">@Scott2023</span><span class="co">]</span>. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.</span>
-<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a>Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.</span>
-<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-arbol</span></span>
-<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
-<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
-<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Árbol con aristas no dirigidas</span></span>
-<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a><span class="in">graph lista {</span></span>
-<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
-<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
-<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
-<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- b -- c;</span></span>
-<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- d -- {e; f}; </span></span>
-<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a>En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = <span class="sc">\{</span> v \mid (u, v) \in E <span class="sc">\}</span>$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.</span>
-<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-arbol-dirigido</span></span>
-<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
-<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
-<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Árbol con aristas dirigidas, note que es fácil saber si hay un vértice o nodo que se distinga como raíz, o nodos que sean hojas.</span></span>
-<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
-<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
-<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
-<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
-<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; b -&gt; c;</span></span>
-<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; d -&gt; {e; f}; </span></span>
-<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</span>
-<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a>Los nodos y las aristas de un grafo pueden _recorrerse_ de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas. </span>
-<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a>El recorrido _primero a lo profundo_, Depth First Search (DFS), comienza en un </span>
-<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ejercicios</span></span>
-<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente un grafo dirigido mediante listas de adyacencia.</span>
-<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente un grafo no dirigido mediante lista de adyacencia.</span>
-<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente el algoritmo de recorrido DFS y BFS.</span>
-<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliografía</span></span>
-<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</span>
-<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte III: Cap 10 Elementary Data Structures.</span>
-<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte VI: Cap 22 Elementary Graph Algorithms.</span>
-<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte VII: Cap 28 Matrix Operations.</span>
+<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Estructuras de datos elementales</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos .</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>las particularidades de las estructuras.</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estructuras de datos abstractas</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conjuntos</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $<span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. Un conjunto puede unirse con otro conjunto, e.g., $<span class="sc">\{</span>a, b<span class="sc">\}</span> \cup <span class="sc">\{</span>c<span class="sc">\}</span> = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, así como puede intersectarse con otros conjuntos, e.g. $<span class="sc">\{</span>a, b, c<span class="sc">\}</span> \cap <span class="sc">\{</span>b, d<span class="sc">\}</span> = <span class="sc">\{</span>b<span class="sc">\}</span>$. El tamaño de una colección lo representamos con barras, e.g., $|<span class="sc">\{</span>a, b<span class="sc">\}</span>| = 2$. También es útil consultar por membresia $a \in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$ o por la negación de membrsia, i.e., $a \not\in <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = <span class="sc">\{</span>a, b, c<span class="sc">\}</span>$, la función $pop!(S, b)$ resultaría en $<span class="sc">\{</span>a, c<span class="sc">\}</span>$, y la función $push!(S, d)$ resultaría en $<span class="sc">\{</span>a, c, d<span class="sc">\}</span>$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>Es importante hacer notar, que aunque es uno de los conceptos fundamentales, no existe una única manera de representar conjuntos, ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser la diferencia. Las implementaciones  y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tuplas y estructuras</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: codigo-acceso-tupla</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Definición y acceso a los campos de una tupla en Julia</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="in">t = (10, 20, 30)</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="in">t[1] * t[3] - t[2]</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>Dado que es amena para representarse de manera contigua en memoria, en los lenguajes de programación que aprovechen este hecho, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>Una _estructura_ es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: ejemplo-estructura</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Ejemplo de estructura en Julia</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="in">struct Point</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="in">  x::Float32</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="in">  y::Float32</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>En Julia, es posible definir funciones o métodos al rededor del tipo de tuplas y estructuras.</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>Es importante saber que si algunos de los campos o datos de una tupla o estructura estan en el _heap_ entonces solo una parte estará en el _stack_; i.e., en el caso extremo solo serán referencias a datos en el _heap_. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: funcion-norma</span></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Funciones sobre diferentes tipos de datos</span></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="in">  Calcula la norma de un vector representado</span></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a><span class="in">  como un tupla</span></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="in">function norm(u::Tuple)</span></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="in">  s = 0f0</span></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in eachindex(u)</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="in">    s = u[i]^2</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a><span class="in">  sqrt(s)</span></span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="in">  Calcula la norma de un vector de 2 dimensiones</span></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a><span class="in">  representado como una estructura</span></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a><span class="in">function norm(u::Point)</span></span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a><span class="in">  sqrt(u.x^2 + u.y^2)</span></span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a><span class="in">(norm((1, 1, 1, 1)), norm(Point(1, 1)))</span></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.</span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Arreglos</span></span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.</span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S<span class="co">[</span><span class="ot">i, j</span><span class="co">]</span>$. </span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un _vector_ de múltiples dimensiones, un arreglo bidimensional para representar una _mátriz_ de tamaño $m \times n$, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones serán representados cuyas partes pueden ser delimitadas mediante aritmética simple, e.g., una matriz de tamaño $m \times n$ necesitará una zona de memoria de $m \times n$ elementos, y se puede acceder a la primera columna mediante en la zona $1,\dots,m$, la segunda columna en $m+1,\dots,2m$, y la $i$ésima en $(i-1)m+1,\dots,im$; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.</span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.</span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-memoria</span></span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 6</span></span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Esquema de una matriz en memoria.</span></span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a><span class="in">  graph[rankir=LR]</span></span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a><span class="in">  //graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a><span class="in">  node [shape=record]</span></span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a><span class="in">  RAM [label="{ memoria RAM | { otros\ndatos |</span></span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a><span class="in">  {columna 1 - x[:, 1] | {x[1,1] | x[2,1] | x[3,1] | x[4,1]}} |</span></span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a><span class="in">  {columna 2 - x[:, 2] | {x[1,2] | x[2,2] | x[3,2] | x[4,2]}} |</span></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a><span class="in">  {columna 3 - x[:, 3] | {x[1,3] | x[2,3] | x[3,3] | x[4,3]}} |</span></span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a><span class="in">  {columna 4 - x[:, 4] | {x[1,4] | x[2,4] | x[3,4] | x[4,4]}}</span></span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a><span class="in">  | otros\ndatos}}"];</span></span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a>La representación precisa en memoria es significativa en el desempeño de operaciones matriciales como pueden ser el producto entre matrices o la inversión de las mismas. La manera como se acceden los datos es crucial en el diseño de los algoritmos.</span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a>El siguiente ejemplo define un vector $u$ de $m$ elementos y una matriz $X$ de tamaño $m \times n$, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector $u$ a los vectores columna de $X$:</span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a><span class="in">function mydot(u, x)</span></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a><span class="in">  s = 0f0</span></span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in eachindex(u, x)</span></span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a><span class="in">    s += u[i] * x[i]</span></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a><span class="in">  s</span></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a><span class="in">function getmaxdot(u::Vector, X::Matrix)</span></span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a><span class="in">  maxpos = 1</span></span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a><span class="in">  # en la siguiente linea, @view nos permite controlar que</span></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a><span class="in">  # no se copien los arreglos, y en su lugar, se usen referencias</span></span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a><span class="in">  maxdot = mydot(u, @view X[:, 1])</span></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a><span class="in">  # obtiene el número de columnas e itera apartir del 2do indice </span></span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a><span class="in">  mfilas, ncols = size(X)</span></span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 2:ncols</span></span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a><span class="in">    d = mydot(u, @view X[:, i]) </span></span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a><span class="in">    if d &gt; maxdot</span></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="in">      maxpos = i</span></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a><span class="in">      maxdot = d</span></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a><span class="in">  (maxpos, maxdot)</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a><span class="in">getmaxdot(rand(Float32, 4), rand(Float32, 4, 1000))</span></span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a>En este código puede verse como se separa el cálculo del producto punto en una función, </span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a>esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función $getmaxdot$ se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función $mydot$ podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la $getmaxdot$ tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.</span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a>El producto entre matrices es un caso paradigmático por su uso en la resolución de problemas prácticos, donde hay una gran cantidad de trabajo al rededor de los costos necesarios para llevarlo a cabo. En particular, el algoritmo naïve, es un algoritmo con costo cúbico, como se puede ver a continuación:</span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: funcion-producto-matricial</span></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: |</span></span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a><span class="in">#|   Funciones sobre diferentes tipos de datos</span></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a><span class="in">function myprod(A::Matrix, B::Matrix)</span></span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a><span class="in">  mA, nA = size(A)</span></span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a><span class="in">  mB, nB = size(B)</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a><span class="in">  @assert nA == mB</span></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a><span class="in">  C = Matrix{Float32}(undef, mA, nB)</span></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 1:mA</span></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a><span class="in">    for j in 1:mB</span></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a><span class="in">      rowA = @view A[i, :]</span></span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a><span class="in">      colB = @view B[:, i]</span></span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a><span class="in">      C[i, j] = mydot(rowA, colB)</span></span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="in">  C</span></span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a><span class="in">A = rand(Float32, 5, 3)</span></span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a><span class="in">B = rand(Float32, 3, 5)</span></span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a><span class="in">C = myprod(A, B)</span></span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a><span class="in">display(C)</span></span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a>Se pueden ver dos ciclos iterando a lo largo de filas y columnas, adicionalmente un producto punto, el cual tiene un costo lineal en la dimensión del vector, por lo que el costo es cúbico. Esta implementación es directa con la definición misma del producto matricial. Dado su implacto, existen diferentes algoritmos para hacer esta operación más eficiente, incluso hay áreas completas dedicadas a mejorar los costos para diferentes casos o características de las matrices. </span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### Listas</span></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a>Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _cabeza_ y _cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.</span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-lista</span></span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Una lista ligada simple</span></span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a><span class="in">  node [shape=record];</span></span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a><span class="in">  list [label="{&lt;head&gt; head} | {&lt;tail&gt; tail}"];</span></span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a><span class="in">  a [label="{&lt;dat&gt; a | &lt;succ&gt; }"];</span></span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a><span class="in">  b [label="{&lt;dat&gt; b | &lt;succ&gt; }"];</span></span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a><span class="in">  c [label="{&lt;dat&gt; c | &lt;succ&gt; }"];</span></span>
+<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a><span class="in">  nothing [shape=ellipse, label="nothing", style=dashed];</span></span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style=dashed, arrowsize=1, tailclip=false]</span></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a><span class="in">  list:head:n -&gt; a:dat:n [weight=0];</span></span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a><span class="in">  list:tail:s -&gt; c:dat:s [weight=0];</span></span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a><span class="in">   </span></span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style=""]</span></span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a><span class="in">  a:succ:c -&gt; b:dat:w [weight=3];</span></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a><span class="in">  b:succ:c -&gt; c:dat:w [weight=5];</span></span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a><span class="in">  c:succ:c -&gt; nothing [weight=10];</span></span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a>La @fig-lista muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el _heap_ de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los _nodos de de datos_ contienen los elementos de la colección y referencias al siguiente nodo, también llamado _sucesor_. El nodo _nothing_ es especial y significa que no hay más elementos.</span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a>El siguiente código muestra como la definición de lista ligada.</span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-lista-ligada</span></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Código para una lista ligada simple</span></span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a><span class="in">struct Nodo</span></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a><span class="in">  data::Int</span></span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a><span class="in">  next::Union{Nodo,Nothing}</span></span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a><span class="in">nodo = Nodo(10, Nodo(20, Nodo(30, nothing)))</span></span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a><span class="in">println(nodo)</span></span>
+<span id="cb14-272"><a href="#cb14-272" aria-hidden="true" tabindex="-1"></a><span class="in">(nodo.data, nodo.next.data, nodo.next.next.data)</span></span>
+<span id="cb14-273"><a href="#cb14-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a>En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _nodo_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.</span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a>Por su manera en la cual son accedidos los datos, se tienen dos tipos de listas muy útiles: las _colas_ y las _pilas_. Las _colas_ son listas que se acceden solo por sus extremos, y emulan la política de _el primero en entrar es el primero en salir_ (first in - first out, FIFO), y es por eso que se les llama colas haciendo referencia a una cola para realizar un trámite o recibir un servicio. Las _pilas_ o _stack_ son listas con la política _el último en entrar es el último en salir_ (last in - first out, LIFO). Mientras que cualquier lista puede ser útil para implementarlas, algunas maneras serán mejores que otras dependiendo de los requerimientos de los problemas siendo resueltos; sin embargo, es importante recordar sus políticas de acceso para comprender los algoritmos que las utilicen.</span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a>En este curso, se tienen en cuenta las siguientes operaciones, nombrando diferente cada operación:</span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>_push!(L, a)_: insertar $a$ al final de la lista $L$.</span>
+<span id="cb14-282"><a href="#cb14-282" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>_pop!(L)_: remueve el último elemento en $L$.</span>
+<span id="cb14-283"><a href="#cb14-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>_deleteat!(L, pos)_: remueve el elemento en la posición $pos$, se desplazan los elementos.</span>
+<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>_insert!(L, pos, valor)_: inserta $valor$ en la posición $pos$ desplazando los elementos anteriores.</span>
+<span id="cb14-285"><a href="#cb14-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ejercicios</span></span>
+<span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente _insert!_ y _deleteat!_</span>
+<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuál sería la implementación de _succ_ y _pred_ en una lista ligada?</span>
+<span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuales serían sus costos?</span>
+<span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Añadiendo más memoria, como podemos mejorar _pred_?</span>
+<span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-293"><a href="#cb14-293" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grafos</span></span>
+<span id="cb14-294"><a href="#cb14-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-295"><a href="#cb14-295" aria-hidden="true" tabindex="-1"></a>Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{</span>(a, b), (b, c), (c, d), (d, a)<span class="sc">\}</span>)$</span>
+<span id="cb14-296"><a href="#cb14-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-299"><a href="#cb14-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-grafo</span></span>
+<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
+<span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Un grafo dirigido simple</span></span>
+<span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb14-307"><a href="#cb14-307" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb14-308"><a href="#cb14-308" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
+<span id="cb14-309"><a href="#cb14-309" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb14-310"><a href="#cb14-310" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb14-311"><a href="#cb14-311" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb14-312"><a href="#cb14-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-313"><a href="#cb14-313" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; b -&gt; c -&gt; d -&gt; a;  </span></span>
+<span id="cb14-314"><a href="#cb14-314" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb14-315"><a href="#cb14-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-316"><a href="#cb14-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-317"><a href="#cb14-317" aria-hidden="true" tabindex="-1"></a>Los grafos son herramientas poderosas para representar de manera abstracta problemas que implican relaciones entre elementos.</span>
+<span id="cb14-318"><a href="#cb14-318" aria-hidden="true" tabindex="-1"></a>En algunos casos es útil asociar funciones a los vértices y las aristas. Tenga en cuenta los siguientes ejemplos:</span>
+<span id="cb14-319"><a href="#cb14-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-320"><a href="#cb14-320" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$peso: V \rightarrow \mathbb{R}$, la cual podría usarse como $peso(a) = 1.5$.</span>
+<span id="cb14-321"><a href="#cb14-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$costo: V \times V \rightarrow \mathbb{R}$, la cual podría usarse como $costo(a, b) = 2.0$. </span>
+<span id="cb14-322"><a href="#cb14-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-323"><a href="#cb14-323" aria-hidden="true" tabindex="-1"></a>La estructura del grafo puede accederse mediante las funciones:</span>
+<span id="cb14-324"><a href="#cb14-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-325"><a href="#cb14-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$in(G, v) = <span class="sc">\{</span> u \mid (u, v) \in E<span class="sc">\}</span>$</span>
+<span id="cb14-326"><a href="#cb14-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$out(G, u) = <span class="sc">\{</span> v \mid (u, v) \in E<span class="sc">\}</span>$</span>
+<span id="cb14-327"><a href="#cb14-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-328"><a href="#cb14-328" aria-hidden="true" tabindex="-1"></a>así como el número de vertices que entran y salen como:</span>
+<span id="cb14-329"><a href="#cb14-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-330"><a href="#cb14-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$indegree(G, v) = |in(G, v)|$.</span>
+<span id="cb14-331"><a href="#cb14-331" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$outdegree(G, u) = |out(G, u)|$.</span>
+<span id="cb14-332"><a href="#cb14-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-333"><a href="#cb14-333" aria-hidden="true" tabindex="-1"></a>Un grafo puede tener aristas no dirigidas, el grafo con $B=(<span class="sc">\{</span>a, b, c, d<span class="sc">\}</span>, <span class="sc">\{\{</span>a, b<span class="sc">\}</span>, <span class="sc">\{</span>b, c<span class="sc">\}</span>, <span class="sc">\{</span>c, d<span class="sc">\}</span>, <span class="sc">\{</span>d, a<span class="sc">\}\}</span>)$, no reconocerá orden en las aristas.</span>
+<span id="cb14-334"><a href="#cb14-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-337"><a href="#cb14-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb14-338"><a href="#cb14-338" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-grafo-nodirigido</span></span>
+<span id="cb14-339"><a href="#cb14-339" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb14-340"><a href="#cb14-340" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb14-341"><a href="#cb14-341" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 1.5</span></span>
+<span id="cb14-342"><a href="#cb14-342" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb14-343"><a href="#cb14-343" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Un grafo cuyas aristas no estan dirigidas</span></span>
+<span id="cb14-344"><a href="#cb14-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-345"><a href="#cb14-345" aria-hidden="true" tabindex="-1"></a><span class="in">graph lista {</span></span>
+<span id="cb14-346"><a href="#cb14-346" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb14-347"><a href="#cb14-347" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
+<span id="cb14-348"><a href="#cb14-348" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb14-349"><a href="#cb14-349" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- b -- c -- d -- a;  </span></span>
+<span id="cb14-350"><a href="#cb14-350" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb14-351"><a href="#cb14-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-352"><a href="#cb14-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-353"><a href="#cb14-353" aria-hidden="true" tabindex="-1"></a>Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $<span class="sc">\{</span>a, b<span class="sc">\}</span> \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = <span class="sc">\{</span> v \mid <span class="sc">\{</span>u, v<span class="sc">\}</span> \in E <span class="sc">\}</span>$.</span>
+<span id="cb14-354"><a href="#cb14-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-355"><a href="#cb14-355" aria-hidden="true" tabindex="-1"></a>Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.</span>
+<span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a>Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. </span>
+<span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-358"><a href="#cb14-358" aria-hidden="true" tabindex="-1"></a>Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas compimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) <span class="co">[</span><span class="ot">@Scott2023</span><span class="co">]</span>. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.</span>
+<span id="cb14-359"><a href="#cb14-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-360"><a href="#cb14-360" aria-hidden="true" tabindex="-1"></a>Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.</span>
+<span id="cb14-361"><a href="#cb14-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-364"><a href="#cb14-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb14-365"><a href="#cb14-365" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-arbol</span></span>
+<span id="cb14-366"><a href="#cb14-366" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb14-367"><a href="#cb14-367" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb14-368"><a href="#cb14-368" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
+<span id="cb14-369"><a href="#cb14-369" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb14-370"><a href="#cb14-370" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Árbol con aristas no dirigidas</span></span>
+<span id="cb14-371"><a href="#cb14-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-372"><a href="#cb14-372" aria-hidden="true" tabindex="-1"></a><span class="in">graph lista {</span></span>
+<span id="cb14-373"><a href="#cb14-373" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb14-374"><a href="#cb14-374" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
+<span id="cb14-375"><a href="#cb14-375" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb14-376"><a href="#cb14-376" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- b -- c;</span></span>
+<span id="cb14-377"><a href="#cb14-377" aria-hidden="true" tabindex="-1"></a><span class="in">  a -- d -- {e; f}; </span></span>
+<span id="cb14-378"><a href="#cb14-378" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb14-379"><a href="#cb14-379" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-380"><a href="#cb14-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-381"><a href="#cb14-381" aria-hidden="true" tabindex="-1"></a>En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = <span class="sc">\{</span> v \mid (u, v) \in E <span class="sc">\}</span>$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.</span>
+<span id="cb14-382"><a href="#cb14-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-385"><a href="#cb14-385" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb14-386"><a href="#cb14-386" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-arbol-dirigido</span></span>
+<span id="cb14-387"><a href="#cb14-387" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb14-388"><a href="#cb14-388" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 5</span></span>
+<span id="cb14-389"><a href="#cb14-389" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-height: 2</span></span>
+<span id="cb14-390"><a href="#cb14-390" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb14-391"><a href="#cb14-391" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Árbol con aristas dirigidas, note que es fácil saber si hay un vértice o nodo que se distinga como raíz, o nodos que sean hojas.</span></span>
+<span id="cb14-392"><a href="#cb14-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-393"><a href="#cb14-393" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb14-394"><a href="#cb14-394" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb14-395"><a href="#cb14-395" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];  </span></span>
+<span id="cb14-396"><a href="#cb14-396" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb14-397"><a href="#cb14-397" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; b -&gt; c;</span></span>
+<span id="cb14-398"><a href="#cb14-398" aria-hidden="true" tabindex="-1"></a><span class="in">  a -&gt; d -&gt; {e; f}; </span></span>
+<span id="cb14-399"><a href="#cb14-399" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb14-400"><a href="#cb14-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-401"><a href="#cb14-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-402"><a href="#cb14-402" aria-hidden="true" tabindex="-1"></a>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</span>
+<span id="cb14-403"><a href="#cb14-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-404"><a href="#cb14-404" aria-hidden="true" tabindex="-1"></a>Los nodos y las aristas de un grafo pueden _recorrerse_ de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas. </span>
+<span id="cb14-405"><a href="#cb14-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-406"><a href="#cb14-406" aria-hidden="true" tabindex="-1"></a>El recorrido _primero a lo profundo_, Depth First Search (DFS), comienza en un nodo dado y de manera _voraz_ avanzará recordando orden de visita y avanzando al ver un nuevo nodo repitiendo el procedimiento hasta que todos los vértices alcanzables sean visitados. El siguiente pseudo-código lo implementa:</span>
+<span id="cb14-407"><a href="#cb14-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-408"><a href="#cb14-408" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
+<span id="cb14-409"><a href="#cb14-409" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-dfs</span></span>
+<span id="cb14-410"><a href="#cb14-410" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Psudo-código DFS</span></span>
+<span id="cb14-411"><a href="#cb14-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-412"><a href="#cb14-412" aria-hidden="true" tabindex="-1"></a><span class="in">function operación!(vértice)</span></span>
+<span id="cb14-413"><a href="#cb14-413" aria-hidden="true" tabindex="-1"></a><span class="in">  #... operaciones sobre el vértice siendo visitado ...</span></span>
+<span id="cb14-414"><a href="#cb14-414" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-415"><a href="#cb14-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-416"><a href="#cb14-416" aria-hidden="true" tabindex="-1"></a><span class="in">function DFS(grafo, vértice, visitados)</span></span>
+<span id="cb14-417"><a href="#cb14-417" aria-hidden="true" tabindex="-1"></a><span class="in">  operación!(vértice)</span></span>
+<span id="cb14-418"><a href="#cb14-418" aria-hidden="true" tabindex="-1"></a><span class="in">  push!(visitados, vértice)</span></span>
+<span id="cb14-419"><a href="#cb14-419" aria-hidden="true" tabindex="-1"></a><span class="in">  for v in neighbors(grafo, vértice)</span></span>
+<span id="cb14-420"><a href="#cb14-420" aria-hidden="true" tabindex="-1"></a><span class="in">    if v ∉ visitados</span></span>
+<span id="cb14-421"><a href="#cb14-421" aria-hidden="true" tabindex="-1"></a><span class="in">      operación!(v)</span></span>
+<span id="cb14-422"><a href="#cb14-422" aria-hidden="true" tabindex="-1"></a><span class="in">      push!(visitados, v)</span></span>
+<span id="cb14-423"><a href="#cb14-423" aria-hidden="true" tabindex="-1"></a><span class="in">      DFS(grafo, v, visitados)</span></span>
+<span id="cb14-424"><a href="#cb14-424" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb14-425"><a href="#cb14-425" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb14-426"><a href="#cb14-426" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-427"><a href="#cb14-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-428"><a href="#cb14-428" aria-hidden="true" tabindex="-1"></a><span class="in"># ... código de preparación del grafo</span></span>
+<span id="cb14-429"><a href="#cb14-429" aria-hidden="true" tabindex="-1"></a><span class="in">visitados = Set()</span></span>
+<span id="cb14-430"><a href="#cb14-430" aria-hidden="true" tabindex="-1"></a><span class="in">DFS((vértices, aristas), vérticeinicial, visitados)</span></span>
+<span id="cb14-431"><a href="#cb14-431" aria-hidden="true" tabindex="-1"></a><span class="in"># ... código posterior a la visita DFS</span></span>
+<span id="cb14-432"><a href="#cb14-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-433"><a href="#cb14-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-434"><a href="#cb14-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-435"><a href="#cb14-435" aria-hidden="true" tabindex="-1"></a>Las llamadas recursivas a DFS tienen el efecto de _memorizar_ el orden de visita anterior y regresarlo cuando se sale de este, por lo que hay una memoria implicita utilizada, implementanda por el _stack_ de llamadas. La función _operación!_ es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.</span>
+<span id="cb14-436"><a href="#cb14-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-437"><a href="#cb14-437" aria-hidden="true" tabindex="-1"></a>El _recorrido a lo ancho_, Breadth First Search (BSF), visita los vértices locales primero que los alejados contrarío al avance voraz utilizado por DFS.</span>
+<span id="cb14-438"><a href="#cb14-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-439"><a href="#cb14-439" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
+<span id="cb14-440"><a href="#cb14-440" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-bfs</span></span>
+<span id="cb14-441"><a href="#cb14-441" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Psudo-código BFS</span></span>
+<span id="cb14-442"><a href="#cb14-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-443"><a href="#cb14-443" aria-hidden="true" tabindex="-1"></a><span class="in">function BFS(grafo, vértice, visitados, cola)</span></span>
+<span id="cb14-444"><a href="#cb14-444" aria-hidden="true" tabindex="-1"></a><span class="in">  operación!(vértice)</span></span>
+<span id="cb14-445"><a href="#cb14-445" aria-hidden="true" tabindex="-1"></a><span class="in">  push!(visitados, vértice)</span></span>
+<span id="cb14-446"><a href="#cb14-446" aria-hidden="true" tabindex="-1"></a><span class="in">  push!(cola, vértice)</span></span>
+<span id="cb14-447"><a href="#cb14-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-448"><a href="#cb14-448" aria-hidden="true" tabindex="-1"></a><span class="in">  while length(cola) &gt; 0</span></span>
+<span id="cb14-449"><a href="#cb14-449" aria-hidden="true" tabindex="-1"></a><span class="in">    u = popfirst!(cola)</span></span>
+<span id="cb14-450"><a href="#cb14-450" aria-hidden="true" tabindex="-1"></a><span class="in">    for v in neighbors(grafo, u)</span></span>
+<span id="cb14-451"><a href="#cb14-451" aria-hidden="true" tabindex="-1"></a><span class="in">      if v ∉ visitados</span></span>
+<span id="cb14-452"><a href="#cb14-452" aria-hidden="true" tabindex="-1"></a><span class="in">        operación!(v)</span></span>
+<span id="cb14-453"><a href="#cb14-453" aria-hidden="true" tabindex="-1"></a><span class="in">        push!(visitados, v)</span></span>
+<span id="cb14-454"><a href="#cb14-454" aria-hidden="true" tabindex="-1"></a><span class="in">        push!(cola, v)</span></span>
+<span id="cb14-455"><a href="#cb14-455" aria-hidden="true" tabindex="-1"></a><span class="in">      end</span></span>
+<span id="cb14-456"><a href="#cb14-456" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb14-457"><a href="#cb14-457" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb14-458"><a href="#cb14-458" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb14-459"><a href="#cb14-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-460"><a href="#cb14-460" aria-hidden="true" tabindex="-1"></a><span class="in"># ... código de preparación del grafo</span></span>
+<span id="cb14-461"><a href="#cb14-461" aria-hidden="true" tabindex="-1"></a><span class="in">visitados = Set()</span></span>
+<span id="cb14-462"><a href="#cb14-462" aria-hidden="true" tabindex="-1"></a><span class="in">BFS((vértices, aristas), vérticeinicial, visitados)</span></span>
+<span id="cb14-463"><a href="#cb14-463" aria-hidden="true" tabindex="-1"></a><span class="in"># ... código posterior a la visita BFS</span></span>
+<span id="cb14-464"><a href="#cb14-464" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-465"><a href="#cb14-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-466"><a href="#cb14-466" aria-hidden="true" tabindex="-1"></a>El BFS hace uso explícito de la memoria para guardar el orden en que se visitarán los vértices (_cola_); se utiliza un conjunto para marcar vértices ya visitados (_visitados_) con la finalidad de evitar un recorrido infinito.</span>
+<span id="cb14-467"><a href="#cb14-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-468"><a href="#cb14-468" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ejercicios</span></span>
+<span id="cb14-469"><a href="#cb14-469" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente un grafo dirigido mediante listas de adyacencia.</span>
+<span id="cb14-470"><a href="#cb14-470" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente un grafo no dirigido mediante lista de adyacencia.</span>
+<span id="cb14-471"><a href="#cb14-471" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implemente el algoritmo de recorrido DFS y BFS con implementaciones de grafos.</span>
+<span id="cb14-472"><a href="#cb14-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-473"><a href="#cb14-473" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
+<span id="cb14-474"><a href="#cb14-474" aria-hidden="true" tabindex="-1"></a>Implementar los siguientes algoritmos sobre matrices.</span>
+<span id="cb14-475"><a href="#cb14-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Multiplicación de matrices</span>
+<span id="cb14-476"><a href="#cb14-476" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Eliminación gaussiana / Gauss-Jordan</span>
+<span id="cb14-477"><a href="#cb14-477" aria-hidden="true" tabindex="-1"></a>Compare los desempeños de ambos algoritmos contando el número de operaciones y el tiempo real para matrices aleatorias de tamaño <span class="sc">\(</span> n \times n <span class="sc">\)</span> para <span class="sc">\(</span> n= 100, 300, 1000<span class="sc">\)</span>.</span>
+<span id="cb14-478"><a href="#cb14-478" aria-hidden="true" tabindex="-1"></a>Maneje de manera separada los datos de conteo de operaciones (multiplicaciones y sumas escalares) y las de tiempo real.</span>
+<span id="cb14-479"><a href="#cb14-479" aria-hidden="true" tabindex="-1"></a>Discuta sus resultados experimentales; ¿qué puede concluir?</span>
+<span id="cb14-480"><a href="#cb14-480" aria-hidden="true" tabindex="-1"></a>¿Cuál es el impacto de acceder los elementos contiguos en memoria de una matriz?</span>
+<span id="cb14-481"><a href="#cb14-481" aria-hidden="true" tabindex="-1"></a>¿Qué cambiaría si utiliza matrices dispersas? ¿Cuáles serían los costos?</span>
+<span id="cb14-482"><a href="#cb14-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-483"><a href="#cb14-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-484"><a href="#cb14-484" aria-hidden="true" tabindex="-1"></a>**Entregable**</span>
+<span id="cb14-485"><a href="#cb14-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-486"><a href="#cb14-486" aria-hidden="true" tabindex="-1"></a>Su trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.</span>
+<span id="cb14-487"><a href="#cb14-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-488"><a href="#cb14-488" aria-hidden="true" tabindex="-1"></a>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:</span>
+<span id="cb14-489"><a href="#cb14-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-490"><a href="#cb14-490" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Título del reporte, su nombre.</span>
+<span id="cb14-491"><a href="#cb14-491" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introducción.</span>
+<span id="cb14-492"><a href="#cb14-492" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Código cercano a la presentación de resultados.</span>
+<span id="cb14-493"><a href="#cb14-493" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Figuras y tablas</span>
+<span id="cb14-494"><a href="#cb14-494" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Análisis de los resultados</span>
+<span id="cb14-495"><a href="#cb14-495" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conclusión, discusiones de las preguntas</span>
+<span id="cb14-496"><a href="#cb14-496" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto </span>
+<span id="cb14-497"><a href="#cb14-497" aria-hidden="true" tabindex="-1"></a>será interpretada como una lista vacía.</span>
+<span id="cb14-498"><a href="#cb14-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-499"><a href="#cb14-499" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliografía</span></span>
+<span id="cb14-500"><a href="#cb14-500" aria-hidden="true" tabindex="-1"></a>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</span>
+<span id="cb14-501"><a href="#cb14-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-502"><a href="#cb14-502" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte III: Cap 10 Elementary Data Structures.</span>
+<span id="cb14-503"><a href="#cb14-503" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte VI: Cap 22 Elementary Graph Algorithms.</span>
+<span id="cb14-504"><a href="#cb14-504" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte VII: Cap 28 Matrix Operations.</span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
