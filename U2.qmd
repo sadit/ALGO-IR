@@ -110,8 +110,7 @@ Esta es la manera que en general se manejan los datos en una computadora, y cono
 
 ```{dot}
 //| label: fig-memoria
-//| fig-width: 6
-//| fig-height: 1.5
+//| fig-width: 100%
 //| echo: false
 //| fig-cap: |
 //|   Esquema de una matriz en memoria.
@@ -205,8 +204,7 @@ Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume q
 
 ```{dot}
 //| label: fig-lista
-//| fig-width: 5
-//| fig-height: 2
+//| fig-width: 80%
 //| echo: false
 //| fig-cap: |
 //|   Una lista ligada simple
@@ -282,8 +280,7 @@ Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ e
 ```{dot}
 //| label: fig-grafo
 //| echo: false
-//| fig-width: 5
-//| fig-height: 1.5
+//| fig-width: 80%
 //| fig-cap: |
 //|   Un grafo dirigido simple
 digraph lista {
@@ -318,8 +315,7 @@ Un grafo puede tener aristas no dirigidas, el grafo con $B=(\{a, b, c, d\}, \{\{
 ```{dot}
 //| label: fig-grafo-nodirigido
 //| echo: false
-//| fig-width: 5
-//| fig-height: 1.5
+//| fig-width: 60%
 //| fig-cap: |
 //|   Un grafo cuyas aristas no estan dirigidas
 
@@ -343,8 +339,7 @@ Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma q
 ```{dot}
 //| label: fig-arbol
 //| echo: false
-//| fig-width: 5
-//| fig-height: 2
+//| fig-width: 60%
 //| fig-cap: |
 //|   Árbol con aristas no dirigidas
 
@@ -362,8 +357,7 @@ En algunos casos, es conveniente identificar vértices especiales en un árbol $
 ```{dot}
 //| label: fig-arbol-dirigido
 //| echo: false
-//| fig-width: 5
-//| fig-height: 2
+//| fig-width: 60%
 //| fig-cap: |
 //|   Árbol con aristas dirigidas, note que es fácil saber si hay un vértice o nodo que se distinga como raíz, o nodos que sean hojas.
 

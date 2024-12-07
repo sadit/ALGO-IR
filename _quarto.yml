@@ -41,7 +41,11 @@ format:
     echo: true
   pdf:
     documentclass: scrreprt
-    echo: false
+    echo: true
+    toc: true
+    colorlinks: true
+    papersize: letter
+
 
 execute:
   freeze: auto
