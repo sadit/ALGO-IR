@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.2">
+<meta name="generator" content="quarto-1.7.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Algoritmos de intersección de conjuntos con representación de listas ordenadas – Análisis de Algoritmos</title>
+<title>6&nbsp; Algoritmos de intersección de conjuntos con representación de listas ordenadas – Análisis de Algoritmos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,7 +91,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-259ed8ca5725095a771ba0ccf2b6fd86.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-4fc2181566ea7379508b8a824583f84d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-b72aa43c4b700e74a32346e1c7109463.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./U5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./U5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -177,7 +177,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+      <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
                       </div>
   </div>
     
@@ -217,32 +217,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Julia como lenguaje de programación para un curso de algoritmos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./U1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción al análisis de algoritmos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción al análisis de algoritmos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./U5.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -262,13 +268,13 @@ window.Quarto = {
    
   <ul>
   <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">5.1</span> Introducción</a></li>
-  <li><a href="#recursos-audio-visuales-de-la-unidad" id="toc-recursos-audio-visuales-de-la-unidad" class="nav-link" data-scroll-target="#recursos-audio-visuales-de-la-unidad"><span class="header-section-number">5.2</span> Recursos audio-visuales de la unidad</a></li>
-  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">5.3</span> Actividades</a>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">6.1</span> Introducción</a></li>
+  <li><a href="#recursos-audio-visuales-de-la-unidad" id="toc-recursos-audio-visuales-de-la-unidad" class="nav-link" data-scroll-target="#recursos-audio-visuales-de-la-unidad"><span class="header-section-number">6.2</span> Recursos audio-visuales de la unidad</a></li>
+  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">6.3</span> Actividades</a>
   <ul class="collapse">
-  <li><a href="#actividad-0-sin-entrega" id="toc-actividad-0-sin-entrega" class="nav-link" data-scroll-target="#actividad-0-sin-entrega"><span class="header-section-number">5.3.1</span> Actividad 0 [Sin entrega]</a></li>
-  <li><a href="#actividad-1-con-reporte" id="toc-actividad-1-con-reporte" class="nav-link" data-scroll-target="#actividad-1-con-reporte"><span class="header-section-number">5.3.2</span> Actividad 1 [Con reporte]</a></li>
-  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">5.3.3</span> Entregable</a></li>
+  <li><a href="#actividad-0-sin-entrega" id="toc-actividad-0-sin-entrega" class="nav-link" data-scroll-target="#actividad-0-sin-entrega"><span class="header-section-number">6.3.1</span> Actividad 0 [Sin entrega]</a></li>
+  <li><a href="#actividad-1-con-reporte" id="toc-actividad-1-con-reporte" class="nav-link" data-scroll-target="#actividad-1-con-reporte"><span class="header-section-number">6.3.2</span> Actividad 1 [Con reporte]</a></li>
+  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">6.3.3</span> Entregable</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -284,8 +290,8 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="objetivo">Objetivo</h2>
 <p>Implementar y comparar algoritmos de intersección de conjuntos representados como listas ordenadas, utilizando una variedad de algoritmos de búsqueda que dan diferentes propiedades a los algoritmos de intersección.</p>
 </section>
-<section id="introducción" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">5.1</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">6.1</span> Introducción</h2>
 <p>En este tema se conocerán, implementarán y compararán algoritmos de intersección de listas ordenadas. El cálculo de la intersección es un proceso costoso en una máquina de búsqueda, sin embargo, es un procedimiento esencial cuando se trabaja con grandes colecciones de datos.</p>
 <p>El índice invertido tal y como lo hemos creado, es capaz de manejar una cantidad razonablemente grande de documentos. Para asegurarnos del escalamiento con la cantidad de documentos, es necesario utilizar algoritmos de intersección que sean eficientes. Entonces, dadas las listas ordenadas <span class="math inline">\(L_1, \cdots, L_k\)</span> (e.g, correspondientes a las listas de posteo en un índice invertido), tomará dichas listas y producirá <span class="math inline">\(L^* = \bigcap_i L_i\)</span>, esto es, si <span class="math inline">\(u\in L^*\)</span> entonces <span class="math inline">\(u \in L_i\)</span> para <span class="math inline">\(1 \leq i \leq k\)</span>.</p>
 <p>Existen varios algoritmos prominentes para llevar a cabo esta operación. Uno de los trabajos seminales viene de Hwang &amp; Lin, en su algoritmo de <em>merge</em> entre dos conjuntos <span class="citation" data-cites="HL1971">(<a href="Urefs.html#ref-HL1971" role="doc-biblioref">Hwang y Lin 1971</a>)</span>. En este trabajo se replantea el costo como encontrar los <em>puntos</em> de unión entre ambos conjuntos, esto se traslada de manera inmediata al problema de intersección. El problema correspondiente para intersectar dos conjuntos cualesquiera representados como conjuntos ordenados es entonces <span class="math inline">\(\log{{n+m} \choose m}\)</span>, que usando la aproximación de Stirling se puede reescribir como <span class="math display">\[n \log \frac{n}{m} + (n-m)\log \frac{n}{n-m},\]</span> donde <span class="math inline">\(n\)</span> y <span class="math inline">\(m\)</span> corresponden a al número de elementos en cada conjunto.</p>
@@ -294,23 +300,23 @@ window.Quarto = {
 <p>Cuando <span class="math inline">\(k&gt;2\)</span>, la intersección se puede realizar usando las <span class="math inline">\(k\)</span> listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son “más faciles” de intersectar con un algoritmo <em>na"ive</em>. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy popular llamada <em>Small vs Small (SvS)</em>.</p>
 <p>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="citation" data-cites="DLOPM2001">(<a href="Urefs.html#ref-DLOPM2001" role="doc-biblioref">Demaine, López-Ortiz, y Ian Munro 2001</a>)</span>, <span class="citation" data-cites="BLOL2006">(<a href="Urefs.html#ref-BLOL2006" role="doc-biblioref">Barbay, López-Ortiz, y Lu 2006</a>)</span>, <span class="citation" data-cites="BLOLS2010">(<a href="Urefs.html#ref-BLOLS2010" role="doc-biblioref">Barbay et&nbsp;al. 2010</a>)</span>, y <span class="citation" data-cites="BYS2005">(<a href="Urefs.html#ref-BYS2005" role="doc-biblioref">Baeza-Yates y Salinger 2005</a>)</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="citation" data-cites="DLOM2000">(<a href="Urefs.html#ref-DLOM2000" role="doc-biblioref">Demaine, López-Ortiz, y Munro 2000</a>)</span>, <span class="citation" data-cites="DLOPM2001">(<a href="Urefs.html#ref-DLOPM2001" role="doc-biblioref">Demaine, López-Ortiz, y Ian Munro 2001</a>)</span>, <span class="citation" data-cites="BK2002">(<a href="Urefs.html#ref-BK2002" role="doc-biblioref">Barbay y Kenyon 2002</a>)</span>, <span class="citation" data-cites="BY2004">(<a href="Urefs.html#ref-BY2004" role="doc-biblioref">Baeza-Yates 2004</a>)</span>.</p>
 </section>
-<section id="recursos-audio-visuales-de-la-unidad" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="recursos-audio-visuales-de-la-unidad"><span class="header-section-number">5.2</span> Recursos audio-visuales de la unidad</h2>
+<section id="recursos-audio-visuales-de-la-unidad" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="recursos-audio-visuales-de-la-unidad"><span class="header-section-number">6.2</span> Recursos audio-visuales de la unidad</h2>
 <p>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas <iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></p>
 <p>Parte 2: Algoritmos de intersección y algunas aplicaciones <iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></p>
 </section>
-<section id="actividades" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="actividades"><span class="header-section-number">5.3</span> Actividades</h2>
+<section id="actividades" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="actividades"><span class="header-section-number">6.3</span> Actividades</h2>
 <p>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</p>
 <p>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</p>
-<section id="actividad-0-sin-entrega" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="actividad-0-sin-entrega"><span class="header-section-number">5.3.1</span> Actividad 0 [Sin entrega]</h3>
+<section id="actividad-0-sin-entrega" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="actividad-0-sin-entrega"><span class="header-section-number">6.3.1</span> Actividad 0 [Sin entrega]</h3>
 <ol type="1">
 <li>Lea y comprenda los artículos relacionados (listados en la introducción).</li>
 </ol>
 </section>
-<section id="actividad-1-con-reporte" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="actividad-1-con-reporte"><span class="header-section-number">5.3.2</span> Actividad 1 [Con reporte]</h3>
+<section id="actividad-1-con-reporte" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="actividad-1-con-reporte"><span class="header-section-number">6.3.2</span> Actividad 1 [Con reporte]</h3>
 <ol type="1">
 <li>Cargue el archivo <code>listas-posteo-100.json</code> del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</li>
 </ol>
@@ -332,8 +338,8 @@ window.Quarto = {
 <li>Cree una figura <code>boxplot</code> que describa las longitudes de las intersecciones resultantes para <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>.</li>
 </ul>
 </section>
-<section id="entregable" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5.3.3</span> Entregable</h3>
+<section id="entregable" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="entregable"><span class="header-section-number">6.3.3</span> Entregable</h3>
 <p>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.</p>
 <p><em>Nota sobre la generación del PDF</em>: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</p>
 
@@ -841,7 +847,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./U4.html" class="pagination-link" aria-label="Algoritmos para codificación de enteros">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -886,10 +892,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recursos audio-visuales de la unidad</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/aDYO39yi-4g"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"YouTube video player"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Parte 2: Algoritmos de intersección y algunas aplicaciones</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/oOd5LoVJcAs"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"YouTube video player"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</span>
