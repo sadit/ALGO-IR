@@ -11,6 +11,7 @@ book:
       affiliation: INFOTEC Centro de Investigación e Innovación en Tecnologías de la Información y Comunicación    
   chapters:
     - index.qmd
+    - julia.qmd
     - U1.qmd
     - U2.qmd
     - U3.qmd
