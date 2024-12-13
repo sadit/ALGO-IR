@@ -5,12 +5,7 @@ engine: julia
 
 # Introducción al análisis de algoritmos con Julia {#sec-analisis}
 
-## Objetivo {.unnumbered}
-Obtener los criterios básicos para el análisis, diseño e implementación de algoritmos.
-
-
-## Introducción
-La presente unidad esta dedicada a los fundamentos de análisis de algoritmos. En particular se intentará que el concepto de modelo de cómputo se adopte, se conozca y maneje la notación asintótica. Es de vital importancia que se entienda su utilidad y el porque es importante para el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar répidamente algoritmos que resuelvan una tarea dada, así como darnos una idea de los recursos de computo necesarios para ejecutarlos. Finalmente, como parte de esta unidad, se dará un repaso a las estructuras de datos y a los algoritmos asociados, que dado nuestro contexto, son fundamentales y deberán ser comprendidos a cabalidad.
+Este capítulo introduce los fundamentos de análisis de algoritmos. Se introduce el concepto de modelo de cómputo, se itroduce y se motiva la notación asintótica, ya que es el lenguaje común en el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar algoritmos que resuelvan una tarea dada, así como permitirnos catalogarlos con respecto a los recursos de computo necesarios para ejecutarlos.
 
 ## Concepto de algoritmo y estructura de datos
 Los algoritmos son especificaciones formales de los pasos u operaciones que deben aplicarse a un conjunto de entradas para resolver un problema, obteniendo una solución correcta a dicho problema. Establecen los fundamentos de la programación y de la manera en como se diseñan los programas de computadoras. Dependiendo del problema, pueden existir múltiples algoritmos que lo resuelvan, cada uno de ellos con sus diferentes particularidades. Así mismo, un problema suele estar conformado por una cantidad enorme de instancias de dicho problema, por ejemplo, para una lista de $n$ números, existen $n!$ formas de acomodarlos, de tal forma que puedan ser la entrada a un algoritmo cuya entrada sea una lista de números donde el orden es importante. En ocasiones, los problemas pueden tener infinitas de instancias. En este curso nos enfocaremos en problemas que pueden ser simplificados a una cantidad finita instancias.
@@ -19,9 +14,40 @@ Cada paso u operación en un algoritmo esta bien definido y puede ser aplicado o
 
 Una estructura de datos es una abstracción en memoria de entidades matemáticas y lógicas que nos permite organizar, almacenar y procesar datos en una computadora. El objetivo es que la información representada puede ser manipulada de manera eficiente en un contexto específico, además de simplificar la aplicación de operaciones para la aplicación de algoritmos. 
 
-## Modelos de cómputo y tipos de análisis
+## Modelos de cómputo 
+Un modelo de cómputo es una abstracción matemática de una computadora o marco de trabajo algorítmico que nos permite estudiar y medir los costos de los algoritmos funcionando en este modelo de tal forma que sea más simple que una computadora física real. Ejemplos de estos modelos son las máquinas de Turing, las funciones recursivas, el cálculo lambda, o la máquina de acceso aleatorio. Todas estos modelos son _equivalentes_ en sus capacidades, pero sus diferentes planteamientos permiten enfocarse en diferentes aspectos de los problemas.
 
-En los siguientes videos se introduce a los modelos de cómputo y se muestran diferentes tipos de análisis sobre algoritmos.
+- [La máquina de Turing](https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing). Es un módelo creado por Alan Turing a principios del siglo XX; la idea es un dispositivo que podría ser implementada de manera mecánica si se tuvieran recursos infinitos; esta máquina puede leer y escribir en una cinta _infinita_ una cantidad de símbolos predeterminada para cada problema siguiendo una serie de reglas simples sobre lo que lee y escribe, dichas reglas y la cienta, forman una máquina de estados y memoria, que pueden realizar cualquier cálculo si el tiempo no fuera un problema.
+- [Funciones recursivas](https://es.wikipedia.org/wiki/Funci%C3%B3n_recursiva). Se basa en funciones que trabajan sobre los números naturales y que definen en conjunto el espacio de funciones computables. Son una herramienta abstracta que permite a los teóricos de la lógica y computación establecer los límites de lo computable.
+-  [Cálculo lambda](https://es.wikipedia.org/wiki/C%C3%A1lculo_lambda). Es un módelo creado por Alonzo Church y Stephen Kleene a principios del siglo XX, al igual que las funciones recursivas, se fundamenta en el uso de funciones y es una herramienta abstracta con própositos similares, sin embargo el cálculo lambda no se limita a recursiones, y se enfoca en diferentes reglas de reducción y composición de funciones, y es natural la inclusión de operadores de alto nivel, aunque estos mismos sean definidos mediante un esquema funcional.
+- [Máquina de acceso aleatorio (RAM)](https://en.wikipedia.org/wiki/Random-access_machine). Es un módelo que describe una computadora con registros. Adiferencia de una computadora física, no tienen limitación en su capacidad, ni en la cantidad de registros ni en la precisión de los mismos. Cada registro puede ser identicado de manera única y su contenido leído y escrito mediante reglas o instrucciones formando un programa. En particular reconoce las diferencias entre registros de los programas y registros de datos, i.e., [arquitectura harvard](https://en.wikipedia.org/wiki/Harvard_architecture). Existe un número mínimo de instrucciones necesarias (i.e., incremento, decremento, poner a cero, copiar, salto condicional, parar) pero es común construir esquemas más complejos basados en estas primitivas. Se necesita un registro especial que indica el registro de programa siendo ejecutado. Los accesos a los registros tienen un tiempo constante a diferencia de otros esquemas; es el modelo más cercano a una implementación moderna de computadora. 
+
+::: {.margin-column}
+Una computadora moderna difiere de muchas formas de una máquina RAM. De entrada, las limitaciones físicas requieren memorias finitas y registros con valores mínimos y máximos. También se debe trabajar con una jerarquía de memoria con diferentes niveles, donde los niveles más rápidos también son los más escasos; por tanto, es importante sacar provecho de esta jerarquía siempre que sea posible. Las operaciones también tienen costos diferentes, dependiendo de su implementación a nivel de circuitería, así como también existe cierto nivel de paralelización que no esta presente en una máquina RAM, tanto a nivel de procesamiento de datos como lectura de datos y el programa, esto sin tener en cuenta la arquitecturas multitarea que ya es común en el equipo actual.
+:::
+En este curso nos enfocaremos en especificaciones de alto nivel, donde los algoritmos pueden ser implementados en una computadora física, y estaremos contando operaciones de interés pensando en costos constantes en el acceso a memoria y en una selección de operaciones, al estilo de una máquina RAM.
+
+La selección de operaciones de interés tiene el espíritu de simplificar el análisis, focalizando nuestros esfuerzos en operaciones que acumulan mayor costo y que capturan la dinámica del resto. Adicionalmente al conteo de operaciones nos interesa el desempeño de los algoritmos en tiempo real y en la cantidad de memoria consumida, por lo que se aboradará el costo realizando mediciones experimentales, contrastando con el análisis basado en conteo de operaciones siempre que sea posible. 
+
+## Tipos de análisis
+La pregunta inicial sería ¿qué nos interesa saber de un algoritmo que resuelve un problema? probablemente, lo primero sería saber si produce resultados correctos. Despues, entre el conjunto de las alternativas que producen resultados correctos, es determinante obtener su desempeño para conocer cuál es más conveniente para resolver un problema. 
+
+En ese punto, es necesario reconocer que para un problema, existen diferentes instancias posibles, esto es el espacio de instancias del problema, y que cada una de ellas exigirían soluciones con diferentes costos para cada algoritmo. Por tanto existen diferentes tipos de análisis y algoritmos.
+
+- _Análisis de mejor caso_. Obtener el mínimo de resolver cualquier instancia posible, puede parecer poco útil desde el punto de vista de decisión para la selección de un algoritmo, pero puede ser muy útil para conocer un problema o un algoritmo.
+- _Análisis de peor caso_. Obtener el costo máximo necesario para resolver cualquier instancia posible del problema con un algoritmo, este es un costo que si nos puede apoyar en la decisión de selección de un algoritmo; sin embargo, en muchas ocasiones, puede ser poco informativo o innecesario ya que tal vez hay pocas instancias que realmente lo amériten.
+- _Análisis promedio_. Se enfoca en obtener un análisis promedio basado en la población de instancias del problema para un algoritmo dado.
+- _Análisis amortizado_. Se enfoca en análisis promedio pero para una secuencia de instancias.
+- _Análisis adaptativo_. Para un subconjunto _bien caracterizado_ del espacio de instancias de un problema busca análizar los costos del algoritmo en cuestión. La caracterización suele estar en términos de una medida de complejidad para el problema; y la idea general es medir si un algoritmo es capaz de sacar provecho de instancias _fáciles_.
+
+## Notación asintótica
+Realizar un conteo de operaciones y mediciones es un asunto complejo que requiere focalizar los esfuerzos. Para este fin, es posible contabilizar solo algunas operaciones de importancia, que se supondrían serían las más costosas o que de alguna manera capturan de manera más fiel la dinámica de costos. 
+
+El comportamiento asintótico es otra forma de simplificar y enfocarnos en los puntos de importancia.
+
+### Apoyo audio-visual
+
+En los siguientes videos se profundiza sobre los modelos de cómputo y los diferentes tipos de análisis sobre algoritmos.
 
 
 - Parte 1:
