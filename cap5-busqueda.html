@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Algoritmos de ordenamiento – Análisis de Algoritmos</title>
+<title>5&nbsp; Algoritmos de búsqueda en el modelo de comparación – Curso Introductorio al Análisis de Algoritmos con Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,8 +84,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./U4.html" rel="next">
-<link href="./U2.html" rel="prev">
+<link href="./cap6-intersecciones.html" rel="next">
+<link href="./cap4-ordenamiento.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./U3.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cap5-busqueda.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de búsqueda en el modelo de comparación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -177,7 +177,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+      <div class="quarto-title-block"><div><h1 class="title"><span id="sec-busqueda" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de búsqueda en el modelo de comparación</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
                       </div>
   </div>
     
@@ -195,10 +195,10 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Análisis de Algoritmos</a> 
+      <a href="./">Curso Introductorio al Análisis de Algoritmos con Julia</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/sadit/ALGO-IR" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
-    <a href="./Análisis-de-Algoritmos.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./Curso-Introductorio-al-Análisis-de-Algoritmos-con-Julia.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -217,43 +217,43 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia.html" class="sidebar-item-text sidebar-link">
+  <a href="./cap1-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Julia como lenguaje de programación para un curso de algoritmos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./U1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción al análisis de algoritmos</span></span></a>
+  <a href="./cap2-analisis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción al análisis de algoritmos con Julia</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./U2.html" class="sidebar-item-text sidebar-link">
+  <a href="./cap3-estructuras.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./U3.html" class="sidebar-item-text sidebar-link active">
+  <a href="./cap4-ordenamiento.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./U4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span></a>
+  <a href="./cap5-busqueda.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de búsqueda en el modelo de comparación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./U5.html" class="sidebar-item-text sidebar-link">
+  <a href="./cap6-intersecciones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Urefs.html" class="sidebar-item-text sidebar-link">
+  <a href="./refs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -267,17 +267,18 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">4.1</span> Introducción</a>
+  <li><a href="#listas-ordenadas" id="toc-listas-ordenadas" class="nav-link active" data-scroll-target="#listas-ordenadas"><span class="header-section-number">5.0.1</span> Listas ordenadas</a></li>
+  <li><a href="#material-audio-visual" id="toc-material-audio-visual" class="nav-link" data-scroll-target="#material-audio-visual"><span class="header-section-number">5.1</span> Material audio-visual</a>
   <ul class="collapse">
-  <li><a href="#lecturas" id="toc-lecturas" class="nav-link" data-scroll-target="#lecturas"><span class="header-section-number">4.1.1</span> Lecturas</a></li>
+  <li><a href="#búsqueda" id="toc-búsqueda" class="nav-link" data-scroll-target="#búsqueda"><span class="header-section-number">5.1.1</span> Búsqueda</a></li>
   </ul></li>
-  <li><a href="#material-audio-visual-sobre-algoritmos-de-ordenamiento" id="toc-material-audio-visual-sobre-algoritmos-de-ordenamiento" class="nav-link" data-scroll-target="#material-audio-visual-sobre-algoritmos-de-ordenamiento"><span class="header-section-number">4.2</span> Material audio-visual sobre algoritmos de ordenamiento</a></li>
-  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">4.3</span> Actividades</a>
+  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">5.2</span> Actividades</a>
   <ul class="collapse">
-  <li><a href="#actividad-0-sin-entrega" id="toc-actividad-0-sin-entrega" class="nav-link" data-scroll-target="#actividad-0-sin-entrega"><span class="header-section-number">4.3.1</span> Actividad 0 [sin entrega]</a></li>
-  <li><a href="#actividad-1-con-reporte" id="toc-actividad-1-con-reporte" class="nav-link" data-scroll-target="#actividad-1-con-reporte"><span class="header-section-number">4.3.2</span> Actividad 1 [con reporte]</a></li>
-  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">4.3.3</span> Entregable</a></li>
+  <li><a href="#actividad-0-sin-entrega" id="toc-actividad-0-sin-entrega" class="nav-link" data-scroll-target="#actividad-0-sin-entrega"><span class="header-section-number">5.2.1</span> Actividad 0 [sin entrega]</a></li>
+  <li><a href="#actividad-1-con-reporte" id="toc-actividad-1-con-reporte" class="nav-link" data-scroll-target="#actividad-1-con-reporte"><span class="header-section-number">5.2.2</span> Actividad 1 [con reporte]</a></li>
+  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">5.2.3</span> Entregable</a></li>
+  <li><a href="#actividad-2-sin-entrega" id="toc-actividad-2-sin-entrega" class="nav-link" data-scroll-target="#actividad-2-sin-entrega"><span class="header-section-number">5.2.4</span> Actividad 2 [sin entrega]</a></li>
+  <li><a href="#leyendo-las-listas-de-posteo" id="toc-leyendo-las-listas-de-posteo" class="nav-link" data-scroll-target="#leyendo-las-listas-de-posteo"><span class="header-section-number">5.2.5</span> Leyendo las listas de posteo</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -289,98 +290,102 @@ window.Quarto = {
 
 
 
-<section id="objetivo" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="objetivo">Objetivo</h2>
-<p>Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y adaptables a la distribución para ordenamiento de arreglos.</p>
-</section>
-<section id="introducción" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">4.1</span> Introducción</h2>
-<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función <span class="math inline">\(\leq\)</span>. Recuerde que se cumplen las siguientes propiedades:</p>
+<p>Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos <span class="math inline">\(a, b, c\)</span> en el a arreglo se cumple lo siguiente:</p>
 <ul>
-<li>si <span class="math inline">\(u \leq v\)</span> y <span class="math inline">\(v \leq w\)</span> entonces <span class="math inline">\(u \leq w\)</span> (transitividad)</li>
-<li>tricotomia:
-<ul>
-<li>si <span class="math inline">\(u \leq v\)</span> y <span class="math inline">\(v \leq u\)</span> entonces <span class="math inline">\(u = v\)</span> (antisimetria)</li>
-<li>en otro caso, <span class="math inline">\(u \leq v\)</span> o <span class="math inline">\(v \leq u\)</span></li>
-</ul></li>
+<li>reflexividad: <span class="math inline">\(a \le a\)</span>.</li>
+<li>transitividad: <span class="math inline">\(a \le b\)</span> y <span class="math inline">\(b \le c\)</span> entonces <span class="math inline">\(a \le c\)</span>.</li>
+<li>anti-simetría: <span class="math inline">\(a \leq b\)</span> y <span class="math inline">\(b \leq a\)</span> entonces <span class="math inline">\(a = b\)</span>.</li>
+<li>completitud: <span class="math inline">\(a \leq b\)</span> o <span class="math inline">\(b \leq a\)</span>.</li>
 </ul>
-<p>La idea es entonces, dado un arreglo <span class="math inline">\(A[1, n] = a_1, a_2, \cdots, a_n\)</span> obtener una permutación <span class="math inline">\(\pi\)</span> tal que <span class="math inline">\(a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}\)</span>. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando <span class="math inline">\(u = v\)</span>, entonces se tiene un ordenamiento estable.</p>
-<p>En terminos prácticos, la idea es reorganizar <span class="math inline">\(A\)</span>, mediante el cálculo implicito de <span class="math inline">\(\pi\)</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">\(A\)</span> esta ordenado, i.e., <span class="math inline">\(a_i \leq a_{i+1}\)</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que es común modificar directamente <span class="math inline">\(A\)</span>. Utilizar <span class="math inline">\(\pi\)</span> solo es necesario cuando no es posible modificar <span class="math inline">\(A\)</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.</p>
-<p>En esta unidad se tendrá atención especial a aquellos algoritmos oportunistas que son capaces de obtener ventaja en instancias sencillas.</p>
-<section id="lecturas" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="lecturas"><span class="header-section-number">4.1.1</span> Lecturas</h3>
-<p>Las lecturas de este tema corresponden al capítulo 5 de <span class="citation" data-cites="Knuth98">(<a href="Urefs.html#ref-Knuth98" role="doc-biblioref">Knuth 1998</a>)</span>, en específico 5.2 <em>Internal sorting</em>. También se recomienda leer y comprender la parte II de <span class="citation" data-cites="Cormen22">(<a href="Urefs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022</a>)</span>, que corresponde a <em>Sorting and order statistics</em>, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <a href="https://en.wikipedia.org/wiki/Sorting_algorithm" class="uri">https://en.wikipedia.org/wiki/Sorting_algorithm</a> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.</p>
-<p>En la práctica, pocos algoritmos son mejores que <em>quicksort</em>. En <span class="citation" data-cites="Loeser74">(<a href="Urefs.html#ref-Loeser74" role="doc-biblioref">Loeser 1974</a>)</span> se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.</p>
-<p>La parte adaptable, esto es para algoritmos <em>oportunistas</em> que toman ventaja de instancias simples, esta cubierta por el artículo <span class="citation" data-cites="Estivill92">(<a href="Urefs.html#ref-Estivill92" role="doc-biblioref">Estivill-Castro y Wood 1992</a>)</span>. En especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad. En <span class="citation" data-cites="Cook80">(<a href="Urefs.html#ref-Cook80" role="doc-biblioref">Cook y Kim 1980</a>)</span> realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a <span class="citation" data-cites="Estivill92">(<a href="Urefs.html#ref-Estivill92" role="doc-biblioref">Estivill-Castro y Wood 1992</a>)</span> pero tiene experimentos que simplifican el entendimiento de los temas.</p>
+<p>Note que dada la condición de arreglo consecutivo en memoria, para dos elementos <span class="math inline">\(u_i\)</span> y <span class="math inline">\(u_j\)</span>, donde <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> son posiciones:</p>
+<ul>
+<li><span class="math inline">\(u_i &lt; u_j \iff i &lt; j\)</span>; note que el comparador es estricto.</li>
+<li><span class="math inline">\(u_i = u_j \iff i = j\)</span>.</li>
+</ul>
+<p>Los algoritmos tomarán ventaja de este hecho para localizar de manera precisa y eficiente elementos deseados, descritos mediante los mismos operadores.</p>
+<section id="listas-ordenadas" class="level3" data-number="5.0.1">
+<h3 data-number="5.0.1" class="anchored" data-anchor-id="listas-ordenadas"><span class="header-section-number">5.0.1</span> Listas ordenadas</h3>
+<p>En esta unidad se aborda la búsqueda en arreglos ordenados, y abusando del término, muchas veces les llamaremos <em>listas ordenadas</em>. Recuerde que a lo largo de este curso, esta será nuestra representación para conjuntos.</p>
+<p>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación <span class="math inline">\(\le\)</span> provoca costo constante <span class="math inline">\(O(1)\)</span>. Este curso no es la excepción. La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</p>
+<p>Utilizaremos como base el artículo <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Jon Louis Bentley y Yao 1976</a>)</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</p>
 </section>
-</section>
-<section id="material-audio-visual-sobre-algoritmos-de-ordenamiento" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="material-audio-visual-sobre-algoritmos-de-ordenamiento"><span class="header-section-number">4.2</span> Material audio-visual sobre algoritmos de ordenamiento</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+<section id="material-audio-visual" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="material-audio-visual"><span class="header-section-number">5.1</span> Material audio-visual</h2>
+<p>En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.</p>
+<p>Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.</p>
+<section id="búsqueda" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="búsqueda"><span class="header-section-number">5.1.1</span> Búsqueda</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VZHlcPPKW5A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
 </section>
-<section id="actividades" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="actividades"><span class="header-section-number">4.3</span> Actividades</h2>
-<section id="actividad-0-sin-entrega" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="actividad-0-sin-entrega"><span class="header-section-number">4.3.1</span> Actividad 0 [sin entrega]</h3>
-<p>Realizar las actividades de lectura y comprensión. - De preferencia realice los ejercicios de los capítulos y secciones relacionadas.</p>
 </section>
-<section id="actividad-1-con-reporte" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="actividad-1-con-reporte"><span class="header-section-number">4.3.2</span> Actividad 1 [con reporte]</h3>
-<ol type="1">
-<li><p>Implemente los algoritmos, bubble-sort, insertion-sort, merge-sort y quick-sort. Explíquelos.</p></li>
-<li><p>Carge los archivos <code>unsorted-list-p=*.json</code>, los cuales corresponden al archivo <code>listas-posteo-100.json</code> perturbado en cierta proporción: <span class="math inline">\(p=0.01, 0.03, 0.10, 0.30\)</span>.</p></li>
-</ol>
+<section id="actividades" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="actividades"><span class="header-section-number">5.2</span> Actividades</h2>
+<section id="actividad-0-sin-entrega" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="actividad-0-sin-entrega"><span class="header-section-number">5.2.1</span> Actividad 0 [sin entrega]</h3>
+<p>Realizar las actividades de lectura y comprensión, apoyosé en el video de esta unidad. De preferencia realice los ejercicios de las secciones relacionadas.</p>
 <ul>
-<li>En el notebook <code>perturbar-listas.ipynb</code> se encuentran el procedimiento que se utilizó para la perturbación.</li>
-<li>Nota: puede usar sus propias listas de posteo perturbadas para la actividad siempre y cuando sean comparables en tamaño.</li>
-<li>Recuerde que la unidad anterior se dió un notebook con el código para crear índices invertidos y las listas de posteo.</li>
+<li>El artículo sobre búsqueda no acotada, como representativo sobre búsqueda adaptativa <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Jon Louis Bentley y Yao 1976</a>)</span>.</li>
+<li>Cap. 12 de <span class="citation" data-cites="Sedgewick98">(<a href="refs.html#ref-Sedgewick98" role="doc-biblioref">Sedgewick 1998</a>)</span>, en partícular Sec. 12.3 y 12.4.</li>
+<li>Cap. 6 de <span class="citation" data-cites="Knuth98">(<a href="refs.html#ref-Knuth98" role="doc-biblioref">Knuth 1998</a>)</span>, en partícular Sec. 6.1 y 6.2.</li>
+<li>El artículo sobre búsqueda adaptativa secuencial <span class="citation" data-cites="Bentley85">(<a href="refs.html#ref-Bentley85" role="doc-biblioref">Jon L. Bentley y McGeoch 1985</a>)</span>.</li>
+<li>Recuerde la referencia básica para la notación y conceptos es <span class="citation" data-cites="Cormen22">(<a href="refs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022</a>)</span>.</li>
 </ul>
-<ol start="3" type="1">
-<li>Para cada archivo de listas desordenadas con cierta perturbación, realice el siguiente experimento:</li>
-</ol>
+</section>
+<section id="actividad-1-con-reporte" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="actividad-1-con-reporte"><span class="header-section-number">5.2.2</span> Actividad 1 [con reporte]</h3>
+<p>Realice y reporte el siguiente experimento:</p>
 <ul>
-<li>Ordene con los algoritmos implementados para cada valor de <span class="math inline">\(p\)</span> con cada.</li>
-<li>Grafique el número de comparaciones necesarias para ordenar las 100 listas.</li>
-<li>Grafique el tiempo en segundos necesario para ordenar las 100 listas.</li>
-</ul>
-<ol start="4" type="1">
-<li>Muestre de manera agregada la información de todos los experimentos en una tabla.</li>
-</ol>
+<li>Use el archivo <code>listas-posteo-100.json</code>, contiene las 100 listas de posteo más frecuentes, se encuentran en formato JSON.</li>
+<li>Utilice las listas (sin el término asociado).</li>
+<li>Los usuarios de Julia deberán asegurar que los tipos de los arreglos es <code>Int</code> y no <code>Any</code> para asegurar la velocidad adecuada</li>
+<li>Seleccione 1000 identificadores de documentos al azar, entre <span class="math inline">\(1\)</span> y <span class="math inline">\(n\)</span>, recuerde que <span class="math inline">\(n=50,000\)</span>.</li>
+<li>Grafique el tiempo promedio de <em>buscar</em> los 1000 identificadores en todas las listas (un solo número que represente las <span class="math inline">\(100\times 1000\)</span> búsquedas). Nota: lo que determinará al buscar es la <em>posición de inserción</em> que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</li>
+<li>Los algoritmos que caracterizará son los siguientes (nombres con referencia a <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Jon Louis Bentley y Yao 1976</a>)</span>):
 <ul>
-<li>Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.</li>
-<li>Nota 2: Repita varias veces las operaciones de ordenamiento, esto es muy importante sobre para la estabilidad de los tiempos en segundos (vea Nota 1).</li>
-<li>Nota 3: En las implementaciones podrá usar cualquier comparación que le convenga, i.e., <span class="math inline">\(&lt;, \leq\)</span>, <span class="math inline">\(cmp \rightarrow \{-1, 0, 1\}\)</span>, etc.</li>
-<li>Nota 4: Tome en cuenta que varios lenguajes de programación (Python y Julia) hacen copias de los arreglos cuando se usa <em>slicing</em>, i.e., <code>arr[i:j]</code> creará un nuevo arreglo y eso implica costos adicionales innecesarios:
-<ul>
-<li>Python: use índices o arreglos de <code>numpy</code>.</li>
-<li>Julia: use índices o vistas, i.e., <code>@view</code>.</li>
+<li><p>Búsqueda binaria acotada</p></li>
+<li><p>Búsqueda secuencial <span class="math inline">\(B_0\)</span></p></li>
+<li><p>Búsqueda no acotada <span class="math inline">\(B_1\)</span></p></li>
+<li><p>Búsqueda no acotada <span class="math inline">\(B_2\)</span></p></li>
+<li><p><em>Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</em></p></li>
 </ul></li>
+<li>Bosqueje en pseudo-código la implementación de la búsqueda casí optima <span class="math inline">\(B_k\)</span></li>
 </ul>
 </section>
-<section id="entregable" class="level3" data-number="4.3.3">
-<h3 data-number="4.3.3" class="anchored" data-anchor-id="entregable"><span class="header-section-number">4.3.3</span> Entregable</h3>
+<section id="entregable" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5.2.3</span> Entregable</h3>
 <p>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.</p>
-<p>Para generar el PDF primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</p>
+<p>Nota: En las implementaciones podrá usar comparación <span class="math inline">\(&lt;, \leq\)</span>, o incluso <span class="math inline">\(cmp \rightarrow \{-1, 0, 1\}\)</span>, teniendo en cuenta que <span class="math inline">\(cmp\)</span> es común en lenguajes modernos, solo debe indicarlo.</p>
+</section>
+<section id="actividad-2-sin-entrega" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="actividad-2-sin-entrega"><span class="header-section-number">5.2.4</span> Actividad 2 [sin entrega]</h3>
+<p>Revisar el notebook <code>crear-indice-invertido.ipynb</code> para los detalles de como se generó la lista de posteo. Usted puede crear nuevas listas de posteo si lo desea usando los conjuntos de datos disponibles (listados en dicho notebook), y a su vez utilizarlas en las actividades de este Unidad. Solo deberá indicarlo; recuerde que los números de documentos y tamaño de vocabulario cambiarán.</p>
+</section>
+<section id="leyendo-las-listas-de-posteo" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="leyendo-las-listas-de-posteo"><span class="header-section-number">5.2.5</span> Leyendo las listas de posteo</h3>
+<p>Usted no necesita generar las listas de posteo, solo leer las que se le han proporcionado en el archivo <code>listas-posteo-100.json</code> que corresponden a las 100 listas de posteo más pobladas (100 terminos más usados en el conjunto de datos). En el archivo <code>listas-posteo-100.json</code> , cada linea un JSON valido, donde se tiene el término y la lista de posteo.</p>
+<ul>
+<li>En el notebook <code>lectura-listas-de-posteo.ipynb</code> se muestra como se leen las listas de posteo desde Julia</li>
+</ul>
 
 
 <!-- -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Cook80" class="csl-entry" role="listitem">
-Cook, Curtis R, y Do Jin Kim. 1980. <span>“Best sorting algorithm for nearly sorted lists”</span>. <em>Communications of the ACM</em> 23 (11): 620–24.
+<div id="ref-Bentley85" class="csl-entry" role="listitem">
+Bentley, Jon L., y Catherine C. McGeoch. 1985. <span>“Amortized analyses of self-organizing sequential search heuristics”</span>. <em>Commun. ACM</em> 28 (4): 404–11. <a href="https://doi.org/10.1145/3341.3349">https://doi.org/10.1145/3341.3349</a>.
+</div>
+<div id="ref-Bentley76" class="csl-entry" role="listitem">
+Bentley, Jon Louis, y Andrew Chi-Chih Yao. 1976. <span>“An almost optimal algorithm for unbounded searching”</span>. <em>Information Processing Letters</em> 5 (3): 82–87. https://doi.org/<a href="https://doi.org/10.1016/0020-0190(76)90071-5">https://doi.org/10.1016/0020-0190(76)90071-5</a>.
 </div>
 <div id="ref-Cormen22" class="csl-entry" role="listitem">
 Cormen, Thomas H, Charles E Leiserson, Ronald L Rivest, y Clifford Stein. 2022. <em>Introduction to algorithms</em>. MIT press.
 </div>
-<div id="ref-Estivill92" class="csl-entry" role="listitem">
-Estivill-Castro, Vladmir, y Derick Wood. 1992. <span>“A survey of adaptive sorting algorithms”</span>. <em>ACM Computing Surveys (CSUR)</em> 24 (4): 441–76.
-</div>
 <div id="ref-Knuth98" class="csl-entry" role="listitem">
 Knuth, Donald. 1998. <em>The Art Of Computer Programming, vol. 3 (2nd ed): Sorting And Searching</em>. Vol. 3. Redwood City, CA, USA.: Addison Wesley Longman Publishing Co. Inc.
 </div>
-<div id="ref-Loeser74" class="csl-entry" role="listitem">
-Loeser, Rudolf. 1974. <span>“Some performance tests of <span>‘quicksort’</span> and descendants”</span>. <em>Communications of the ACM</em> 17 (3): 143–52.
+<div id="ref-Sedgewick98" class="csl-entry" role="listitem">
+Sedgewick, Robert. 1998. <em>Algorithms in c++, parts 1-4: fundamentals, data structure, sorting, searching</em>. Addison-Wesley-Longman, 1998.
 </div>
 </div>
 </section>
@@ -857,91 +862,102 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./U2.html" class="pagination-link" aria-label="Estructuras de datos elementales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span>
+      <a href="./cap4-ordenamiento.html" class="pagination-link" aria-label="Algoritmos de ordenamiento">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./U4.html" class="pagination-link" aria-label="Algoritmos para codificación de enteros">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos para codificación de enteros</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cap6-intersecciones.html" class="pagination-link" aria-label="Algoritmos de intersección de conjuntos con representación de listas ordenadas">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Algoritmos de ordenamiento</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Algoritmos de búsqueda en el modelo de comparación {#sec-busqueda}</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y adaptables a la distribución para ordenamiento de arreglos.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función $\leq$. Recuerde que se cumplen las siguientes propiedades:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos $a, b, c$ en el a arreglo se cumple lo siguiente:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>reflexividad: $a \le a$.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>transitividad: $a \le b$ y $b \le c$ entonces $a \le c$.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>anti-simetría: $a \leq b$ y $b \leq a$ entonces $a = b$.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>completitud: $a \leq b$ o $b \leq a$.</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>si $u \leq v$ y $v \leq w$ entonces $u \leq w$ (transitividad)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tricotomia:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>si $u \leq v$ y $v \leq u$ entonces $u = v$ (antisimetria)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>en otro caso, $u \leq v$ o $v \leq u$</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Note que dada la condición de arreglo consecutivo en memoria, para dos elementos $u_i$ y $u_j$, donde $i$ y $j$ son posiciones:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u_i &lt; u_j \iff i &lt; j$; note que el comparador es estricto.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u_i = u_j \iff i = j$.</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>La idea es entonces, dado un arreglo $A<span class="co">[</span><span class="ot">1, n</span><span class="co">]</span> = a_1, a_2, \cdots, a_n$ obtener una permutación $\pi$ tal que</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>$a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}$. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando $u = v$, entonces se tiene un ordenamiento estable.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Los algoritmos tomarán ventaja de este hecho para localizar de manera precisa y eficiente elementos deseados, descritos mediante los mismos operadores.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>En terminos prácticos, la idea es reorganizar $A$, mediante el cálculo implicito de $\pi$, de tal forma que después de terminar el proceso de ordenamiento se obtenga que $A$ esta ordenado, i.e., $a_i \leq a_{i+1}$. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que es común modificar directamente $A$.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Utilizar $\pi$ solo es necesario cuando no es posible modificar $A$. También es muy común utilizar datos _satélite_ asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Listas ordenadas</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>En esta unidad se aborda la búsqueda en arreglos ordenados, y abusando del término, muchas veces les llamaremos _listas ordenadas_. Recuerde que a lo largo de este curso, esta será nuestra representación para conjuntos.</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>En esta unidad se tendrá atención especial a aquellos algoritmos oportunistas que son capaces de obtener ventaja en instancias sencillas.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lecturas</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Las lecturas de este tema corresponden al capítulo 5 de <span class="co">[</span><span class="ot">@Knuth98</span><span class="co">]</span>, en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen22], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <span class="ot">&lt;https://en.wikipedia.org/wiki/Sorting_algorithm&gt;</span> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación $\le$ provoca costo constante $O(1)$. Este curso no es la excepción.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Utilizaremos como base el artículo <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>En la práctica, pocos algoritmos son mejores que _quicksort_. En <span class="co">[</span><span class="ot">@Loeser74</span><span class="co">]</span> se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>La parte adaptable, esto es para algoritmos _oportunistas_ que toman ventaja de instancias simples, esta cubierta por el artículo <span class="co">[</span><span class="ot">@Estivill92</span><span class="co">]</span>. En especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>En <span class="co">[</span><span class="ot">@Cook80</span><span class="co">]</span> realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a <span class="co">[</span><span class="ot">@Estivill92</span><span class="co">]</span> pero tiene experimentos que simplifican el entendimiento de los temas.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Material audio-visual</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Material audio-visual sobre algoritmos de ordenamiento</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Búsqueda</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/VZHlcPPKW5A"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/F9jh0IJsg1w"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 0 [sin entrega]</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>Realizar las actividades de lectura y comprensión.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>De preferencia realice los ejercicios de los capítulos y secciones relacionadas.</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 1 [con reporte]</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Implemente los algoritmos, bubble-sort, insertion-sort, merge-sort y quick-sort. Explíquelos.</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Carge los archivos <span class="in">`unsorted-list-p=*.json`</span>, los cuales corresponden al archivo <span class="in">`listas-posteo-100.json`</span> perturbado en cierta proporción: $p=0.01, 0.03, 0.10, 0.30$.</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>En el notebook <span class="in">`perturbar-listas.ipynb`</span> se encuentran el procedimiento que se utilizó para la perturbación.</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Nota: puede usar sus propias listas de posteo perturbadas para la actividad siempre y cuando sean comparables en tamaño.</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Recuerde que la unidad anterior se dió un notebook con el código para crear índices invertidos y las listas de posteo.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Para cada archivo de listas desordenadas con cierta perturbación, realice el siguiente experimento:</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Ordene con los algoritmos implementados para cada valor de $p$ con cada.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Grafique el número de comparaciones necesarias para ordenar las 100 listas.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Grafique el tiempo en segundos necesario para ordenar las 100 listas.</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Muestre de manera agregada la información de todos los experimentos en una tabla.</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nota 1: Recuerde copiar o cargar cada lista para evitar ordenar conjuntos completamente ordenados.</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nota 2: Repita varias veces las operaciones de ordenamiento, esto es muy importante sobre para la estabilidad de los tiempos en segundos (vea Nota 1).</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nota 3: En las implementaciones podrá usar cualquier comparación que le convenga, i.e., $&lt;, \leq$, $cmp \rightarrow <span class="sc">\{</span>-1, 0, 1<span class="sc">\}</span>$, etc.</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nota 4: Tome en cuenta que varios lenguajes de programación (Python y Julia) hacen copias de los arreglos cuando se usa _slicing_, i.e., <span class="in">`arr[i:j]`</span> creará un nuevo arreglo y eso implica costos adicionales innecesarios:</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Python: use índices o arreglos de <span class="in">`numpy`</span>.</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Julia: use índices o vistas, i.e., <span class="in">`@view`</span>.</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 0 [sin entrega]</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Realizar las actividades de lectura y comprensión, apoyosé en el video de esta unidad. De preferencia realice los ejercicios de las secciones relacionadas.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El artículo sobre búsqueda no acotada, como representativo sobre búsqueda adaptativa <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cap. 12 de <span class="co">[</span><span class="ot">@Sedgewick98</span><span class="co">]</span>, en partícular Sec. 12.3 y 12.4.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cap. 6 de <span class="co">[</span><span class="ot">@Knuth98</span><span class="co">]</span>, en partícular Sec. 6.1 y 6.2.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El artículo sobre búsqueda adaptativa secuencial <span class="co">[</span><span class="ot">@Bentley85</span><span class="co">]</span>.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Recuerde la referencia básica para la notación y conceptos es <span class="co">[</span><span class="ot">@Cormen22</span><span class="co">]</span>.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 1 [con reporte]</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Realice y reporte el siguiente experimento:</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Use el archivo <span class="in">`listas-posteo-100.json`</span>, contiene las 100 listas de posteo más frecuentes, se encuentran en formato JSON.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Utilice las listas (sin el término asociado).</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Los usuarios de Julia deberán asegurar que los tipos de los arreglos es <span class="in">`Int`</span> y no <span class="in">`Any`</span> para asegurar la velocidad adecuada</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Seleccione 1000 identificadores de documentos al azar, entre $1$ y $n$, recuerde que $n=50,000$.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Grafique el tiempo promedio de _buscar_ los 1000 identificadores en todas las listas (un solo número que represente las $100\times 1000$ búsquedas). Nota: lo que determinará al buscar es la _posición de inserción_ que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Los algoritmos que caracterizará son los siguientes (nombres con referencia a <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>):</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda binaria acotada</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda secuencial $B_0$</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda no acotada $B_1$</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda no acotada $B_2$</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>*Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.*</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Bosqueje en pseudo-código la implementación de la búsqueda casí optima $B_k$</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>Nota: En las implementaciones podrá usar comparación $&lt;, \leq$, o incluso $cmp \rightarrow <span class="sc">\{</span>-1, 0, 1<span class="sc">\}</span>$, teniendo en cuenta que $cmp$ es común en lenguajes modernos, solo debe indicarlo.</span>
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>Para generar el PDF primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 2 [sin entrega]</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>Revisar el notebook <span class="in">`crear-indice-invertido.ipynb`</span> para los detalles de como se generó la lista de posteo. Usted puede crear nuevas listas de posteo si lo desea usando los conjuntos de datos disponibles (listados en dicho notebook), y a su vez utilizarlas en las actividades de este Unidad. Solo deberá indicarlo; recuerde que los números de documentos y tamaño de vocabulario cambiarán.</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">### Leyendo las listas de posteo</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>Usted no necesita generar las listas de posteo, solo leer las que se le han proporcionado en el archivo <span class="in">`listas-posteo-100.json`</span> que corresponden a las 100 listas de posteo más pobladas (100 terminos más usados en el conjunto de datos).</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>En el archivo <span class="in">`listas-posteo-100.json`</span> , cada linea un JSON valido, donde se tiene el término y la lista de posteo.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>En el notebook <span class="in">`lectura-listas-de-posteo.ipynb`</span> se muestra como se leen las listas de posteo desde Julia</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
