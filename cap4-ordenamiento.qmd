@@ -1,9 +1,9 @@
 ---
-title: Algoritmos de ordenamiento
+engine: julia
 lang: es-MX
-
 ---
 
+# Algoritmos de ordenamiento {#sec-ordenamiento}
 
 ## Objetivo {.unnumbered}
 Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y adaptables a la distribución para ordenamiento de arreglos.

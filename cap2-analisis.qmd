@@ -1,10 +1,9 @@
 ---
-title: Introducción al análisis de algoritmos
 lang: es-MX
 engine: julia
-
 ---
 
+# Introducción al análisis de algoritmos con Julia {#sec-analisis}
 
 ## Objetivo {.unnumbered}
 Obtener los criterios básicos para el análisis, diseño e implementación de algoritmos.

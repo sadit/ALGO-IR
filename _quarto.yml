@@ -4,20 +4,20 @@ quarto-required: ">= 1.5.45"
 project:
   type: book
 book:
-  title: "Análisis de Algoritmos"
+  title: "Curso Introductorio al Análisis de Algoritmos con Julia"
   author: 
     - name: "Eric S. Téllez"
       url: https://sadit.github.io
       affiliation: INFOTEC Centro de Investigación e Innovación en Tecnologías de la Información y Comunicación    
   chapters:
     - index.qmd
-    - julia.qmd
-    - U1.qmd
-    - U2.qmd
-    - U3.qmd
-    - U4.qmd
-    - U5.qmd
-    - Urefs.qmd
+    - cap1-julia.qmd
+    - cap2-analisis.qmd
+    - cap3-estructuras.qmd
+    - cap4-ordenamiento.qmd
+    - cap5-busqueda.qmd
+    - cap6-intersecciones.qmd
+    - refs.qmd
       #- U5.qmd
       #- U6.qmd
   site-url: https://sadit.github.io/ALGO-IR
@@ -26,8 +26,6 @@ book:
   page-footer:
     right: |
       [![](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) <br/> Esta obra está bajo una [Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-sa/4.0/)
-
-
 
 bibliography: refs.bib
 title-block-banner: true

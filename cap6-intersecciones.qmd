@@ -1,8 +1,9 @@
 ---
-title: Algoritmos de intersección de conjuntos con representación de listas ordenadas
 lang: es-MX
+engine: julia
 ---
 
+# Algoritmos de intersección de conjuntos con representación de listas ordenadas {#sec-intersecciones}
 
 ## Objetivo {.unnumbered}
 Implementar y comparar algoritmos de intersección de conjuntos representados como listas ordenadas, utilizando una variedad de algoritmos de búsqueda que dan diferentes propiedades a los algoritmos de intersección.
