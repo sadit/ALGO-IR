@@ -43,11 +43,51 @@ En ese punto, es necesario reconocer que para un problema, existen diferentes in
 ## Notación asintótica
 Realizar un conteo de operaciones y mediciones es un asunto complejo que requiere focalizar los esfuerzos. Para este fin, es posible contabilizar solo algunas operaciones de importancia, que se supondrían serían las más costosas o que de alguna manera capturan de manera más fiel la dinámica de costos. 
 
-El comportamiento asintótico es otra forma de simplificar y enfocarnos en los puntos de importancia.
+El comportamiento asintótico es otra forma de simplificar y enfocarnos en los puntos de importancia, en este caso, cuando el tamaño de la entrada es realmente grande. Es importante mencionar, que no se esperan entradas de tamaño descomunal, ni tampoco se espera cualquier tipo de entrada.
+
+### Notación $\Theta$ 
+Para una función dada $g(n)$ denotamos por $\Theta(g(n))$ el siguiente conjunto de funciones:
+
+$$
+\begin{align}
+\Theta(g(n)) = \{ f(n) \mid & \text{ existen las constantes positivas }c_1, c_2 \text{ y } n_0 \text{ tal que } \\
+            & 0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \}
+\end{align}
+$$
+esto es, una función $f(n)$ pertenece al conjunto $g(n)$ si $c_1 g(n)$ y $c_2 g(n)$ pueden _cubrirla_ por abajo y por arriba, para esto deben existen las constantes positivas $c_1$ y $c_2$ y una $n$ lo suficientemente larga, e.g., para eso la constante $n_0$. La notación propiamente de conjuntos puede usarse $f(n) \in \Theta(g(n))$ pero es común en el área usar $f(n) = \Theta(g(n))$ para expresar la pertenencia; este abuso de la notación tiene ventaja a la hora de plantear los problemas de análisis.
+
+### Notación $O$
+Se utiliza para indicar una cota asintótica superior. Una función $f(n)$ se dice que esta en $O(g(n))$ si esta en el siguiente conjunto:
+
+$$
+\begin{align}
+O(g(n)) = \{ f(n) \mid & \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \\
+            & 0 \leq f(n) \leq c g(n) \text{ para todo } n \geq n_0 \}
+\end{align}
+$$
+La notación $O$ se usa para dar una cota superior, dentro de un factor constante. Al escribir $f(n) = O(g(n))$ se indica que $f(n)$ es miembro del conjunto $O(g(n))$; hay que notar que $f(n) = \Theta(g(n))$ implica que $f(n) = O(g(n))$, i.e., $\Theta(g(n)) \subseteq O(g(n))$.
+
+### Notación $\Omega$
+Al contrario de $O$, la notación $\Omega$ da una cota asintótica inferior. Una función $f(n)$ se dice que esta en $\Omega(g(n))$ si esta en el siguiente conjunto:
+
+$$
+\begin{align}
+\Omega(g(n)) = \{ f(n) \mid & \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \\
+            & 0 \leq c g(n) \leq f(n) \text{ para todo } n \geq n_0 \}
+\end{align}
+$$
+
+Dado que la $\Omega$ define una cota superior, basicamente si $f(n) = \Omega(g(n))$, entonces $f(n)$ debe estar por encima de $g(n)$ con las constantes $c$ y $n_0$ adecuadas. Al igual que la notación $O$, la notación $\Omega$ es menos estricta que $\Theta$, esto es $f(n) = \Theta(g(n))$ implica que $f(n) = \Omega(g(n))$, por lo que $\Theta(g(n)) \subseteq \Omega(g(n))$.
+
+Por tanto, si $f(n) = O(g(n))$ y $f(n) = \Omega(g(n))$ entonces $f(n) \in \Theta(g(n))$.
+
+::: {.margin-column}
+Es importante conocer los ordenes de crecimiento más comunes de tal forma que podamos realizar comparaciones rápidas de costos, y dimensionar las diferencias de recursos entre diferentes tipos de costos. La notación asintótica hace uso extensivo de la diferencia entre diferentes ordenes de crecimiento para ignorar detalles y simplificar el análisis de algoritmos.
+:::
 
 ### Apoyo audio-visual
 
-En los siguientes videos se profundiza sobre los modelos de cómputo y los diferentes tipos de análisis sobre algoritmos.
+En los siguientes videos se profundiza sobre los modelos de cómputo y los diferentes tipos de análisis sobre algoritmos. 
 
 
 - Parte 1:
@@ -69,7 +109,7 @@ Los ordenes de crecimiento son maneras de categorizar la velocidad de crecimient
 La siguiente figura muestra un crecimiento nulo (constante), logaritmico y lineal. Note como la función logarítmica crece lentamente.
 
 ```{julia}
-
+#| fig-width: 90%
 using Plots, LaTeXStrings
 n = 300 # 300 puntos
 
@@ -83,7 +123,7 @@ A continuación veremos tres funciones, una función con $n\log n$ y una funció
 
 
 ```{julia}
-
+#| fig-width: 90%
 using Plots, LaTeXStrings
 n = 7 # note que se usan menos puntos porque 300 serían demasiados para el rango
 
@@ -97,7 +137,7 @@ A continuación se compara el crecimiento de una función exponencial con una fu
 
 
 ```{julia}
-
+#| fig-width: 90%
 using Plots, LaTeXStrings
 n = 20
 
@@ -110,6 +150,7 @@ plot!(1:n, [2^x for x in 1:n], label=L"2^n")
 Vease como la función factorial crece mucho más rápido que la función exponencial para una $n$ relativamente pequeña. Vea las magnitudes que se alcanzan en el _eje_ $y$, y comparelas con aquellas con los anteriores crecimientos. 
 
 ```{julia}
+#| fig-width: 90%
 
 using Plots, LaTeXStrings
 n = 20
@@ -120,7 +161,7 @@ plot!(1:n, [factorial(x) for x in 1:n], label=L"n!")
 
 #### Un poco más sobre funciones de muy alto costo
 ```{julia}
-
+#| fig-width: 90%
 n = 10
 
 plot(1:n, [factorial(x) for x in 1:n], label=L"n!")
@@ -130,10 +171,109 @@ plot!(1:n, [x^x for x in Int128(1):Int128(n)], label=L"n^n")
 Vea la figura anterior, donde se compara $n!$ con $n^n$, observe como es que cualquier constante se vuelve irrelevante rapidamente; aun para $n^n$ piense en $n^{n^n}$.
 
  Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuando es posible solucionarlos, o cuando se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordaran problemas con un costo menor, pero que por la cantidad de datos, i.e., $n$, se vuelven muy costosos y veremos como aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.
- 
-## Conclusiones
 
-Es importante conocer los ordenes de crecimiento más comunes de tal forma que podamos realizar comparaciones rápidas de costos, y dimensionar las diferencias de recursos entre diferentes tipos de costos. La notación asintótica hace uso extensivo de la diferencia entre diferentes ordenes de crecimiento para ignorar detalles y simplificar el análisis de algoritmos.
+
+##  El enfoque experimental
+La notación asintótica nos permite alcanzar un lenguaje común y preciso sobre los costos de problemas y algoritmos; es de especial importancia para la evaluación de las alternativas en la literatura especializada, y elegir algoritmos aún sin la necesidad de implementación. El análisis asintótico da la posibilidad de conocer el desempeño desde diferentes perspectivas como peor caso o caso promedio, utilizando un módelo de computación, y siempre pensando en entradas lo suficientemente grandes.
+
+En la práctica, existe una múltitud de razones por los cuales los problemas que se resuelven podrian no ser tan grandes como para que un algoritmo domine a otros de manera asintótica, las instancias podrían no ser tan generales como para preocuparse en el peor caso, o el caso promedio general. En muchas situaciones, es importante sacar provecho de los casos _fáciles_, sobre todo cuando el problema a resolver podría asegurar que dichos casos simples sean abundantes. Dada la complejidad detrás de definir sub-conjuntos de instancias y llevar a cabo un análisis formal, se vuelve imperativo realizar pruebas experimentales.
+
+Por otra parte, dada la complejidad de una computadora moderna, es necesario realizar evaluaciones experimentales de los algoritmos que tengan una complejidad similar. Las computadoras reales tienen una jerarquia de memoria con tamaños y velocidades de acceso divergentes entre sí, con optimizaciones integradas sobre la predicción de acceso y cierto nivel de paralelismo. 
+Incluso, cada cierto tiempo se obtienen optimizaciones en los dispositivos que podrían mejorar los rendimientos, por lo que es posible que con una generación a otra, lo que sabemos de los algoritmos y su desempeño en computadoras y cargas de trabajo reales cambie.
+
+### Metodología experimental
+Algunos de los algoritmos que se verán en este libro son sumamente rapidos en la práctica para resolver una instancia práctica por lo que medir el desempeño de instancias solas podría no tener sentido. La acumulación de operaciones es fundamental, así como la diversidad de las instancias también lo es. Caracterizar las entradas es de vital importancia ya que la adaptabilidad a las instancias es parte de los objetivos.
+
+Entonces, estaremos probando conjuntos de instancias, caracterizadas y estaremos utilizando tiempos promedios. También estaremos usando conteo de operaciones, por lo que los algoritmos en cuestión muchas veces serán adaptados para poder realizar este conteo. 
+
+En Julia etaremos utilizando las siguientes instrucciones:
+
+- `@time expr` macro que mide el tiempo en segundo utilizado por `expr`, también reporta el número de alojaciones de memoria. Note que reducir la cantidad de memoria alojada puede significar reducir el tiempo de una implementación, ya que el manejo de memoria dinámica es costoso.
+- `@benchmark expr params` macro del paquete `BenchmarkTools` que automatiza la repetición de `expr` para obtener diferentes mediciones y hacer un reporte, `params` permite manipular la forma en que se reliza la evaluación.
+- `@btime expr params`  macro del paquete `BenchmarkTools` que mimetiza la salida de `@time`.
+
+```{julia}
+a = rand(Float32, 3, 3)
+@time a * a # <1>
+@time a * a # <2>
+```
+1. Todas las fuciones se deben compilar, la primera llamada uncluye los costos de compilación.
+2. El costo sin compilación, hay una alojación que es la matriz donde se guarda el resultado.
+
+Tanto `@benchmark` como `@btime` aceptan interpolación de variables con el prefijo `$` para controlar la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parametro `setup` para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de `expr`.
+
+```{julia}
+using BenchmarkTools
+
+@benchmark a * a setup=(a=rand(Float32, 3, 3))
+```
+
+```{julia}
+
+a = rand(Float32, 3, 3)
+@btime a * a setup=(a=$a)
+```
+
+El parametro `sample` controla el número máximo de muestras que se tomarán para el análisis, y `seconds` limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que `seconds`.[^btools]
+
+[^btools]: Se recomienda visitar el sitio <https://juliaci.github.io/BenchmarkTools.jl/stable/> para más información sobre el paquete `BenchmarkTools`, y en particular para sus parametros, como guardar información de corridas.
+
+```{julia}
+a = rand(Float32, 3, 3)
+b = rand(Float32, 3, 3)
+@benchmark a * b setup=(a=$a, b=$b) samples=1000 seconds=0.33
+```
+
+
+### Example
+
+
+```{julia}
+function maximo(col) # <1>
+    maxpos = 1
+    actualizaciones = 1
+    i = 2
+
+    while i < length(col)
+        @info i => length(col)
+        if col[maxpos] < col[i]
+            maxpos = i
+            actualizaciones += 1
+        end
+        i += 1
+    end
+
+    maxpos, actualizaciones
+end
+
+#using StatsBase
+
+#a = rand(UInt32, 128)
+# display(@benchmark maximo($a) samples=100 seconds=3)  # <2>
+
+#b = [maximo(rand(UInt32, 128))[2] for i in 1:100]
+#display(quantile(b)) # <3>
+```
+1. El siguiente código de julia encuentra el máximo en una secuencia y devuelve su posición, y además devuelve el número de veces que se actualizó el máximo en el recorrido.
+
+
+Ahora el código que se puede utilizar para obtener el desempeño, midiendo máximo 100 samples en 3 segundos.
+
+
+<!--```{julia}
+
+
+# 
+```-->
+
+Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo como caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que 
+el número de `actualizaciones` es nuesta medida de desempeño, un código donde se capturen las actualizaciones
+
+<!--```{julia}
+using StatsBase
+a = [maximo(rand(UInt32, 128))[2] for i in 1:100]
+quantile(a)
+```-->
 
 
 ## Actividades
@@ -158,6 +298,7 @@ Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes 
 Su trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
 
 No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
+
 - Título del reporte, su nombre.
 - Introducción.
 - Código cercano a la presentación de resultados.
