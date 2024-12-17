@@ -30,7 +30,7 @@ En este curso nos enfocaremos en especificaciones de alto nivel, donde los algor
 La selección de operaciones de interés tiene el espíritu de simplificar el análisis, focalizando nuestros esfuerzos en operaciones que acumulan mayor costo y que capturan la dinámica del resto. Adicionalmente al conteo de operaciones nos interesa el desempeño de los algoritmos en tiempo real y en la cantidad de memoria consumida, por lo que se aboradará el costo realizando mediciones experimentales, contrastando con el análisis basado en conteo de operaciones siempre que sea posible. 
 
 ## Tipos de análisis
-La pregunta inicial sería ¿qué nos interesa saber de un algoritmo que resuelve un problema? probablemente, lo primero sería saber si produce resultados correctos. Despues, entre el conjunto de las alternativas que producen resultados correctos, es determinante obtener su desempeño para conocer cuál es más conveniente para resolver un problema. 
+La pregunta inicial sería ¿qué nos interesa saber de un algoritmo que resuelve un problema? probablemente, lo primero sería saber si produce resultados correctos. Después, entre el conjunto de las alternativas que producen resultados correctos, es determinante obtener su desempeño para conocer cuál es más conveniente para resolver un problema. 
 
 En ese punto, es necesario reconocer que para un problema, existen diferentes instancias posibles, esto es el espacio de instancias del problema, y que cada una de ellas exigirían soluciones con diferentes costos para cada algoritmo. Por tanto existen diferentes tipos de análisis y algoritmos.
 
@@ -48,34 +48,32 @@ El comportamiento asintótico es otra forma de simplificar y enfocarnos en los p
 ### Notación $\Theta$ 
 Para una función dada $g(n)$ denotamos por $\Theta(g(n))$ el siguiente conjunto de funciones:
 
-$$
 \begin{align}
-\Theta(g(n)) = & \left\{ f(n) \mid \text{ existen las constantes positivas }c_1, c_2 \text{ y } n_0 \text{ tal que } \right.\\
-    & \left. 0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \right\} \\
+\Theta(g(n)) &=  \left\{ f(n) \mid \text{ existen las constantes positivas }c_1, c_2 \text{ y } n_0 \text{ tal que } \right.\\
+    ~ & \left. 0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \right\} \\
 \end{align}
-$$
+
 esto es, una función $f(n)$ pertenece al conjunto $g(n)$ si $c_1 g(n)$ y $c_2 g(n)$ pueden _cubrirla_ por abajo y por arriba, para esto deben existen las constantes positivas $c_1$ y $c_2$ y una $n$ lo suficientemente larga, e.g., para eso la constante $n_0$. La notación propiamente de conjuntos puede usarse $f(n) \in \Theta(g(n))$ pero es común en el área usar $f(n) = \Theta(g(n))$ para expresar la pertenencia; este abuso de la notación tiene ventaja a la hora de plantear los problemas de análisis.
 
 ### Notación $O$
 Se utiliza para indicar una cota asintótica superior. Una función $f(n)$ se dice que esta en $O(g(n))$ si esta en el siguiente conjunto:
 
-$$
+
 \begin{align}
-O(g(n)) = & \left\{ f(n)  \mid \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \right.\\
-    & \left. 0 \leq f(n) \leq c g(n) \text{ para todo } n \geq n_0 \right\} \\
+O(g(n)) &=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \right.\\
+    ~& \left. 0 \leq f(n) \leq c g(n) \text{ para todo } n \geq n_0 \right\} \\
 \end{align}
-$$
+
 La notación $O$ se usa para dar una cota superior, dentro de un factor constante. Al escribir $f(n) = O(g(n))$ se indica que $f(n)$ es miembro del conjunto $O(g(n))$; hay que notar que $f(n) = \Theta(g(n))$ implica que $f(n) = O(g(n))$, i.e., $\Theta(g(n)) \subseteq O(g(n))$.
 
 ### Notación $\Omega$
 Al contrario de $O$, la notación $\Omega$ da una cota asintótica inferior. Una función $f(n)$ se dice que esta en $\Omega(g(n))$ si esta en el siguiente conjunto:
 
-$$
 \begin{align}
 \Omega(g(n)) = & \left\{ f(n)  \mid \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \right. \\
     & \left. 0 \leq c g(n) \leq f(n) \text{ para todo } n \geq n_0 \right\} \\
 \end{align}
-$$
+
 
 Dado que la $\Omega$ define una cota superior, basicamente si $f(n) = \Omega(g(n))$, entonces $f(n)$ debe estar por encima de $g(n)$ con las constantes $c$ y $n_0$ adecuadas. Al igual que la notación $O$, la notación $\Omega$ es menos estricta que $\Theta$, esto es $f(n) = \Theta(g(n))$ implica que $f(n) = \Omega(g(n))$, por lo que $\Theta(g(n)) \subseteq \Omega(g(n))$.
 
