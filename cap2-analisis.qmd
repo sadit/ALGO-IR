@@ -50,8 +50,8 @@ Para una función dada $g(n)$ denotamos por $\Theta(g(n))$ el siguiente conjunto
 
 $$
 \begin{align}
-\Theta(g(n)) = \{ f(n) \mid & \text{ existen las constantes positivas }c_1, c_2 \text{ y } n_0 \text{ tal que } \\
-            & 0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \}
+\Theta(g(n)) = & \left\{ f(n) \mid \text{ existen las constantes positivas }c_1, c_2 \text{ y } n_0 \text{ tal que } \right.\\
+    & \left. 0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \right\} \\
 \end{align}
 $$
 esto es, una función $f(n)$ pertenece al conjunto $g(n)$ si $c_1 g(n)$ y $c_2 g(n)$ pueden _cubrirla_ por abajo y por arriba, para esto deben existen las constantes positivas $c_1$ y $c_2$ y una $n$ lo suficientemente larga, e.g., para eso la constante $n_0$. La notación propiamente de conjuntos puede usarse $f(n) \in \Theta(g(n))$ pero es común en el área usar $f(n) = \Theta(g(n))$ para expresar la pertenencia; este abuso de la notación tiene ventaja a la hora de plantear los problemas de análisis.
@@ -61,8 +61,8 @@ Se utiliza para indicar una cota asintótica superior. Una función $f(n)$ se di
 
 $$
 \begin{align}
-O(g(n)) = \{ f(n) \mid & \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \\
-            & 0 \leq f(n) \leq c g(n) \text{ para todo } n \geq n_0 \}
+O(g(n)) = & \left\{ f(n)  \mid \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \right.\\
+    & \left. 0 \leq f(n) \leq c g(n) \text{ para todo } n \geq n_0 \right\} \\
 \end{align}
 $$
 La notación $O$ se usa para dar una cota superior, dentro de un factor constante. Al escribir $f(n) = O(g(n))$ se indica que $f(n)$ es miembro del conjunto $O(g(n))$; hay que notar que $f(n) = \Theta(g(n))$ implica que $f(n) = O(g(n))$, i.e., $\Theta(g(n)) \subseteq O(g(n))$.
@@ -72,8 +72,8 @@ Al contrario de $O$, la notación $\Omega$ da una cota asintótica inferior. Una
 
 $$
 \begin{align}
-\Omega(g(n)) = \{ f(n) \mid & \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \\
-            & 0 \leq c g(n) \leq f(n) \text{ para todo } n \geq n_0 \}
+\Omega(g(n)) = & \left\{ f(n)  \mid \text{ existen las constantes positivas }c \text{ y } n_0 \text{ tal que } \right. \\
+    & \left. 0 \leq c g(n) \leq f(n) \text{ para todo } n \geq n_0 \right\} \\
 \end{align}
 $$
 
