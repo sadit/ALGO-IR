@@ -1,6 +1,6 @@
 ---
-lang: es-MX
 engine: julia
+lang: es-MX
 ---
 
 # Introducción al análisis de algoritmos con Julia {#sec-analisis}
@@ -124,7 +124,6 @@ A continuación veremos tres funciones, una función con $n\log n$ y una funció
 
 ```{julia}
 #| fig-width: 90%
-using Plots, LaTeXStrings
 n = 7 # note que se usan menos puntos porque 300 serían demasiados para el rango
 
 plot(1:n, [x * log2(x) for x in 1:n], label=L"n\log_2{n}")
@@ -138,7 +137,6 @@ A continuación se compara el crecimiento de una función exponencial con una fu
 
 ```{julia}
 #| fig-width: 90%
-using Plots, LaTeXStrings
 n = 20
 
 plot(1:n, [x^4 for x in 1:n], label=L"n^4")
@@ -152,7 +150,6 @@ Vease como la función factorial crece mucho más rápido que la función expone
 ```{julia}
 #| fig-width: 90%
 
-using Plots, LaTeXStrings
 n = 20
 
 plot(1:n, [2^x for x in 1:n], label=L"2^n")
@@ -171,7 +168,6 @@ plot!(1:n, [x^x for x in Int128(1):Int128(n)], label=L"n^n")
 Vea la figura anterior, donde se compara $n!$ con $n^n$, observe como es que cualquier constante se vuelve irrelevante rapidamente; aun para $n^n$ piense en $n^{n^n}$.
 
  Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuando es posible solucionarlos, o cuando se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordaran problemas con un costo menor, pero que por la cantidad de datos, i.e., $n$, se vuelven muy costosos y veremos como aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.
-
 
 ##  El enfoque experimental
 La notación asintótica nos permite alcanzar un lenguaje común y preciso sobre los costos de problemas y algoritmos; es de especial importancia para la evaluación de las alternativas en la literatura especializada, y elegir algoritmos aún sin la necesidad de implementación. El análisis asintótico da la posibilidad de conocer el desempeño desde diferentes perspectivas como peor caso o caso promedio, utilizando un módelo de computación, y siempre pensando en entradas lo suficientemente grandes.
@@ -224,18 +220,17 @@ b = rand(Float32, 3, 3)
 @benchmark a * b setup=(a=$a, b=$b) samples=1000 seconds=0.33
 ```
 
-
 ### Example
 
-
+--
 ```{julia}
+
 function maximo(col) # <1>
     maxpos = 1
     actualizaciones = 1
     i = 2
 
     while i < length(col)
-        @info i => length(col)
         if col[maxpos] < col[i]
             maxpos = i
             actualizaciones += 1
@@ -245,36 +240,26 @@ function maximo(col) # <1>
 
     maxpos, actualizaciones
 end
+``` 
+1. Función que encuentra el máximo en una secuencia y devuelve su posición, y además devuelve el número de veces que se actualizó el máximo en el recorrido.
 
-#using StatsBase
-
-#a = rand(UInt32, 128)
-# display(@benchmark maximo($a) samples=100 seconds=3)  # <2>
-
-#b = [maximo(rand(UInt32, 128))[2] for i in 1:100]
-#display(quantile(b)) # <3>
+```{julia}
+a = rand(UInt32, 128)
+@benchmark maximo($a) samples=100 seconds=3 # <1>
 ```
-1. El siguiente código de julia encuentra el máximo en una secuencia y devuelve su posición, y además devuelve el número de veces que se actualizó el máximo en el recorrido.
+1. Un análisis de desempeño usando `@benchmark`; probando con máximo 100 samples en 3 segundos. 
 
 
-Ahora el código que se puede utilizar para obtener el desempeño, midiendo máximo 100 samples en 3 segundos.
+Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que el número de `actualizaciones` es nuesta medida de desempeño, un código donde se capturen las actualizaciones
 
-
-<!--```{julia}
-
-
-# 
-```-->
-
-Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo como caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que 
-el número de `actualizaciones` es nuesta medida de desempeño, un código donde se capturen las actualizaciones
-
-<!--```{julia}
-using StatsBase
-a = [maximo(rand(UInt32, 128))[2] for i in 1:100]
-quantile(a)
-```-->
-
+```{julia}
+using StatsBase # <1>
+a = [maximo(rand(UInt32, 128))[2] for i in 1:100] # <2>
+quantile(a, [0.0, 0.25, 0.5, 0.75, 1.0]) # <3>
+```
+1. Inclusión de un paquete para cálculo de estadísticas básicas.
+2. Definición de 100 experimentos que calculan `maximo` sobre arreglos aleatorios.
+3. Cálculo del mínimo, cuantiles 0.25, 0.5, 0.75, y el máximo, para determinar el desempeño.
 
 ## Actividades
 Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:

@@ -25,3 +25,5 @@ Manifest.toml
 .*
 
 /.quarto/
+
+/_*.local
