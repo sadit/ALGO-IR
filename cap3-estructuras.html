@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4fc2181566ea7379508b8a824583f84d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b72aa43c4b700e74a32346e1c7109463.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b254e9e3fad484ce9648ad97f95daba8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -472,7 +472,7 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">getmaxdot</span>(<span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>), <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>, <span class="fl">1000</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(974, 1.2965167f0)</code></pre>
+<pre><code>(484, 2.1323884f0)</code></pre>
 </div>
 </div>
 <p>En este código puede verse como se separa el cálculo del producto punto en una función, esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función <span class="math inline">\(getmaxdot\)</span> se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere <span class="math inline">\(O(n)\)</span> comparaciones, para una mátriz de <span class="math inline">\(n\)</span> columnas. Esto implica que cada producto punto se cuenta como <span class="math inline">\(O(1)\)</span>, lo cual simplifica el razonamiento. Por la función <span class="math inline">\(mydot\)</span> podemos observar que el producto punto tiene un costo de <span class="math inline">\(O(m)\)</span>, por lo que la <span class="math inline">\(getmaxdot\)</span> tiene un costo de <span class="math inline">\(O(mn)\)</span> operaciones lógicas y aritméticas.</p>
@@ -501,11 +501,11 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="funcion-producto-matricial" class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float32}:
- 0.424688  0.424688  0.424688   4.5556f-41  -2.21096f13
- 0.104257  0.104257  0.104257  -2.21095f13   4.5556f-41
- 0.76055   0.76055   0.76055    4.5556f-41  -2.21097f13
- 0.233083  0.233083  0.233083  -1.64284f9    4.5556f-41
- 0.865582  0.865582  0.865582   4.5556f-41  -3.86414f12</code></pre>
+ 1.10637   1.10637   1.10637   4.5813f-41  -0.00012953
+ 0.123466  0.123466  0.123466  2.0f-44      4.5813f-41
+ 1.01496   1.01496   1.01496   0.0         -0.00012953
+ 0.462649  0.462649  0.462649  2.0f-44      4.5813f-41
+ 0.393551  0.393551  0.393551  0.0          0.0</code></pre>
 <p>Funciones sobre diferentes tipos de datos</p>
 </div>
 </div>
