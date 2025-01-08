@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.3">
+<meta name="generator" content="quarto-1.7.7">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-4fc2181566ea7379508b8a824583f84d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c73a87db086960c5b609a5e643d6de6b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-b254e9e3fad484ce9648ad97f95daba8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -289,20 +289,20 @@ window.Quarto = {
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="funciones"><span class="header-section-number">1.1.1</span> Funciones</h3>
 <p>Las funciones son centrales en Julia, y son definidas mediante la sintaxis</p>
 <div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode markdown code-annotation-code code-with-copy code-annotated"><code class="sourceCode markdown"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">nombre</span>(arg1<span class="op">...</span>)</span>
-<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span> expresiones <span class="op">...</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>)</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">nombre</span>(arg1<span class="op">...</span>; kwarg1<span class="op">=</span>valor1<span class="op">...</span>)</span>
-<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span> expresiones <span class="op">...</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>)</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
 <span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">nombre</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1<span class="op">...</span>) <span class="op">=</span> expresion</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">=</span> expresion</span>
 <span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1<span class="op">...</span>) <span class="op">-&gt;</span> expresion</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">-&gt;</span> expresion</span>
 <span id="annotated-cell-1-13"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-14" class="code-annotation-target"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>() <span class="cf">do</span> x</span>
-<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span> <span class="co"># ... expresiones ...</span></span>
 <span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
 <span id="annotated-cell-1-17"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
@@ -901,7 +901,7 @@ top:
     .quad   ".L+Core.Float64#10884.jit"
     .size   ".L+Core.Float64#10884", 8
 
-.set ".L+Core.Float64#10884.jit", 140472011802080
+.set ".L+Core.Float64#10884.jit", 140138394764768
     .size   ".L+Core.Float64#10884.jit", 8
     .section    ".note.GNU-stack","",@progbits</code></pre>
 </div>
@@ -1458,20 +1458,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Funciones</span></span>
 <span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>Las funciones son centrales en Julia, y son definidas mediante la sintaxis </span>
 <span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">nombre</span>(arg1<span class="op">...</span>) <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span> expresiones <span class="op">...</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>) <span class="co"># &lt;1&gt;</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
 <span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">nombre</span>(arg1<span class="op">...</span>; kwarg1<span class="op">=</span>valor1<span class="op">...</span>) <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span> expresiones <span class="op">...</span></span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="co"># &lt;2&gt;</span></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
 <span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="fu">nombre</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1<span class="op">...</span>) <span class="op">=</span> expresion  <span class="co"># &lt;3&gt;</span></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">=</span> expresion  <span class="co"># &lt;3&gt;</span></span>
 <span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1<span class="op">...</span>) <span class="op">-&gt;</span> expresion       <span class="co"># &lt;4&gt;</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">-&gt;</span> expresion       <span class="co"># &lt;4&gt;</span></span>
 <span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>() <span class="cf">do</span> x <span class="co"># &lt;5&gt;</span></span>
-<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span> <span class="co"># ... expresiones ...</span></span>
 <span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
 <span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Definición de una función simple, los tipos de los argumentos se utilizan para generar múltiples versiones de una función.</span>
