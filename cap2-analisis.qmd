@@ -218,7 +218,7 @@ b = rand(Float32, 3, 3)
 @benchmark a * b setup=(a=$a, b=$b) samples=1000 seconds=0.33
 ```
 
-### Example
+### Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.
 
 --
 ```{julia}

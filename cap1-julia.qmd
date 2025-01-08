@@ -27,20 +27,20 @@ Entre los tipos de datos es capaz de manera enteros y números de punto flotante
 ### Funciones
 Las funciones son centrales en Julia, y son definidas mediante la sintaxis 
 ```{{julia}}
-function nombre(arg1...) # <1>
-    ... expresiones ...
+function fun(arg1, arg2...) # <1>
+    # ... expresiones ...
 end
 
-function nombre(arg1...; kwarg1=valor1...) # <2>
-    ... expresiones ...
+function fun(arg1, arg2...; kwarg1=valor1, kwargs2...) # <2>
+    # ... expresiones ...
 end
 
-nombre(arg1, arg2...; kwarg1=valor1...) = expresion  # <3>
+fun(arg1, arg2...; kwarg1=valor1, kwargs2...) = expresion  # <3>
 
-(arg1, arg2...; kwarg1=valor1...) -> expresion       # <4>
+(arg1, arg2...; kwarg1=valor1, kwargs2...) -> expresion       # <4>
 
 fun() do x # <5>
-    x^2
+    x^2 # ... expresiones ...
 end
 ```
 1. Definición de una función simple, los tipos de los argumentos se utilizan para generar múltiples versiones de una función.
