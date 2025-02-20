@@ -241,9 +241,7 @@ El peor de los casos en _qsort!_ es debido a una mala selección del pivote, de 
 Si se realiza un particionado donde $$|A[low:piv-1]| \approx |A[piv+1:high]|,$$ entonces tenemos un algoritmo $O(n \log n)$; ya que hace una división en dos partes casi iguales en cada recurrencia a _qsort!_, y esto solo puede profundizar a $\log n$ veces, y en cada nivel _part!_ tiene un costo lineal.
 
 ## Skip list
-Revisar el artículo Skip lists: _a probabilistic alternative to balanced trees_ [@skiplists]
-
-Una _skip list_ es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel $i$ se conectan con el siguiente nodo a nivel $i$. En el nivel más bajo, la _skip list_ es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos. 
+Una _skip list_ [@skiplists] es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel $i$ se conectan con el siguiente nodo a nivel $i$. En el nivel más bajo, la _skip list_ es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos. 
 
 ```{dot}
 //| label: fig-skip-lists
