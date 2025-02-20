@@ -35,7 +35,7 @@ engine: julia
 
 format:
   html:
-    theme: vapor
+    theme: default
     code-tools: true
     echo: true
   pdf:
