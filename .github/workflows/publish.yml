@@ -23,7 +23,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.6.40
+          version: 1.6.39
           tinytex: true
       - uses: actions/checkout@v4
         with:
