@@ -247,7 +247,8 @@ Revisar el artículo Skip lists: _a probabilistic alternative to balanced trees_
 
 1. Investigue, implemente y pruebe _merge sort_.
 2. Investigue, implemente y pruebe _heap sort_.
-3. Investigue y pruebe un árbol binario de búsqueda.
+3. Investigue, implemente y pruebe un árbol binario de búsqueda.
+3. Investigue, implemente y pruebe un _skip list_.
 
 ## Lecturas
 Las lecturas de este tema corresponden al capítulo 5 de [@Knuth98], en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen22], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <https://en.wikipedia.org/wiki/Sorting_algorithm> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.
