@@ -35,15 +35,15 @@ engine: julia
 
 format:
   html:
-    theme: default
+    theme: cosmo
     code-tools: true
     echo: true
-#  pdf:
-#    documentclass: scrreprt
-#    echo: true
-#    toc: true
-#    colorlinks: true
-#    papersize: letter
+  pdf:
+    documentclass: scrreprt
+    echo: true
+    toc: true
+    colorlinks: true
+    papersize: letter
 
 
 execute:

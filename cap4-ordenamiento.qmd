@@ -243,12 +243,112 @@ Si se realiza un particionado donde $$|A[low:piv-1]| \approx |A[piv+1:high]|,$$ 
 ## Skip list
 Revisar el artículo Skip lists: _a probabilistic alternative to balanced trees_ [@skiplists]
 
+Una _skip list_ es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel $i$ se conectan con el siguiente nodo a nivel $i$. En el nivel más bajo, la _skip list_ es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos. 
+
+```{dot}
+//| label: fig-skip-lists
+//| echo: false
+//| fig-width: 80%
+//| fig-cap: Ejemplo de una lista ligada con alturas heterogeneas
+
+digraph lista {
+  rankdir=LR;
+  splines=false;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"]; 
+  node [shape=record];
+  head [label="{{<5>(5)|<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>(head)}}", color="gray"];
+  a [label="{{<3>(3)|<2>(2)|<1>(1)|<0>a}}"];
+  b [label="{{<1>(1)|<0>b}}"];
+  c [label="{{<2>(2)|<1>(1)|<0>c}}"];
+  d [label="{{<1>(1)|<0>d}}"];
+  e [label="{{<3>(3)|<2>(2)|<1>(1)|<0>e}}"];
+  f [label="{{<1>(1)|<0>f}}"];
+  g [label="{{<2>(2)|<1>(1)|<0>g}}"];
+  h [label="{{<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>h}}"];
+  i [label="{{<1>(1)|<0>i}}"];
+  j [label="{{<3>(3)|<2>(2)|<1>(1)|<0>j}}"];
+  //k [label="{<5>|<4>|<3>|<2>|<1>}", style="invisible"];
+  k [label="{{<5> ---|<4>...|<3>...|<2>...|<1>...|<0>(tail)}}", color="gray"];
+  edge [style="dashed"];
+  head:1 -> a:1;
+  a:1 -> b:1;
+  b:1 -> c:1;
+  c:1 -> d:1;
+  d:1 -> e:1;
+  e:1 -> f:1;
+  f:1 -> g:1;
+  g:1 -> h:1;
+  h:1 -> i:1;
+  i:1 -> j:1;
+  j:1 -> k:1;
+  a:2 -> c:2;
+  c:2 -> e:2;
+  e:2 -> g:2;
+  g:2 -> h:2;
+  h:2 -> j:2;
+  j:2 -> k:2;
+  a:3 -> e:3;
+  e:3 -> h:3;
+  h:3 -> j:3;
+  j:3 -> k:3;
+
+  head:4:e -> h:4:w;
+  h:4:e -> k:4:w;
+  head:5:e -> k:5:w;
+
+  edge[style=invis, weight=32];
+  head:0 -> a:0;
+  a:0 -> b:0;
+  b:0 -> c:0;
+  c:0 -> d:0;
+  d:0 -> e:0;
+  e:0 -> f:0;
+  f:0 -> g:0;
+  g:0 -> h:0;
+  h:0 -> i:0;
+  i:0 -> j:0;
+  j:0 -> k:0;
+
+}
+```
+
+
+A diferencia de los algoritmos vistos anteriormente, en este caso, ya se tiene una estructura de datos, que conlleva un costo en memoría explícito por nodo. @fig-skip-list ilustra la estructura.
+
+La altura de cada nodo es calculada de manera probabilística, dada la probababilidad $p$. Un valor común de $p=0.5$. La altura de cada nodo se calcula como sigue:
+
+```{julia}
+function levels(p)
+  i = 1
+  while rand() < p
+    i += 1
+  end
+
+  i
+end
+```
+
+Si tenemos $n$ evaluaciones de _levels_, Los niveles pequeños son relativamente probables, mientras que niveles grandes son relativamente poco probables. De hecho, los niveles $\log_{1/p} n$ son cercanos a una constante, $\log_{1/p}{n} - 1$ son $1/p$ veces la constante, $\log_{1/p}{n} - 2$ son $1/p^2$ veces la constante, etc.
+
+A diferencia de los algoritmos anteriores, una _skip list_ comienza vacia, y se va poblando insertando elementos a la lista. Se va colocando en la posición que no viola el orden; generando el nodo correspondiente con nivel calculado. Los nodos especiales _head_ y _tail_ siempre tienen el nivel máximo posible. La inserción de un valor encapsulado en el nodo $u$ comienza por visitar el máximo nivel en _head_ e ir bajando hasta determinar $u.dato > head[level].dato$; en ese momento se debe avanzar al nodo apuntado por $head[level]$ y repetir el algoritmo hasta que $level=1$, en cuyo caso encontramos el lugar de inserción del nuevo dato. Se procede a reasignar los punteros de los sucesores y ajustar los punteros hacia los nodos sucesores a los niveles que tiene $u$.
+
+Cada inserción tiene un costo $O(\log_{1/p} n)$, garantía probabilística; por lo que insertar $n$ elementos tiene un costo:
+$$ \sum_{i=1}^n O(\log_{1/p} i) = O(\log_{1/p} \prod_{i=1}^n i) = O(\log_{1/p} {n!}) = O(n \log n); $$
+usando la aproximación de Stirling.
+
+A diferencia de la versión basada en arreglos, una _skip list_ es capaz de aceptar nuevos elementos y mantener el orden de manera eficiente.
+
 ### Ejercicios:
 
 1. Investigue, implemente y pruebe _merge sort_.
+  1.1 ¿Cuales son las ventajas y desventajas de _merge sort_?
+  1.2 ¿Por qué _merge sort_ se puede utilizar en algoritmos paralelos y otros pueden tener muchas dificultades?
+  1.3 ¿Cómo se puede reducir la memoria extra necesaria de _merge sort_?
 2. Investigue, implemente y pruebe _heap sort_.
-3. Investigue, implemente y pruebe un árbol binario de búsqueda.
-3. Investigue, implemente y pruebe un _skip list_.
+  2.1 ¿Cuales son las ventajas y desventajas de _heap sort_?
+3. ¿Cuál es el costo en memoria de una _skip list_?.
+  3.1 Investigue, implemente y pruebe un _skip list_.
+4. Investigue, implemente y pruebe un árbol binario de búsqueda.
 
 ## Lecturas
 Las lecturas de este tema corresponden al capítulo 5 de [@Knuth98], en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen22], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <https://en.wikipedia.org/wiki/Sorting_algorithm> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.
