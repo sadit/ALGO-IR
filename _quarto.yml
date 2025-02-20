@@ -44,13 +44,6 @@ format:
     toc: true
     colorlinks: true
     papersize: letter
-  pdf:
-    documentclass: scrreprt
-    echo: true
-    toc: true
-    colorlinks: true
-    papersize: letter
-
 
 execute:
   freeze: auto
