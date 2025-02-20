@@ -6,26 +6,250 @@ lang: es-MX
 # Algoritmos de ordenamiento {#sec-ordenamiento}
 
 ## Objetivo {.unnumbered}
-Implementar, utilizar y caracterizar el desempeño de algoritmos peor caso y adaptables a la distribución para ordenamiento de arreglos.
+Implementar y analizar algoritmos de ordenamiento de arreglos con costo óptimo en el peor caso, así como algoritmos adaptativos a la entrada para caracterizar su desempeño bajo un enfoque experimental para la solución efectiva de problemas informáticos.
 
 ## Introducción
 
-En este tema se aborda el ordenamiento basado en comparación, esto es, existe una función $\leq$. Recuerde que se cumplen las siguientes propiedades:
+En este tema se aborda el ordenamiento basado en comparación, esto es, existe un operador $<$ que es capaz de distinguir si un elemento $a$ es menor que un elemento $b$.
 
-- si $u \leq v$ y $v \leq w$ entonces $u \leq w$ (transitividad)
-- tricotomia:
-  - si $u \leq v$ y $v \leq u$ entonces $u = v$ (antisimetria)
-  - en otro caso, $u \leq v$ o $v \leq u$
+El operador cumple con las siguientes propiedades:
 
-La idea es entonces, dado un arreglo $A[1, n] = a_1, a_2, \cdots, a_n$ obtener una permutación $\pi$ tal que
-$a_{\pi(1)} \leq a_{\pi(2)} \leq \cdots \leq a_{\pi(n)}$. Si se asegura que en el arreglo ordenado se preserven el orden original de los indices cuando $u = v$, entonces se tiene un ordenamiento estable.
+- si $a < b$ y $b < c$ entonces $a < c$ (transitividad); e.g., $1 < 10$ y $10 < 100$ entonces $1 < 100$. 
+- tricotomía:
+  - si $a < b$ es falso y $b < a$ es falso, entonces $u = v$ (antisímetria); dicho de otras formas:
+    - si $a$ no es menor que $b$ ni $b$ menor que $a$ entonces $a$ es igual a $b$,
+    - desvelando variables, $1 < 1$ es falso, el intercambio es obvio, entonces $1=1$.
+  - en otro caso, $a < b$ o $a < b$.
 
-En terminos prácticos, la idea es reorganizar $A$, mediante el cálculo implicito de $\pi$, de tal forma que después de terminar el proceso de ordenamiento se obtenga que $A$ esta ordenado, i.e., $a_i \leq a_{i+1}$. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto que es común modificar directamente $A$.
-Utilizar $\pi$ solo es necesario cuando no es posible modificar $A$. También es muy común utilizar datos _satélite_ asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos.
+::: {.column-margin}
+Usar un operador como $<$ es suficiente para crear algoritmos correctos y eficientes, sin embargo, en la práctica y en una computadora real, también es válido utilizar operadores como $=$ o $\leq$, o intercambiar por $>$ y $\geq$ según convenga. No hay impacto en la eficiencia.
+::: 
 
-En esta unidad se tendrá atención especial a aquellos algoritmos oportunistas que son capaces de obtener ventaja en instancias sencillas.
+Sin perdida de generalidad, podemos planter el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo $A[1, n] = a_1, a_2, \cdots, a_n$; un algoritmo de ordenamiento obtiene la permutación $\pi$ tal que $a_{\pi(1)} < a_{\pi(2)} < \cdots < a_{\pi(n)}$. 
 
-### Lecturas
+::: {.column-margin}
+Cuando se permiten elementos repetidos, se le llama _ordenamiento estable_ i se asegura que en el arreglo ordenado se preserven el orden original posicional cuando $a = b$. Esta propiedad es importante cuando hay datos satélitales asociados a la llave de comparación.
+:::
+
+En términos prácticos, la idea es reorganizar $A$, mediante el cálculo implicito de la permutación $\pi$, de tal forma que después de terminar el proceso de ordenamiento se obtenga que $A$ esta ordenado, i.e., $a_i \leq a_{i+1}$. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto muchas veces se busca modificar directamente $A$.
+
+::: {.column-margin}
+Utilizar $\pi$ solo es necesario cuando no es posible modificar $A$. También es muy común utilizar datos _satélite_ asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos. Un ejemplo de esto es ordenar un _dataframe_, pero también estructuras de datos donde existe un campo especial y el resto de los datos asociados es de importancia para una aplicación.
+:::
+
+### Costo del problema
+Para una entrada de tamaño $n$ existen $n!$ permutaciones posibles; cada una de estas permutaciones es una instancia del problema de ordenamiento de tamaño $n$.
+
+Existe una permutación objetivo $\pi^*$, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada $\pi_i$ esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo _i.e., ruta sin ciclos_, entre cualquier $\pi_i$ y la permutación $\pi^*$ es el costo de peor caso del algoritmo. 
+
+Ahora, cada operación que realicemos en un algoritmo nos acercará más a $\pi^*$, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es $ \log_2(n!)$, que usando la aproximación de Stirling,[^1] lo podemos reescribir como sigue:
+
+[^1:] Aproximación de Stirling <https://en.wikipedia.org/wiki/Stirling%27s_approximation>.
+
+$$ \log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)$$
+
+Esto se puede simplemente escribir como $O(n \log n)$.
+
+## Algoritmos de ordenamiento
+Existen muchos algoritmos que pueden resolver el problema de ordenamiento, es común contar el número de comparaciones ya que produce la información necesaria para la navegación en el grafo de instancias; también es común contar las operación de intercambiar elementos. Las pruebas y la navegación en el grafo determina el costo del algoritmo. Es necesario mencionar que mover datos entre diferentes zonas de memoria puede llegar a ser más costoso que solo acceder a esas zonas por lo que hay una asimetría en el costo de estas dos operaciones.
+
+Note que algunos de los algoritmos más simples pueden tener un comportamiento oportunistas y que son capaces de obtener ventaja en instancias sencillas, por lo que no debería saltarse esas secciones si solo conoce su comportamiento en peor caso.
+
+### Bubble sort
+El algoritmo de ordenamiento de burbuja o _bubble sort_ realiza una gran cantidad de comparaciones, como puede verse en @lst-bubble-sort, el algoritmo usa dos ciclos anidados para realizar una comparación y una posible transposición, formando un _triángulo_, i.e., $$ \sum_{i=1}^{n-1} \sum_{j=1}^{n-i} O(1);$$ por lo tanto su costo esta dominado por el triangulo formado, i.e., $\sim n^2/2$ lo que puede escribirse simplemente como $O(n^2)$.
+
+```{julia}
+#| lst-label: lst-bubble-sort
+#| lst-cap: Bubble sort de peor caso
+function bubble_sort!(A)
+  n = length(A)
+  for i in 1:n-1     # <1>
+    for j in 1:n-i   # <2>
+      if A[j] > A[j+1]
+        A[j], A[j+1] = A[j+1], A[j]  # <3>
+      end
+    end
+  end
+  
+  A
+end
+
+bubble_sort!([8, 4, 3, 1, 6, 5, 2, 7])
+```
+1. Ciclo que recorre $n-1$ veces todo el arreglo; y pone el elemento máximo en su posición final.
+2. Ciclo que recorre $n-i$ veces el arreglo; ya que en cada corrida se pone el máximo en su posición.
+3. Intercambio cuando hay pares en desorden.
+
+El algoritmo mostrado en @lst-bubble-sort es un algoritmo de peor caso, ya que sin importar la complejidad de la instancia (i.e., que tal alejada esta $\pi_i$ de $\pi^*$), se comporta igual.
+
+Es relativamente fácil hacer un bubble sort que tenga en cuenta la complejidad de la instancia, medida como el número de intercambios necesarios. 
+
+
+```{julia}
+#| lst-label: lst-adaptive-bubble-sort
+#| lst-cap: Bubble sort adaptable
+
+function adaptive_bubble_sort!(A)
+  n = length(A)
+
+  for i in 1:n-1     # 
+    s = 0            # <1>
+    for j in 1:n-i   # 
+      if A[j] > A[j+1]
+        s += 1  # <2>
+        A[j], A[j+1] = A[j+1], A[j] 
+      end
+    end
+    s == 0 && break # <3>
+  end
+  
+  A
+end
+
+adaptive_bubble_sort!([7, 8, 4, 3, 1, 6, 5, 2])
+```
+1. La idea es que si no hay intercambios en una iteración, entonces el arreglo ya esta ordenado.
+2. Contador de intercambios.
+3. Condición de paro, i.e., no hubo intercambios.
+
+En la forma @lst-adaptive-bubble-sort, bubble sort es capaz de términar en $n-1$ comparaciones si el arreglo esta ordenado; sacando provecho de casos simples en términos de instancias casi ordenadas.
+
+```{julia}
+#| echo: false
+
+# this code is a sanity check
+for i in 1:1000   #hide
+  A = rand(100)  #hide
+  bubble_sort!(A) #hide
+  @assert issorted(A) #hide
+end
+
+for i in 1:1000   #hide
+  A = rand(100)  #hide
+  adaptive_bubble_sort!(A) #hide
+  @assert issorted(A) #hide
+end
+```
+
+### Insertion sort
+El algoritmo de ordenamiento por inserción o _insertion sort_ es un algoritmo simple que al igual que bubble sort tiene un mal peor caso y puede aprovechar casos simples
+
+```{julia}
+#| lst-label: lst-insertion-sort
+#| lst-cap: Algoritmo _insertion sort_
+function insertion_sort!(A)
+  n = length(A)
+  for i in 2:n  # <1>
+    key = A[i]  # <2>
+    j = i - 1   
+    while j >= 1 && A[j] > key  # <3>
+      A[j + 1] = A[j]           # <4>
+      j -= 1
+    end
+
+    A[j + 1] = key              # <5>
+  end
+  
+  A
+end
+
+insertion_sort!([5, 1, 4, 8, 2, 6, 3, 7])
+```
+1. El algoritmo comienza en la segunda posición del arreglo y revisará todos los elementos.
+2. Es importante hacer una copia de _key_ para simplificar la implementación.
+3. La idea general es ordenar las posiciones de $1..i$, para esto se debe recorrer hacia atrás el arreglo completo, para determinar la posición de inserción de _key_.
+4. Intercambio de elementos para colocar _key_ en su lugar ordenado.
+5. _key_ se pone en su lugar final.
+
+```{julia}
+#| echo: false
+
+# this code is a sanity check
+for i in 1:1000   #hide
+  A = rand(100)  #hide
+  insertion_sort!(A) #hide
+  @assert issorted(A) #hide
+end
+```
+
+Para analizar @lst-insertion-sort, es importante notar que el ciclo más externo termina con el subarreglo $A[1..i]$ ordenado; por lo que cuando se comienza el ciclo, si _key_ se prueba estar en su posición correcta, entonces ya no es necesario revisar el resto del subarreglo, esto determina que un arreglo ordenado tendrá un costo de $O(n)$ comparaciones; si esta _casi ordenado_ en términos del número de intercambios necesarios, entonces, el algoritmo se adaptará sacando provecho de la instancia.
+
+En el _peor caso_ de insertion sort, el algoritmo no puede parar de manera prematura, e.g., un arreglo en orden reverso, el ciclo `for` se ejecutara $n-1$ veces, mientras que el ciclo `while` deberá revisar el subarreglo completo en cada iteración, sumando un costo de $i$ operaciones en cada iteración, i.e., $\sum_{i=1}^n i$, esta forma produce un _triángulo_, resultando en un costo $O(n^2)$.
+
+### Quick sort
+
+_Quick sort_ [ver @Cormen22, Cap. 7] es un algoritmo tipo _dividir para vencer_; esto es, un algoritmo que divide un problema grande en instancias pequeñas más sencillas. Es uno de los algoritmos más veloces en la práctica por su buen manejo de memoria, aun cuando tiene un peor caso cuadrático, en promedio el costo es $O(n \log n)$.
+
+```{julia}
+#| lst-label: lst-qsort
+#| lst-cap: Algoritmo _quick sort_.
+
+using Random
+
+function qsort!(A, low=1, high=length(A))
+  if low < high
+      piv = part!(A, low, high) # <1>
+      qsort!(A, low, piv - 1)  # <2>
+      qsort!(A, piv + 1, high) # <2>
+  end
+  
+  A
+end
+
+function part!(A, low, high)
+  ipiv = rand(low:high)               # <3>
+  A[ipiv], A[high] = A[high], A[ipiv] # <3>
+  piv = A[high]                       # <3>
+
+  i = low - 1  # uno antes porque se accede después de un i+1
+  for j in low:high - 1           # <4>
+      if A[j] < piv
+          i += 1
+          A[i], A[j] = A[j], A[i] # <5>
+      end
+  end
+  
+  ipiv = i + 1
+  A[ipiv], A[high] = A[high], A[ipiv] # <6>
+  ipiv
+end
+
+qsort!([6, 8, 3, 7, 4, 1, 2, 5])
+```
+1. El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.
+2. Se resuelve el problema izquierdo y el problema derecho por separado.
+3. La función _part!_ particiona el arreglo $A[low:end]$ en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.
+4. Este ciclo itera por todo el subarreglo, su objetivo es asegurar que $A[i] < piv \forall i \in low:piv-1$ y $piv < A[i] \forall i \in piv+1:high$.
+5. Intercambia elementos si $A[j] < piv$, hacemos seguimiento de $i$ ya que esta posición determinará al pivote.
+6. Como _piv_ se encontraba en _high_, entonces hay que intercambiarlos para que _qsort!_ sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.
+
+```{julia}
+#| echo: false
+
+# this code is a sanity check
+for i in 1:1000   #hide
+  A = rand(100)  #hide
+  qsort!(A) #hide
+  @assert issorted(A) #hide
+end
+```
+
+El código @lst-qsort es relativamente simple, usa recurrencias sobre _qsort!_ sobre dos partes extremas divididas por un pivote; estos tres elementos son encontrados en _part!_. La función _part!_ es muy eficiente en términos de memoria, lo que puede hacer la diferencia en la práctica. La correcta selección del pivote es muy importante para evitar casos malos, i.e., costo cuadrático; en esta implementación se realiza una selección aleatoría de pivote que funcionará en la mayoría de los casos.
+
+El peor de los casos en _qsort!_ es debido a una mala selección del pivote, de tal forma que $$|A[low:piv-1]| \ll |A[piv+1:high]|,$$ o lo contrario en toda selección, en el extremo una de los subarreglos puede verse como de tamaño constante o cero, i.e., selección de pivote como el _minimo_ o el _máximo_. Esta estrategía reduce a _qsort!_ a un costo $O(n^2)$.
+
+Si se realiza un particionado donde $$|A[low:piv-1]| \approx |A[piv+1:high]|,$$ entonces tenemos un algoritmo $O(n \log n)$; ya que hace una división en dos partes casi iguales en cada recurrencia a _qsort!_, y esto solo puede profundizar a $\log n$ veces, y en cada nivel _part!_ tiene un costo lineal.
+
+## Skip list
+
+
+### Ejercicios:
+
+1. Investigue, implemente y pruebe _merge sort_.
+2. Investigue, implemente y pruebe _heap sort_.
+3. Investigue y pruebe un árbol binario de búsqueda.
+
+## Lecturas
 Las lecturas de este tema corresponden al capítulo 5 de [@Knuth98], en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen22], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <https://en.wikipedia.org/wiki/Sorting_algorithm> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.
 
 En la práctica, pocos algoritmos son mejores que _quicksort_. En [@Loeser74] se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.
