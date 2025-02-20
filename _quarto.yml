@@ -34,7 +34,7 @@ engine: julia
 
 format:
   html:
-    theme: cosmo
+    theme: default
     code-tools: true
     echo: true
   pdf:
