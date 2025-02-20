@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Algoritmos de ordenamiento – Curso Introductorio al Análisis de Algoritmos con Julia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./cap5-busqueda.html" rel="next">
+<link href="./cap3-estructuras.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1092c56c6cadf2eb47b1bc8063ab382a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-efab0f2201fd1407d8251b238c646c99.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cap4-ordenamiento.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title"><span id="sec-ordenamiento" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Curso Introductorio al Análisis de Algoritmos con Julia</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/sadit/ALGO-IR" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+    <a href="./Curso-Introductorio-al-Análisis-de-Algoritmos-con-Julia.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap1-julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Julia como lenguaje de programación para un curso de algoritmos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap2-analisis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción al análisis de algoritmos con Julia</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap3-estructuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap4-ordenamiento.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Algoritmos de ordenamiento</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap5-busqueda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de búsqueda en el modelo de comparación</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap6-intersecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmos de intersección de conjuntos con representación de listas ordenadas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">4.1</span> Introducción</a>
+  <ul class="collapse">
+  <li><a href="#costo-del-problema" id="toc-costo-del-problema" class="nav-link" data-scroll-target="#costo-del-problema"><span class="header-section-number">4.1.1</span> Costo del problema</a></li>
+  </ul></li>
+  <li><a href="#algoritmos-de-ordenamiento" id="toc-algoritmos-de-ordenamiento" class="nav-link" data-scroll-target="#algoritmos-de-ordenamiento"><span class="header-section-number">4.2</span> Algoritmos de ordenamiento</a>
+  <ul class="collapse">
+  <li><a href="#bubble-sort" id="toc-bubble-sort" class="nav-link" data-scroll-target="#bubble-sort"><span class="header-section-number">4.2.1</span> Bubble sort</a></li>
+  <li><a href="#insertion-sort" id="toc-insertion-sort" class="nav-link" data-scroll-target="#insertion-sort"><span class="header-section-number">4.2.2</span> Insertion sort</a></li>
+  <li><a href="#quick-sort" id="toc-quick-sort" class="nav-link" data-scroll-target="#quick-sort"><span class="header-section-number">4.2.3</span> Quick sort</a></li>
+  </ul></li>
+  <li><a href="#skip-list" id="toc-skip-list" class="nav-link" data-scroll-target="#skip-list"><span class="header-section-number">4.3</span> Skip list</a>
+  <ul class="collapse">
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">4.3.1</span> Ejercicios:</a></li>
+  </ul></li>
+  <li><a href="#lecturas" id="toc-lecturas" class="nav-link" data-scroll-target="#lecturas"><span class="header-section-number">4.4</span> Lecturas</a></li>
+  <li><a href="#material-audio-visual-sobre-algoritmos-de-ordenamiento" id="toc-material-audio-visual-sobre-algoritmos-de-ordenamiento" class="nav-link" data-scroll-target="#material-audio-visual-sobre-algoritmos-de-ordenamiento"><span class="header-section-number">4.5</span> Material audio-visual sobre algoritmos de ordenamiento</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<section id="objetivo" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>Implementar y analizar algoritmos de ordenamiento de arreglos con costo óptimo en el peor caso, así como algoritmos adaptativos a la entrada para caracterizar su desempeño bajo un enfoque experimental para la solución efectiva de problemas informáticos.</p>
+</section>
+<section id="introducción" class="level2 page-columns page-full" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">4.1</span> Introducción</h2>
+<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe un operador <span class="math inline">\(&lt;\)</span> que es capaz de distinguir si un elemento <span class="math inline">\(a\)</span> es menor que un elemento <span class="math inline">\(b\)</span>.</p>
+<p>El operador cumple con las siguientes propiedades:</p>
+<ul>
+<li>si <span class="math inline">\(a &lt; b\)</span> y <span class="math inline">\(b &lt; c\)</span> entonces <span class="math inline">\(a &lt; c\)</span> (transitividad); e.g., <span class="math inline">\(1 &lt; 10\)</span> y <span class="math inline">\(10 &lt; 100\)</span> entonces <span class="math inline">\(1 &lt; 100\)</span>.</li>
+<li>tricotomía:
+<ul>
+<li>si <span class="math inline">\(a &lt; b\)</span> es falso y <span class="math inline">\(b &lt; a\)</span> es falso, entonces <span class="math inline">\(u = v\)</span> (antisímetria); dicho de otras formas:
+<ul>
+<li>si <span class="math inline">\(a\)</span> no es menor que <span class="math inline">\(b\)</span> ni <span class="math inline">\(b\)</span> menor que <span class="math inline">\(a\)</span> entonces <span class="math inline">\(a\)</span> es igual a <span class="math inline">\(b\)</span>,</li>
+<li>desvelando variables, <span class="math inline">\(1 &lt; 1\)</span> es falso, el intercambio es obvio, entonces <span class="math inline">\(1=1\)</span>.</li>
+</ul></li>
+<li>en otro caso, <span class="math inline">\(a &lt; b\)</span> o <span class="math inline">\(a &lt; b\)</span>.</li>
+</ul></li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Usar un operador como <span class="math inline">\(&lt;\)</span> es suficiente para crear algoritmos correctos y eficientes, sin embargo, en la práctica y en una computadora real, también es válido utilizar operadores como <span class="math inline">\(=\)</span> o <span class="math inline">\(\leq\)</span>, o intercambiar por <span class="math inline">\(&gt;\)</span> y <span class="math inline">\(\geq\)</span> según convenga. No hay impacto en la eficiencia.</p>
+</div></div><p>Sin perdida de generalidad, podemos planter el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo <span class="math inline">\(A[1, n] = a_1, a_2, \cdots, a_n\)</span>; un algoritmo de ordenamiento obtiene la permutación <span class="math inline">\(\pi\)</span> tal que <span class="math inline">\(a_{\pi(1)} &lt; a_{\pi(2)} &lt; \cdots &lt; a_{\pi(n)}\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Cuando se permiten elementos repetidos, se le llama <em>ordenamiento estable</em> i se asegura que en el arreglo ordenado se preserven el orden original posicional cuando <span class="math inline">\(a = b\)</span>. Esta propiedad es importante cuando hay datos satélitales asociados a la llave de comparación.</p>
+</div></div><p>En términos prácticos, la idea es reorganizar <span class="math inline">\(A\)</span>, mediante el cálculo implicito de la permutación <span class="math inline">\(\pi\)</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">\(A\)</span> esta ordenado, i.e., <span class="math inline">\(a_i \leq a_{i+1}\)</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto muchas veces se busca modificar directamente <span class="math inline">\(A\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Utilizar <span class="math inline">\(\pi\)</span> solo es necesario cuando no es posible modificar <span class="math inline">\(A\)</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos. Un ejemplo de esto es ordenar un <em>dataframe</em>, pero también estructuras de datos donde existe un campo especial y el resto de los datos asociados es de importancia para una aplicación.</p>
+</div></div><section id="costo-del-problema" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="costo-del-problema"><span class="header-section-number">4.1.1</span> Costo del problema</h3>
+<p>Para una entrada de tamaño <span class="math inline">\(n\)</span> existen <span class="math inline">\(n!\)</span> permutaciones posibles; cada una de estas permutaciones es una instancia del problema de ordenamiento de tamaño <span class="math inline">\(n\)</span>.</p>
+<p>Existe una permutación objetivo <span class="math inline">\(\pi^*\)</span>, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada <span class="math inline">\(\pi_i\)</span> esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo <em>i.e., ruta sin ciclos</em>, entre cualquier <span class="math inline">\(\pi_i\)</span> y la permutación <span class="math inline">\(\pi^*\)</span> es el costo de peor caso del algoritmo.</p>
+<p>Ahora, cada operación que realicemos en un algoritmo nos acercará más a <span class="math inline">\(\pi^*\)</span>, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es <span class="math inline">\(\log_2(n!)\)</span>, que usando la aproximación de Stirling,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> lo podemos reescribir como sigue:</p>
+<p><span class="math display">\[ \log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)\]</span></p>
+<p>Esto se puede simplemente escribir como <span class="math inline">\(O(n \log n)\)</span>.</p>
+</section>
+</section>
+<section id="algoritmos-de-ordenamiento" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="algoritmos-de-ordenamiento"><span class="header-section-number">4.2</span> Algoritmos de ordenamiento</h2>
+<p>Existen muchos algoritmos que pueden resolver el problema de ordenamiento, es común contar el número de comparaciones ya que produce la información necesaria para la navegación en el grafo de instancias; también es común contar las operación de intercambiar elementos. Las pruebas y la navegación en el grafo determina el costo del algoritmo. Es necesario mencionar que mover datos entre diferentes zonas de memoria puede llegar a ser más costoso que solo acceder a esas zonas por lo que hay una asimetría en el costo de estas dos operaciones.</p>
+<p>Note que algunos de los algoritmos más simples pueden tener un comportamiento oportunistas y que son capaces de obtener ventaja en instancias sencillas, por lo que no debería saltarse esas secciones si solo conoce su comportamiento en peor caso.</p>
+<section id="bubble-sort" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="bubble-sort"><span class="header-section-number">4.2.1</span> Bubble sort</h3>
+<p>El algoritmo de ordenamiento de burbuja o <em>bubble sort</em> realiza una gran cantidad de comparaciones, como puede verse en <a href="#lst-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.1</span></a>, el algoritmo usa dos ciclos anidados para realizar una comparación y una posible transposición, formando un <em>triángulo</em>, i.e., <span class="math display">\[ \sum_{i=1}^{n-1} \sum_{j=1}^{n-i} O(1);\]</span> por lo tanto su costo esta dominado por el triangulo formado, i.e., <span class="math inline">\(\sim n^2/2\)</span> lo que puede escribirse simplemente como <span class="math inline">\(O(n^2)\)</span>.</p>
+<div id="2" class="cell" data-execution_count="1">
+<div id="lst-bubble-sort" class="julia cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-bubble-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listado&nbsp;4.1: Bubble sort de peor caso
+</figcaption>
+<div aria-describedby="lst-bubble-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-bubble-sort"><pre class="sourceCode code-annotation-code julia code-with-copy"><code class="sourceCode julia"><span id="lst-bubble-sort-1"><a href="#lst-bubble-sort-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">bubble_sort!</span>(A)</span>
+<span id="lst-bubble-sort-2"><a href="#lst-bubble-sort-2" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<span id="lst-bubble-sort-3"><a href="#lst-bubble-sort-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span></span>
+<span id="lst-bubble-sort-4"><a href="#lst-bubble-sort-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i</span>
+<span id="lst-bubble-sort-5"><a href="#lst-bubble-sort-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
+<span id="lst-bubble-sort-6"><a href="#lst-bubble-sort-6" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j]</span>
+<span id="lst-bubble-sort-7"><a href="#lst-bubble-sort-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="lst-bubble-sort-8"><a href="#lst-bubble-sort-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="lst-bubble-sort-9"><a href="#lst-bubble-sort-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="lst-bubble-sort-10"><a href="#lst-bubble-sort-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="lst-bubble-sort-11"><a href="#lst-bubble-sort-11" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="lst-bubble-sort-12"><a href="#lst-bubble-sort-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="lst-bubble-sort-13"><a href="#lst-bubble-sort-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-bubble-sort-14"><a href="#lst-bubble-sort-14" aria-hidden="true" tabindex="-1"></a><span class="fu">bubble_sort!</span>([<span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">7</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>8-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>Ciclo que recorre <span class="math inline">\(n-1\)</span> veces todo el arreglo; y pone el elemento máximo en su posición final.</li>
+<li>Ciclo que recorre <span class="math inline">\(n-i\)</span> veces el arreglo; ya que en cada corrida se pone el máximo en su posición.</li>
+<li>Intercambio cuando hay pares en desorden.</li>
+</ol>
+<p>El algoritmo mostrado en <a href="#lst-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.1</span></a> es un algoritmo de peor caso, ya que sin importar la complejidad de la instancia (i.e., que tal alejada esta <span class="math inline">\(\pi_i\)</span> de <span class="math inline">\(\pi^*\)</span>), se comporta igual.</p>
+<p>Es relativamente fácil hacer un bubble sort que tenga en cuenta la complejidad de la instancia, medida como el número de intercambios necesarios.</p>
+<div id="4" class="cell" data-execution_count="1">
+<div id="lst-adaptive-bubble-sort" class="julia cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-adaptive-bubble-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listado&nbsp;4.2: Bubble sort adaptable
+</figcaption>
+<div aria-describedby="lst-adaptive-bubble-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-adaptive-bubble-sort"><pre class="sourceCode code-annotation-code julia code-with-copy"><code class="sourceCode julia"><span id="lst-adaptive-bubble-sort-1"><a href="#lst-adaptive-bubble-sort-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">adaptive_bubble_sort!</span>(A)</span>
+<span id="lst-adaptive-bubble-sort-2"><a href="#lst-adaptive-bubble-sort-2" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<span id="lst-adaptive-bubble-sort-3"><a href="#lst-adaptive-bubble-sort-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-adaptive-bubble-sort-4"><a href="#lst-adaptive-bubble-sort-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>     <span class="co"># </span></span>
+<span id="lst-adaptive-bubble-sort-5"><a href="#lst-adaptive-bubble-sort-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fl">0</span></span>
+<span id="lst-adaptive-bubble-sort-6"><a href="#lst-adaptive-bubble-sort-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i   <span class="co"># </span></span>
+<span id="lst-adaptive-bubble-sort-7"><a href="#lst-adaptive-bubble-sort-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
+<span id="lst-adaptive-bubble-sort-8"><a href="#lst-adaptive-bubble-sort-8" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="lst-adaptive-bubble-sort-9"><a href="#lst-adaptive-bubble-sort-9" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j] </span>
+<span id="lst-adaptive-bubble-sort-10"><a href="#lst-adaptive-bubble-sort-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="lst-adaptive-bubble-sort-11"><a href="#lst-adaptive-bubble-sort-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="lst-adaptive-bubble-sort-12"><a href="#lst-adaptive-bubble-sort-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">break</span></span>
+<span id="lst-adaptive-bubble-sort-13"><a href="#lst-adaptive-bubble-sort-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="lst-adaptive-bubble-sort-14"><a href="#lst-adaptive-bubble-sort-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="lst-adaptive-bubble-sort-15"><a href="#lst-adaptive-bubble-sort-15" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="lst-adaptive-bubble-sort-16"><a href="#lst-adaptive-bubble-sort-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="lst-adaptive-bubble-sort-17"><a href="#lst-adaptive-bubble-sort-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-adaptive-bubble-sort-18"><a href="#lst-adaptive-bubble-sort-18" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptive_bubble_sort!</span>([<span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>8-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>La idea es que si no hay intercambios en una iteración, entonces el arreglo ya esta ordenado.</li>
+<li>Contador de intercambios.</li>
+<li>Condición de paro, i.e., no hubo intercambios.</li>
+</ol>
+<p>En la forma <a href="#lst-adaptive-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.2</span></a>, bubble sort es capaz de términar en <span class="math inline">\(n-1\)</span> comparaciones si el arreglo esta ordenado; sacando provecho de casos simples en términos de instancias casi ordenadas.</p>
+</section>
+<section id="insertion-sort" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="insertion-sort"><span class="header-section-number">4.2.2</span> Insertion sort</h3>
+<p>El algoritmo de ordenamiento por inserción o <em>insertion sort</em> es un algoritmo simple que al igual que bubble sort tiene un mal peor caso y puede aprovechar casos simples</p>
+<div id="8" class="cell" data-execution_count="1">
+<div id="lst-insertion-sort" class="julia cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-insertion-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listado&nbsp;4.3: Algoritmo <em>insertion sort</em>
+</figcaption>
+<div aria-describedby="lst-insertion-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-insertion-sort"><pre class="sourceCode code-annotation-code julia code-with-copy"><code class="sourceCode julia"><span id="lst-insertion-sort-1"><a href="#lst-insertion-sort-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">insertion_sort!</span>(A)</span>
+<span id="lst-insertion-sort-2"><a href="#lst-insertion-sort-2" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<span id="lst-insertion-sort-3"><a href="#lst-insertion-sort-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>n</span>
+<span id="lst-insertion-sort-4"><a href="#lst-insertion-sort-4" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> A[i]</span>
+<span id="lst-insertion-sort-5"><a href="#lst-insertion-sort-5" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> i <span class="op">-</span> <span class="fl">1</span>   </span>
+<span id="lst-insertion-sort-6"><a href="#lst-insertion-sort-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">&amp;&amp;</span> A[j] <span class="op">&gt;</span> key</span>
+<span id="lst-insertion-sort-7"><a href="#lst-insertion-sort-7" aria-hidden="true" tabindex="-1"></a>      A[j <span class="op">+</span> <span class="fl">1</span>] <span class="op">=</span> A[j]</span>
+<span id="lst-insertion-sort-8"><a href="#lst-insertion-sort-8" aria-hidden="true" tabindex="-1"></a>      j <span class="op">-=</span> <span class="fl">1</span></span>
+<span id="lst-insertion-sort-9"><a href="#lst-insertion-sort-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="lst-insertion-sort-10"><a href="#lst-insertion-sort-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-insertion-sort-11"><a href="#lst-insertion-sort-11" aria-hidden="true" tabindex="-1"></a>    A[j <span class="op">+</span> <span class="fl">1</span>] <span class="op">=</span> key</span>
+<span id="lst-insertion-sort-12"><a href="#lst-insertion-sort-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="lst-insertion-sort-13"><a href="#lst-insertion-sort-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="lst-insertion-sort-14"><a href="#lst-insertion-sort-14" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="lst-insertion-sort-15"><a href="#lst-insertion-sort-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="lst-insertion-sort-16"><a href="#lst-insertion-sort-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-insertion-sort-17"><a href="#lst-insertion-sort-17" aria-hidden="true" tabindex="-1"></a><span class="fu">insertion_sort!</span>([<span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">7</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>8-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>El algoritmo comienza en la segunda posición del arreglo y revisará todos los elementos.</li>
+<li>Es importante hacer una copia de <em>key</em> para simplificar la implementación.</li>
+<li>La idea general es ordenar las posiciones de <span class="math inline">\(1..i\)</span>, para esto se debe recorrer hacia atrás el arreglo completo, para determinar la posición de inserción de <em>key</em>.</li>
+<li>Intercambio de elementos para colocar <em>key</em> en su lugar ordenado.</li>
+<li><em>key</em> se pone en su lugar final.</li>
+</ol>
+<p>Para analizar <a href="#lst-insertion-sort" class="quarto-xref">Listado&nbsp;<span>4.3</span></a>, es importante notar que el ciclo más externo termina con el subarreglo <span class="math inline">\(A[1..i]\)</span> ordenado; por lo que cuando se comienza el ciclo, si <em>key</em> se prueba estar en su posición correcta, entonces ya no es necesario revisar el resto del subarreglo, esto determina que un arreglo ordenado tendrá un costo de <span class="math inline">\(O(n)\)</span> comparaciones; si esta <em>casi ordenado</em> en términos del número de intercambios necesarios, entonces, el algoritmo se adaptará sacando provecho de la instancia.</p>
+<p>En el <em>peor caso</em> de insertion sort, el algoritmo no puede parar de manera prematura, e.g., un arreglo en orden reverso, el ciclo <code>for</code> se ejecutara <span class="math inline">\(n-1\)</span> veces, mientras que el ciclo <code>while</code> deberá revisar el subarreglo completo en cada iteración, sumando un costo de <span class="math inline">\(i\)</span> operaciones en cada iteración, i.e., <span class="math inline">\(\sum_{i=1}^n i\)</span>, esta forma produce un <em>triángulo</em>, resultando en un costo <span class="math inline">\(O(n^2)\)</span>.</p>
+</section>
+<section id="quick-sort" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="quick-sort"><span class="header-section-number">4.2.3</span> Quick sort</h3>
+<p><em>Quick sort</em> <span class="citation" data-cites="Cormen22">(ver <a href="refs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022, cap. 7</a>)</span> es un algoritmo tipo <em>dividir para vencer</em>; esto es, un algoritmo que divide un problema grande en instancias pequeñas más sencillas. Es uno de los algoritmos más veloces en la práctica por su buen manejo de memoria, aun cuando tiene un peor caso cuadrático, en promedio el costo es <span class="math inline">\(O(n \log n)\)</span>.</p>
+<div id="12" class="cell" data-execution_count="1">
+<div id="lst-qsort" class="julia cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-qsort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
+</figcaption>
+<div aria-describedby="lst-qsort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-qsort"><pre class="sourceCode code-annotation-code julia code-with-copy"><code class="sourceCode julia"><span id="lst-qsort-1"><a href="#lst-qsort-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="lst-qsort-2"><a href="#lst-qsort-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-qsort-3"><a href="#lst-qsort-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">qsort!</span>(A, low<span class="op">=</span><span class="fl">1</span>, high<span class="op">=</span><span class="fu">length</span>(A))</span>
+<span id="lst-qsort-4"><a href="#lst-qsort-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> low <span class="op">&lt;</span> high</span>
+<span id="lst-qsort-5"><a href="#lst-qsort-5" aria-hidden="true" tabindex="-1"></a>      piv <span class="op">=</span> <span class="fu">part!</span>(A, low, high)</span>
+<span id="lst-qsort-6"><a href="#lst-qsort-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">qsort!</span>(A, low, piv <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="lst-qsort-7"><a href="#lst-qsort-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">qsort!</span>(A, piv <span class="op">+</span> <span class="fl">1</span>, high)</span>
+<span id="lst-qsort-8"><a href="#lst-qsort-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="lst-qsort-9"><a href="#lst-qsort-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="lst-qsort-10"><a href="#lst-qsort-10" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="lst-qsort-11"><a href="#lst-qsort-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="lst-qsort-12"><a href="#lst-qsort-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-qsort-13"><a href="#lst-qsort-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">part!</span>(A, low, high)</span>
+<span id="lst-qsort-14"><a href="#lst-qsort-14" aria-hidden="true" tabindex="-1"></a>  ipiv <span class="op">=</span> <span class="fu">rand</span>(low<span class="op">:</span>high)</span>
+<span id="lst-qsort-15"><a href="#lst-qsort-15" aria-hidden="true" tabindex="-1"></a>  A[ipiv], A[high] <span class="op">=</span> A[high], A[ipiv]</span>
+<span id="lst-qsort-16"><a href="#lst-qsort-16" aria-hidden="true" tabindex="-1"></a>  piv <span class="op">=</span> A[high]</span>
+<span id="lst-qsort-17"><a href="#lst-qsort-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-qsort-18"><a href="#lst-qsort-18" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> low <span class="op">-</span> <span class="fl">1</span>  <span class="co"># uno antes porque se accede después de un i+1</span></span>
+<span id="lst-qsort-19"><a href="#lst-qsort-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> low<span class="op">:</span>high <span class="op">-</span> <span class="fl">1</span></span>
+<span id="lst-qsort-20"><a href="#lst-qsort-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&lt;</span> piv</span>
+<span id="lst-qsort-21"><a href="#lst-qsort-21" aria-hidden="true" tabindex="-1"></a>          i <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="lst-qsort-22"><a href="#lst-qsort-22" aria-hidden="true" tabindex="-1"></a>          A[i], A[j] <span class="op">=</span> A[j], A[i]</span>
+<span id="lst-qsort-23"><a href="#lst-qsort-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="lst-qsort-24"><a href="#lst-qsort-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="lst-qsort-25"><a href="#lst-qsort-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="lst-qsort-26"><a href="#lst-qsort-26" aria-hidden="true" tabindex="-1"></a>  ipiv <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
+<span id="lst-qsort-27"><a href="#lst-qsort-27" aria-hidden="true" tabindex="-1"></a>  A[ipiv], A[high] <span class="op">=</span> A[high], A[ipiv]</span>
+<span id="lst-qsort-28"><a href="#lst-qsort-28" aria-hidden="true" tabindex="-1"></a>  ipiv</span>
+<span id="lst-qsort-29"><a href="#lst-qsort-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="lst-qsort-30"><a href="#lst-qsort-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-qsort-31"><a href="#lst-qsort-31" aria-hidden="true" tabindex="-1"></a><span class="fu">qsort!</span>([<span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">3</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>8-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.</li>
+<li>Se resuelve el problema izquierdo y el problema derecho por separado.</li>
+<li>La función <em>part!</em> particiona el arreglo <span class="math inline">\(A[low:end]\)</span> en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.</li>
+<li>Este ciclo itera por todo el subarreglo, su objetivo es asegurar que <span class="math inline">\(A[i] &lt; piv \forall i \in low:piv-1\)</span> y <span class="math inline">\(piv &lt; A[i] \forall i \in piv+1:high\)</span>.</li>
+<li>Intercambia elementos si <span class="math inline">\(A[j] &lt; piv\)</span>, hacemos seguimiento de <span class="math inline">\(i\)</span> ya que esta posición determinará al pivote.</li>
+<li>Como <em>piv</em> se encontraba en <em>high</em>, entonces hay que intercambiarlos para que <em>qsort!</em> sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.</li>
+</ol>
+<p>El código <a href="#lst-qsort" class="quarto-xref">Listado&nbsp;<span>4.4</span></a> es relativamente simple, usa recurrencias sobre <em>qsort!</em> sobre dos partes extremas divididas por un pivote; estos tres elementos son encontrados en <em>part!</em>. La función <em>part!</em> es muy eficiente en términos de memoria, lo que puede hacer la diferencia en la práctica. La correcta selección del pivote es muy importante para evitar casos malos, i.e., costo cuadrático; en esta implementación se realiza una selección aleatoría de pivote que funcionará en la mayoría de los casos.</p>
+<p>El peor de los casos en <em>qsort!</em> es debido a una mala selección del pivote, de tal forma que <span class="math display">\[|A[low:piv-1]| \ll |A[piv+1:high]|,\]</span> o lo contrario en toda selección, en el extremo una de los subarreglos puede verse como de tamaño constante o cero, i.e., selección de pivote como el <em>minimo</em> o el <em>máximo</em>. Esta estrategía reduce a <em>qsort!</em> a un costo <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>Si se realiza un particionado donde <span class="math display">\[|A[low:piv-1]| \approx |A[piv+1:high]|,\]</span> entonces tenemos un algoritmo <span class="math inline">\(O(n \log n)\)</span>; ya que hace una división en dos partes casi iguales en cada recurrencia a <em>qsort!</em>, y esto solo puede profundizar a <span class="math inline">\(\log n\)</span> veces, y en cada nivel <em>part!</em> tiene un costo lineal.</p>
+</section>
+</section>
+<section id="skip-list" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="skip-list"><span class="header-section-number">4.3</span> Skip list</h2>
+<p>Una <em>skip list</em> <span class="citation" data-cites="skiplists">(<a href="refs.html#ref-skiplists" role="doc-biblioref">Pugh 1990</a>)</span> es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel <span class="math inline">\(i\)</span> se conectan con el siguiente nodo a nivel <span class="math inline">\(i\)</span>. En el nivel más bajo, la <em>skip list</em> es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos.</p>
+<div class="cell" data-fig-width="80%" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-skip-list" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-skip-list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="NaN" height="480" viewbox="0.00 0.00 1116.00 222.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 186.2)">
+<title>lista</title>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-186.2 1080,-186.2 1080,36 -36,36"></polygon>
+<!-- head -->
+<g id="node1" class="node">
+<title>head</title>
+<polygon fill="none" stroke="gray" points="0,-0.9 0,-149.7 54,-149.7 54,-0.9 0,-0.9"></polygon>
+<text text-anchor="middle" x="26.88" y="-133.1" font-family="Times,serif" font-size="14.00">(5)</text>
+<polyline fill="none" stroke="gray" points="0,-124.9 53.75,-124.9 "></polyline>
+<text text-anchor="middle" x="26.88" y="-108.3" font-family="Times,serif" font-size="14.00">(4)</text>
+<polyline fill="none" stroke="gray" points="0,-100.1 53.75,-100.1 "></polyline>
+<text text-anchor="middle" x="26.88" y="-83.5" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="gray" points="0,-75.3 53.75,-75.3 "></polyline>
+<text text-anchor="middle" x="26.88" y="-58.7" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="gray" points="0,-50.5 53.75,-50.5 "></polyline>
+<text text-anchor="middle" x="26.88" y="-33.9" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="gray" points="0,-25.7 53.75,-25.7 "></polyline>
+<text text-anchor="middle" x="26.88" y="-9.1" font-family="Times,serif" font-size="14.00">(head)</text>
+</g>
+<!-- a -->
+<g id="node2" class="node">
+<title>a</title>
+<polygon fill="none" stroke="black" points="90,-0.7 90,-99.9 144,-99.9 144,-0.7 90,-0.7"></polygon>
+<text text-anchor="middle" x="116.66" y="-83.3" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="black" points="90,-75.1 143.32,-75.1 "></polyline>
+<text text-anchor="middle" x="116.66" y="-58.5" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="90,-50.3 143.32,-50.3 "></polyline>
+<text text-anchor="middle" x="116.66" y="-33.7" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="90,-25.5 143.32,-25.5 "></polyline>
+<text text-anchor="middle" x="116.66" y="-8.9" font-family="Times,serif" font-size="14.00">a</text>
+</g>
+<!-- head&#45;&gt;a -->
+<g id="edge1" class="edge">
+<title>head:1-&gt;a:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-38.3C54,-38.3 69.14,-38.3 79.78,-38.3"></path>
+<polygon fill="black" stroke="black" points="80,-41.8 90,-38.3 80,-34.8 80,-41.8"></polygon>
+</g>
+<!-- head&#45;&gt;a -->
+<!-- h -->
+<g id="node9" class="node">
+<title>h</title>
+<polygon fill="none" stroke="black" points="720,-1.3 720,-125.3 774,-125.3 774,-1.3 720,-1.3"></polygon>
+<text text-anchor="middle" x="746.66" y="-108.7" font-family="Times,serif" font-size="14.00">(4)</text>
+<polyline fill="none" stroke="black" points="720,-100.5 773.32,-100.5 "></polyline>
+<text text-anchor="middle" x="746.66" y="-83.9" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="black" points="720,-75.7 773.32,-75.7 "></polyline>
+<text text-anchor="middle" x="746.66" y="-59.1" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="720,-50.9 773.32,-50.9 "></polyline>
+<text text-anchor="middle" x="746.66" y="-34.3" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="720,-26.1 773.32,-26.1 "></polyline>
+<text text-anchor="middle" x="746.66" y="-9.5" font-family="Times,serif" font-size="14.00">h</text>
+</g>
+<!-- head&#45;&gt;h -->
+<g id="edge22" class="edge">
+<title>head:e-&gt;h:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-112.3C54,-112.3 626.01,-113.16 709.81,-113.28"></path>
+<polygon fill="black" stroke="black" points="709.99,-116.78 720,-113.3 710.01,-109.78 709.99,-116.78"></polygon>
+</g>
+<!-- k -->
+<g id="node12" class="node">
+<title>k</title>
+<polygon fill="none" stroke="gray" points="990,-0.9 990,-149.7 1044,-149.7 1044,-0.9 990,-0.9"></polygon>
+<text text-anchor="middle" x="1016.6" y="-133.1" font-family="Times,serif" font-size="14.00">---</text>
+<polyline fill="none" stroke="gray" points="990,-124.9 1043.21,-124.9 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-108.3" font-family="Times,serif" font-size="14.00">...</text>
+<polyline fill="none" stroke="gray" points="990,-100.1 1043.21,-100.1 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-83.5" font-family="Times,serif" font-size="14.00">...</text>
+<polyline fill="none" stroke="gray" points="990,-75.3 1043.21,-75.3 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-58.7" font-family="Times,serif" font-size="14.00">...</text>
+<polyline fill="none" stroke="gray" points="990,-50.5 1043.21,-50.5 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-33.9" font-family="Times,serif" font-size="14.00">...</text>
+<polyline fill="none" stroke="gray" points="990,-25.7 1043.21,-25.7 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-9.1" font-family="Times,serif" font-size="14.00">(tail)</text>
+</g>
+<!-- head&#45;&gt;k -->
+<g id="edge24" class="edge">
+<title>head:e-&gt;k:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-137.3C54,-137.3 878.37,-137.3 979.81,-137.3"></path>
+<polygon fill="black" stroke="black" points="980,-140.8 990,-137.3 980,-133.8 980,-140.8"></polygon>
+</g>
+<!-- b -->
+<g id="node3" class="node">
+<title>b</title>
+<polygon fill="none" stroke="black" points="180,-0.5 180,-50.1 234,-50.1 234,-0.5 180,-0.5"></polygon>
+<text text-anchor="middle" x="206.66" y="-33.5" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="180,-25.3 233.32,-25.3 "></polyline>
+<text text-anchor="middle" x="206.66" y="-8.7" font-family="Times,serif" font-size="14.00">b</text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge2" class="edge">
+<title>a:1-&gt;b:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M144,-38.3C144,-38.3 159.14,-37.88 169.78,-37.58"></path>
+<polygon fill="black" stroke="black" points="170.1,-41.08 180,-37.3 169.91,-34.08 170.1,-41.08"></polygon>
+</g>
+<!-- a&#45;&gt;b -->
+<!-- c -->
+<g id="node4" class="node">
+<title>c</title>
+<polygon fill="none" stroke="black" points="270,-1.1 270,-75.5 324,-75.5 324,-1.1 270,-1.1"></polygon>
+<text text-anchor="middle" x="296.66" y="-58.9" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="270,-50.7 323.32,-50.7 "></polyline>
+<text text-anchor="middle" x="296.66" y="-34.1" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="270,-25.9 323.32,-25.9 "></polyline>
+<text text-anchor="middle" x="296.66" y="-9.3" font-family="Times,serif" font-size="14.00">c</text>
+</g>
+<!-- a&#45;&gt;c -->
+<g id="edge12" class="edge">
+<title>a:2-&gt;c:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M143.56,-62.45C174.22,-62.62 224.88,-62.9 259.54,-63.09"></path>
+<polygon fill="black" stroke="black" points="259.72,-66.59 269.74,-63.15 259.76,-59.59 259.72,-66.59"></polygon>
+</g>
+<!-- e -->
+<g id="node6" class="node">
+<title>e</title>
+<polygon fill="none" stroke="black" points="450,-0.7 450,-99.9 504,-99.9 504,-0.7 450,-0.7"></polygon>
+<text text-anchor="middle" x="476.66" y="-83.3" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="black" points="450,-75.1 503.32,-75.1 "></polyline>
+<text text-anchor="middle" x="476.66" y="-58.5" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="450,-50.3 503.32,-50.3 "></polyline>
+<text text-anchor="middle" x="476.66" y="-33.7" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="450,-25.5 503.32,-25.5 "></polyline>
+<text text-anchor="middle" x="476.66" y="-8.9" font-family="Times,serif" font-size="14.00">e</text>
+</g>
+<!-- a&#45;&gt;e -->
+<g id="edge18" class="edge">
+<title>a:3-&gt;e:3</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M143.47,-87.3C206.62,-87.3 366.25,-87.3 439.37,-87.3"></path>
+<polygon fill="black" stroke="black" points="439.51,-90.8 449.51,-87.3 439.51,-83.8 439.51,-90.8"></polygon>
+</g>
+<!-- b&#45;&gt;c -->
+<g id="edge3" class="edge">
+<title>b:1-&gt;c:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M234,-37.3C234,-37.3 249.14,-37.72 259.78,-38.02"></path>
+<polygon fill="black" stroke="black" points="259.91,-41.52 270,-38.3 260.1,-34.52 259.91,-41.52"></polygon>
+</g>
+<!-- b&#45;&gt;c -->
+<!-- d -->
+<g id="node5" class="node">
+<title>d</title>
+<polygon fill="none" stroke="black" points="360,-0.5 360,-50.1 414,-50.1 414,-0.5 360,-0.5"></polygon>
+<text text-anchor="middle" x="386.66" y="-33.5" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="360,-25.3 413.32,-25.3 "></polyline>
+<text text-anchor="middle" x="386.66" y="-8.7" font-family="Times,serif" font-size="14.00">d</text>
+</g>
+<!-- c&#45;&gt;d -->
+<g id="edge4" class="edge">
+<title>c:1-&gt;d:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M324,-38.3C324,-38.3 339.14,-37.88 349.78,-37.58"></path>
+<polygon fill="black" stroke="black" points="350.1,-41.08 360,-37.3 349.91,-34.08 350.1,-41.08"></polygon>
+</g>
+<!-- c&#45;&gt;d -->
+<!-- c&#45;&gt;e -->
+<g id="edge13" class="edge">
+<title>c:2-&gt;e:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M323.56,-63.15C354.22,-62.98 404.88,-62.7 439.54,-62.51"></path>
+<polygon fill="black" stroke="black" points="439.76,-66.01 449.74,-62.45 439.72,-59.01 439.76,-66.01"></polygon>
+</g>
+<!-- d&#45;&gt;e -->
+<g id="edge5" class="edge">
+<title>d:1-&gt;e:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M414,-37.3C414,-37.3 429.14,-37.72 439.78,-38.02"></path>
+<polygon fill="black" stroke="black" points="439.91,-41.52 450,-38.3 440.1,-34.52 439.91,-41.52"></polygon>
+</g>
+<!-- d&#45;&gt;e -->
+<!-- f -->
+<g id="node7" class="node">
+<title>f</title>
+<polygon fill="none" stroke="black" points="540,-0.5 540,-50.1 594,-50.1 594,-0.5 540,-0.5"></polygon>
+<text text-anchor="middle" x="566.66" y="-33.5" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="540,-25.3 593.32,-25.3 "></polyline>
+<text text-anchor="middle" x="566.66" y="-8.7" font-family="Times,serif" font-size="14.00">f</text>
+</g>
+<!-- e&#45;&gt;f -->
+<g id="edge6" class="edge">
+<title>e:1-&gt;f:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M504,-38.3C504,-38.3 519.14,-37.88 529.78,-37.58"></path>
+<polygon fill="black" stroke="black" points="530.1,-41.08 540,-37.3 529.91,-34.08 530.1,-41.08"></polygon>
+</g>
+<!-- e&#45;&gt;f -->
+<!-- g -->
+<g id="node8" class="node">
+<title>g</title>
+<polygon fill="none" stroke="black" points="630,-1.1 630,-75.5 684,-75.5 684,-1.1 630,-1.1"></polygon>
+<text text-anchor="middle" x="656.66" y="-58.9" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="630,-50.7 683.32,-50.7 "></polyline>
+<text text-anchor="middle" x="656.66" y="-34.1" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="630,-25.9 683.32,-25.9 "></polyline>
+<text text-anchor="middle" x="656.66" y="-9.3" font-family="Times,serif" font-size="14.00">g</text>
+</g>
+<!-- e&#45;&gt;g -->
+<g id="edge14" class="edge">
+<title>e:2-&gt;g:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M503.56,-62.45C534.22,-62.62 584.88,-62.9 619.54,-63.09"></path>
+<polygon fill="black" stroke="black" points="619.72,-66.59 629.74,-63.15 619.76,-59.59 619.72,-66.59"></polygon>
+</g>
+<!-- e&#45;&gt;h -->
+<g id="edge19" class="edge">
+<title>e:3-&gt;h:3</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M503.38,-87.4C551.62,-87.58 654.19,-87.96 709.61,-88.16"></path>
+<polygon fill="black" stroke="black" points="709.7,-91.66 719.71,-88.2 709.72,-84.66 709.7,-91.66"></polygon>
+</g>
+<!-- f&#45;&gt;g -->
+<g id="edge7" class="edge">
+<title>f:1-&gt;g:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M594,-37.3C594,-37.3 609.14,-37.72 619.78,-38.02"></path>
+<polygon fill="black" stroke="black" points="619.91,-41.52 630,-38.3 620.1,-34.52 619.91,-41.52"></polygon>
+</g>
+<!-- f&#45;&gt;g -->
+<!-- g&#45;&gt;h -->
+<g id="edge8" class="edge">
+<title>g:1-&gt;h:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M684,-38.3C684,-38.3 699.14,-38.3 709.78,-38.3"></path>
+<polygon fill="black" stroke="black" points="710,-41.8 720,-38.3 710,-34.8 710,-41.8"></polygon>
+</g>
+<!-- g&#45;&gt;h -->
+<g id="edge15" class="edge">
+<title>g:2-&gt;h:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M684,-63.3C684,-63.3 699.14,-63.3 709.78,-63.3"></path>
+<polygon fill="black" stroke="black" points="710,-66.8 720,-63.3 710,-59.8 710,-66.8"></polygon>
+</g>
+<!-- g&#45;&gt;h -->
+<!-- i -->
+<g id="node10" class="node">
+<title>i</title>
+<polygon fill="none" stroke="black" points="810,-0.5 810,-50.1 864,-50.1 864,-0.5 810,-0.5"></polygon>
+<text text-anchor="middle" x="836.66" y="-33.5" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="810,-25.3 863.32,-25.3 "></polyline>
+<text text-anchor="middle" x="836.66" y="-8.7" font-family="Times,serif" font-size="14.00">i</text>
+</g>
+<!-- h&#45;&gt;i -->
+<g id="edge9" class="edge">
+<title>h:1-&gt;i:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M774,-38.3C774,-38.3 789.14,-37.88 799.78,-37.58"></path>
+<polygon fill="black" stroke="black" points="800.1,-41.08 810,-37.3 799.91,-34.08 800.1,-41.08"></polygon>
+</g>
+<!-- h&#45;&gt;i -->
+<!-- j -->
+<g id="node11" class="node">
+<title>j</title>
+<polygon fill="none" stroke="black" points="900,-0.7 900,-99.9 954,-99.9 954,-0.7 900,-0.7"></polygon>
+<text text-anchor="middle" x="926.66" y="-83.3" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="black" points="900,-75.1 953.32,-75.1 "></polyline>
+<text text-anchor="middle" x="926.66" y="-58.5" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="900,-50.3 953.32,-50.3 "></polyline>
+<text text-anchor="middle" x="926.66" y="-33.7" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="900,-25.5 953.32,-25.5 "></polyline>
+<text text-anchor="middle" x="926.66" y="-8.9" font-family="Times,serif" font-size="14.00">j</text>
+</g>
+<!-- h&#45;&gt;j -->
+<g id="edge16" class="edge">
+<title>h:2-&gt;j:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M773.56,-63.15C804.22,-62.98 854.88,-62.7 889.54,-62.51"></path>
+<polygon fill="black" stroke="black" points="889.76,-66.01 899.74,-62.45 889.72,-59.01 889.76,-66.01"></polygon>
+</g>
+<!-- h&#45;&gt;j -->
+<g id="edge20" class="edge">
+<title>h:3-&gt;j:3</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M773.56,-88.15C804.22,-87.98 854.88,-87.7 889.54,-87.51"></path>
+<polygon fill="black" stroke="black" points="889.76,-91.01 899.74,-87.45 889.72,-84.01 889.76,-91.01"></polygon>
+</g>
+<!-- h&#45;&gt;k -->
+<g id="edge23" class="edge">
+<title>h:e-&gt;k:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M773,-113.3C773,-113.3 936.92,-112.54 979.82,-112.35"></path>
+<polygon fill="black" stroke="black" points="980.02,-115.85 990,-112.3 979.98,-108.85 980.02,-115.85"></polygon>
+</g>
+<!-- i&#45;&gt;j -->
+<g id="edge10" class="edge">
+<title>i:1-&gt;j:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M864,-37.3C864,-37.3 879.14,-37.72 889.78,-38.02"></path>
+<polygon fill="black" stroke="black" points="889.91,-41.52 900,-38.3 890.1,-34.52 889.91,-41.52"></polygon>
+</g>
+<!-- i&#45;&gt;j -->
+<!-- j&#45;&gt;k -->
+<g id="edge11" class="edge">
+<title>j:1-&gt;k:1</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-38.3C954,-38.3 969.14,-38.3 979.78,-38.3"></path>
+<polygon fill="black" stroke="black" points="980,-41.8 990,-38.3 980,-34.8 980,-41.8"></polygon>
+</g>
+<!-- j&#45;&gt;k -->
+<g id="edge17" class="edge">
+<title>j:2-&gt;k:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-62.3C954,-62.3 969.14,-62.72 979.78,-63.02"></path>
+<polygon fill="black" stroke="black" points="979.91,-66.52 990,-63.3 980.1,-59.52 979.91,-66.52"></polygon>
+</g>
+<!-- j&#45;&gt;k -->
+<g id="edge21" class="edge">
+<title>j:3-&gt;k:3</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-87.3C954,-87.3 969.14,-87.3 979.78,-87.3"></path>
+<polygon fill="black" stroke="black" points="980,-90.8 990,-87.3 980,-83.8 980,-90.8"></polygon>
+</g>
+<!-- j&#45;&gt;k -->
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skip-list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.1: Ejemplo de una lista ligada con alturas heterogeneas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A diferencia de los algoritmos vistos anteriormente, en este caso, ya se tiene una estructura de datos, que conlleva un costo en memoría explícito por nodo. <a href="#fig-skip-list" class="quarto-xref">Figura&nbsp;<span>4.1</span></a> ilustra la estructura.</p>
+<p>La altura de cada nodo es calculada de manera probabilística, dada la probababilidad <span class="math inline">\(p\)</span>. Un valor común de <span class="math inline">\(p=0.5\)</span>. La altura de cada nodo se calcula como sigue:</p>
+<div id="16" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">levels</span>(p)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="fu">rand</span>() <span class="op">&lt;</span> p</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  i</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>levels (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Si tenemos <span class="math inline">\(n\)</span> evaluaciones de <em>levels</em>, Los niveles pequeños son relativamente probables, mientras que niveles grandes son relativamente poco probables. De hecho, los niveles <span class="math inline">\(\log_{1/p} n\)</span> son cercanos a una constante, <span class="math inline">\(\log_{1/p}{n} - 1\)</span> son <span class="math inline">\(1/p\)</span> veces la constante, <span class="math inline">\(\log_{1/p}{n} - 2\)</span> son <span class="math inline">\(1/p^2\)</span> veces la constante, etc.</p>
+<p>A diferencia de los algoritmos anteriores, una <em>skip list</em> comienza vacia, y se va poblando insertando elementos a la lista. Se va colocando en la posición que no viola el orden; generando el nodo correspondiente con nivel calculado. Los nodos especiales <em>head</em> y <em>tail</em> siempre tienen el nivel máximo posible. La inserción de un valor encapsulado en el nodo <span class="math inline">\(u\)</span> comienza por visitar el máximo nivel en <em>head</em> e ir bajando hasta determinar <span class="math inline">\(u.dato &gt; head[level].dato\)</span>; en ese momento se debe avanzar al nodo apuntado por <span class="math inline">\(head[level]\)</span> y repetir el algoritmo hasta que <span class="math inline">\(level=1\)</span>, en cuyo caso encontramos el lugar de inserción del nuevo dato. Se procede a reasignar los punteros de los sucesores y ajustar los punteros hacia los nodos sucesores a los niveles que tiene <span class="math inline">\(u\)</span>.</p>
+<p>Cada inserción tiene un costo <span class="math inline">\(O(\log_{1/p} n)\)</span>, garantía probabilística; por lo que insertar <span class="math inline">\(n\)</span> elementos tiene un costo: <span class="math display">\[ \sum_{i=1}^n O(\log_{1/p} i) = O(\log_{1/p} \prod_{i=1}^n i) = O(\log_{1/p} {n!}) = O(n \log n); \]</span> usando la aproximación de Stirling.</p>
+<p>A diferencia de la versión basada en arreglos, una <em>skip list</em> es capaz de aceptar nuevos elementos y mantener el orden de manera eficiente.</p>
+<section id="ejercicios" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">4.3.1</span> Ejercicios:</h3>
+<ol type="1">
+<li>Investigue, implemente y pruebe <em>merge sort</em>. 1.1 ¿Cuales son las ventajas y desventajas de <em>merge sort</em>? 1.2 ¿Por qué <em>merge sort</em> se puede utilizar en algoritmos paralelos y otros pueden tener muchas dificultades? 1.3 ¿Cómo se puede reducir la memoria extra necesaria de <em>merge sort</em>?</li>
+<li>Investigue, implemente y pruebe <em>heap sort</em>. 2.1 ¿Cuales son las ventajas y desventajas de <em>heap sort</em>?</li>
+<li>¿Cuál es el costo en memoria de una <em>skip list</em>?. 3.1 Investigue, implemente y pruebe un <em>skip list</em>.</li>
+<li>Investigue, implemente y pruebe un árbol binario de búsqueda.</li>
+</ol>
+</section>
+</section>
+<section id="lecturas" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="lecturas"><span class="header-section-number">4.4</span> Lecturas</h2>
+<p>Las lecturas de este tema corresponden al capítulo 5 de <span class="citation" data-cites="Knuth98">(<a href="refs.html#ref-Knuth98" role="doc-biblioref">Knuth 1998</a>)</span>, en específico 5.2 <em>Internal sorting</em>. También se recomienda leer y comprender la parte II de <span class="citation" data-cites="Cormen22">(<a href="refs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022</a>)</span>, que corresponde a <em>Sorting and order statistics</em>, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <a href="https://en.wikipedia.org/wiki/Sorting_algorithm" class="uri">https://en.wikipedia.org/wiki/Sorting_algorithm</a> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.</p>
+<p>En la práctica, pocos algoritmos son mejores que <em>quicksort</em>. En <span class="citation" data-cites="Loeser74">(<a href="refs.html#ref-Loeser74" role="doc-biblioref">Loeser 1974</a>)</span> se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.</p>
+<p>La parte adaptable, esto es para algoritmos <em>oportunistas</em> que toman ventaja de instancias simples, esta cubierta por el artículo <span class="citation" data-cites="Estivill92">(<a href="refs.html#ref-Estivill92" role="doc-biblioref">Estivill-Castro y Wood 1992</a>)</span>. En especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad. En <span class="citation" data-cites="Cook80">(<a href="refs.html#ref-Cook80" role="doc-biblioref">Cook y Kim 1980</a>)</span> realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a <span class="citation" data-cites="Estivill92">(<a href="refs.html#ref-Estivill92" role="doc-biblioref">Estivill-Castro y Wood 1992</a>)</span> pero tiene experimentos que simplifican el entendimiento de los temas.</p>
+</section>
+<section id="material-audio-visual-sobre-algoritmos-de-ordenamiento" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="material-audio-visual-sobre-algoritmos-de-ordenamiento"><span class="header-section-number">4.5</span> Material audio-visual sobre algoritmos de ordenamiento</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+
+
+<!-- -->
+</section>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Cook80" class="csl-entry" role="listitem">
+Cook, Curtis R, y Do Jin Kim. 1980. <span>“Best sorting algorithm for nearly sorted lists”</span>. <em>Communications of the ACM</em> 23 (11): 620–24.
+</div>
+<div id="ref-Cormen22" class="csl-entry" role="listitem">
+Cormen, Thomas H, Charles E Leiserson, Ronald L Rivest, y Clifford Stein. 2022. <em>Introduction to algorithms</em>. MIT press.
+</div>
+<div id="ref-Estivill92" class="csl-entry" role="listitem">
+Estivill-Castro, Vladmir, y Derick Wood. 1992. <span>“A survey of adaptive sorting algorithms”</span>. <em>ACM Computing Surveys (CSUR)</em> 24 (4): 441–76.
+</div>
+<div id="ref-Knuth98" class="csl-entry" role="listitem">
+Knuth, Donald. 1998. <em>The Art Of Computer Programming, vol. 3 (2nd ed): Sorting And Searching</em>. Vol. 3. Redwood City, CA, USA.: Addison Wesley Longman Publishing Co. Inc.
+</div>
+<div id="ref-Loeser74" class="csl-entry" role="listitem">
+Loeser, Rudolf. 1974. <span>“Some performance tests of <span>‘quicksort’</span> and descendants”</span>. <em>Communications of the ACM</em> 17 (3): 143–52.
+</div>
+<div id="ref-skiplists" class="csl-entry" role="listitem">
+Pugh, William. 1990. <span>“Skip lists: a probabilistic alternative to balanced trees”</span>. <em>Commun. ACM</em> 33 (6): 668–76. <a href="https://doi.org/10.1145/78973.78977">https://doi.org/10.1145/78973.78977</a>.
+</div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Aproximación de Stirling <a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" class="uri">https://en.wikipedia.org/wiki/Stirling%27s_approximation</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Aproximación de Stirling <a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" class="uri">https://en.wikipedia.org/wiki/Stirling%27s_approximation</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/sadit\.github\.io\/ALGO-IR");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./cap3-estructuras.html" class="pagination-link" aria-label="Estructuras de datos elementales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estructuras de datos elementales</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./cap5-busqueda.html" class="pagination-link" aria-label="Algoritmos de búsqueda en el modelo de comparación">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de búsqueda en el modelo de comparación</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade page-columns page-full" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable page-columns page-full"><div class="modal-content page-columns page-full"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body page-columns page-full"><div class="page-columns page-full">
+<section id="section" class="level2 markdown" data-shortcodes="false" data-number="4.6">
+<h2 class="markdown" data-shortcodes="false" data-number="4.6" data-anchor-id="section"><span class="header-section-number">4.6</span> ```````````````````</h2>
+<p>engine: julia lang: es-MX —</p>
+</section>
+<section id="sec-ordenamiento" class="level1 page-columns page-full" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Algoritmos de ordenamiento</h1>
+<section id="objetivo-1" class="level2 unnumbered">
+<h2 class="unnumbered" data-anchor-id="objetivo-1">Objetivo</h2>
+<p>Implementar y analizar algoritmos de ordenamiento de arreglos con costo óptimo en el peor caso, así como algoritmos adaptativos a la entrada para caracterizar su desempeño bajo un enfoque experimental para la solución efectiva de problemas informáticos.</p>
+</section>
+<section id="introducción-1" class="level2 page-columns page-full" data-number="5.1">
+<h2 data-number="5.1" data-anchor-id="introducción-1"><span class="header-section-number">5.1</span> Introducción</h2>
+<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe un operador <span class="math inline">\(&lt;\)</span> que es capaz de distinguir si un elemento <span class="math inline">\(a\)</span> es menor que un elemento <span class="math inline">\(b\)</span>.</p>
+<p>El operador cumple con las siguientes propiedades:</p>
+<ul>
+<li>si <span class="math inline">\(a &lt; b\)</span> y <span class="math inline">\(b &lt; c\)</span> entonces <span class="math inline">\(a &lt; c\)</span> (transitividad); e.g., <span class="math inline">\(1 &lt; 10\)</span> y <span class="math inline">\(10 &lt; 100\)</span> entonces <span class="math inline">\(1 &lt; 100\)</span>.</li>
+<li>tricotomía:
+<ul>
+<li>si <span class="math inline">\(a &lt; b\)</span> es falso y <span class="math inline">\(b &lt; a\)</span> es falso, entonces <span class="math inline">\(u = v\)</span> (antisímetria); dicho de otras formas:
+<ul>
+<li>si <span class="math inline">\(a\)</span> no es menor que <span class="math inline">\(b\)</span> ni <span class="math inline">\(b\)</span> menor que <span class="math inline">\(a\)</span> entonces <span class="math inline">\(a\)</span> es igual a <span class="math inline">\(b\)</span>,</li>
+<li>desvelando variables, <span class="math inline">\(1 &lt; 1\)</span> es falso, el intercambio es obvio, entonces <span class="math inline">\(1=1\)</span>.</li>
+</ul></li>
+<li>en otro caso, <span class="math inline">\(a &lt; b\)</span> o <span class="math inline">\(a &lt; b\)</span>.</li>
+</ul></li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Usar un operador como <span class="math inline">\(&lt;\)</span> es suficiente para crear algoritmos correctos y eficientes, sin embargo, en la práctica y en una computadora real, también es válido utilizar operadores como <span class="math inline">\(=\)</span> o <span class="math inline">\(\leq\)</span>, o intercambiar por <span class="math inline">\(&gt;\)</span> y <span class="math inline">\(\geq\)</span> según convenga. No hay impacto en la eficiencia.</p>
+</div></div><p>Sin perdida de generalidad, podemos planter el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo <span class="math inline">\(A[1, n] = a_1, a_2, \cdots, a_n\)</span>; un algoritmo de ordenamiento obtiene la permutación <span class="math inline">\(\pi\)</span> tal que <span class="math inline">\(a_{\pi(1)} &lt; a_{\pi(2)} &lt; \cdots &lt; a_{\pi(n)}\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Cuando se permiten elementos repetidos, se le llama <em>ordenamiento estable</em> i se asegura que en el arreglo ordenado se preserven el orden original posicional cuando <span class="math inline">\(a = b\)</span>. Esta propiedad es importante cuando hay datos satélitales asociados a la llave de comparación.</p>
+</div></div><p>En términos prácticos, la idea es reorganizar <span class="math inline">\(A\)</span>, mediante el cálculo implicito de la permutación <span class="math inline">\(\pi\)</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">\(A\)</span> esta ordenado, i.e., <span class="math inline">\(a_i \leq a_{i+1}\)</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto muchas veces se busca modificar directamente <span class="math inline">\(A\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Utilizar <span class="math inline">\(\pi\)</span> solo es necesario cuando no es posible modificar <span class="math inline">\(A\)</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos. Un ejemplo de esto es ordenar un <em>dataframe</em>, pero también estructuras de datos donde existe un campo especial y el resto de los datos asociados es de importancia para una aplicación.</p>
+</div></div><section id="costo-del-problema-1" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" data-anchor-id="costo-del-problema-1"><span class="header-section-number">5.1.1</span> Costo del problema</h3>
+<p>Para una entrada de tamaño <span class="math inline">\(n\)</span> existen <span class="math inline">\(n!\)</span> permutaciones posibles; cada una de estas permutaciones es una instancia del problema de ordenamiento de tamaño <span class="math inline">\(n\)</span>.</p>
+<p>Existe una permutación objetivo <span class="math inline">\(\pi^*\)</span>, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada <span class="math inline">\(\pi_i\)</span> esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo <em>i.e., ruta sin ciclos</em>, entre cualquier <span class="math inline">\(\pi_i\)</span> y la permutación <span class="math inline">\(\pi^*\)</span> es el costo de peor caso del algoritmo.</p>
+<p>Ahora, cada operación que realicemos en un algoritmo nos acercará más a <span class="math inline">\(\pi^*\)</span>, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es <span class="math inline">\(\log_2(n!)\)</span>, que usando la aproximación de Stirling,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> lo podemos reescribir como sigue:</p>
+<p><span class="math display">\[ \log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)\]</span></p>
+<p>Esto se puede simplemente escribir como <span class="math inline">\(O(n \log n)\)</span>.</p>
+</section>
+</section>
+<section id="algoritmos-de-ordenamiento-1" class="level2" data-number="5.2">
+<h2 data-number="5.2" data-anchor-id="algoritmos-de-ordenamiento-1"><span class="header-section-number">5.2</span> Algoritmos de ordenamiento</h2>
+<p>Existen muchos algoritmos que pueden resolver el problema de ordenamiento, es común contar el número de comparaciones ya que produce la información necesaria para la navegación en el grafo de instancias; también es común contar las operación de intercambiar elementos. Las pruebas y la navegación en el grafo determina el costo del algoritmo. Es necesario mencionar que mover datos entre diferentes zonas de memoria puede llegar a ser más costoso que solo acceder a esas zonas por lo que hay una asimetría en el costo de estas dos operaciones.</p>
+<p>Note que algunos de los algoritmos más simples pueden tener un comportamiento oportunistas y que son capaces de obtener ventaja en instancias sencillas, por lo que no debería saltarse esas secciones si solo conoce su comportamiento en peor caso.</p>
+<section id="bubble-sort-1" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" data-anchor-id="bubble-sort-1"><span class="header-section-number">5.2.1</span> Bubble sort</h3>
+<p>El algoritmo de ordenamiento de burbuja o <em>bubble sort</em> realiza una gran cantidad de comparaciones, como puede verse en <a href="#lst-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.1</span></a>, el algoritmo usa dos ciclos anidados para realizar una comparación y una posible transposición, formando un <em>triángulo</em>, i.e., <span class="math display">\[ \sum_{i=1}^{n-1} \sum_{j=1}^{n-i} O(1);\]</span> por lo tanto su costo esta dominado por el triangulo formado, i.e., <span class="math inline">\(\sim n^2/2\)</span> lo que puede escribirse simplemente como <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-bubble-sort</span></span>
+<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Bubble sort de peor caso</span></span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">bubble_sort!</span>(A)</span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i</span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-8" class="code-annotation-target"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j]</span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="annotated-cell-11-12"><a href="#annotated-cell-11-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="annotated-cell-11-14"><a href="#annotated-cell-11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-11-15"><a href="#annotated-cell-11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-11-16"><a href="#annotated-cell-11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">bubble_sort!</span>([<span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">7</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="5" data-code-annotation="1">Ciclo que recorre <span class="math inline">\(n-1\)</span> veces todo el arreglo; y pone el elemento máximo en su posición final.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="6" data-code-annotation="2">Ciclo que recorre <span class="math inline">\(n-i\)</span> veces el arreglo; ya que en cada corrida se pone el máximo en su posición.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="8" data-code-annotation="3">Intercambio cuando hay pares en desorden.</span>
+</dd>
+</dl>
+<p>El algoritmo mostrado en <a href="#lst-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.1</span></a> es un algoritmo de peor caso, ya que sin importar la complejidad de la instancia (i.e., que tal alejada esta <span class="math inline">\(\pi_i\)</span> de <span class="math inline">\(\pi^*\)</span>), se comporta igual.</p>
+<p>Es relativamente fácil hacer un bubble sort que tenga en cuenta la complejidad de la instancia, medida como el número de intercambios necesarios.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="annotated-cell-12"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-adaptive-bubble-sort</span></span>
+<span id="annotated-cell-12-2"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Bubble sort adaptable</span></span>
+<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">adaptive_bubble_sort!</span>(A)</span>
+<span id="annotated-cell-12-5"><a href="#annotated-cell-12-5" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<span id="annotated-cell-12-6"><a href="#annotated-cell-12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-12-7"><a href="#annotated-cell-12-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>     <span class="co"># </span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-8" class="code-annotation-target"><a href="#annotated-cell-12-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fl">0</span></span>
+<span id="annotated-cell-12-9"><a href="#annotated-cell-12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i   <span class="co"># </span></span>
+<span id="annotated-cell-12-10"><a href="#annotated-cell-12-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-12-11" class="code-annotation-target"><a href="#annotated-cell-12-11" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="annotated-cell-12-12"><a href="#annotated-cell-12-12" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j] </span>
+<span id="annotated-cell-12-13"><a href="#annotated-cell-12-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="annotated-cell-12-14"><a href="#annotated-cell-12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-12-15" class="code-annotation-target"><a href="#annotated-cell-12-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">break</span></span>
+<span id="annotated-cell-12-16"><a href="#annotated-cell-12-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="annotated-cell-12-17"><a href="#annotated-cell-12-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-12-18"><a href="#annotated-cell-12-18" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="annotated-cell-12-19"><a href="#annotated-cell-12-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-12-20"><a href="#annotated-cell-12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-12-21"><a href="#annotated-cell-12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptive_bubble_sort!</span>([<span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="8" data-code-annotation="1">La idea es que si no hay intercambios en una iteración, entonces el arreglo ya esta ordenado.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="11" data-code-annotation="2">Contador de intercambios.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="15" data-code-annotation="3">Condición de paro, i.e., no hubo intercambios.</span>
+</dd>
+</dl>
+<p>En la forma <a href="#lst-adaptive-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.2</span></a>, bubble sort es capaz de términar en <span class="math inline">\(n-1\)</span> comparaciones si el arreglo esta ordenado; sacando provecho de casos simples en términos de instancias casi ordenadas.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this code is a sanity check</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bubble_sort!</span>(A) <span class="co">#hide</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adaptive_bubble_sort!</span>(A) <span class="co">#hide</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</section>
+<section id="insertion-sort-1" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" data-anchor-id="insertion-sort-1"><span class="header-section-number">5.2.2</span> Insertion sort</h3>
+<p>El algoritmo de ordenamiento por inserción o <em>insertion sort</em> es un algoritmo simple que al igual que bubble sort tiene un mal peor caso y puede aprovechar casos simples</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="annotated-cell-14"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-14-1"><a href="#annotated-cell-14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-insertion-sort</span></span>
+<span id="annotated-cell-14-2"><a href="#annotated-cell-14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Algoritmo _insertion sort_</span></span>
+<span id="annotated-cell-14-3"><a href="#annotated-cell-14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">insertion_sort!</span>(A)</span>
+<span id="annotated-cell-14-4"><a href="#annotated-cell-14-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-14-5" class="code-annotation-target"><a href="#annotated-cell-14-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>n</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-14-6" class="code-annotation-target"><a href="#annotated-cell-14-6" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> A[i]</span>
+<span id="annotated-cell-14-7"><a href="#annotated-cell-14-7" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> i <span class="op">-</span> <span class="fl">1</span>   </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-14-8" class="code-annotation-target"><a href="#annotated-cell-14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">&amp;&amp;</span> A[j] <span class="op">&gt;</span> key</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-14-9" class="code-annotation-target"><a href="#annotated-cell-14-9" aria-hidden="true" tabindex="-1"></a>      A[j <span class="op">+</span> <span class="fl">1</span>] <span class="op">=</span> A[j]</span>
+<span id="annotated-cell-14-10"><a href="#annotated-cell-14-10" aria-hidden="true" tabindex="-1"></a>      j <span class="op">-=</span> <span class="fl">1</span></span>
+<span id="annotated-cell-14-11"><a href="#annotated-cell-14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-14-12"><a href="#annotated-cell-14-12" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-14-13" class="code-annotation-target"><a href="#annotated-cell-14-13" aria-hidden="true" tabindex="-1"></a>    A[j <span class="op">+</span> <span class="fl">1</span>] <span class="op">=</span> key</span>
+<span id="annotated-cell-14-14"><a href="#annotated-cell-14-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="annotated-cell-14-15"><a href="#annotated-cell-14-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-14-16"><a href="#annotated-cell-14-16" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="annotated-cell-14-17"><a href="#annotated-cell-14-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-14-18"><a href="#annotated-cell-14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-14-19"><a href="#annotated-cell-14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">insertion_sort!</span>([<span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">7</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="5" data-code-annotation="1">El algoritmo comienza en la segunda posición del arreglo y revisará todos los elementos.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="6" data-code-annotation="2">Es importante hacer una copia de <em>key</em> para simplificar la implementación.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="8" data-code-annotation="3">La idea general es ordenar las posiciones de <span class="math inline">\(1..i\)</span>, para esto se debe recorrer hacia atrás el arreglo completo, para determinar la posición de inserción de <em>key</em>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="9" data-code-annotation="4">Intercambio de elementos para colocar <em>key</em> en su lugar ordenado.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="13" data-code-annotation="5"><em>key</em> se pone en su lugar final.</span>
+</dd>
+</dl>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this code is a sanity check</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insertion_sort!</span>(A) <span class="co">#hide</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<p>Para analizar <a href="#lst-insertion-sort" class="quarto-xref">Listado&nbsp;<span>4.3</span></a>, es importante notar que el ciclo más externo termina con el subarreglo <span class="math inline">\(A[1..i]\)</span> ordenado; por lo que cuando se comienza el ciclo, si <em>key</em> se prueba estar en su posición correcta, entonces ya no es necesario revisar el resto del subarreglo, esto determina que un arreglo ordenado tendrá un costo de <span class="math inline">\(O(n)\)</span> comparaciones; si esta <em>casi ordenado</em> en términos del número de intercambios necesarios, entonces, el algoritmo se adaptará sacando provecho de la instancia.</p>
+<p>En el <em>peor caso</em> de insertion sort, el algoritmo no puede parar de manera prematura, e.g., un arreglo en orden reverso, el ciclo <code>for</code> se ejecutara <span class="math inline">\(n-1\)</span> veces, mientras que el ciclo <code>while</code> deberá revisar el subarreglo completo en cada iteración, sumando un costo de <span class="math inline">\(i\)</span> operaciones en cada iteración, i.e., <span class="math inline">\(\sum_{i=1}^n i\)</span>, esta forma produce un <em>triángulo</em>, resultando en un costo <span class="math inline">\(O(n^2)\)</span>.</p>
+</section>
+<section id="quick-sort-1" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" data-anchor-id="quick-sort-1"><span class="header-section-number">5.2.3</span> Quick sort</h3>
+<p><em>Quick sort</em> <span class="citation" data-cites="Cormen22">(ver <a href="refs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022, cap. 7</a>)</span> es un algoritmo tipo <em>dividir para vencer</em>; esto es, un algoritmo que divide un problema grande en instancias pequeñas más sencillas. Es uno de los algoritmos más veloces en la práctica por su buen manejo de memoria, aun cuando tiene un peor caso cuadrático, en promedio el costo es <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="annotated-cell-16"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-qsort</span></span>
+<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Algoritmo _quick sort_.</span></span>
+<span id="annotated-cell-16-3"><a href="#annotated-cell-16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-16-4"><a href="#annotated-cell-16-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="annotated-cell-16-5"><a href="#annotated-cell-16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-16-6"><a href="#annotated-cell-16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">qsort!</span>(A, low<span class="op">=</span><span class="fl">1</span>, high<span class="op">=</span><span class="fu">length</span>(A))</span>
+<span id="annotated-cell-16-7"><a href="#annotated-cell-16-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> low <span class="op">&lt;</span> high</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-8" class="code-annotation-target"><a href="#annotated-cell-16-8" aria-hidden="true" tabindex="-1"></a>      piv <span class="op">=</span> <span class="fu">part!</span>(A, low, high)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-9" class="code-annotation-target"><a href="#annotated-cell-16-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">qsort!</span>(A, low, piv <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="annotated-cell-16-10"><a href="#annotated-cell-16-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">qsort!</span>(A, piv <span class="op">+</span> <span class="fl">1</span>, high)</span>
+<span id="annotated-cell-16-11"><a href="#annotated-cell-16-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="annotated-cell-16-12"><a href="#annotated-cell-16-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-16-13"><a href="#annotated-cell-16-13" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="annotated-cell-16-14"><a href="#annotated-cell-16-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-16-15"><a href="#annotated-cell-16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-16-16"><a href="#annotated-cell-16-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">part!</span>(A, low, high)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-16-17" class="code-annotation-target"><a href="#annotated-cell-16-17" aria-hidden="true" tabindex="-1"></a>  ipiv <span class="op">=</span> <span class="fu">rand</span>(low<span class="op">:</span>high)</span>
+<span id="annotated-cell-16-18"><a href="#annotated-cell-16-18" aria-hidden="true" tabindex="-1"></a>  A[ipiv], A[high] <span class="op">=</span> A[high], A[ipiv]</span>
+<span id="annotated-cell-16-19"><a href="#annotated-cell-16-19" aria-hidden="true" tabindex="-1"></a>  piv <span class="op">=</span> A[high]</span>
+<span id="annotated-cell-16-20"><a href="#annotated-cell-16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-16-21"><a href="#annotated-cell-16-21" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> low <span class="op">-</span> <span class="fl">1</span>  <span class="co"># uno antes porque se accede después de un i+1</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-16-22" class="code-annotation-target"><a href="#annotated-cell-16-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> low<span class="op">:</span>high <span class="op">-</span> <span class="fl">1</span></span>
+<span id="annotated-cell-16-23"><a href="#annotated-cell-16-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&lt;</span> piv</span>
+<span id="annotated-cell-16-24"><a href="#annotated-cell-16-24" aria-hidden="true" tabindex="-1"></a>          i <span class="op">+=</span> <span class="fl">1</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-16-25" class="code-annotation-target"><a href="#annotated-cell-16-25" aria-hidden="true" tabindex="-1"></a>          A[i], A[j] <span class="op">=</span> A[j], A[i]</span>
+<span id="annotated-cell-16-26"><a href="#annotated-cell-16-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="annotated-cell-16-27"><a href="#annotated-cell-16-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="annotated-cell-16-28"><a href="#annotated-cell-16-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-16-29"><a href="#annotated-cell-16-29" aria-hidden="true" tabindex="-1"></a>  ipiv <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-16-30" class="code-annotation-target"><a href="#annotated-cell-16-30" aria-hidden="true" tabindex="-1"></a>  A[ipiv], A[high] <span class="op">=</span> A[high], A[ipiv]</span>
+<span id="annotated-cell-16-31"><a href="#annotated-cell-16-31" aria-hidden="true" tabindex="-1"></a>  ipiv</span>
+<span id="annotated-cell-16-32"><a href="#annotated-cell-16-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-16-33"><a href="#annotated-cell-16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-16-34"><a href="#annotated-cell-16-34" aria-hidden="true" tabindex="-1"></a><span class="fu">qsort!</span>([<span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">3</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="8" data-code-annotation="1">El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="9,10" data-code-annotation="2">Se resuelve el problema izquierdo y el problema derecho por separado.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="17,18,19" data-code-annotation="3">La función <em>part!</em> particiona el arreglo <span class="math inline">\(A[low:end]\)</span> en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="22" data-code-annotation="4">Este ciclo itera por todo el subarreglo, su objetivo es asegurar que <span class="math inline">\(A[i] &lt; piv \forall i \in low:piv-1\)</span> y <span class="math inline">\(piv &lt; A[i] \forall i \in piv+1:high\)</span>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="25" data-code-annotation="5">Intercambia elementos si <span class="math inline">\(A[j] &lt; piv\)</span>, hacemos seguimiento de <span class="math inline">\(i\)</span> ya que esta posición determinará al pivote.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="30" data-code-annotation="6">Como <em>piv</em> se encontraba en <em>high</em>, entonces hay que intercambiarlos para que <em>qsort!</em> sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.</span>
+</dd>
+</dl>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this code is a sanity check</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">qsort!</span>(A) <span class="co">#hide</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<p>El código <a href="#lst-qsort" class="quarto-xref">Listado&nbsp;<span>4.4</span></a> es relativamente simple, usa recurrencias sobre <em>qsort!</em> sobre dos partes extremas divididas por un pivote; estos tres elementos son encontrados en <em>part!</em>. La función <em>part!</em> es muy eficiente en términos de memoria, lo que puede hacer la diferencia en la práctica. La correcta selección del pivote es muy importante para evitar casos malos, i.e., costo cuadrático; en esta implementación se realiza una selección aleatoría de pivote que funcionará en la mayoría de los casos.</p>
+<p>El peor de los casos en <em>qsort!</em> es debido a una mala selección del pivote, de tal forma que <span class="math display">\[|A[low:piv-1]| \ll |A[piv+1:high]|,\]</span> o lo contrario en toda selección, en el extremo una de los subarreglos puede verse como de tamaño constante o cero, i.e., selección de pivote como el <em>minimo</em> o el <em>máximo</em>. Esta estrategía reduce a <em>qsort!</em> a un costo <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>Si se realiza un particionado donde <span class="math display">\[|A[low:piv-1]| \approx |A[piv+1:high]|,\]</span> entonces tenemos un algoritmo <span class="math inline">\(O(n \log n)\)</span>; ya que hace una división en dos partes casi iguales en cada recurrencia a <em>qsort!</em>, y esto solo puede profundizar a <span class="math inline">\(\log n\)</span> veces, y en cada nivel <em>part!</em> tiene un costo lineal.</p>
+</section>
+</section>
+<section id="skip-list-1" class="level2" data-number="5.3">
+<h2 data-number="5.3" data-anchor-id="skip-list-1"><span class="header-section-number">5.3</span> Skip list</h2>
+<p>Una <em>skip list</em> <span class="citation" data-cites="skiplists">(<a href="refs.html#ref-skiplists" role="doc-biblioref">Pugh 1990</a>)</span> es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel <span class="math inline">\(i\)</span> se conectan con el siguiente nodo a nivel <span class="math inline">\(i\)</span>. En el nivel más bajo, la <em>skip list</em> es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos.</p>
+<p>quarto-executable-code-5450563D</p>
+<p>```dot //| label: fig-skip-list //| echo: false //| fig-width: 80% //| fig-cap: Ejemplo de una lista ligada con alturas heterogeneas</p>
+<p>digraph lista { rankdir=LR; splines=false; graph [pad=“0.5”, nodesep=“0.5”, ranksep=“0.5”]; node [shape=record]; head [label=”</p>
+</section>
+</section>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" class="img-fluid"></a> <br> Esta obra está bajo una <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

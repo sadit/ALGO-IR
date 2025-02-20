@@ -3,6 +3,7 @@ quarto-required: ">= 1.6"
 
 project:
   type: book
+  output-dir: docs
 book:
   title: "Curso Introductorio al Análisis de Algoritmos con Julia"
   author: 
@@ -18,8 +19,6 @@ book:
     - cap5-busqueda.qmd
     - cap6-intersecciones.qmd
     - refs.qmd
-      #- U5.qmd
-      #- U6.qmd
   site-url: https://sadit.github.io/ALGO-IR
   repo-url: https://github.com/sadit/ALGO-IR
   downloads: pdf

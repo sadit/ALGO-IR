@@ -244,7 +244,7 @@ Si se realiza un particionado donde $$|A[low:piv-1]| \approx |A[piv+1:high]|,$$ 
 Una _skip list_ [@skiplists] es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel $i$ se conectan con el siguiente nodo a nivel $i$. En el nivel más bajo, la _skip list_ es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos. 
 
 ```{dot}
-//| label: fig-skip-lists
+//| label: fig-skip-list
 //| echo: false
 //| fig-width: 80%
 //| fig-cap: Ejemplo de una lista ligada con alturas heterogeneas
