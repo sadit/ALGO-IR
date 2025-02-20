@@ -38,12 +38,12 @@ format:
     theme: default
     code-tools: true
     echo: true
-  pdf:
-    documentclass: scrreprt
-    echo: true
-    toc: true
-    colorlinks: true
-    papersize: letter
+#  pdf:
+#    documentclass: scrreprt
+#    echo: true
+#    toc: true
+#    colorlinks: true
+#    papersize: letter
 
 
 execute:
