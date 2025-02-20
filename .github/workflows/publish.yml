@@ -1,54 +1,55 @@
-on:
-  push:
-    # Sequence of patterns matched against refs/heads
-    branches:
-      # Push events on main branch
-      - main
-    # Sequence of patterns matched against refs/tags
-    tags: '*'
-
-name: Quarto Publish
-
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -el {0}    
-    permissions:
-      contents: write
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: 1.6.39
-          tinytex: true
-      - uses: actions/checkout@v4
-        with:
-          submodules: 'true'
-      - uses: julia-actions/setup-julia@v1
-      - uses: julia-actions/cache@v1
-      - name: Install dependencies
-        run: |
-          pwd
-          JULIA_PROJECT=. julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
-          sudo apt-get install librsvg2-bin
-      - uses: julia-actions/julia-buildpkg@v1
-      # - name: Render and Publish
-      #   run: |
-      #     git config --global user.email "donsadit@gmail.com"
-      #     git config --global user.name "sadit"
-      #     quarto publish gh-pages .  --no-browser          
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Render Quarto Project
-        uses: quarto-dev/quarto-actions/render@v2
-
-      - name: Publish to GitHub Pages (and render)
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+## on:
+##   push:
+##     # Sequence of patterns matched against refs/heads
+##     branches:
+##       # Push events on main branch
+##       - main
+##     # Sequence of patterns matched against refs/tags
+##     tags: '*'
+## 
+## name: Quarto Publish
+## 
+## jobs:
+##   build-deploy:
+##     runs-on: ubuntu-latest
+##     defaults:
+##       run:
+##         shell: bash -el {0}    
+##     permissions:
+##       contents: write
+##     steps:
+##       - name: Check out repository
+##         uses: actions/checkout@v3
+##       - name: Set up Quarto
+##         uses: quarto-dev/quarto-actions/setup@v2
+##         with:
+##           version: 1.6.39
+##           tinytex: true
+##       - uses: actions/checkout@v4
+##         with:
+##           submodules: 'true'
+##       - uses: julia-actions/setup-julia@v1
+##       - uses: julia-actions/cache@v1
+##       - name: Install dependencies
+##         run: |
+##           pwd
+##           JULIA_PROJECT=. julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
+##           sudo apt-get install librsvg2-bin
+##       - uses: julia-actions/julia-buildpkg@v1
+##       # - name: Render and Publish
+##       #   run: |
+##       #     git config --global user.email "donsadit@gmail.com"
+##       #     git config --global user.name "sadit"
+##       #     quarto publish gh-pages .  --no-browser          
+##         env:
+##           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+##       - name: Render Quarto Project
+##         uses: quarto-dev/quarto-actions/render@v2
+## 
+##       - name: Publish to GitHub Pages (and render)
+##         uses: quarto-dev/quarto-actions/publish@v2
+##         with:
+##           target: gh-pages
+##         env:
+##           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+## 

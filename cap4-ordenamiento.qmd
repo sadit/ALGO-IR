@@ -16,7 +16,7 @@ El operador cumple con las siguientes propiedades:
 
 - si $a < b$ y $b < c$ entonces $a < c$ (transitividad); e.g., $1 < 10$ y $10 < 100$ entonces $1 < 100$. 
 - tricotomía:
-  - si $a < b$ es falso y $b < a$ es falso, entonces $u = v$ (antisímetria); dicho de otras formas:
+  - si $a < b$ es falso y $b < a$ es falso, entonces $a = b$ (antisímetria); dicho de otras formas:
     - si $a$ no es menor que $b$ ni $b$ menor que $a$ entonces $a$ es igual a $b$,
     - desvelando variables, $1 < 1$ es falso, el intercambio es obvio, entonces $1=1$.
   - en otro caso, $a < b$ o $a < b$.
