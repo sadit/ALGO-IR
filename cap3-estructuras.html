@@ -472,7 +472,7 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">getmaxdot</span>(<span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>), <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>, <span class="fl">1000</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(10, 2.3588f0)</code></pre>
+<pre><code>(593, 1.1504813f0)</code></pre>
 </div>
 </div>
 <p>En este código puede verse como se separa el cálculo del producto punto en una función, esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función <span class="math inline">\(getmaxdot\)</span> se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere <span class="math inline">\(O(n)\)</span> comparaciones, para una mátriz de <span class="math inline">\(n\)</span> columnas. Esto implica que cada producto punto se cuenta como <span class="math inline">\(O(1)\)</span>, lo cual simplifica el razonamiento. Por la función <span class="math inline">\(mydot\)</span> podemos observar que el producto punto tiene un costo de <span class="math inline">\(O(m)\)</span>, por lo que la <span class="math inline">\(getmaxdot\)</span> tiene un costo de <span class="math inline">\(O(mn)\)</span> operaciones lógicas y aritméticas.</p>
@@ -501,11 +501,11 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="funcion-producto-matricial" class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float32}:
- 0.486115  0.486115  0.486115  4.5901f-41  -2.2219f-35
- 0.817667  0.817667  0.817667  1.0f-44      4.5901f-41
- 0.506606  0.506606  0.506606  0.0         -2.2219f-35
- 1.24891   1.24891   1.24891   1.4f-44      4.5901f-41
- 0.982689  0.982689  0.982689  0.0          0.0</code></pre>
+ 0.777348  0.777348  0.777348  0.0  0.0
+ 0.207579  0.207579  0.207579  0.0  0.0
+ 1.73609   1.73609   1.73609   0.0  0.0
+ 0.523098  0.523098  0.523098  0.0  0.0
+ 1.22895   1.22895   1.22895   0.0  1.0f-45</code></pre>
 <p>Funciones sobre diferentes tipos de datos</p>
 </div>
 </div>
