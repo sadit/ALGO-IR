@@ -266,7 +266,7 @@ digraph lista {
   i [label="{{<1>(1)|<0>i}}"];
   j [label="{{<3>(3)|<2>(2)|<1>(1)|<0>j}}"];
   //k [label="{<5>|<4>|<3>|<2>|<1>}", style="invisible"];
-  k [label="{{<5> ---|<4>...|<3>...|<2>...|<1>...|<0>(tail)}}", color="gray"];
+  k [label="{{<5>(5)|<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>(tail)}}", color="gray"];
   edge [style="dashed"];
   head:1 -> a:1;
   a:1 -> b:1;
