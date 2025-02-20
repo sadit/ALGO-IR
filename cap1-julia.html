@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.7">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c73a87db086960c5b609a5e643d6de6b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f2a1071e85750ec973bbb8a8f120da0f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b254e9e3fad484ce9648ad97f95daba8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ad99e6f6c147e79e52b73ec7b2aeb1d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -289,21 +289,21 @@ window.Quarto = {
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="funciones"><span class="header-section-number">1.1.1</span> Funciones</h3>
 <p>Las funciones son centrales en Julia, y son definidas mediante la sintaxis</p>
 <div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode markdown code-annotation-code code-with-copy code-annotated"><code class="sourceCode markdown"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>)</span>
-<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
-<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="in">function fun(arg1, arg2...)</span></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="in">    # ... expresiones ...</span></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>)</span>
-<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
-<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a><span class="in">function fun(arg1, arg2...; kwarg1=valor1, kwargs2...)</span></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a><span class="in">    # ... expresiones ...</span></span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">=</span> expresion</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a><span class="in">fun(arg1, arg2...; kwarg1=valor1, kwargs2...) = expresion</span></span>
 <span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">-&gt;</span> expresion</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a><span class="in">(arg1, arg2...; kwarg1=valor1, kwargs2...) -&gt; expresion</span></span>
 <span id="annotated-cell-1-13"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-14" class="code-annotation-target"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>() <span class="cf">do</span> x</span>
-<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span> <span class="co"># ... expresiones ...</span></span>
-<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-14" class="code-annotation-target"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a><span class="in">fun() do x</span></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a><span class="in">    x^2 # ... expresiones ...</span></span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="annotated-cell-1-17"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
@@ -862,7 +862,7 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>; Function Signature: *(Float64, Float64)
 ;  @ float.jl:493 within `*`
-define double @"julia_*_10689"(double %"x::Float64", double %"y::Float64") #0 {
+define double @"julia_*_10660"(double %"x::Float64", double %"y::Float64") #0 {
 top:
   %0 = fmul double %"x::Float64", %"y::Float64"
   ret double %0
@@ -874,10 +874,10 @@ top:
 <div class="cell-output cell-output-stdout">
 <pre><code>    .text
     .file   "*"
-    .globl  "julia_*_10882"                 # -- Begin function julia_*_10882
+    .globl  "julia_*_10853"                 # -- Begin function julia_*_10853
     .p2align    4, 0x90
-    .type   "julia_*_10882",@function
-"julia_*_10882":                        # @"julia_*_10882"
+    .type   "julia_*_10853",@function
+"julia_*_10853":                        # @"julia_*_10853"
 ; Function Signature: *(Float64, Float64)
 ; ┌ @ float.jl:493 within `*`
 # %bb.0:                                # %top
@@ -891,18 +891,18 @@ top:
     pop rbp
     ret
 .Lfunc_end0:
-    .size   "julia_*_10882", .Lfunc_end0-"julia_*_10882"
+    .size   "julia_*_10853", .Lfunc_end0-"julia_*_10853"
 ; └
                                         # -- End function
-    .type   ".L+Core.Float64#10884",@object # @"+Core.Float64#10884"
+    .type   ".L+Core.Float64#10855",@object # @"+Core.Float64#10855"
     .section    .rodata,"a",@progbits
     .p2align    3, 0x0
-".L+Core.Float64#10884":
-    .quad   ".L+Core.Float64#10884.jit"
-    .size   ".L+Core.Float64#10884", 8
+".L+Core.Float64#10855":
+    .quad   ".L+Core.Float64#10855.jit"
+    .size   ".L+Core.Float64#10855", 8
 
-.set ".L+Core.Float64#10884.jit", 140138394764768
-    .size   ".L+Core.Float64#10884.jit", 8
+.set ".L+Core.Float64#10855.jit", 140541400429856
+    .size   ".L+Core.Float64#10855.jit", 8
     .section    ".note.GNU-stack","",@progbits</code></pre>
 </div>
 </div>
@@ -1458,21 +1458,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Funciones</span></span>
 <span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>Las funciones son centrales en Julia, y son definidas mediante la sintaxis </span>
 <span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>) <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
-<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="in">function fun(arg1, arg2...) # &lt;1&gt;</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="in">    # ... expresiones ...</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... expresiones ...</span></span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="in">function fun(arg1, arg2...; kwarg1=valor1, kwargs2...) # &lt;2&gt;</span></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="in">    # ... expresiones ...</span></span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">=</span> expresion  <span class="co"># &lt;3&gt;</span></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="in">fun(arg1, arg2...; kwarg1=valor1, kwargs2...) = expresion  # &lt;3&gt;</span></span>
 <span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>(arg1, arg2<span class="op">...</span>; kwarg1<span class="op">=</span>valor1, kwargs2<span class="op">...</span>) <span class="op">-&gt;</span> expresion       <span class="co"># &lt;4&gt;</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a><span class="in">(arg1, arg2...; kwarg1=valor1, kwargs2...) -&gt; expresion       # &lt;4&gt;</span></span>
 <span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a><span class="fu">fun</span>() <span class="cf">do</span> x <span class="co"># &lt;5&gt;</span></span>
-<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span> <span class="co"># ... expresiones ...</span></span>
-<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a><span class="in">fun() do x # &lt;5&gt;</span></span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a><span class="in">    x^2 # ... expresiones ...</span></span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Definición de una función simple, los tipos de los argumentos se utilizan para generar múltiples versiones de una función.</span>
 <span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>También se soportan argumentos nombrados, los cuales van después de <span class="in">`;`</span>, se debe tener en cuenta que los tipos de los argumentos nombrados no son utilizados para determinar si una función debe compilarse. Los argumentos nombrados pueden o no tener valores por omisión.</span>
@@ -1487,7 +1487,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-56"><a href="#cb38-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hola mundo</span></span>
 <span id="cb38-57"><a href="#cb38-57" aria-hidden="true" tabindex="-1"></a>Uno de los programas más comunes es el siguiente</span>
 <span id="cb38-60"><a href="#cb38-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-61"><a href="#cb38-61" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"¡Hola 🌎!"</span>)</span>
+<span id="cb38-61"><a href="#cb38-61" aria-hidden="true" tabindex="-1"></a><span class="in">println("¡Hola 🌎!")</span></span>
 <span id="cb38-62"><a href="#cb38-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-63"><a href="#cb38-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-64"><a href="#cb38-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Expresiones y operadores</span></span>
@@ -1502,31 +1502,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-73"><a href="#cb38-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-74"><a href="#cb38-74" aria-hidden="true" tabindex="-1"></a>Los operadores lógicos también tienen el significado esperado.</span>
 <span id="cb38-75"><a href="#cb38-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-76"><a href="#cb38-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>operación  <span class="pp">|</span>descripción<span class="pp">|</span></span>
-<span id="cb38-77"><a href="#cb38-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|---</span>        <span class="pp">|----</span> <span class="pp">|</span></span>
-<span id="cb38-78"><a href="#cb38-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a &amp;&amp; b`</span>  <span class="pp">|</span> AND lógico                       <span class="pp">|</span></span>
-<span id="cb38-79"><a href="#cb38-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a || b`</span>  <span class="pp">|</span> OR lógico                        <span class="pp">|</span></span>
-<span id="cb38-80"><a href="#cb38-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a ⊻ b`</span>   <span class="pp">|</span> XOR lógico                       <span class="pp">|</span></span>
-<span id="cb38-81"><a href="#cb38-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`!a`</span>      <span class="pp">|</span> negación lógica                  <span class="pp">|</span></span>
-<span id="cb38-82"><a href="#cb38-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a &lt; b`</span>   <span class="pp">|</span> comparación <span class="in">`a`</span> es menor que <span class="in">`b`</span> <span class="pp">|</span></span>
-<span id="cb38-83"><a href="#cb38-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a &gt; b`</span>   <span class="pp">|</span> comparación <span class="in">`a`</span> es mayor que <span class="in">`b`</span> <span class="pp">|</span></span>
-<span id="cb38-84"><a href="#cb38-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a &lt;= b`</span>  <span class="pp">|</span> comparación <span class="in">`a`</span> es menor o igual que <span class="in">`b`</span>     <span class="pp">|</span></span>
-<span id="cb38-85"><a href="#cb38-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a &gt;= b`</span>  <span class="pp">|</span> comparación <span class="in">`a`</span> es mayor o igual que <span class="in">`b`</span>     <span class="pp">|</span></span>
-<span id="cb38-86"><a href="#cb38-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a == b`</span>  <span class="pp">|</span> comparación de igualdad                      <span class="pp">|</span></span>
-<span id="cb38-87"><a href="#cb38-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a === b`</span> <span class="pp">|</span> comparación de igualdad (a nivel de tipo)    <span class="pp">|</span></span>
-<span id="cb38-88"><a href="#cb38-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a != b`</span>  <span class="pp">|</span> comparación de desigualdad                   <span class="pp">|</span></span>
-<span id="cb38-89"><a href="#cb38-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a !== b`</span> <span class="pp">|</span> comparación de desigualdad (a nivel de tipo) <span class="pp">|</span></span>
+<span id="cb38-76"><a href="#cb38-76" aria-hidden="true" tabindex="-1"></a>|operación  |descripción|</span>
+<span id="cb38-77"><a href="#cb38-77" aria-hidden="true" tabindex="-1"></a>|---        |---- |</span>
+<span id="cb38-78"><a href="#cb38-78" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a &amp;&amp; b`</span>  | AND lógico                       |</span>
+<span id="cb38-79"><a href="#cb38-79" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a || b`</span>  | OR lógico                        |</span>
+<span id="cb38-80"><a href="#cb38-80" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a ⊻ b`</span>   | XOR lógico                       |</span>
+<span id="cb38-81"><a href="#cb38-81" aria-hidden="true" tabindex="-1"></a>| <span class="in">`!a`</span>      | negación lógica                  |</span>
+<span id="cb38-82"><a href="#cb38-82" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a &lt; b`</span>   | comparación <span class="in">`a`</span> es menor que <span class="in">`b`</span> |</span>
+<span id="cb38-83"><a href="#cb38-83" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a &gt; b`</span>   | comparación <span class="in">`a`</span> es mayor que <span class="in">`b`</span> |</span>
+<span id="cb38-84"><a href="#cb38-84" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a &lt;= b`</span>  | comparación <span class="in">`a`</span> es menor o igual que <span class="in">`b`</span>     |</span>
+<span id="cb38-85"><a href="#cb38-85" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a &gt;= b`</span>  | comparación <span class="in">`a`</span> es mayor o igual que <span class="in">`b`</span>     |</span>
+<span id="cb38-86"><a href="#cb38-86" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a == b`</span>  | comparación de igualdad                      |</span>
+<span id="cb38-87"><a href="#cb38-87" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a === b`</span> | comparación de igualdad (a nivel de tipo)    |</span>
+<span id="cb38-88"><a href="#cb38-88" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a != b`</span>  | comparación de desigualdad                   |</span>
+<span id="cb38-89"><a href="#cb38-89" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a !== b`</span> | comparación de desigualdad (a nivel de tipo) |</span>
 <span id="cb38-90"><a href="#cb38-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-91"><a href="#cb38-91" aria-hidden="true" tabindex="-1"></a>En particular <span class="in">`&amp;&amp;`</span> y <span class="in">`||`</span> implementan _corto circuito de código_, por lo que pueden usarse para el control de que operaciones se ejecutan. Cuando se compara a nivel de tipo 0 (entero) será diferente de 0.0 (real).</span>
 <span id="cb38-92"><a href="#cb38-92" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-93"><a href="#cb38-93" aria-hidden="true" tabindex="-1"></a>También hay operadores lógicos a nivel de bit, los argumentos son enteros.</span>
 <span id="cb38-94"><a href="#cb38-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-95"><a href="#cb38-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>operación <span class="pp">|</span>descripción<span class="pp">|</span></span>
-<span id="cb38-96"><a href="#cb38-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|---</span>  <span class="pp">|---</span> <span class="pp">|</span></span>
-<span id="cb38-97"><a href="#cb38-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a &amp; b`</span>  <span class="pp">|</span> AND a nivel de bits              <span class="pp">|</span></span>
-<span id="cb38-98"><a href="#cb38-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a | b`</span>  <span class="pp">|</span> OR a nivel de bits               <span class="pp">|</span></span>
-<span id="cb38-99"><a href="#cb38-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`a ⊻ b`</span>  <span class="pp">|</span> XOR a nivel del bits             <span class="pp">|</span></span>
-<span id="cb38-100"><a href="#cb38-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`~a`</span>     <span class="pp">|</span> negación lógica a nivel de bits  <span class="pp">|</span></span>
+<span id="cb38-95"><a href="#cb38-95" aria-hidden="true" tabindex="-1"></a>|operación |descripción|</span>
+<span id="cb38-96"><a href="#cb38-96" aria-hidden="true" tabindex="-1"></a>|---  |--- |</span>
+<span id="cb38-97"><a href="#cb38-97" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a &amp; b`</span>  | AND a nivel de bits              |</span>
+<span id="cb38-98"><a href="#cb38-98" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a | b`</span>  | OR a nivel de bits               |</span>
+<span id="cb38-99"><a href="#cb38-99" aria-hidden="true" tabindex="-1"></a>| <span class="in">`a ⊻ b`</span>  | XOR a nivel del bits             |</span>
+<span id="cb38-100"><a href="#cb38-100" aria-hidden="true" tabindex="-1"></a>| <span class="in">`~a`</span>     | negación lógica a nivel de bits  |</span>
 <span id="cb38-101"><a href="#cb38-101" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-102"><a href="#cb38-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Literales</span></span>
 <span id="cb38-103"><a href="#cb38-103" aria-hidden="true" tabindex="-1"></a>Dado que existen múltiples tipos de datos existen diferentes formas de definirlas; una de ellas, probablemente la que más estaremos usando son los literales, es decir, escribir los datos directamente en el código.</span>
@@ -1534,14 +1534,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-105"><a href="#cb38-105" aria-hidden="true" tabindex="-1"></a>Los números enteros se definen sin punto decimal, es posible usar <span class="in">`_`</span> como separador y dar más claridad al código. Los enteros pueden tener 8, 16, 32, o 64 bits; por omisión, se empaquetan en variables del tipo <span class="in">`Int`</span> (<span class="in">`Int64`</span>). Los valores hexadecimales se interpretan como enteros sin signo, y además se empaquetan al número de bits necesario minimo para contener. El comportamiento para valores en base 10 es el de hexadecimal es congruente con un lenguaje para programación de sistemas.</span>
 <span id="cb38-106"><a href="#cb38-106" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-109"><a href="#cb38-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-110"><a href="#cb38-110" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">100</span></span>
-<span id="cb38-111"><a href="#cb38-111" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>((a, <span class="fu">sizeof</span>(a)))</span>
-<span id="cb38-112"><a href="#cb38-112" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">Int8</span>(<span class="fl">100</span>)</span>
-<span id="cb38-113"><a href="#cb38-113" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>((b, <span class="fu">sizeof</span>(b)))</span>
-<span id="cb38-114"><a href="#cb38-114" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">30_000_000</span></span>
-<span id="cb38-115"><a href="#cb38-115" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>((c, <span class="fu">sizeof</span>(c)))</span>
-<span id="cb38-116"><a href="#cb38-116" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="bn">0xffff</span></span>
-<span id="cb38-117"><a href="#cb38-117" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>((d, <span class="fu">sizeof</span>(d)))</span>
+<span id="cb38-110"><a href="#cb38-110" aria-hidden="true" tabindex="-1"></a><span class="in">a = 100</span></span>
+<span id="cb38-111"><a href="#cb38-111" aria-hidden="true" tabindex="-1"></a><span class="in">println((a, sizeof(a)))</span></span>
+<span id="cb38-112"><a href="#cb38-112" aria-hidden="true" tabindex="-1"></a><span class="in">b = Int8(100)</span></span>
+<span id="cb38-113"><a href="#cb38-113" aria-hidden="true" tabindex="-1"></a><span class="in">println((b, sizeof(b)))</span></span>
+<span id="cb38-114"><a href="#cb38-114" aria-hidden="true" tabindex="-1"></a><span class="in">c = 30_000_000</span></span>
+<span id="cb38-115"><a href="#cb38-115" aria-hidden="true" tabindex="-1"></a><span class="in">println((c, sizeof(c)))</span></span>
+<span id="cb38-116"><a href="#cb38-116" aria-hidden="true" tabindex="-1"></a><span class="in">d = 0xffff</span></span>
+<span id="cb38-117"><a href="#cb38-117" aria-hidden="true" tabindex="-1"></a><span class="in">println((d, sizeof(d)))</span></span>
 <span id="cb38-118"><a href="#cb38-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-119"><a href="#cb38-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-120"><a href="#cb38-120" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
@@ -1567,9 +1567,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-140"><a href="#cb38-140" aria-hidden="true" tabindex="-1"></a>En Julia existe la noción de símbolo, que es una cadena que además solo existe en una posición en memoria se usa el prefijo <span class="in">`:`</span> para denotarlos. </span>
 <span id="cb38-141"><a href="#cb38-141" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-144"><a href="#cb38-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-145"><a href="#cb38-145" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="op">:</span>hola <span class="op">===</span> <span class="op">:</span>hola)</span>
-<span id="cb38-146"><a href="#cb38-146" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">typeof</span>(<span class="op">:</span>hola))</span>
-<span id="cb38-147"><a href="#cb38-147" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">Symbol</span>(<span class="st">"hola mundo"</span>))</span>
+<span id="cb38-145"><a href="#cb38-145" aria-hidden="true" tabindex="-1"></a><span class="in">println(:hola === :hola)</span></span>
+<span id="cb38-146"><a href="#cb38-146" aria-hidden="true" tabindex="-1"></a><span class="in">println(typeof(:hola))</span></span>
+<span id="cb38-147"><a href="#cb38-147" aria-hidden="true" tabindex="-1"></a><span class="in">println(Symbol("hola mundo"))</span></span>
 <span id="cb38-148"><a href="#cb38-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-149"><a href="#cb38-149" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-150"><a href="#cb38-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Control de flujo</span></span>
@@ -1577,12 +1577,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-152"><a href="#cb38-152" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-153"><a href="#cb38-153" aria-hidden="true" tabindex="-1"></a>Las condicionales son el control de flujo más simple.</span>
 <span id="cb38-156"><a href="#cb38-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-157"><a href="#cb38-157" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10</span></span>
-<span id="cb38-158"><a href="#cb38-158" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span> <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-159"><a href="#cb38-159" aria-hidden="true" tabindex="-1"></a>    <span class="st">"par"</span> <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-160"><a href="#cb38-160" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb38-161"><a href="#cb38-161" aria-hidden="true" tabindex="-1"></a>    <span class="st">"impar"</span> <span class="co"># &lt;3&gt;</span></span>
-<span id="cb38-162"><a href="#cb38-162" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-157"><a href="#cb38-157" aria-hidden="true" tabindex="-1"></a><span class="in">a = 10</span></span>
+<span id="cb38-158"><a href="#cb38-158" aria-hidden="true" tabindex="-1"></a><span class="in">if a % 2 == 0 # &lt;1&gt;</span></span>
+<span id="cb38-159"><a href="#cb38-159" aria-hidden="true" tabindex="-1"></a><span class="in">    "par" # &lt;2&gt;</span></span>
+<span id="cb38-160"><a href="#cb38-160" aria-hidden="true" tabindex="-1"></a><span class="in">else</span></span>
+<span id="cb38-161"><a href="#cb38-161" aria-hidden="true" tabindex="-1"></a><span class="in">    "impar" # &lt;3&gt;</span></span>
+<span id="cb38-162"><a href="#cb38-162" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-163"><a href="#cb38-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-164"><a href="#cb38-164" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Expresión condicional.</span>
 <span id="cb38-165"><a href="#cb38-165" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Expresión a ejecutarse si (1) es verdadero.</span>
@@ -1590,30 +1590,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-167"><a href="#cb38-167" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-168"><a href="#cb38-168" aria-hidden="true" tabindex="-1"></a>Se puede ignorar la clausula <span class="in">`else`</span> dando solo la opción de evaluar (2) si (1) es verdadero. Finalmente, note que la condicional es una expresión y devuelve un valor.</span>
 <span id="cb38-171"><a href="#cb38-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-172"><a href="#cb38-172" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10</span></span>
-<span id="cb38-173"><a href="#cb38-173" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="fu">log10</span>(a) <span class="op">==</span> <span class="fl">1</span> <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-174"><a href="#cb38-174" aria-hidden="true" tabindex="-1"></a>    <span class="st">"es 10"</span> <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-175"><a href="#cb38-175" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-172"><a href="#cb38-172" aria-hidden="true" tabindex="-1"></a><span class="in">a = 10</span></span>
+<span id="cb38-173"><a href="#cb38-173" aria-hidden="true" tabindex="-1"></a><span class="in">if log10(a) == 1 # &lt;1&gt;</span></span>
+<span id="cb38-174"><a href="#cb38-174" aria-hidden="true" tabindex="-1"></a><span class="in">    "es 10" # &lt;2&gt;</span></span>
+<span id="cb38-175"><a href="#cb38-175" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-176"><a href="#cb38-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-177"><a href="#cb38-177" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-178"><a href="#cb38-178" aria-hidden="true" tabindex="-1"></a>También pueden concatenarse múltiples expresiones condicionales con <span class="in">`elseif`</span> como se muestra a continuación.</span>
 <span id="cb38-181"><a href="#cb38-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-182"><a href="#cb38-182" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">9</span></span>
-<span id="cb38-183"><a href="#cb38-183" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb38-184"><a href="#cb38-184" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"divisible entre 2"</span>)</span>
-<span id="cb38-185"><a href="#cb38-185" aria-hidden="true" tabindex="-1"></a><span class="cf">elseif</span> a <span class="op">%</span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb38-186"><a href="#cb38-186" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"divisible entre 3"</span>)</span>
-<span id="cb38-187"><a href="#cb38-187" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb38-188"><a href="#cb38-188" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"no divisible entre 2 y 3"</span>)</span>
-<span id="cb38-189"><a href="#cb38-189" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-182"><a href="#cb38-182" aria-hidden="true" tabindex="-1"></a><span class="in">a = 9</span></span>
+<span id="cb38-183"><a href="#cb38-183" aria-hidden="true" tabindex="-1"></a><span class="in">if a % 2 == 0</span></span>
+<span id="cb38-184"><a href="#cb38-184" aria-hidden="true" tabindex="-1"></a><span class="in">    println("divisible entre 2")</span></span>
+<span id="cb38-185"><a href="#cb38-185" aria-hidden="true" tabindex="-1"></a><span class="in">elseif a % 3 == 0</span></span>
+<span id="cb38-186"><a href="#cb38-186" aria-hidden="true" tabindex="-1"></a><span class="in">    println("divisible entre 3")</span></span>
+<span id="cb38-187"><a href="#cb38-187" aria-hidden="true" tabindex="-1"></a><span class="in">else</span></span>
+<span id="cb38-188"><a href="#cb38-188" aria-hidden="true" tabindex="-1"></a><span class="in">    println("no divisible entre 2 y 3")</span></span>
+<span id="cb38-189"><a href="#cb38-189" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-190"><a href="#cb38-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-191"><a href="#cb38-191" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-192"><a href="#cb38-192" aria-hidden="true" tabindex="-1"></a>Es común utilizar la sintaxis en Julia (short circuit) para control de flujo:</span>
 <span id="cb38-195"><a href="#cb38-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-196"><a href="#cb38-196" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">9</span></span>
+<span id="cb38-196"><a href="#cb38-196" aria-hidden="true" tabindex="-1"></a><span class="in">a = 9</span></span>
 <span id="cb38-197"><a href="#cb38-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-198"><a href="#cb38-198" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a <span class="op">%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="st">"es divisible entre dos"</span>)  <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-199"><a href="#cb38-199" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a <span class="op">%</span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="st">"es divisible entre tres"</span>) <span class="co"># &lt;2&gt;</span></span>
+<span id="cb38-198"><a href="#cb38-198" aria-hidden="true" tabindex="-1"></a><span class="in">println(a % 2 == 0 &amp;&amp; "es divisible entre dos")  # &lt;1&gt;</span></span>
+<span id="cb38-199"><a href="#cb38-199" aria-hidden="true" tabindex="-1"></a><span class="in">println(a % 3 == 0 &amp;&amp; "es divisible entre tres") # &lt;2&gt;</span></span>
 <span id="cb38-200"><a href="#cb38-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-201"><a href="#cb38-201" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>El resultado de la condición es falso, por lo que no se ejecutará la siguiente expresión.</span>
 <span id="cb38-202"><a href="#cb38-202" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>El resultado es verdadero, por lo que se ejecutará la segunda expresión.</span>
@@ -1621,10 +1621,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-204"><a href="#cb38-204" aria-hidden="true" tabindex="-1"></a>Fnalmente, existe una condicional de tres vias <span class="in">`expresion ? expr-verdadero : expr-falso`</span></span>
 <span id="cb38-205"><a href="#cb38-205" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-208"><a href="#cb38-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-209"><a href="#cb38-209" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">9</span></span>
+<span id="cb38-209"><a href="#cb38-209" aria-hidden="true" tabindex="-1"></a><span class="in">a = 9</span></span>
 <span id="cb38-210"><a href="#cb38-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-211"><a href="#cb38-211" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a <span class="op">%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span> ? <span class="st">"es divisible entre dos"</span> <span class="op">:</span> <span class="st">"no es divisible entre dos"</span>)</span>
-<span id="cb38-212"><a href="#cb38-212" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a <span class="op">%</span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span> ? <span class="st">"es divisible entre tres"</span> <span class="op">:</span> <span class="st">"no es divisible entre tres"</span>)</span>
+<span id="cb38-211"><a href="#cb38-211" aria-hidden="true" tabindex="-1"></a><span class="in">println(a % 2 == 0 ? "es divisible entre dos" : "no es divisible entre dos")</span></span>
+<span id="cb38-212"><a href="#cb38-212" aria-hidden="true" tabindex="-1"></a><span class="in">println(a % 3 == 0 ? "es divisible entre tres" : "no es divisible entre tres")</span></span>
 <span id="cb38-213"><a href="#cb38-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-214"><a href="#cb38-214" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-215"><a href="#cb38-215" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ciclos</span></span>
@@ -1637,153 +1637,153 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-222"><a href="#cb38-222" aria-hidden="true" tabindex="-1"></a>En el caso de <span class="in">`for`</span>, la idea es iterar sobre una colección, esta colección puede ser un rango, i.e., <span class="in">`inicio:fin`</span>, <span class="in">`inicio:paso:fin`</span>, o una colección como las tuplas, los arreglos, o cualquiera que cumpla con la interfaz de colección iterable del lenguaje. </span>
 <span id="cb38-223"><a href="#cb38-223" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-226"><a href="#cb38-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-227"><a href="#cb38-227" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
-<span id="cb38-228"><a href="#cb38-228" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"1er ciclo: "</span>, i <span class="op">=&gt;</span> i<span class="op">^</span><span class="fl">2</span>)</span>
-<span id="cb38-229"><a href="#cb38-229" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-227"><a href="#cb38-227" aria-hidden="true" tabindex="-1"></a><span class="in">for i in 1:5</span></span>
+<span id="cb38-228"><a href="#cb38-228" aria-hidden="true" tabindex="-1"></a><span class="in">    println("1er ciclo: ", i =&gt; i^2)</span></span>
+<span id="cb38-229"><a href="#cb38-229" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-230"><a href="#cb38-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-231"><a href="#cb38-231" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>]</span>
-<span id="cb38-232"><a href="#cb38-232" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"2do ciclo: "</span>, i <span class="op">=&gt;</span> i<span class="op">/</span><span class="fl">10</span>)</span>
-<span id="cb38-233"><a href="#cb38-233" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-231"><a href="#cb38-231" aria-hidden="true" tabindex="-1"></a><span class="in">for i in [10, 20, 30, 40, 50]</span></span>
+<span id="cb38-232"><a href="#cb38-232" aria-hidden="true" tabindex="-1"></a><span class="in">    println("2do ciclo: ", i =&gt; i/10)</span></span>
+<span id="cb38-233"><a href="#cb38-233" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-234"><a href="#cb38-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-235"><a href="#cb38-235" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-236"><a href="#cb38-236" aria-hidden="true" tabindex="-1"></a>Al igual que en otros lenguajes modernos, se define la variante completa o _comprehensive for_ que se utiliza para transformar la colección de entrada en otra colección cuya sintaxis se ejemplifica a continuación:</span>
 <span id="cb38-237"><a href="#cb38-237" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-240"><a href="#cb38-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-241"><a href="#cb38-241" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [i <span class="op">=&gt;</span> i<span class="op">^</span><span class="fl">2</span> for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>]</span>
-<span id="cb38-242"><a href="#cb38-242" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
+<span id="cb38-241"><a href="#cb38-241" aria-hidden="true" tabindex="-1"></a><span class="in">a = [i =&gt; i^2 for i in 1:5]</span></span>
+<span id="cb38-242"><a href="#cb38-242" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
 <span id="cb38-243"><a href="#cb38-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-244"><a href="#cb38-244" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-245"><a href="#cb38-245" aria-hidden="true" tabindex="-1"></a>También es posible definir un generador, esto es, un código que puede generar los datos, pero que no los generará hasta que se les solicite.</span>
 <span id="cb38-248"><a href="#cb38-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-249"><a href="#cb38-249" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (i <span class="op">=&gt;</span> i<span class="op">^</span><span class="fl">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>)</span>
-<span id="cb38-250"><a href="#cb38-250" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
-<span id="cb38-251"><a href="#cb38-251" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">collect</span>(a)) </span>
-<span id="cb38-252"><a href="#cb38-252" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb38-249"><a href="#cb38-249" aria-hidden="true" tabindex="-1"></a><span class="in">a = (i =&gt; i^2 for i in 1:5)</span></span>
+<span id="cb38-250"><a href="#cb38-250" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
+<span id="cb38-251"><a href="#cb38-251" aria-hidden="true" tabindex="-1"></a><span class="in">println(collect(a)) </span></span>
+<span id="cb38-252"><a href="#cb38-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-253"><a href="#cb38-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-254"><a href="#cb38-254" aria-hidden="true" tabindex="-1"></a><span class="ss">Otra forma de hacer ciclos de intrucciones es repetir mientras se cumpla una condición:</span></span>
+<span id="cb38-254"><a href="#cb38-254" aria-hidden="true" tabindex="-1"></a>Otra forma de hacer ciclos de intrucciones es repetir mientras se cumpla una condición:</span>
 <span id="cb38-257"><a href="#cb38-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-258"><a href="#cb38-258" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb38-259"><a href="#cb38-259" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="fl">5</span></span>
-<span id="cb38-260"><a href="#cb38-260" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb38-261"><a href="#cb38-261" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(i)</span>
-<span id="cb38-262"><a href="#cb38-262" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-258"><a href="#cb38-258" aria-hidden="true" tabindex="-1"></a><span class="in">i = 0</span></span>
+<span id="cb38-259"><a href="#cb38-259" aria-hidden="true" tabindex="-1"></a><span class="in">while i &lt; 5</span></span>
+<span id="cb38-260"><a href="#cb38-260" aria-hidden="true" tabindex="-1"></a><span class="in">    i += 1</span></span>
+<span id="cb38-261"><a href="#cb38-261" aria-hidden="true" tabindex="-1"></a><span class="in">    println(i)</span></span>
+<span id="cb38-262"><a href="#cb38-262" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-263"><a href="#cb38-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-264"><a href="#cb38-264" aria-hidden="true" tabindex="-1"></a>i</span>
-<span id="cb38-265"><a href="#cb38-265" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb38-264"><a href="#cb38-264" aria-hidden="true" tabindex="-1"></a><span class="in">i</span></span>
+<span id="cb38-265"><a href="#cb38-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-266"><a href="#cb38-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-267"><a href="#cb38-267" aria-hidden="true" tabindex="-1"></a><span class="ss">### Tuplas y arreglos en Julia</span></span>
-<span id="cb38-268"><a href="#cb38-268" aria-hidden="true" tabindex="-1"></a><span class="ss">Una tupla es un conjunto ordenado de datos que no se puede modificar y que se desea esten contiguos en memoria, la sintaxis en memoria es como sigue:</span></span>
+<span id="cb38-267"><a href="#cb38-267" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tuplas y arreglos en Julia</span></span>
+<span id="cb38-268"><a href="#cb38-268" aria-hidden="true" tabindex="-1"></a>Una tupla es un conjunto ordenado de datos que no se puede modificar y que se desea esten contiguos en memoria, la sintaxis en memoria es como sigue:</span>
 <span id="cb38-271"><a href="#cb38-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-272"><a href="#cb38-272" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span>)    <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-273"><a href="#cb38-273" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (<span class="fl">10</span>, <span class="fl">20.0</span>, <span class="fl">30f0</span>)   <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-274"><a href="#cb38-274" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">100</span> <span class="op">=&gt;</span> <span class="fl">200</span> <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-275"><a href="#cb38-275" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">typeof</span>(a))  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-276"><a href="#cb38-276" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">typeof</span>(b))  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-277"><a href="#cb38-277" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">typeof</span>(c))  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-278"><a href="#cb38-278" aria-hidden="true" tabindex="-1"></a>a[<span class="fl">1</span>], a[<span class="kw">end</span>], b[<span class="fl">3</span>], c.first, c.second  <span class="co"># &lt;3&gt;</span></span>
-<span id="cb38-279"><a href="#cb38-279" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb38-272"><a href="#cb38-272" aria-hidden="true" tabindex="-1"></a><span class="in">a = (2, 3, 5, 7)    # &lt;1&gt;</span></span>
+<span id="cb38-273"><a href="#cb38-273" aria-hidden="true" tabindex="-1"></a><span class="in">b = (10, 20.0, 30f0)   # &lt;1&gt;</span></span>
+<span id="cb38-274"><a href="#cb38-274" aria-hidden="true" tabindex="-1"></a><span class="in">c = 100 =&gt; 200 # &lt;1&gt;</span></span>
+<span id="cb38-275"><a href="#cb38-275" aria-hidden="true" tabindex="-1"></a><span class="in">println(typeof(a))  # &lt;2&gt;</span></span>
+<span id="cb38-276"><a href="#cb38-276" aria-hidden="true" tabindex="-1"></a><span class="in">println(typeof(b))  # &lt;2&gt;</span></span>
+<span id="cb38-277"><a href="#cb38-277" aria-hidden="true" tabindex="-1"></a><span class="in">println(typeof(c))  # &lt;2&gt;</span></span>
+<span id="cb38-278"><a href="#cb38-278" aria-hidden="true" tabindex="-1"></a><span class="in">a[1], a[end], b[3], c.first, c.second  # &lt;3&gt;</span></span>
+<span id="cb38-279"><a href="#cb38-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-280"><a href="#cb38-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-281"><a href="#cb38-281" aria-hidden="true" tabindex="-1"></a><span class="ss">1. Define las tuplas.</span></span>
-<span id="cb38-282"><a href="#cb38-282" aria-hidden="true" tabindex="-1"></a><span class="ss">2. Imprime los tipos de las tuplas.</span></span>
-<span id="cb38-283"><a href="#cb38-283" aria-hidden="true" tabindex="-1"></a><span class="ss">3. Muestra como se accede a los elementos de las tuplas. Julia indexa comenzando desde 1, y el término `end` también se utiliza para indicar el último elemento en una colección ordenada.</span></span>
+<span id="cb38-281"><a href="#cb38-281" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Define las tuplas.</span>
+<span id="cb38-282"><a href="#cb38-282" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Imprime los tipos de las tuplas.</span>
+<span id="cb38-283"><a href="#cb38-283" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Muestra como se accede a los elementos de las tuplas. Julia indexa comenzando desde 1, y el término <span class="in">`end`</span> también se utiliza para indicar el último elemento en una colección ordenada.</span>
 <span id="cb38-284"><a href="#cb38-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-285"><a href="#cb38-285" aria-hidden="true" tabindex="-1"></a><span class="ss">La misma sintaxis puede generar diferentes tipos de tuplas. En el caso `NTuple{4, Int4}` nos indica que el tipo maneja cuatro elementos de enteros de 64 bits, los argumentos entre `{}` son parametros que especifican los tipos en cuestión.  En el caso de `Tuple` se pueden tener diferentes tipos de elementos. La tupla `Pair` es especial ya que solo puede contener dos elementos y es básicamente para _embellecer_ o _simplificar_ las expresiones; incluso se crea con la sintaxis `key =&gt; value` y sus elementos pueden accederse mediante dos campos nombrados.</span></span>
+<span id="cb38-285"><a href="#cb38-285" aria-hidden="true" tabindex="-1"></a>La misma sintaxis puede generar diferentes tipos de tuplas. En el caso <span class="in">`NTuple{4, Int4}`</span> nos indica que el tipo maneja cuatro elementos de enteros de 64 bits, los argumentos entre <span class="in">`{}`</span> son parametros que especifican los tipos en cuestión.  En el caso de <span class="in">`Tuple`</span> se pueden tener diferentes tipos de elementos. La tupla <span class="in">`Pair`</span> es especial ya que solo puede contener dos elementos y es básicamente para _embellecer_ o _simplificar_ las expresiones; incluso se crea con la sintaxis <span class="in">`key =&gt; value`</span> y sus elementos pueden accederse mediante dos campos nombrados.</span>
 <span id="cb38-286"><a href="#cb38-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-287"><a href="#cb38-287" aria-hidden="true" tabindex="-1"></a><span class="ss">Los _arreglos_ son datos del mismo tipo contiguos en memoria, a diferencia de las tuplas, los elementos se pueden modificar, incluso pueden crecer o reducirse. Esto puede implicar que se alojan en zonas de memoria diferente (las tuplas se colocan en el _stack_ y los arreglos en el _heap_, ver la siguiente unidad para más información). Desde un alto nivel, los arreglos en Julia suelen estar asociados con vectores, matrices y tensores, y un arsenal de funciones relacionadas se encuentran definidas en el paquete `LinearAlgebra`, lo cual esta más allá del alcance de este curso. </span></span>
+<span id="cb38-287"><a href="#cb38-287" aria-hidden="true" tabindex="-1"></a>Los _arreglos_ son datos del mismo tipo contiguos en memoria, a diferencia de las tuplas, los elementos se pueden modificar, incluso pueden crecer o reducirse. Esto puede implicar que se alojan en zonas de memoria diferente (las tuplas se colocan en el _stack_ y los arreglos en el _heap_, ver la siguiente unidad para más información). Desde un alto nivel, los arreglos en Julia suelen estar asociados con vectores, matrices y tensores, y un arsenal de funciones relacionadas se encuentran definidas en el paquete <span class="in">`LinearAlgebra`</span>, lo cual esta más allá del alcance de este curso. </span>
 <span id="cb38-288"><a href="#cb38-288" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-291"><a href="#cb38-291" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-292"><a href="#cb38-292" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span>]   <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-293"><a href="#cb38-293" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">10</span>, <span class="fl">20.0</span>, <span class="fl">30f0</span>]   <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-294"><a href="#cb38-294" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">typeof</span>(a))  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-295"><a href="#cb38-295" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">typeof</span>(b))  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-296"><a href="#cb38-296" aria-hidden="true" tabindex="-1"></a>a[<span class="fl">1</span>], a[<span class="kw">end</span>], b[<span class="fl">3</span>], b[<span class="fl">2</span><span class="op">:</span><span class="fl">3</span>]  <span class="co"># &lt;3&gt;</span></span>
-<span id="cb38-297"><a href="#cb38-297" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
-<span id="cb38-298"><a href="#cb38-298" aria-hidden="true" tabindex="-1"></a><span class="ss">1. Define los arreglos `a` y `b`.</span></span>
-<span id="cb38-299"><a href="#cb38-299" aria-hidden="true" tabindex="-1"></a><span class="ss">2. Muestra los tipos de los arreglos, note como los tipos se promueven al tipo más génerico que contiene la definición de los datos.</span></span>
-<span id="cb38-300"><a href="#cb38-300" aria-hidden="true" tabindex="-1"></a><span class="ss">3. El acceso es muy similar a las tuplas para arreglos unidimensionales, note que es posible acceder rangos de elementos con la sintaxis `ini:fin`.</span></span>
+<span id="cb38-292"><a href="#cb38-292" aria-hidden="true" tabindex="-1"></a><span class="in">a = [2, 3, 5, 7]   # &lt;1&gt;</span></span>
+<span id="cb38-293"><a href="#cb38-293" aria-hidden="true" tabindex="-1"></a><span class="in">b = [10, 20.0, 30f0]   # &lt;1&gt;</span></span>
+<span id="cb38-294"><a href="#cb38-294" aria-hidden="true" tabindex="-1"></a><span class="in">println(typeof(a))  # &lt;2&gt;</span></span>
+<span id="cb38-295"><a href="#cb38-295" aria-hidden="true" tabindex="-1"></a><span class="in">println(typeof(b))  # &lt;2&gt;</span></span>
+<span id="cb38-296"><a href="#cb38-296" aria-hidden="true" tabindex="-1"></a><span class="in">a[1], a[end], b[3], b[2:3]  # &lt;3&gt;</span></span>
+<span id="cb38-297"><a href="#cb38-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-298"><a href="#cb38-298" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Define los arreglos <span class="in">`a`</span> y <span class="in">`b`</span>.</span>
+<span id="cb38-299"><a href="#cb38-299" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Muestra los tipos de los arreglos, note como los tipos se promueven al tipo más génerico que contiene la definición de los datos.</span>
+<span id="cb38-300"><a href="#cb38-300" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>El acceso es muy similar a las tuplas para arreglos unidimensionales, note que es posible acceder rangos de elementos con la sintaxis <span class="in">`ini:fin`</span>.</span>
 <span id="cb38-301"><a href="#cb38-301" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-304"><a href="#cb38-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-305"><a href="#cb38-305" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fl">2</span> <span class="fl">3</span>;</span>
-<span id="cb38-306"><a href="#cb38-306" aria-hidden="true" tabindex="-1"></a>     <span class="fl">5</span> <span class="fl">7</span>]    <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-307"><a href="#cb38-307" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(a)  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-308"><a href="#cb38-308" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(a[<span class="op">:</span>, <span class="fl">1</span>]) <span class="co"># &lt;3&gt;</span></span>
-<span id="cb38-309"><a href="#cb38-309" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(a[<span class="fl">1</span>, <span class="op">:</span>]) <span class="co"># &lt;4&gt;</span></span>
-<span id="cb38-310"><a href="#cb38-310" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
-<span id="cb38-311"><a href="#cb38-311" aria-hidden="true" tabindex="-1"></a><span class="ss">1. Definición de un arreglo bidimensional, note como se ignora la coma `,` en favor de la escritura por filas separadas por `;`.</span></span>
-<span id="cb38-312"><a href="#cb38-312" aria-hidden="true" tabindex="-1"></a><span class="ss">2. La variable `a` es una matriz de 2x2.</span></span>
-<span id="cb38-313"><a href="#cb38-313" aria-hidden="true" tabindex="-1"></a><span class="ss">3. Es posible acceder una columna completa usando el símbolo `:` para indicar todos los elementos.</span></span>
-<span id="cb38-314"><a href="#cb38-314" aria-hidden="true" tabindex="-1"></a><span class="ss">4. De igual forma, es posible acceder una fila completa.</span></span>
+<span id="cb38-305"><a href="#cb38-305" aria-hidden="true" tabindex="-1"></a><span class="in">a = [2 3;</span></span>
+<span id="cb38-306"><a href="#cb38-306" aria-hidden="true" tabindex="-1"></a><span class="in">     5 7]    # &lt;1&gt;</span></span>
+<span id="cb38-307"><a href="#cb38-307" aria-hidden="true" tabindex="-1"></a><span class="in">display(a)  # &lt;2&gt;</span></span>
+<span id="cb38-308"><a href="#cb38-308" aria-hidden="true" tabindex="-1"></a><span class="in">display(a[:, 1]) # &lt;3&gt;</span></span>
+<span id="cb38-309"><a href="#cb38-309" aria-hidden="true" tabindex="-1"></a><span class="in">display(a[1, :]) # &lt;4&gt;</span></span>
+<span id="cb38-310"><a href="#cb38-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-311"><a href="#cb38-311" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Definición de un arreglo bidimensional, note como se ignora la coma <span class="in">`,`</span> en favor de la escritura por filas separadas por <span class="in">`;`</span>.</span>
+<span id="cb38-312"><a href="#cb38-312" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>La variable <span class="in">`a`</span> es una matriz de 2x2.</span>
+<span id="cb38-313"><a href="#cb38-313" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Es posible acceder una columna completa usando el símbolo <span class="in">`:`</span> para indicar todos los elementos.</span>
+<span id="cb38-314"><a href="#cb38-314" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>De igual forma, es posible acceder una fila completa.</span>
 <span id="cb38-315"><a href="#cb38-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-316"><a href="#cb38-316" aria-hidden="true" tabindex="-1"></a><span class="ss">### Diccionarios y conjuntos en Julia</span></span>
-<span id="cb38-317"><a href="#cb38-317" aria-hidden="true" tabindex="-1"></a><span class="ss">Un diccionario es un arreglo asociativo, i.e., guarda pares llave-valor. Permite acceder de manera eficiciente al valor por medio de la llave, así como también verificar si hay una entrada dentro del diccionario con una llave dada. La sintaxis es como sigue:</span></span>
+<span id="cb38-316"><a href="#cb38-316" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diccionarios y conjuntos en Julia</span></span>
+<span id="cb38-317"><a href="#cb38-317" aria-hidden="true" tabindex="-1"></a>Un diccionario es un arreglo asociativo, i.e., guarda pares llave-valor. Permite acceder de manera eficiciente al valor por medio de la llave, así como también verificar si hay una entrada dentro del diccionario con una llave dada. La sintaxis es como sigue:</span>
 <span id="cb38-318"><a href="#cb38-318" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-321"><a href="#cb38-321" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-322"><a href="#cb38-322" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">Dict</span>(<span class="op">:</span>a <span class="op">=&gt;</span> <span class="fl">1</span>, <span class="op">:</span>b <span class="op">=&gt;</span> <span class="fl">2</span>, <span class="op">:</span>c <span class="op">=&gt;</span> <span class="fl">3</span>) <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-323"><a href="#cb38-323" aria-hidden="true" tabindex="-1"></a>a[<span class="op">:</span>b] <span class="op">=</span> <span class="fl">20</span> <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-324"><a href="#cb38-324" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
-<span id="cb38-325"><a href="#cb38-325" aria-hidden="true" tabindex="-1"></a>a[<span class="op">:</span>d] <span class="op">=</span> <span class="fl">4</span>  <span class="co"># &lt;3&gt;</span></span>
-<span id="cb38-326"><a href="#cb38-326" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
-<span id="cb38-327"><a href="#cb38-327" aria-hidden="true" tabindex="-1"></a><span class="fu">delete!</span>(a, <span class="op">:</span>a) <span class="co"># &lt;4&gt;</span></span>
-<span id="cb38-328"><a href="#cb38-328" aria-hidden="true" tabindex="-1"></a>a</span>
-<span id="cb38-329"><a href="#cb38-329" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
-<span id="cb38-330"><a href="#cb38-330" aria-hidden="true" tabindex="-1"></a><span class="ss">1. Definición del diccionario `a` que mapea simbolos a enteros.</span></span>
-<span id="cb38-331"><a href="#cb38-331" aria-hidden="true" tabindex="-1"></a><span class="ss">2. Cambia el valor de `:b` por 20.</span></span>
-<span id="cb38-332"><a href="#cb38-332" aria-hidden="true" tabindex="-1"></a><span class="ss">3. Añade `:d =&gt; 4` al diccionario `a`.</span></span>
-<span id="cb38-333"><a href="#cb38-333" aria-hidden="true" tabindex="-1"></a><span class="ss">4. Borra el par con llave `:a`.</span></span>
+<span id="cb38-322"><a href="#cb38-322" aria-hidden="true" tabindex="-1"></a><span class="in">a = Dict(:a =&gt; 1, :b =&gt; 2, :c =&gt; 3) # &lt;1&gt;</span></span>
+<span id="cb38-323"><a href="#cb38-323" aria-hidden="true" tabindex="-1"></a><span class="in">a[:b] = 20 # &lt;2&gt;</span></span>
+<span id="cb38-324"><a href="#cb38-324" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
+<span id="cb38-325"><a href="#cb38-325" aria-hidden="true" tabindex="-1"></a><span class="in">a[:d] = 4  # &lt;3&gt;</span></span>
+<span id="cb38-326"><a href="#cb38-326" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
+<span id="cb38-327"><a href="#cb38-327" aria-hidden="true" tabindex="-1"></a><span class="in">delete!(a, :a) # &lt;4&gt;</span></span>
+<span id="cb38-328"><a href="#cb38-328" aria-hidden="true" tabindex="-1"></a><span class="in">a</span></span>
+<span id="cb38-329"><a href="#cb38-329" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-330"><a href="#cb38-330" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Definición del diccionario <span class="in">`a`</span> que mapea simbolos a enteros.</span>
+<span id="cb38-331"><a href="#cb38-331" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Cambia el valor de <span class="in">`:b`</span> por 20.</span>
+<span id="cb38-332"><a href="#cb38-332" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Añade <span class="in">`:d =&gt; 4`</span> al diccionario <span class="in">`a`</span>.</span>
+<span id="cb38-333"><a href="#cb38-333" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Borra el par con llave <span class="in">`:a`</span>.</span>
 <span id="cb38-334"><a href="#cb38-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-335"><a href="#cb38-335" aria-hidden="true" tabindex="-1"></a><span class="ss">Es posible utilizar diferentes tipos siempre y cuando el tipo en cuestión defina de manera correcta la función `hash` sobre la llave y la verificación de igualdad `==`.</span></span>
+<span id="cb38-335"><a href="#cb38-335" aria-hidden="true" tabindex="-1"></a>Es posible utilizar diferentes tipos siempre y cuando el tipo en cuestión defina de manera correcta la función <span class="in">`hash`</span> sobre la llave y la verificación de igualdad <span class="in">`==`</span>.</span>
 <span id="cb38-336"><a href="#cb38-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-337"><a href="#cb38-337" aria-hidden="true" tabindex="-1"></a><span class="ss">Un conjunto se representa con el tipo `Set`, se implementa de manera muy similar al diccionario pero solo necesita el elemento (e.g., la llave). Como conjunto implementa las operaciones clasificación de operaciones de conjuntos</span></span>
+<span id="cb38-337"><a href="#cb38-337" aria-hidden="true" tabindex="-1"></a>Un conjunto se representa con el tipo <span class="in">`Set`</span>, se implementa de manera muy similar al diccionario pero solo necesita el elemento (e.g., la llave). Como conjunto implementa las operaciones clasificación de operaciones de conjuntos</span>
 <span id="cb38-340"><a href="#cb38-340" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-341"><a href="#cb38-341" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">Set</span>([<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>]) <span class="co"># &lt;1&gt;</span></span>
-<span id="cb38-342"><a href="#cb38-342" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fl">20</span> <span class="kw">in</span> a)          <span class="co"># &lt;2&gt;</span></span>
-<span id="cb38-343"><a href="#cb38-343" aria-hidden="true" tabindex="-1"></a><span class="fu">push!</span>(a, <span class="fl">50</span>)              <span class="co"># &lt;3&gt;</span></span>
-<span id="cb38-344"><a href="#cb38-344" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
-<span id="cb38-345"><a href="#cb38-345" aria-hidden="true" tabindex="-1"></a><span class="fu">delete!</span>(a, <span class="fl">10</span>)            <span class="co"># &lt;4&gt;</span></span>
-<span id="cb38-346"><a href="#cb38-346" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
-<span id="cb38-347"><a href="#cb38-347" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">intersect</span>(a, [<span class="fl">20</span>, <span class="fl">35</span>])) <span class="co"># &lt;5&gt;</span></span>
-<span id="cb38-348"><a href="#cb38-348" aria-hidden="true" tabindex="-1"></a><span class="fu">union!</span>(a, [<span class="fl">100</span>, <span class="fl">200</span>]) <span class="co"># &lt;6&gt;</span></span>
-<span id="cb38-349"><a href="#cb38-349" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(a)</span>
-<span id="cb38-350"><a href="#cb38-350" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
-<span id="cb38-351"><a href="#cb38-351" aria-hidden="true" tabindex="-1"></a><span class="ss">1. Definición del conjunto de números enteros.</span></span>
-<span id="cb38-352"><a href="#cb38-352" aria-hidden="true" tabindex="-1"></a><span class="ss">2. Verificación de membresia al conjunto `a`.</span></span>
-<span id="cb38-353"><a href="#cb38-353" aria-hidden="true" tabindex="-1"></a><span class="ss">3. Añade 50 al conjunto.</span></span>
-<span id="cb38-354"><a href="#cb38-354" aria-hidden="true" tabindex="-1"></a><span class="ss">4. Se borra el elemento 10 del conjunto.</span></span>
-<span id="cb38-355"><a href="#cb38-355" aria-hidden="true" tabindex="-1"></a><span class="ss">5. Intersección de `a` con una colección, no se modifica el conjunto `a`.</span></span>
-<span id="cb38-356"><a href="#cb38-356" aria-hidden="true" tabindex="-1"></a><span class="ss">6. Unión con otra colección, se modifica `a`.</span></span>
+<span id="cb38-341"><a href="#cb38-341" aria-hidden="true" tabindex="-1"></a><span class="in">a = Set([10, 20, 30, 40]) # &lt;1&gt;</span></span>
+<span id="cb38-342"><a href="#cb38-342" aria-hidden="true" tabindex="-1"></a><span class="in">println(20 in a)          # &lt;2&gt;</span></span>
+<span id="cb38-343"><a href="#cb38-343" aria-hidden="true" tabindex="-1"></a><span class="in">push!(a, 50)              # &lt;3&gt;</span></span>
+<span id="cb38-344"><a href="#cb38-344" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
+<span id="cb38-345"><a href="#cb38-345" aria-hidden="true" tabindex="-1"></a><span class="in">delete!(a, 10)            # &lt;4&gt;</span></span>
+<span id="cb38-346"><a href="#cb38-346" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
+<span id="cb38-347"><a href="#cb38-347" aria-hidden="true" tabindex="-1"></a><span class="in">println(intersect(a, [20, 35])) # &lt;5&gt;</span></span>
+<span id="cb38-348"><a href="#cb38-348" aria-hidden="true" tabindex="-1"></a><span class="in">union!(a, [100, 200]) # &lt;6&gt;</span></span>
+<span id="cb38-349"><a href="#cb38-349" aria-hidden="true" tabindex="-1"></a><span class="in">println(a)</span></span>
+<span id="cb38-350"><a href="#cb38-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-351"><a href="#cb38-351" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Definición del conjunto de números enteros.</span>
+<span id="cb38-352"><a href="#cb38-352" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Verificación de membresia al conjunto <span class="in">`a`</span>.</span>
+<span id="cb38-353"><a href="#cb38-353" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Añade 50 al conjunto.</span>
+<span id="cb38-354"><a href="#cb38-354" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Se borra el elemento 10 del conjunto.</span>
+<span id="cb38-355"><a href="#cb38-355" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Intersección de <span class="in">`a`</span> con una colección, no se modifica el conjunto <span class="in">`a`</span>.</span>
+<span id="cb38-356"><a href="#cb38-356" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Unión con otra colección, se modifica <span class="in">`a`</span>.</span>
 <span id="cb38-357"><a href="#cb38-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-358"><a href="#cb38-358" aria-hidden="true" tabindex="-1"></a><span class="ss">## El flujo de compilación de Julia</span></span>
+<span id="cb38-358"><a href="#cb38-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## El flujo de compilación de Julia</span></span>
 <span id="cb38-359"><a href="#cb38-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-360"><a href="#cb38-360" aria-hidden="true" tabindex="-1"></a><span class="ss">Basta con escribir una linea de código en el REPL de Julia y esta se compilará y ejecutará en el contexto actual, usando el ámbito de variables. Esto es conveniente para comenzar a trabajar, sin embargo, es importante conocer el flujo de compilación para tenerlo en cuenta mientras se códifica, y así generar código eficiente. En particular, la creación de funciones y evitar la _inestabilidad_  de los tipos de las variables es un paso hacia la generación de código eficiente. También es importante evitar el alojamiento de memoria dinámica siempre que sea posible. A continuación se mostrará el análisis de un código simple a diferentes niveles, mostrando que el lenguaje nos permite observar la generación de código, que últimadamente nos da cierto control y nos permite verificar que lo que se esta implementando es lo que se específica en el código. Esto no es posible en lenguajes como Python.</span></span>
+<span id="cb38-360"><a href="#cb38-360" aria-hidden="true" tabindex="-1"></a>Basta con escribir una linea de código en el REPL de Julia y esta se compilará y ejecutará en el contexto actual, usando el ámbito de variables. Esto es conveniente para comenzar a trabajar, sin embargo, es importante conocer el flujo de compilación para tenerlo en cuenta mientras se códifica, y así generar código eficiente. En particular, la creación de funciones y evitar la _inestabilidad_  de los tipos de las variables es un paso hacia la generación de código eficiente. También es importante evitar el alojamiento de memoria dinámica siempre que sea posible. A continuación se mostrará el análisis de un código simple a diferentes niveles, mostrando que el lenguaje nos permite observar la generación de código, que últimadamente nos da cierto control y nos permite verificar que lo que se esta implementando es lo que se específica en el código. Esto no es posible en lenguajes como Python.</span>
 <span id="cb38-361"><a href="#cb38-361" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-362"><a href="#cb38-362" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-365"><a href="#cb38-365" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-366"><a href="#cb38-366" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers: true</span></span>
-<span id="cb38-367"><a href="#cb38-367" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb38-368"><a href="#cb38-368" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> <span class="fl">1.1</span></span>
-<span id="cb38-369"><a href="#cb38-369" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="cn">e</span><span class="op">*</span><span class="cn">e</span>)</span>
-<span id="cb38-370"><a href="#cb38-370" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@code_typed</span> <span class="cn">e</span><span class="op">*</span><span class="cn">e</span></span>
-<span id="cb38-371"><a href="#cb38-371" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb38-366"><a href="#cb38-366" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-line-numbers: true</span></span>
+<span id="cb38-367"><a href="#cb38-367" aria-hidden="true" tabindex="-1"></a><span class="in">let</span></span>
+<span id="cb38-368"><a href="#cb38-368" aria-hidden="true" tabindex="-1"></a><span class="in">    e = 1.1</span></span>
+<span id="cb38-369"><a href="#cb38-369" aria-hidden="true" tabindex="-1"></a><span class="in">    println(e*e)</span></span>
+<span id="cb38-370"><a href="#cb38-370" aria-hidden="true" tabindex="-1"></a><span class="in">    @code_typed e*e</span></span>
+<span id="cb38-371"><a href="#cb38-371" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-372"><a href="#cb38-372" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-373"><a href="#cb38-373" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-374"><a href="#cb38-374" aria-hidden="true" tabindex="-1"></a>En este código, se utiliza la estructa de agrupación de expresiones <span class="in">`let...end`</span>. Cada expresión puede estar compuesta de otras expresiones, y casi todo es una expresión en Julia. La mayoria de las expresiones serán finalizadas por un salto de linea, pero las compuestas como <span class="in">`let`</span>, <span class="in">`begin`</span>, <span class="in">`function`</span>, <span class="in">`if`</span>, <span class="in">`while`</span>, <span class="in">`for`</span>, <span class="in">`do`</span>, <span class="in">`module`</span> estarán finalizadas con <span class="in">`end`</span>. La indentación no importa la indentación como en Python, pero es aconsejable para mantener la legibilidad del código. La linea 2 define e inicializa la variable <span class="in">`e`</span>; la linea 3 llama a la función <span class="in">`println`</span>, que imprimirá el resultado de <span class="in">`e*e`</span> en la consola. La función <span class="in">`println`</span> esta dentro de la biblioteca estándar de Julia y siempre esta _visible_. La linea 4 es un tanto diferente, es una macro que toma la expresión `e*e` y realiza algo sobre la expresión misma, en particular `@code_type` muestra como se reescribe la expresión para ser ejecutada. Note como se hará una llamada a la función `Base.mul_float` que recibe dos argumentos y que regresará un valor `Float64`. Esta información es necesaria para que Julia pueda generar un código veloz, el flujo de compilación llevaría esta información a generar un código intermedio de _Low Level Virtual Machine_ (LLVM), que es el compilador empotrado en Julia, el cual estaría generando el siguiente código LLVM (usando la macro <span class="in">`@code_llvm`</span>):</span>
 <span id="cb38-375"><a href="#cb38-375" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-378"><a href="#cb38-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-379"><a href="#cb38-379" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb38-380"><a href="#cb38-380" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb38-381"><a href="#cb38-381" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> <span class="fl">1.1</span></span>
-<span id="cb38-382"><a href="#cb38-382" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@code_llvm</span> <span class="cn">e</span><span class="op">*</span><span class="cn">e</span></span>
-<span id="cb38-383"><a href="#cb38-383" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb38-379"><a href="#cb38-379" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb38-380"><a href="#cb38-380" aria-hidden="true" tabindex="-1"></a><span class="in">let</span></span>
+<span id="cb38-381"><a href="#cb38-381" aria-hidden="true" tabindex="-1"></a><span class="in">    e = 1.1</span></span>
+<span id="cb38-382"><a href="#cb38-382" aria-hidden="true" tabindex="-1"></a><span class="in">    @code_llvm e*e</span></span>
+<span id="cb38-383"><a href="#cb38-383" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-384"><a href="#cb38-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-385"><a href="#cb38-385" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-386"><a href="#cb38-386" aria-hidden="true" tabindex="-1"></a>Este código ya no es específico para Julia, sino para la maquinaría LLVM. Observe la especificidad de los tipos y lo corto del código. El flujo de compilación requeriría generar el código nativo, que puede ser observado a continuación mediante la macro <span class="in">`@code_native`</span>:</span>
 <span id="cb38-387"><a href="#cb38-387" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-390"><a href="#cb38-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb38-391"><a href="#cb38-391" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb38-392"><a href="#cb38-392" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb38-393"><a href="#cb38-393" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> <span class="fl">1.1</span></span>
-<span id="cb38-394"><a href="#cb38-394" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@code_native</span> <span class="cn">e</span><span class="op">*</span><span class="cn">e</span></span>
-<span id="cb38-395"><a href="#cb38-395" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb38-391"><a href="#cb38-391" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb38-392"><a href="#cb38-392" aria-hidden="true" tabindex="-1"></a><span class="in">let</span></span>
+<span id="cb38-393"><a href="#cb38-393" aria-hidden="true" tabindex="-1"></a><span class="in">    e = 1.1</span></span>
+<span id="cb38-394"><a href="#cb38-394" aria-hidden="true" tabindex="-1"></a><span class="in">    @code_native e*e</span></span>
+<span id="cb38-395"><a href="#cb38-395" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb38-396"><a href="#cb38-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb38-397"><a href="#cb38-397" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-398"><a href="#cb38-398" aria-hidden="true" tabindex="-1"></a>En este caso podemos observar código específico para la computadora que esta generando este documento, es posible ver el manejo de registros y el uso de instrucciones del CPU en cuestión.</span>
