@@ -1,0 +1,61 @@
+
+digraph lista {
+  rankdir=LR;
+  splines=false;
+  graph [pad="0.5", nodesep="0.5", ranksep="0.5"]; 
+  node [shape=record];
+  head [label="{{<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>(head)}}", color="gray"];
+  a [label="{{<2>(2)|<1>(1)|<0>a}}"];
+  b [label="{{<1>(1)|<0>b}}"];
+  c [label="{{<2>(2)|<1>(1)|<0>c}}"];
+  d [label="{{<1>(1)|<0>d}}"];
+  e [label="{{<3>(3)|<2>(2)|<1>(1)|<0>e}}"];
+  f [label="{{<1>(1)|<0>f}}"];
+  g [label="{{<2>(2)|<1>(1)|<0>g}}"];
+  h [label="{{<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>h}}"];
+  i [label="{{<1>(1)|<0>i}}"];
+  j [label="{{<3>(3)|<2>(2)|<1>(1)|<0>j}}"];
+  //k [label="{<5>|<4>|<3>|<2>|<1>}", style="invisible"];
+  tail [label="{{<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>(tail)}}", color="gray"];
+  edge [style="dashed"];
+  head:1 -> a:1;
+
+  a:1 -> b:1;
+  b:1 -> c:1;
+  c:1 -> d:1;
+  d:1 -> e:1;
+  e:1 -> f:1;
+  f:1 -> g:1;
+  g:1 -> h:1;
+  h:1 -> i:1;
+  i:1 -> j:1;
+  j:1 -> tail:1;
+  head:2 -> a:2;
+  a:2 -> c:2;
+  c:2 -> e:2;
+  e:2 -> g:2;
+  g:2 -> h:2;
+  h:2 -> j:2;
+  j:2 -> tail:2;
+  head:3 -> e:3;
+  e:3 -> h:3;
+  h:3 -> j:3;
+  j:3 -> tail:3;
+
+  head:4:e -> h:4:w;
+  h:4:e -> tail:4:w;
+
+  edge[style=invis, weight=32];
+  head:0 -> a:0;
+  a:0 -> b:0;
+  b:0 -> c:0;
+  c:0 -> d:0;
+  d:0 -> e:0;
+  e:0 -> f:0;
+  f:0 -> g:0;
+  g:0 -> h:0;
+  h:0 -> i:0;
+  i:0 -> j:0;
+  j:0 -> tail:0;
+
+}

@@ -42,11 +42,10 @@ Para una entrada de tamaño $n$ existen $n!$ permutaciones posibles; cada una de
 
 Existe una permutación objetivo $\pi^*$, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada $\pi_i$ esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo _i.e., ruta sin ciclos_, entre cualquier $\pi_i$ y la permutación $\pi^*$ es el costo de peor caso del algoritmo. 
 
-Ahora, cada operación que realicemos en un algoritmo nos acercará más a $\pi^*$, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es $\log_2(n!)$, que usando la aproximación de Stirling,[^1] lo podemos reescribir como sigue:
+Ahora, cada operación que realicemos en un algoritmo nos acercará más a $\pi^*$, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es $\log_2(n!)$, que usando la aproximación de Stirling,^[Aproximación de Stirling <https://en.wikipedia.org/wiki/Stirling%27s_approximation>.] lo podemos reescribir como sigue:
 
-[^1]: Aproximación de Stirling <https://en.wikipedia.org/wiki/Stirling%27s_approximation>.
 
-$$ \log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)$$
+$$\log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)$$
 
 Esto se puede simplemente escribir como $O(n \log n)$.
 
@@ -92,9 +91,9 @@ Es relativamente fácil hacer un bubble sort que tenga en cuenta la complejidad 
 function adaptive_bubble_sort!(A)
   n = length(A)
 
-  for i in 1:n-1     # 
-    s = 0            # <1>
-    for j in 1:n-i   # 
+  for i in 1:n-1     
+    s = 0            
+    for j in 1:n-i   # <1>
       if A[j] > A[j+1]
         s += 1  # <2>
         A[j], A[j+1] = A[j+1], A[j] 
@@ -219,7 +218,7 @@ qsort!([6, 8, 3, 7, 4, 1, 2, 5])
 1. El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.
 2. Se resuelve el problema izquierdo y el problema derecho por separado.
 3. La función _part!_ particiona el arreglo $A[low:end]$ en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.
-4. Este ciclo itera por todo el subarreglo, su objetivo es asegurar que $A[i] < piv \forall i \in low:piv-1$ y $piv < A[i] \forall i \in piv+1:high$.
+4. Este ciclo itera por todo el subarreglo, su objetivo es asegurar que $A[i] < piv$ para todo $i \in low:piv-1$ y $piv < A[i]$ para todo $i \in piv+1:high$.
 5. Intercambia elementos si $A[j] < piv$, hacemos seguimiento de $i$ ya que esta posición determinará al pivote.
 6. Como _piv_ se encontraba en _high_, entonces hay que intercambiarlos para que _qsort!_ sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.
 
@@ -246,68 +245,10 @@ Una _skip list_ [@skiplists] es una lista ligada con capacidades de búsqueda ef
 ```{dot}
 //| label: fig-skip-list
 //| echo: false
-//| fig-width: 80%
-//| fig-cap: Ejemplo de una lista ligada con alturas heterogeneas
+//| fig-width: 99%
+//| fig-cap: Ejemplo de una skip list
+//| file: skiplist.dot
 
-digraph lista {
-  rankdir=LR;
-  splines=false;
-  graph [pad="0.5", nodesep="0.5", ranksep="0.5"]; 
-  node [shape=record];
-  head [label="{{<5>(5)|<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>(head)}}", color="gray"];
-  a [label="{{<3>(3)|<2>(2)|<1>(1)|<0>a}}"];
-  b [label="{{<1>(1)|<0>b}}"];
-  c [label="{{<2>(2)|<1>(1)|<0>c}}"];
-  d [label="{{<1>(1)|<0>d}}"];
-  e [label="{{<3>(3)|<2>(2)|<1>(1)|<0>e}}"];
-  f [label="{{<1>(1)|<0>f}}"];
-  g [label="{{<2>(2)|<1>(1)|<0>g}}"];
-  h [label="{{<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>h}}"];
-  i [label="{{<1>(1)|<0>i}}"];
-  j [label="{{<3>(3)|<2>(2)|<1>(1)|<0>j}}"];
-  //k [label="{<5>|<4>|<3>|<2>|<1>}", style="invisible"];
-  k [label="{{<5>(5)|<4>(4)|<3>(3)|<2>(2)|<1>(1)|<0>(tail)}}", color="gray"];
-  edge [style="dashed"];
-  head:1 -> a:1;
-  a:1 -> b:1;
-  b:1 -> c:1;
-  c:1 -> d:1;
-  d:1 -> e:1;
-  e:1 -> f:1;
-  f:1 -> g:1;
-  g:1 -> h:1;
-  h:1 -> i:1;
-  i:1 -> j:1;
-  j:1 -> k:1;
-  a:2 -> c:2;
-  c:2 -> e:2;
-  e:2 -> g:2;
-  g:2 -> h:2;
-  h:2 -> j:2;
-  j:2 -> k:2;
-  a:3 -> e:3;
-  e:3 -> h:3;
-  h:3 -> j:3;
-  j:3 -> k:3;
-
-  head:4:e -> h:4:w;
-  h:4:e -> k:4:w;
-  head:5:e -> k:5:w;
-
-  edge[style=invis, weight=32];
-  head:0 -> a:0;
-  a:0 -> b:0;
-  b:0 -> c:0;
-  c:0 -> d:0;
-  d:0 -> e:0;
-  e:0 -> f:0;
-  f:0 -> g:0;
-  g:0 -> h:0;
-  h:0 -> i:0;
-  i:0 -> j:0;
-  j:0 -> k:0;
-
-}
 ```
 
 
@@ -356,9 +297,9 @@ En la práctica, pocos algoritmos son mejores que _quicksort_. En [@Loeser74] se
 La parte adaptable, esto es para algoritmos _oportunistas_ que toman ventaja de instancias simples, esta cubierta por el artículo [@Estivill92]. En especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad.
 En [@Cook80] realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a [@Estivill92] pero tiene experimentos que simplifican el entendimiento de los temas.
 
+
 ## Material audio-visual sobre algoritmos de ordenamiento
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 

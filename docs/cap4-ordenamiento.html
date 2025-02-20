@@ -330,7 +330,7 @@ window.Quarto = {
 <p>Para una entrada de tamaño <span class="math inline">\(n\)</span> existen <span class="math inline">\(n!\)</span> permutaciones posibles; cada una de estas permutaciones es una instancia del problema de ordenamiento de tamaño <span class="math inline">\(n\)</span>.</p>
 <p>Existe una permutación objetivo <span class="math inline">\(\pi^*\)</span>, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada <span class="math inline">\(\pi_i\)</span> esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo <em>i.e., ruta sin ciclos</em>, entre cualquier <span class="math inline">\(\pi_i\)</span> y la permutación <span class="math inline">\(\pi^*\)</span> es el costo de peor caso del algoritmo.</p>
 <p>Ahora, cada operación que realicemos en un algoritmo nos acercará más a <span class="math inline">\(\pi^*\)</span>, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es <span class="math inline">\(\log_2(n!)\)</span>, que usando la aproximación de Stirling,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> lo podemos reescribir como sigue:</p>
-<p><span class="math display">\[ \log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)\]</span></p>
+<p><span class="math display">\[\log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)\]</span></p>
 <p>Esto se puede simplemente escribir como <span class="math inline">\(O(n \log n)\)</span>.</p>
 </section>
 </section>
@@ -394,9 +394,9 @@ Listado&nbsp;4.2: Bubble sort adaptable
 <div class="sourceCode cell-code" id="lst-adaptive-bubble-sort"><pre class="sourceCode code-annotation-code julia code-with-copy"><code class="sourceCode julia"><span id="lst-adaptive-bubble-sort-1"><a href="#lst-adaptive-bubble-sort-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">adaptive_bubble_sort!</span>(A)</span>
 <span id="lst-adaptive-bubble-sort-2"><a href="#lst-adaptive-bubble-sort-2" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
 <span id="lst-adaptive-bubble-sort-3"><a href="#lst-adaptive-bubble-sort-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="lst-adaptive-bubble-sort-4"><a href="#lst-adaptive-bubble-sort-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>     <span class="co"># </span></span>
-<span id="lst-adaptive-bubble-sort-5"><a href="#lst-adaptive-bubble-sort-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fl">0</span></span>
-<span id="lst-adaptive-bubble-sort-6"><a href="#lst-adaptive-bubble-sort-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i   <span class="co"># </span></span>
+<span id="lst-adaptive-bubble-sort-4"><a href="#lst-adaptive-bubble-sort-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>     </span>
+<span id="lst-adaptive-bubble-sort-5"><a href="#lst-adaptive-bubble-sort-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fl">0</span>            </span>
+<span id="lst-adaptive-bubble-sort-6"><a href="#lst-adaptive-bubble-sort-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i</span>
 <span id="lst-adaptive-bubble-sort-7"><a href="#lst-adaptive-bubble-sort-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
 <span id="lst-adaptive-bubble-sort-8"><a href="#lst-adaptive-bubble-sort-8" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="fl">1</span></span>
 <span id="lst-adaptive-bubble-sort-9"><a href="#lst-adaptive-bubble-sort-9" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j] </span>
@@ -543,7 +543,7 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <li>El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.</li>
 <li>Se resuelve el problema izquierdo y el problema derecho por separado.</li>
 <li>La función <em>part!</em> particiona el arreglo <span class="math inline">\(A[low:end]\)</span> en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.</li>
-<li>Este ciclo itera por todo el subarreglo, su objetivo es asegurar que <span class="math inline">\(A[i] &lt; piv \forall i \in low:piv-1\)</span> y <span class="math inline">\(piv &lt; A[i] \forall i \in piv+1:high\)</span>.</li>
+<li>Este ciclo itera por todo el subarreglo, su objetivo es asegurar que <span class="math inline">\(A[i] &lt; piv\)</span> para todo <span class="math inline">\(i \in low:piv-1\)</span> y <span class="math inline">\(piv &lt; A[i]\)</span> para todo <span class="math inline">\(i \in piv+1:high\)</span>.</li>
 <li>Intercambia elementos si <span class="math inline">\(A[j] &lt; piv\)</span>, hacemos seguimiento de <span class="math inline">\(i\)</span> ya que esta posición determinará al pivote.</li>
 <li>Como <em>piv</em> se encontraba en <em>high</em>, entonces hay que intercambiarlos para que <em>qsort!</em> sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.</li>
 </ol>
@@ -555,43 +555,39 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <section id="skip-list" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="skip-list"><span class="header-section-number">4.3</span> Skip list</h2>
 <p>Una <em>skip list</em> <span class="citation" data-cites="skiplists">(<a href="refs.html#ref-skiplists" role="doc-biblioref">Pugh 1990</a>)</span> es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel <span class="math inline">\(i\)</span> se conectan con el siguiente nodo a nivel <span class="math inline">\(i\)</span>. En el nivel más bajo, la <em>skip list</em> es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos.</p>
-<div class="cell" data-fig-width="80%" data-layout-align="default">
+<div class="cell" data-fig-width="99%" data-file="skiplist.dot" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-skip-list" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-skip-list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<svg width="NaN" height="480" viewbox="0.00 0.00 1116.00 222.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 186.2)">
+<svg width="NaN" height="480" viewbox="0.00 0.00 1116.00 197.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 161.8)">
 <title>lista</title>
-<polygon fill="white" stroke="transparent" points="-36,36 -36,-186.2 1080,-186.2 1080,36 -36,36"></polygon>
+<polygon fill="white" stroke="transparent" points="-36,36 -36,-161.8 1080,-161.8 1080,36 -36,36"></polygon>
 <!-- head -->
 <g id="node1" class="node">
 <title>head</title>
-<polygon fill="none" stroke="gray" points="0,-0.9 0,-149.7 54,-149.7 54,-0.9 0,-0.9"></polygon>
-<text text-anchor="middle" x="26.88" y="-133.1" font-family="Times,serif" font-size="14.00">(5)</text>
-<polyline fill="none" stroke="gray" points="0,-124.9 53.75,-124.9 "></polyline>
-<text text-anchor="middle" x="26.88" y="-108.3" font-family="Times,serif" font-size="14.00">(4)</text>
-<polyline fill="none" stroke="gray" points="0,-100.1 53.75,-100.1 "></polyline>
-<text text-anchor="middle" x="26.88" y="-83.5" font-family="Times,serif" font-size="14.00">(3)</text>
-<polyline fill="none" stroke="gray" points="0,-75.3 53.75,-75.3 "></polyline>
-<text text-anchor="middle" x="26.88" y="-58.7" font-family="Times,serif" font-size="14.00">(2)</text>
-<polyline fill="none" stroke="gray" points="0,-50.5 53.75,-50.5 "></polyline>
-<text text-anchor="middle" x="26.88" y="-33.9" font-family="Times,serif" font-size="14.00">(1)</text>
-<polyline fill="none" stroke="gray" points="0,-25.7 53.75,-25.7 "></polyline>
-<text text-anchor="middle" x="26.88" y="-9.1" font-family="Times,serif" font-size="14.00">(head)</text>
+<polygon fill="none" stroke="gray" points="0,-1.3 0,-125.3 54,-125.3 54,-1.3 0,-1.3"></polygon>
+<text text-anchor="middle" x="26.88" y="-108.7" font-family="Times,serif" font-size="14.00">(4)</text>
+<polyline fill="none" stroke="gray" points="0,-100.5 53.75,-100.5 "></polyline>
+<text text-anchor="middle" x="26.88" y="-83.9" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="gray" points="0,-75.7 53.75,-75.7 "></polyline>
+<text text-anchor="middle" x="26.88" y="-59.1" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="gray" points="0,-50.9 53.75,-50.9 "></polyline>
+<text text-anchor="middle" x="26.88" y="-34.3" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="gray" points="0,-26.1 53.75,-26.1 "></polyline>
+<text text-anchor="middle" x="26.88" y="-9.5" font-family="Times,serif" font-size="14.00">(head)</text>
 </g>
 <!-- a -->
 <g id="node2" class="node">
 <title>a</title>
-<polygon fill="none" stroke="black" points="90,-0.7 90,-99.9 144,-99.9 144,-0.7 90,-0.7"></polygon>
-<text text-anchor="middle" x="116.66" y="-83.3" font-family="Times,serif" font-size="14.00">(3)</text>
-<polyline fill="none" stroke="black" points="90,-75.1 143.32,-75.1 "></polyline>
-<text text-anchor="middle" x="116.66" y="-58.5" font-family="Times,serif" font-size="14.00">(2)</text>
-<polyline fill="none" stroke="black" points="90,-50.3 143.32,-50.3 "></polyline>
-<text text-anchor="middle" x="116.66" y="-33.7" font-family="Times,serif" font-size="14.00">(1)</text>
-<polyline fill="none" stroke="black" points="90,-25.5 143.32,-25.5 "></polyline>
-<text text-anchor="middle" x="116.66" y="-8.9" font-family="Times,serif" font-size="14.00">a</text>
+<polygon fill="none" stroke="black" points="90,-1.1 90,-75.5 144,-75.5 144,-1.1 90,-1.1"></polygon>
+<text text-anchor="middle" x="116.66" y="-58.9" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="90,-50.7 143.32,-50.7 "></polyline>
+<text text-anchor="middle" x="116.66" y="-34.1" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="90,-25.9 143.32,-25.9 "></polyline>
+<text text-anchor="middle" x="116.66" y="-9.3" font-family="Times,serif" font-size="14.00">a</text>
 </g>
 <!-- head&#45;&gt;a -->
 <g id="edge1" class="edge">
@@ -600,6 +596,30 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <polygon fill="black" stroke="black" points="80,-41.8 90,-38.3 80,-34.8 80,-41.8"></polygon>
 </g>
 <!-- head&#45;&gt;a -->
+<g id="edge12" class="edge">
+<title>head:2-&gt;a:2</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-63.3C54,-63.3 69.14,-63.3 79.78,-63.3"></path>
+<polygon fill="black" stroke="black" points="80,-66.8 90,-63.3 80,-59.8 80,-66.8"></polygon>
+</g>
+<!-- head&#45;&gt;a -->
+<!-- e -->
+<g id="node6" class="node">
+<title>e</title>
+<polygon fill="none" stroke="black" points="450,-0.7 450,-99.9 504,-99.9 504,-0.7 450,-0.7"></polygon>
+<text text-anchor="middle" x="476.66" y="-83.3" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="black" points="450,-75.1 503.32,-75.1 "></polyline>
+<text text-anchor="middle" x="476.66" y="-58.5" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="black" points="450,-50.3 503.32,-50.3 "></polyline>
+<text text-anchor="middle" x="476.66" y="-33.7" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="black" points="450,-25.5 503.32,-25.5 "></polyline>
+<text text-anchor="middle" x="476.66" y="-8.9" font-family="Times,serif" font-size="14.00">e</text>
+</g>
+<!-- head&#45;&gt;e -->
+<g id="edge19" class="edge">
+<title>head:3-&gt;e:3</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M53.8,-88.24C130.53,-88.07 351.19,-87.58 439.65,-87.38"></path>
+<polygon fill="black" stroke="black" points="439.78,-90.88 449.77,-87.36 439.76,-83.88 439.78,-90.88"></polygon>
+</g>
 <!-- h -->
 <g id="node9" class="node">
 <title>h</title>
@@ -615,32 +635,10 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <text text-anchor="middle" x="746.66" y="-9.5" font-family="Times,serif" font-size="14.00">h</text>
 </g>
 <!-- head&#45;&gt;h -->
-<g id="edge22" class="edge">
+<g id="edge23" class="edge">
 <title>head:e-&gt;h:w</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-112.3C54,-112.3 626.01,-113.16 709.81,-113.28"></path>
-<polygon fill="black" stroke="black" points="709.99,-116.78 720,-113.3 710.01,-109.78 709.99,-116.78"></polygon>
-</g>
-<!-- k -->
-<g id="node12" class="node">
-<title>k</title>
-<polygon fill="none" stroke="gray" points="990,-0.9 990,-149.7 1044,-149.7 1044,-0.9 990,-0.9"></polygon>
-<text text-anchor="middle" x="1016.6" y="-133.1" font-family="Times,serif" font-size="14.00">(5)</text>
-<polyline fill="none" stroke="gray" points="990,-124.9 1043.21,-124.9 "></polyline>
-<text text-anchor="middle" x="1016.6" y="-108.3" font-family="Times,serif" font-size="14.00">(4)</text>
-<polyline fill="none" stroke="gray" points="990,-100.1 1043.21,-100.1 "></polyline>
-<text text-anchor="middle" x="1016.6" y="-83.5" font-family="Times,serif" font-size="14.00">(3)</text>
-<polyline fill="none" stroke="gray" points="990,-75.3 1043.21,-75.3 "></polyline>
-<text text-anchor="middle" x="1016.6" y="-58.7" font-family="Times,serif" font-size="14.00">(2)</text>
-<polyline fill="none" stroke="gray" points="990,-50.5 1043.21,-50.5 "></polyline>
-<text text-anchor="middle" x="1016.6" y="-33.9" font-family="Times,serif" font-size="14.00">(1)</text>
-<polyline fill="none" stroke="gray" points="990,-25.7 1043.21,-25.7 "></polyline>
-<text text-anchor="middle" x="1016.6" y="-9.1" font-family="Times,serif" font-size="14.00">(tail)</text>
-</g>
-<!-- head&#45;&gt;k -->
-<g id="edge24" class="edge">
-<title>head:e-&gt;k:w</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-137.3C54,-137.3 878.37,-137.3 979.81,-137.3"></path>
-<polygon fill="black" stroke="black" points="980,-140.8 990,-137.3 980,-133.8 980,-140.8"></polygon>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M54,-113.3C54,-113.3 626.01,-113.3 709.81,-113.3"></path>
+<polygon fill="black" stroke="black" points="710,-116.8 720,-113.3 710,-109.8 710,-116.8"></polygon>
 </g>
 <!-- b -->
 <g id="node3" class="node">
@@ -668,28 +666,10 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <text text-anchor="middle" x="296.66" y="-9.3" font-family="Times,serif" font-size="14.00">c</text>
 </g>
 <!-- a&#45;&gt;c -->
-<g id="edge12" class="edge">
+<g id="edge13" class="edge">
 <title>a:2-&gt;c:2</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M143.56,-62.45C174.22,-62.62 224.88,-62.9 259.54,-63.09"></path>
-<polygon fill="black" stroke="black" points="259.72,-66.59 269.74,-63.15 259.76,-59.59 259.72,-66.59"></polygon>
-</g>
-<!-- e -->
-<g id="node6" class="node">
-<title>e</title>
-<polygon fill="none" stroke="black" points="450,-0.7 450,-99.9 504,-99.9 504,-0.7 450,-0.7"></polygon>
-<text text-anchor="middle" x="476.66" y="-83.3" font-family="Times,serif" font-size="14.00">(3)</text>
-<polyline fill="none" stroke="black" points="450,-75.1 503.32,-75.1 "></polyline>
-<text text-anchor="middle" x="476.66" y="-58.5" font-family="Times,serif" font-size="14.00">(2)</text>
-<polyline fill="none" stroke="black" points="450,-50.3 503.32,-50.3 "></polyline>
-<text text-anchor="middle" x="476.66" y="-33.7" font-family="Times,serif" font-size="14.00">(1)</text>
-<polyline fill="none" stroke="black" points="450,-25.5 503.32,-25.5 "></polyline>
-<text text-anchor="middle" x="476.66" y="-8.9" font-family="Times,serif" font-size="14.00">e</text>
-</g>
-<!-- a&#45;&gt;e -->
-<g id="edge18" class="edge">
-<title>a:3-&gt;e:3</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M143.47,-87.3C206.62,-87.3 366.25,-87.3 439.37,-87.3"></path>
-<polygon fill="black" stroke="black" points="439.51,-90.8 449.51,-87.3 439.51,-83.8 439.51,-90.8"></polygon>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M143.56,-63.3C174.22,-63.3 224.88,-63.3 259.54,-63.3"></path>
+<polygon fill="black" stroke="black" points="259.74,-66.8 269.74,-63.3 259.74,-59.8 259.74,-66.8"></polygon>
 </g>
 <!-- b&#45;&gt;c -->
 <g id="edge3" class="edge">
@@ -714,7 +694,7 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 </g>
 <!-- c&#45;&gt;d -->
 <!-- c&#45;&gt;e -->
-<g id="edge13" class="edge">
+<g id="edge14" class="edge">
 <title>c:2-&gt;e:2</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M323.56,-63.15C354.22,-62.98 404.88,-62.7 439.54,-62.51"></path>
 <polygon fill="black" stroke="black" points="439.76,-66.01 449.74,-62.45 439.72,-59.01 439.76,-66.01"></polygon>
@@ -752,13 +732,13 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <text text-anchor="middle" x="656.66" y="-9.3" font-family="Times,serif" font-size="14.00">g</text>
 </g>
 <!-- e&#45;&gt;g -->
-<g id="edge14" class="edge">
+<g id="edge15" class="edge">
 <title>e:2-&gt;g:2</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M503.56,-62.45C534.22,-62.62 584.88,-62.9 619.54,-63.09"></path>
 <polygon fill="black" stroke="black" points="619.72,-66.59 629.74,-63.15 619.76,-59.59 619.72,-66.59"></polygon>
 </g>
 <!-- e&#45;&gt;h -->
-<g id="edge19" class="edge">
+<g id="edge20" class="edge">
 <title>e:3-&gt;h:3</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M503.38,-87.4C551.62,-87.58 654.19,-87.96 709.61,-88.16"></path>
 <polygon fill="black" stroke="black" points="709.7,-91.66 719.71,-88.2 709.72,-84.66 709.7,-91.66"></polygon>
@@ -777,7 +757,7 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <polygon fill="black" stroke="black" points="710,-41.8 720,-38.3 710,-34.8 710,-41.8"></polygon>
 </g>
 <!-- g&#45;&gt;h -->
-<g id="edge15" class="edge">
+<g id="edge16" class="edge">
 <title>g:2-&gt;h:2</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M684,-63.3C684,-63.3 699.14,-63.3 709.78,-63.3"></path>
 <polygon fill="black" stroke="black" points="710,-66.8 720,-63.3 710,-59.8 710,-66.8"></polygon>
@@ -811,22 +791,36 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <text text-anchor="middle" x="926.66" y="-8.9" font-family="Times,serif" font-size="14.00">j</text>
 </g>
 <!-- h&#45;&gt;j -->
-<g id="edge16" class="edge">
+<g id="edge17" class="edge">
 <title>h:2-&gt;j:2</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M773.56,-63.15C804.22,-62.98 854.88,-62.7 889.54,-62.51"></path>
 <polygon fill="black" stroke="black" points="889.76,-66.01 899.74,-62.45 889.72,-59.01 889.76,-66.01"></polygon>
 </g>
 <!-- h&#45;&gt;j -->
-<g id="edge20" class="edge">
+<g id="edge21" class="edge">
 <title>h:3-&gt;j:3</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M773.56,-88.15C804.22,-87.98 854.88,-87.7 889.54,-87.51"></path>
 <polygon fill="black" stroke="black" points="889.76,-91.01 899.74,-87.45 889.72,-84.01 889.76,-91.01"></polygon>
 </g>
-<!-- h&#45;&gt;k -->
-<g id="edge23" class="edge">
-<title>h:e-&gt;k:w</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M773,-113.3C773,-113.3 936.92,-112.54 979.82,-112.35"></path>
-<polygon fill="black" stroke="black" points="980.02,-115.85 990,-112.3 979.98,-108.85 980.02,-115.85"></polygon>
+<!-- tail -->
+<g id="node12" class="node">
+<title>tail</title>
+<polygon fill="none" stroke="gray" points="990,-1.3 990,-125.3 1044,-125.3 1044,-1.3 990,-1.3"></polygon>
+<text text-anchor="middle" x="1016.6" y="-108.7" font-family="Times,serif" font-size="14.00">(4)</text>
+<polyline fill="none" stroke="gray" points="990,-100.5 1043.21,-100.5 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-83.9" font-family="Times,serif" font-size="14.00">(3)</text>
+<polyline fill="none" stroke="gray" points="990,-75.7 1043.21,-75.7 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-59.1" font-family="Times,serif" font-size="14.00">(2)</text>
+<polyline fill="none" stroke="gray" points="990,-50.9 1043.21,-50.9 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-34.3" font-family="Times,serif" font-size="14.00">(1)</text>
+<polyline fill="none" stroke="gray" points="990,-26.1 1043.21,-26.1 "></polyline>
+<text text-anchor="middle" x="1016.6" y="-9.5" font-family="Times,serif" font-size="14.00">(tail)</text>
+</g>
+<!-- h&#45;&gt;tail -->
+<g id="edge24" class="edge">
+<title>h:e-&gt;tail:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M773,-113.3C773,-113.3 936.92,-113.3 979.82,-113.3"></path>
+<polygon fill="black" stroke="black" points="980,-116.8 990,-113.3 980,-109.8 980,-116.8"></polygon>
 </g>
 <!-- i&#45;&gt;j -->
 <g id="edge10" class="edge">
@@ -835,31 +829,31 @@ Listado&nbsp;4.4: Algoritmo <em>quick sort</em>.
 <polygon fill="black" stroke="black" points="889.91,-41.52 900,-38.3 890.1,-34.52 889.91,-41.52"></polygon>
 </g>
 <!-- i&#45;&gt;j -->
-<!-- j&#45;&gt;k -->
+<!-- j&#45;&gt;tail -->
 <g id="edge11" class="edge">
-<title>j:1-&gt;k:1</title>
+<title>j:1-&gt;tail:1</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-38.3C954,-38.3 969.14,-38.3 979.78,-38.3"></path>
 <polygon fill="black" stroke="black" points="980,-41.8 990,-38.3 980,-34.8 980,-41.8"></polygon>
 </g>
-<!-- j&#45;&gt;k -->
-<g id="edge17" class="edge">
-<title>j:2-&gt;k:2</title>
+<!-- j&#45;&gt;tail -->
+<g id="edge18" class="edge">
+<title>j:2-&gt;tail:2</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-62.3C954,-62.3 969.14,-62.72 979.78,-63.02"></path>
 <polygon fill="black" stroke="black" points="979.91,-66.52 990,-63.3 980.1,-59.52 979.91,-66.52"></polygon>
 </g>
-<!-- j&#45;&gt;k -->
-<g id="edge21" class="edge">
-<title>j:3-&gt;k:3</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-87.3C954,-87.3 969.14,-87.3 979.78,-87.3"></path>
-<polygon fill="black" stroke="black" points="980,-90.8 990,-87.3 980,-83.8 980,-90.8"></polygon>
+<!-- j&#45;&gt;tail -->
+<g id="edge22" class="edge">
+<title>j:3-&gt;tail:3</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M954,-87.3C954,-87.3 969.14,-87.72 979.78,-88.02"></path>
+<polygon fill="black" stroke="black" points="979.91,-91.52 990,-88.3 980.1,-84.52 979.91,-91.52"></polygon>
 </g>
-<!-- j&#45;&gt;k -->
+<!-- j&#45;&gt;tail -->
 </g>
 </svg>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skip-list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.1: Ejemplo de una lista ligada con alturas heterogeneas
+Figura&nbsp;4.1: Ejemplo de una skip list
 </figcaption>
 </figure>
 </div>
@@ -907,7 +901,6 @@ Figura&nbsp;4.1: Ejemplo de una lista ligada con alturas heterogeneas
 
 
 <!-- -->
-</section>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Cook80" class="csl-entry" role="listitem">
@@ -929,11 +922,11 @@ Loeser, Rudolf. 1974. <span>“Some performance tests of <span>‘quicksort’</
 Pugh, William. 1990. <span>“Skip lists: a probabilistic alternative to balanced trees”</span>. <em>Commun. ACM</em> 33 (6): 668–76. <a href="https://doi.org/10.1145/78973.78977">https://doi.org/10.1145/78973.78977</a>.
 </div>
 </div>
+</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>Aproximación de Stirling <a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" class="uri">https://en.wikipedia.org/wiki/Stirling%27s_approximation</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Aproximación de Stirling <a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" class="uri">https://en.wikipedia.org/wiki/Stirling%27s_approximation</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -1417,289 +1410,312 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Algoritmos de búsqueda en el modelo de comparación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade page-columns page-full" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable page-columns page-full"><div class="modal-content page-columns page-full"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body page-columns page-full"><div class="page-columns page-full">
-<section id="section" class="level2 markdown" data-shortcodes="false" data-number="4.6">
-<h2 class="markdown" data-shortcodes="false" data-number="4.6" data-anchor-id="section"><span class="header-section-number">4.6</span> ```````````````````</h2>
-<p>engine: julia lang: es-MX —</p>
-</section>
-<section id="sec-ordenamiento" class="level1 page-columns page-full" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Algoritmos de ordenamiento</h1>
-<section id="objetivo-1" class="level2 unnumbered">
-<h2 class="unnumbered" data-anchor-id="objetivo-1">Objetivo</h2>
-<p>Implementar y analizar algoritmos de ordenamiento de arreglos con costo óptimo en el peor caso, así como algoritmos adaptativos a la entrada para caracterizar su desempeño bajo un enfoque experimental para la solución efectiva de problemas informáticos.</p>
-</section>
-<section id="introducción-1" class="level2 page-columns page-full" data-number="5.1">
-<h2 data-number="5.1" data-anchor-id="introducción-1"><span class="header-section-number">5.1</span> Introducción</h2>
-<p>En este tema se aborda el ordenamiento basado en comparación, esto es, existe un operador <span class="math inline">\(&lt;\)</span> que es capaz de distinguir si un elemento <span class="math inline">\(a\)</span> es menor que un elemento <span class="math inline">\(b\)</span>.</p>
-<p>El operador cumple con las siguientes propiedades:</p>
-<ul>
-<li>si <span class="math inline">\(a &lt; b\)</span> y <span class="math inline">\(b &lt; c\)</span> entonces <span class="math inline">\(a &lt; c\)</span> (transitividad); e.g., <span class="math inline">\(1 &lt; 10\)</span> y <span class="math inline">\(10 &lt; 100\)</span> entonces <span class="math inline">\(1 &lt; 100\)</span>.</li>
-<li>tricotomía:
-<ul>
-<li>si <span class="math inline">\(a &lt; b\)</span> es falso y <span class="math inline">\(b &lt; a\)</span> es falso, entonces <span class="math inline">\(a = b\)</span> (antisímetria); dicho de otras formas:
-<ul>
-<li>si <span class="math inline">\(a\)</span> no es menor que <span class="math inline">\(b\)</span> ni <span class="math inline">\(b\)</span> menor que <span class="math inline">\(a\)</span> entonces <span class="math inline">\(a\)</span> es igual a <span class="math inline">\(b\)</span>,</li>
-<li>desvelando variables, <span class="math inline">\(1 &lt; 1\)</span> es falso, el intercambio es obvio, entonces <span class="math inline">\(1=1\)</span>.</li>
-</ul></li>
-<li>en otro caso, <span class="math inline">\(a &lt; b\)</span> o <span class="math inline">\(a &lt; b\)</span>.</li>
-</ul></li>
-</ul>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Usar un operador como <span class="math inline">\(&lt;\)</span> es suficiente para crear algoritmos correctos y eficientes, sin embargo, en la práctica y en una computadora real, también es válido utilizar operadores como <span class="math inline">\(=\)</span> o <span class="math inline">\(\leq\)</span>, o intercambiar por <span class="math inline">\(&gt;\)</span> y <span class="math inline">\(\geq\)</span> según convenga. No hay impacto en la eficiencia.</p>
-</div></div><p>Sin perdida de generalidad, podemos planter el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo <span class="math inline">\(A[1, n] = a_1, a_2, \cdots, a_n\)</span>; un algoritmo de ordenamiento obtiene la permutación <span class="math inline">\(\pi\)</span> tal que <span class="math inline">\(a_{\pi(1)} &lt; a_{\pi(2)} &lt; \cdots &lt; a_{\pi(n)}\)</span>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Cuando se permiten elementos repetidos, se le llama <em>ordenamiento estable</em> i se asegura que en el arreglo ordenado se preserven el orden original posicional cuando <span class="math inline">\(a = b\)</span>. Esta propiedad es importante cuando hay datos satélitales asociados a la llave de comparación.</p>
-</div></div><p>En términos prácticos, la idea es reorganizar <span class="math inline">\(A\)</span>, mediante el cálculo implicito de la permutación <span class="math inline">\(\pi\)</span>, de tal forma que después de terminar el proceso de ordenamiento se obtenga que <span class="math inline">\(A\)</span> esta ordenado, i.e., <span class="math inline">\(a_i \leq a_{i+1}\)</span>. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto muchas veces se busca modificar directamente <span class="math inline">\(A\)</span>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Utilizar <span class="math inline">\(\pi\)</span> solo es necesario cuando no es posible modificar <span class="math inline">\(A\)</span>. También es muy común utilizar datos <em>satélite</em> asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos. Un ejemplo de esto es ordenar un <em>dataframe</em>, pero también estructuras de datos donde existe un campo especial y el resto de los datos asociados es de importancia para una aplicación.</p>
-</div></div><section id="costo-del-problema-1" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" data-anchor-id="costo-del-problema-1"><span class="header-section-number">5.1.1</span> Costo del problema</h3>
-<p>Para una entrada de tamaño <span class="math inline">\(n\)</span> existen <span class="math inline">\(n!\)</span> permutaciones posibles; cada una de estas permutaciones es una instancia del problema de ordenamiento de tamaño <span class="math inline">\(n\)</span>.</p>
-<p>Existe una permutación objetivo <span class="math inline">\(\pi^*\)</span>, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada <span class="math inline">\(\pi_i\)</span> esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo <em>i.e., ruta sin ciclos</em>, entre cualquier <span class="math inline">\(\pi_i\)</span> y la permutación <span class="math inline">\(\pi^*\)</span> es el costo de peor caso del algoritmo.</p>
-<p>Ahora, cada operación que realicemos en un algoritmo nos acercará más a <span class="math inline">\(\pi^*\)</span>, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es <span class="math inline">\(\log_2(n!)\)</span>, que usando la aproximación de Stirling,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> lo podemos reescribir como sigue:</p>
-<p><span class="math display">\[ \log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)\]</span></p>
-<p>Esto se puede simplemente escribir como <span class="math inline">\(O(n \log n)\)</span>.</p>
-</section>
-</section>
-<section id="algoritmos-de-ordenamiento-1" class="level2" data-number="5.2">
-<h2 data-number="5.2" data-anchor-id="algoritmos-de-ordenamiento-1"><span class="header-section-number">5.2</span> Algoritmos de ordenamiento</h2>
-<p>Existen muchos algoritmos que pueden resolver el problema de ordenamiento, es común contar el número de comparaciones ya que produce la información necesaria para la navegación en el grafo de instancias; también es común contar las operación de intercambiar elementos. Las pruebas y la navegación en el grafo determina el costo del algoritmo. Es necesario mencionar que mover datos entre diferentes zonas de memoria puede llegar a ser más costoso que solo acceder a esas zonas por lo que hay una asimetría en el costo de estas dos operaciones.</p>
-<p>Note que algunos de los algoritmos más simples pueden tener un comportamiento oportunistas y que son capaces de obtener ventaja en instancias sencillas, por lo que no debería saltarse esas secciones si solo conoce su comportamiento en peor caso.</p>
-<section id="bubble-sort-1" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" data-anchor-id="bubble-sort-1"><span class="header-section-number">5.2.1</span> Bubble sort</h3>
-<p>El algoritmo de ordenamiento de burbuja o <em>bubble sort</em> realiza una gran cantidad de comparaciones, como puede verse en <a href="#lst-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.1</span></a>, el algoritmo usa dos ciclos anidados para realizar una comparación y una posible transposición, formando un <em>triángulo</em>, i.e., <span class="math display">\[ \sum_{i=1}^{n-1} \sum_{j=1}^{n-i} O(1);\]</span> por lo tanto su costo esta dominado por el triangulo formado, i.e., <span class="math inline">\(\sim n^2/2\)</span> lo que puede escribirse simplemente como <span class="math inline">\(O(n^2)\)</span>.</p>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-bubble-sort</span></span>
-<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Bubble sort de peor caso</span></span>
-<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">bubble_sort!</span>(A)</span>
-<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i</span>
-<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-8" class="code-annotation-target"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j]</span>
-<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
-<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="annotated-cell-11-12"><a href="#annotated-cell-11-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13" aria-hidden="true" tabindex="-1"></a>  A</span>
-<span id="annotated-cell-11-14"><a href="#annotated-cell-11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="annotated-cell-11-15"><a href="#annotated-cell-11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-11-16"><a href="#annotated-cell-11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">bubble_sort!</span>([<span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">7</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="5" data-code-annotation="1">Ciclo que recorre <span class="math inline">\(n-1\)</span> veces todo el arreglo; y pone el elemento máximo en su posición final.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="6" data-code-annotation="2">Ciclo que recorre <span class="math inline">\(n-i\)</span> veces el arreglo; ya que en cada corrida se pone el máximo en su posición.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="8" data-code-annotation="3">Intercambio cuando hay pares en desorden.</span>
-</dd>
-</dl>
-<p>El algoritmo mostrado en <a href="#lst-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.1</span></a> es un algoritmo de peor caso, ya que sin importar la complejidad de la instancia (i.e., que tal alejada esta <span class="math inline">\(\pi_i\)</span> de <span class="math inline">\(\pi^*\)</span>), se comporta igual.</p>
-<p>Es relativamente fácil hacer un bubble sort que tenga en cuenta la complejidad de la instancia, medida como el número de intercambios necesarios.</p>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="annotated-cell-12"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-adaptive-bubble-sort</span></span>
-<span id="annotated-cell-12-2"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Bubble sort adaptable</span></span>
-<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">adaptive_bubble_sort!</span>(A)</span>
-<span id="annotated-cell-12-5"><a href="#annotated-cell-12-5" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
-<span id="annotated-cell-12-6"><a href="#annotated-cell-12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-12-7"><a href="#annotated-cell-12-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>     <span class="co"># </span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-8" class="code-annotation-target"><a href="#annotated-cell-12-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fl">0</span></span>
-<span id="annotated-cell-12-9"><a href="#annotated-cell-12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span>i   <span class="co"># </span></span>
-<span id="annotated-cell-12-10"><a href="#annotated-cell-12-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&gt;</span> A[j<span class="op">+</span><span class="fl">1</span>]</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-12-11" class="code-annotation-target"><a href="#annotated-cell-12-11" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="annotated-cell-12-12"><a href="#annotated-cell-12-12" aria-hidden="true" tabindex="-1"></a>        A[j], A[j<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> A[j<span class="op">+</span><span class="fl">1</span>], A[j] </span>
-<span id="annotated-cell-12-13"><a href="#annotated-cell-12-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
-<span id="annotated-cell-12-14"><a href="#annotated-cell-12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-12-15" class="code-annotation-target"><a href="#annotated-cell-12-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">break</span></span>
-<span id="annotated-cell-12-16"><a href="#annotated-cell-12-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="annotated-cell-12-17"><a href="#annotated-cell-12-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-12-18"><a href="#annotated-cell-12-18" aria-hidden="true" tabindex="-1"></a>  A</span>
-<span id="annotated-cell-12-19"><a href="#annotated-cell-12-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="annotated-cell-12-20"><a href="#annotated-cell-12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-12-21"><a href="#annotated-cell-12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptive_bubble_sort!</span>([<span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="8" data-code-annotation="1">La idea es que si no hay intercambios en una iteración, entonces el arreglo ya esta ordenado.</span>
-</dd>
-<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="11" data-code-annotation="2">Contador de intercambios.</span>
-</dd>
-<dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="15" data-code-annotation="3">Condición de paro, i.e., no hubo intercambios.</span>
-</dd>
-</dl>
-<p>En la forma <a href="#lst-adaptive-bubble-sort" class="quarto-xref">Listado&nbsp;<span>4.2</span></a>, bubble sort es capaz de términar en <span class="math inline">\(n-1\)</span> comparaciones si el arreglo esta ordenado; sacando provecho de casos simples en términos de instancias casi ordenadas.</p>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this code is a sanity check</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bubble_sort!</span>(A) <span class="co">#hide</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adaptive_bubble_sort!</span>(A) <span class="co">#hide</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</section>
-<section id="insertion-sort-1" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" data-anchor-id="insertion-sort-1"><span class="header-section-number">5.2.2</span> Insertion sort</h3>
-<p>El algoritmo de ordenamiento por inserción o <em>insertion sort</em> es un algoritmo simple que al igual que bubble sort tiene un mal peor caso y puede aprovechar casos simples</p>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="annotated-cell-14"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-14-1"><a href="#annotated-cell-14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-insertion-sort</span></span>
-<span id="annotated-cell-14-2"><a href="#annotated-cell-14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Algoritmo _insertion sort_</span></span>
-<span id="annotated-cell-14-3"><a href="#annotated-cell-14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">insertion_sort!</span>(A)</span>
-<span id="annotated-cell-14-4"><a href="#annotated-cell-14-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">length</span>(A)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-14-5" class="code-annotation-target"><a href="#annotated-cell-14-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>n</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-14-6" class="code-annotation-target"><a href="#annotated-cell-14-6" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> A[i]</span>
-<span id="annotated-cell-14-7"><a href="#annotated-cell-14-7" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> i <span class="op">-</span> <span class="fl">1</span>   </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-14-8" class="code-annotation-target"><a href="#annotated-cell-14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">&amp;&amp;</span> A[j] <span class="op">&gt;</span> key</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-14-9" class="code-annotation-target"><a href="#annotated-cell-14-9" aria-hidden="true" tabindex="-1"></a>      A[j <span class="op">+</span> <span class="fl">1</span>] <span class="op">=</span> A[j]</span>
-<span id="annotated-cell-14-10"><a href="#annotated-cell-14-10" aria-hidden="true" tabindex="-1"></a>      j <span class="op">-=</span> <span class="fl">1</span></span>
-<span id="annotated-cell-14-11"><a href="#annotated-cell-14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="annotated-cell-14-12"><a href="#annotated-cell-14-12" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-14-13" class="code-annotation-target"><a href="#annotated-cell-14-13" aria-hidden="true" tabindex="-1"></a>    A[j <span class="op">+</span> <span class="fl">1</span>] <span class="op">=</span> key</span>
-<span id="annotated-cell-14-14"><a href="#annotated-cell-14-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="annotated-cell-14-15"><a href="#annotated-cell-14-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-14-16"><a href="#annotated-cell-14-16" aria-hidden="true" tabindex="-1"></a>  A</span>
-<span id="annotated-cell-14-17"><a href="#annotated-cell-14-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="annotated-cell-14-18"><a href="#annotated-cell-14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-14-19"><a href="#annotated-cell-14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">insertion_sort!</span>([<span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">7</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="5" data-code-annotation="1">El algoritmo comienza en la segunda posición del arreglo y revisará todos los elementos.</span>
-</dd>
-<dt data-target-cell="annotated-cell-14" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="6" data-code-annotation="2">Es importante hacer una copia de <em>key</em> para simplificar la implementación.</span>
-</dd>
-<dt data-target-cell="annotated-cell-14" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="8" data-code-annotation="3">La idea general es ordenar las posiciones de <span class="math inline">\(1..i\)</span>, para esto se debe recorrer hacia atrás el arreglo completo, para determinar la posición de inserción de <em>key</em>.</span>
-</dd>
-<dt data-target-cell="annotated-cell-14" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="9" data-code-annotation="4">Intercambio de elementos para colocar <em>key</em> en su lugar ordenado.</span>
-</dd>
-<dt data-target-cell="annotated-cell-14" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="13" data-code-annotation="5"><em>key</em> se pone en su lugar final.</span>
-</dd>
-</dl>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this code is a sanity check</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insertion_sort!</span>(A) <span class="co">#hide</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-<p>Para analizar <a href="#lst-insertion-sort" class="quarto-xref">Listado&nbsp;<span>4.3</span></a>, es importante notar que el ciclo más externo termina con el subarreglo <span class="math inline">\(A[1..i]\)</span> ordenado; por lo que cuando se comienza el ciclo, si <em>key</em> se prueba estar en su posición correcta, entonces ya no es necesario revisar el resto del subarreglo, esto determina que un arreglo ordenado tendrá un costo de <span class="math inline">\(O(n)\)</span> comparaciones; si esta <em>casi ordenado</em> en términos del número de intercambios necesarios, entonces, el algoritmo se adaptará sacando provecho de la instancia.</p>
-<p>En el <em>peor caso</em> de insertion sort, el algoritmo no puede parar de manera prematura, e.g., un arreglo en orden reverso, el ciclo <code>for</code> se ejecutara <span class="math inline">\(n-1\)</span> veces, mientras que el ciclo <code>while</code> deberá revisar el subarreglo completo en cada iteración, sumando un costo de <span class="math inline">\(i\)</span> operaciones en cada iteración, i.e., <span class="math inline">\(\sum_{i=1}^n i\)</span>, esta forma produce un <em>triángulo</em>, resultando en un costo <span class="math inline">\(O(n^2)\)</span>.</p>
-</section>
-<section id="quick-sort-1" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" data-anchor-id="quick-sort-1"><span class="header-section-number">5.2.3</span> Quick sort</h3>
-<p><em>Quick sort</em> <span class="citation" data-cites="Cormen22">(ver <a href="refs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022, cap. 7</a>)</span> es un algoritmo tipo <em>dividir para vencer</em>; esto es, un algoritmo que divide un problema grande en instancias pequeñas más sencillas. Es uno de los algoritmos más veloces en la práctica por su buen manejo de memoria, aun cuando tiene un peor caso cuadrático, en promedio el costo es <span class="math inline">\(O(n \log n)\)</span>.</p>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="annotated-cell-16"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-qsort</span></span>
-<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Algoritmo _quick sort_.</span></span>
-<span id="annotated-cell-16-3"><a href="#annotated-cell-16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-16-4"><a href="#annotated-cell-16-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
-<span id="annotated-cell-16-5"><a href="#annotated-cell-16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-16-6"><a href="#annotated-cell-16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">qsort!</span>(A, low<span class="op">=</span><span class="fl">1</span>, high<span class="op">=</span><span class="fu">length</span>(A))</span>
-<span id="annotated-cell-16-7"><a href="#annotated-cell-16-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> low <span class="op">&lt;</span> high</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-8" class="code-annotation-target"><a href="#annotated-cell-16-8" aria-hidden="true" tabindex="-1"></a>      piv <span class="op">=</span> <span class="fu">part!</span>(A, low, high)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-9" class="code-annotation-target"><a href="#annotated-cell-16-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">qsort!</span>(A, low, piv <span class="op">-</span> <span class="fl">1</span>)</span>
-<span id="annotated-cell-16-10"><a href="#annotated-cell-16-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">qsort!</span>(A, piv <span class="op">+</span> <span class="fl">1</span>, high)</span>
-<span id="annotated-cell-16-11"><a href="#annotated-cell-16-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="annotated-cell-16-12"><a href="#annotated-cell-16-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-16-13"><a href="#annotated-cell-16-13" aria-hidden="true" tabindex="-1"></a>  A</span>
-<span id="annotated-cell-16-14"><a href="#annotated-cell-16-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="annotated-cell-16-15"><a href="#annotated-cell-16-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-16-16"><a href="#annotated-cell-16-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">part!</span>(A, low, high)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-16-17" class="code-annotation-target"><a href="#annotated-cell-16-17" aria-hidden="true" tabindex="-1"></a>  ipiv <span class="op">=</span> <span class="fu">rand</span>(low<span class="op">:</span>high)</span>
-<span id="annotated-cell-16-18"><a href="#annotated-cell-16-18" aria-hidden="true" tabindex="-1"></a>  A[ipiv], A[high] <span class="op">=</span> A[high], A[ipiv]</span>
-<span id="annotated-cell-16-19"><a href="#annotated-cell-16-19" aria-hidden="true" tabindex="-1"></a>  piv <span class="op">=</span> A[high]</span>
-<span id="annotated-cell-16-20"><a href="#annotated-cell-16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-16-21"><a href="#annotated-cell-16-21" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> low <span class="op">-</span> <span class="fl">1</span>  <span class="co"># uno antes porque se accede después de un i+1</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-16-22" class="code-annotation-target"><a href="#annotated-cell-16-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> low<span class="op">:</span>high <span class="op">-</span> <span class="fl">1</span></span>
-<span id="annotated-cell-16-23"><a href="#annotated-cell-16-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A[j] <span class="op">&lt;</span> piv</span>
-<span id="annotated-cell-16-24"><a href="#annotated-cell-16-24" aria-hidden="true" tabindex="-1"></a>          i <span class="op">+=</span> <span class="fl">1</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-16-25" class="code-annotation-target"><a href="#annotated-cell-16-25" aria-hidden="true" tabindex="-1"></a>          A[i], A[j] <span class="op">=</span> A[j], A[i]</span>
-<span id="annotated-cell-16-26"><a href="#annotated-cell-16-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
-<span id="annotated-cell-16-27"><a href="#annotated-cell-16-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="annotated-cell-16-28"><a href="#annotated-cell-16-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-16-29"><a href="#annotated-cell-16-29" aria-hidden="true" tabindex="-1"></a>  ipiv <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-16-30" class="code-annotation-target"><a href="#annotated-cell-16-30" aria-hidden="true" tabindex="-1"></a>  A[ipiv], A[high] <span class="op">=</span> A[high], A[ipiv]</span>
-<span id="annotated-cell-16-31"><a href="#annotated-cell-16-31" aria-hidden="true" tabindex="-1"></a>  ipiv</span>
-<span id="annotated-cell-16-32"><a href="#annotated-cell-16-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="annotated-cell-16-33"><a href="#annotated-cell-16-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-16-34"><a href="#annotated-cell-16-34" aria-hidden="true" tabindex="-1"></a><span class="fu">qsort!</span>([<span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">3</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="8" data-code-annotation="1">El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.</span>
-</dd>
-<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="9,10" data-code-annotation="2">Se resuelve el problema izquierdo y el problema derecho por separado.</span>
-</dd>
-<dt data-target-cell="annotated-cell-16" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="17,18,19" data-code-annotation="3">La función <em>part!</em> particiona el arreglo <span class="math inline">\(A[low:end]\)</span> en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.</span>
-</dd>
-<dt data-target-cell="annotated-cell-16" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="22" data-code-annotation="4">Este ciclo itera por todo el subarreglo, su objetivo es asegurar que <span class="math inline">\(A[i] &lt; piv \forall i \in low:piv-1\)</span> y <span class="math inline">\(piv &lt; A[i] \forall i \in piv+1:high\)</span>.</span>
-</dd>
-<dt data-target-cell="annotated-cell-16" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="25" data-code-annotation="5">Intercambia elementos si <span class="math inline">\(A[j] &lt; piv\)</span>, hacemos seguimiento de <span class="math inline">\(i\)</span> ya que esta posición determinará al pivote.</span>
-</dd>
-<dt data-target-cell="annotated-cell-16" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="30" data-code-annotation="6">Como <em>piv</em> se encontraba en <em>high</em>, entonces hay que intercambiarlos para que <em>qsort!</em> sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.</span>
-</dd>
-</dl>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this code is a sanity check</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>   <span class="co">#hide</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>)  <span class="co">#hide</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">qsort!</span>(A) <span class="co">#hide</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@assert</span> <span class="fu">issorted</span>(A) <span class="co">#hide</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-<p>El código <a href="#lst-qsort" class="quarto-xref">Listado&nbsp;<span>4.4</span></a> es relativamente simple, usa recurrencias sobre <em>qsort!</em> sobre dos partes extremas divididas por un pivote; estos tres elementos son encontrados en <em>part!</em>. La función <em>part!</em> es muy eficiente en términos de memoria, lo que puede hacer la diferencia en la práctica. La correcta selección del pivote es muy importante para evitar casos malos, i.e., costo cuadrático; en esta implementación se realiza una selección aleatoría de pivote que funcionará en la mayoría de los casos.</p>
-<p>El peor de los casos en <em>qsort!</em> es debido a una mala selección del pivote, de tal forma que <span class="math display">\[|A[low:piv-1]| \ll |A[piv+1:high]|,\]</span> o lo contrario en toda selección, en el extremo una de los subarreglos puede verse como de tamaño constante o cero, i.e., selección de pivote como el <em>minimo</em> o el <em>máximo</em>. Esta estrategía reduce a <em>qsort!</em> a un costo <span class="math inline">\(O(n^2)\)</span>.</p>
-<p>Si se realiza un particionado donde <span class="math display">\[|A[low:piv-1]| \approx |A[piv+1:high]|,\]</span> entonces tenemos un algoritmo <span class="math inline">\(O(n \log n)\)</span>; ya que hace una división en dos partes casi iguales en cada recurrencia a <em>qsort!</em>, y esto solo puede profundizar a <span class="math inline">\(\log n\)</span> veces, y en cada nivel <em>part!</em> tiene un costo lineal.</p>
-</section>
-</section>
-<section id="skip-list-1" class="level2" data-number="5.3">
-<h2 data-number="5.3" data-anchor-id="skip-list-1"><span class="header-section-number">5.3</span> Skip list</h2>
-<p>Una <em>skip list</em> <span class="citation" data-cites="skiplists">(<a href="refs.html#ref-skiplists" role="doc-biblioref">Pugh 1990</a>)</span> es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel <span class="math inline">\(i\)</span> se conectan con el siguiente nodo a nivel <span class="math inline">\(i\)</span>. En el nivel más bajo, la <em>skip list</em> es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos.</p>
-<p>quarto-executable-code-5450563D</p>
-<p>```dot //| label: fig-skip-list //| echo: false //| fig-width: 80% //| fig-cap: Ejemplo de una lista ligada con alturas heterogeneas</p>
-<p>digraph lista { rankdir=LR; splines=false; graph [pad=“0.5”, nodesep=“0.5”, ranksep=“0.5”]; node [shape=record]; head [label=”</p>
-</section>
-</section>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Algoritmos de ordenamiento {#sec-ordenamiento}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Implementar y analizar algoritmos de ordenamiento de arreglos con costo óptimo en el peor caso, así como algoritmos adaptativos a la entrada para caracterizar su desempeño bajo un enfoque experimental para la solución efectiva de problemas informáticos.</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>En este tema se aborda el ordenamiento basado en comparación, esto es, existe un operador $&lt;$ que es capaz de distinguir si un elemento $a$ es menor que un elemento $b$.</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>El operador cumple con las siguientes propiedades:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>si $a &lt; b$ y $b &lt; c$ entonces $a &lt; c$ (transitividad); e.g., $1 &lt; 10$ y $10 &lt; 100$ entonces $1 &lt; 100$. </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tricotomía:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>si $a &lt; b$ es falso y $b &lt; a$ es falso, entonces $a = b$ (antisímetria); dicho de otras formas:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>si $a$ no es menor que $b$ ni $b$ menor que $a$ entonces $a$ es igual a $b$,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>desvelando variables, $1 &lt; 1$ es falso, el intercambio es obvio, entonces $1=1$.</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>en otro caso, $a &lt; b$ o $a &lt; b$.</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>Usar un operador como $&lt;$ es suficiente para crear algoritmos correctos y eficientes, sin embargo, en la práctica y en una computadora real, también es válido utilizar operadores como $=$ o $\leq$, o intercambiar por $&gt;$ y $\geq$ según convenga. No hay impacto en la eficiencia.</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>Sin perdida de generalidad, podemos planter el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo $A<span class="co">[</span><span class="ot">1, n</span><span class="co">]</span> = a_1, a_2, \cdots, a_n$; un algoritmo de ordenamiento obtiene la permutación $\pi$ tal que $a_{\pi(1)} &lt; a_{\pi(2)} &lt; \cdots &lt; a_{\pi(n)}$. </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>Cuando se permiten elementos repetidos, se le llama _ordenamiento estable_ i se asegura que en el arreglo ordenado se preserven el orden original posicional cuando $a = b$. Esta propiedad es importante cuando hay datos satélitales asociados a la llave de comparación.</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>En términos prácticos, la idea es reorganizar $A$, mediante el cálculo implicito de la permutación $\pi$, de tal forma que después de terminar el proceso de ordenamiento se obtenga que $A$ esta ordenado, i.e., $a_i \leq a_{i+1}$. En sistemas reales, el alojar memoria para realizar el ordenamiento implica costos adicionales, y es por esto muchas veces se busca modificar directamente $A$.</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>Utilizar $\pi$ solo es necesario cuando no es posible modificar $A$. También es muy común utilizar datos _satélite_ asociados con los valores a comparar, de esta manera es posible ordenar diversos tipos de datos. Un ejemplo de esto es ordenar un _dataframe_, pero también estructuras de datos donde existe un campo especial y el resto de los datos asociados es de importancia para una aplicación.</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### Costo del problema</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>Para una entrada de tamaño $n$ existen $n!$ permutaciones posibles; cada una de estas permutaciones es una instancia del problema de ordenamiento de tamaño $n$.</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>Existe una permutación objetivo $\pi^*$, i.e., que cumple con la definición de que esta ordenada; ahora pensemos en un grafo donde cada $\pi_i$ esta conectada con todas las permutaciones en las que se puede transformar haciendo una única operación, e.g., intercambiando un elemento. El algoritmo forma ese grafo con sus posibles decisiones, por lo que el camino más largo _i.e., ruta sin ciclos_, entre cualquier $\pi_i$ y la permutación $\pi^*$ es el costo de peor caso del algoritmo. </span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>Ahora, cada operación que realicemos en un algoritmo nos acercará más a $\pi^*$, descartando una cierta cantidad de instancias posibles pero no viables; si nuestra función de transición en el grafo viene dada con respecto a colocar cada par de elementos en su orden relativo, entonces, la mitad de las permutaciones se han descartado, ya que ese par no puede estar en el orden contrario. Por tanto, el costo de cualquier algoritmo que realice comparaciones y descarte la mitad del espacio de búsqueda, es $\log_2(n!)$, que usando la aproximación de Stirling,^<span class="co">[</span><span class="ot">Aproximación de Stirling &lt;https://en.wikipedia.org/wiki/Stirling%27s_approximation&gt;.</span><span class="co">]</span> lo podemos reescribir como sigue:</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>$$\log_2(n!) = n \log_2 n - n \log_2 e + O(\log_2 n)$$</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>Esto se puede simplemente escribir como $O(n \log n)$.</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmos de ordenamiento</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>Existen muchos algoritmos que pueden resolver el problema de ordenamiento, es común contar el número de comparaciones ya que produce la información necesaria para la navegación en el grafo de instancias; también es común contar las operación de intercambiar elementos. Las pruebas y la navegación en el grafo determina el costo del algoritmo. Es necesario mencionar que mover datos entre diferentes zonas de memoria puede llegar a ser más costoso que solo acceder a esas zonas por lo que hay una asimetría en el costo de estas dos operaciones.</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>Note que algunos de los algoritmos más simples pueden tener un comportamiento oportunistas y que son capaces de obtener ventaja en instancias sencillas, por lo que no debería saltarse esas secciones si solo conoce su comportamiento en peor caso.</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bubble sort</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>El algoritmo de ordenamiento de burbuja o _bubble sort_ realiza una gran cantidad de comparaciones, como puede verse en @lst-bubble-sort, el algoritmo usa dos ciclos anidados para realizar una comparación y una posible transposición, formando un _triángulo_, i.e., $$ \sum_{i=1}^{n-1} \sum_{j=1}^{n-i} O(1);$$ por lo tanto su costo esta dominado por el triangulo formado, i.e., $\sim n^2/2$ lo que puede escribirse simplemente como $O(n^2)$.</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-bubble-sort</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Bubble sort de peor caso</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="in">function bubble_sort!(A)</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="in">  n = length(A)</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 1:n-1     # &lt;1&gt;</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="in">    for j in 1:n-i   # &lt;2&gt;</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="in">      if A[j] &gt; A[j+1]</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">        A[j], A[j+1] = A[j+1], A[j]  # &lt;3&gt;</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="in">      end</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="in">  A</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="in">bubble_sort!([8, 4, 3, 1, 6, 5, 2, 7])</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Ciclo que recorre $n-1$ veces todo el arreglo; y pone el elemento máximo en su posición final.</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Ciclo que recorre $n-i$ veces el arreglo; ya que en cada corrida se pone el máximo en su posición.</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Intercambio cuando hay pares en desorden.</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>El algoritmo mostrado en @lst-bubble-sort es un algoritmo de peor caso, ya que sin importar la complejidad de la instancia (i.e., que tal alejada esta $\pi_i$ de $\pi^*$), se comporta igual.</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>Es relativamente fácil hacer un bubble sort que tenga en cuenta la complejidad de la instancia, medida como el número de intercambios necesarios. </span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-adaptive-bubble-sort</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Bubble sort adaptable</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a><span class="in">function adaptive_bubble_sort!(A)</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="in">  n = length(A)</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 1:n-1     </span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="in">    s = 0            </span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="in">    for j in 1:n-i   # &lt;1&gt;</span></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="in">      if A[j] &gt; A[j+1]</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="in">        s += 1  # &lt;2&gt;</span></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="in">        A[j], A[j+1] = A[j+1], A[j] </span></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="in">      end</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a><span class="in">    s == 0 &amp;&amp; break # &lt;3&gt;</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="in">  A</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="in">adaptive_bubble_sort!([7, 8, 4, 3, 1, 6, 5, 2])</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>La idea es que si no hay intercambios en una iteración, entonces el arreglo ya esta ordenado.</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Contador de intercambios.</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Condición de paro, i.e., no hubo intercambios.</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>En la forma @lst-adaptive-bubble-sort, bubble sort es capaz de términar en $n-1$ comparaciones si el arreglo esta ordenado; sacando provecho de casos simples en términos de instancias casi ordenadas.</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a><span class="in"># this code is a sanity check</span></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="in">for i in 1:1000   #hide</span></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="in">  A = rand(100)  #hide</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a><span class="in">  bubble_sort!(A) #hide</span></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="in">  @assert issorted(A) #hide</span></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="in">for i in 1:1000   #hide</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="in">  A = rand(100)  #hide</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="in">  adaptive_bubble_sort!(A) #hide</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a><span class="in">  @assert issorted(A) #hide</span></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Insertion sort</span></span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>El algoritmo de ordenamiento por inserción o _insertion sort_ es un algoritmo simple que al igual que bubble sort tiene un mal peor caso y puede aprovechar casos simples</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-insertion-sort</span></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Algoritmo _insertion sort_</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a><span class="in">function insertion_sort!(A)</span></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="in">  n = length(A)</span></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a><span class="in">  for i in 2:n  # &lt;1&gt;</span></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a><span class="in">    key = A[i]  # &lt;2&gt;</span></span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="in">    j = i - 1   </span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="in">    while j &gt;= 1 &amp;&amp; A[j] &gt; key  # &lt;3&gt;</span></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="in">      A[j + 1] = A[j]           # &lt;4&gt;</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="in">      j -= 1</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="in">    A[j + 1] = key              # &lt;5&gt;</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="in">  A</span></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a><span class="in">insertion_sort!([5, 1, 4, 8, 2, 6, 3, 7])</span></span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>El algoritmo comienza en la segunda posición del arreglo y revisará todos los elementos.</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Es importante hacer una copia de _key_ para simplificar la implementación.</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>La idea general es ordenar las posiciones de $1..i$, para esto se debe recorrer hacia atrás el arreglo completo, para determinar la posición de inserción de _key_.</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Intercambio de elementos para colocar _key_ en su lugar ordenado.</span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>_key_ se pone en su lugar final.</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="in"># this code is a sanity check</span></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="in">for i in 1:1000   #hide</span></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a><span class="in">  A = rand(100)  #hide</span></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a><span class="in">  insertion_sort!(A) #hide</span></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a><span class="in">  @assert issorted(A) #hide</span></span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a>Para analizar @lst-insertion-sort, es importante notar que el ciclo más externo termina con el subarreglo $A<span class="co">[</span><span class="ot">1..i</span><span class="co">]</span>$ ordenado; por lo que cuando se comienza el ciclo, si _key_ se prueba estar en su posición correcta, entonces ya no es necesario revisar el resto del subarreglo, esto determina que un arreglo ordenado tendrá un costo de $O(n)$ comparaciones; si esta _casi ordenado_ en términos del número de intercambios necesarios, entonces, el algoritmo se adaptará sacando provecho de la instancia.</span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>En el _peor caso_ de insertion sort, el algoritmo no puede parar de manera prematura, e.g., un arreglo en orden reverso, el ciclo `for` se ejecutara $n-1$ veces, mientras que el ciclo `while` deberá revisar el subarreglo completo en cada iteración, sumando un costo de $i$ operaciones en cada iteración, i.e., $\sum_{i=1}^n i$, esta forma produce un _triángulo_, resultando en un costo $O(n^2)$.</span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quick sort</span></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>_Quick sort_ [ver @Cormen22, Cap. 7] es un algoritmo tipo _dividir para vencer_; esto es, un algoritmo que divide un problema grande en instancias pequeñas más sencillas. Es uno de los algoritmos más veloces en la práctica por su buen manejo de memoria, aun cuando tiene un peor caso cuadrático, en promedio el costo es $O(n \log n)$.</span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-qsort</span></span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: Algoritmo _quick sort_.</span></span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a><span class="in">using Random</span></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a><span class="in">function qsort!(A, low=1, high=length(A))</span></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a><span class="in">  if low &lt; high</span></span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a><span class="in">      piv = part!(A, low, high) # &lt;1&gt;</span></span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a><span class="in">      qsort!(A, low, piv - 1)  # &lt;2&gt;</span></span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a><span class="in">      qsort!(A, piv + 1, high) # &lt;2&gt;</span></span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a><span class="in">  A</span></span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a><span class="in">function part!(A, low, high)</span></span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a><span class="in">  ipiv = rand(low:high)               # &lt;3&gt;</span></span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a><span class="in">  A[ipiv], A[high] = A[high], A[ipiv] # &lt;3&gt;</span></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a><span class="in">  piv = A[high]                       # &lt;3&gt;</span></span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a><span class="in">  i = low - 1  # uno antes porque se accede después de un i+1</span></span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a><span class="in">  for j in low:high - 1           # &lt;4&gt;</span></span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a><span class="in">      if A[j] &lt; piv</span></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a><span class="in">          i += 1</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a><span class="in">          A[i], A[j] = A[j], A[i] # &lt;5&gt;</span></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a><span class="in">      end</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a><span class="in">  ipiv = i + 1</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a><span class="in">  A[ipiv], A[high] = A[high], A[ipiv] # &lt;6&gt;</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a><span class="in">  ipiv</span></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a><span class="in">qsort!([6, 8, 3, 7, 4, 1, 2, 5])</span></span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>El arreglo se divide en 3 partes, ordenadas entre sí, un subarreglo izquierdo, un pivote, y un subarreglo derecho; los subarreglos no estan ordenados localmente, pero el pivote esta en su posición final.</span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Se resuelve el problema izquierdo y el problema derecho por separado.</span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>La función _part!_ particiona el arreglo $A<span class="co">[</span><span class="ot">low:end</span><span class="co">]</span>$ en 3 partes como se específico en el punto 1; para eso selecciona de manera aleatoria un pivote. Lo ponemos al final del arreglo para simplificar el código siguiente.</span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Este ciclo itera por todo el subarreglo, su objetivo es asegurar que $A<span class="co">[</span><span class="ot">i</span><span class="co">]</span> &lt; piv$ para todo $i \in low:piv-1$ y $piv &lt; A<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$ para todo $i \in piv+1:high$.</span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Intercambia elementos si $A<span class="co">[</span><span class="ot">j</span><span class="co">]</span> &lt; piv$, hacemos seguimiento de $i$ ya que esta posición determinará al pivote.</span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Como _piv_ se encontraba en _high_, entonces hay que intercambiarlos para que _qsort!_ sepa como manejarlos; recordando que los subarreglos no estan ordenados dentro de sí.</span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a><span class="in"># this code is a sanity check</span></span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a><span class="in">for i in 1:1000   #hide</span></span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a><span class="in">  A = rand(100)  #hide</span></span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a><span class="in">  qsort!(A) #hide</span></span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a><span class="in">  @assert issorted(A) #hide</span></span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>El código @lst-qsort es relativamente simple, usa recurrencias sobre _qsort!_ sobre dos partes extremas divididas por un pivote; estos tres elementos son encontrados en _part!_. La función _part!_ es muy eficiente en términos de memoria, lo que puede hacer la diferencia en la práctica. La correcta selección del pivote es muy importante para evitar casos malos, i.e., costo cuadrático; en esta implementación se realiza una selección aleatoría de pivote que funcionará en la mayoría de los casos.</span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a>El peor de los casos en _qsort!_ es debido a una mala selección del pivote, de tal forma que $$|A[low:piv-1]| \ll |A[piv+1:high]|,$$ o lo contrario en toda selección, en el extremo una de los subarreglos puede verse como de tamaño constante o cero, i.e., selección de pivote como el _minimo_ o el _máximo_. Esta estrategía reduce a _qsort!_ a un costo $O(n^2)$.</span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>Si se realiza un particionado donde $$|A<span class="co">[</span><span class="ot">low:piv-1</span><span class="co">]</span>| \approx |A<span class="co">[</span><span class="ot">piv+1:high</span><span class="co">]</span>|,$$ entonces tenemos un algoritmo $O(n \log n)$; ya que hace una división en dos partes casi iguales en cada recurrencia a _qsort!_, y esto solo puede profundizar a $\log n$ veces, y en cada nivel _part!_ tiene un costo lineal.</span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a><span class="fu">## Skip list</span></span>
+<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a>Una _skip list_ [@skiplists] es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel $i$ se conectan con el siguiente nodo a nivel $i$. En el nivel más bajo, la _skip list_ es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos. </span>
+<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-skip-list</span></span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 99%</span></span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: Ejemplo de una skip list</span></span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a><span class="in">//| file: skiplist.dot</span></span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a>A diferencia de los algoritmos vistos anteriormente, en este caso, ya se tiene una estructura de datos, que conlleva un costo en memoría explícito por nodo. @fig-skip-list ilustra la estructura.</span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a>La altura de cada nodo es calculada de manera probabilística, dada la probababilidad $p$. Un valor común de $p=0.5$. La altura de cada nodo se calcula como sigue:</span>
+<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a><span class="in">function levels(p)</span></span>
+<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a><span class="in">  i = 1</span></span>
+<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a><span class="in">  while rand() &lt; p</span></span>
+<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a><span class="in">    i += 1</span></span>
+<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a><span class="in">  end</span></span>
+<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a><span class="in">  i</span></span>
+<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a>Si tenemos $n$ evaluaciones de _levels_, Los niveles pequeños son relativamente probables, mientras que niveles grandes son relativamente poco probables. De hecho, los niveles $\log_{1/p} n$ son cercanos a una constante, $\log_{1/p}{n} - 1$ son $1/p$ veces la constante, $\log_{1/p}{n} - 2$ son $1/p^2$ veces la constante, etc.</span>
+<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a>A diferencia de los algoritmos anteriores, una _skip list_ comienza vacia, y se va poblando insertando elementos a la lista. Se va colocando en la posición que no viola el orden; generando el nodo correspondiente con nivel calculado. Los nodos especiales _head_ y _tail_ siempre tienen el nivel máximo posible. La inserción de un valor encapsulado en el nodo $u$ comienza por visitar el máximo nivel en _head_ e ir bajando hasta determinar $u.dato &gt; head<span class="co">[</span><span class="ot">level</span><span class="co">]</span>.dato$; en ese momento se debe avanzar al nodo apuntado por $head<span class="co">[</span><span class="ot">level</span><span class="co">]</span>$ y repetir el algoritmo hasta que $level=1$, en cuyo caso encontramos el lugar de inserción del nuevo dato. Se procede a reasignar los punteros de los sucesores y ajustar los punteros hacia los nodos sucesores a los niveles que tiene $u$.</span>
+<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>Cada inserción tiene un costo $O(\log_{1/p} n)$, garantía probabilística; por lo que insertar $n$ elementos tiene un costo:</span>
+<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>$$ \sum_{i=1}^n O(\log_{1/p} i) = O(\log_{1/p} \prod_{i=1}^n i) = O(\log_{1/p} {n!}) = O(n \log n); $$</span>
+<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>usando la aproximación de Stirling.</span>
+<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a>A diferencia de la versión basada en arreglos, una _skip list_ es capaz de aceptar nuevos elementos y mantener el orden de manera eficiente.</span>
+<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicios:</span></span>
+<span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Investigue, implemente y pruebe _merge sort_.</span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>  1.1 ¿Cuales son las ventajas y desventajas de _merge sort_?</span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>  1.2 ¿Por qué _merge sort_ se puede utilizar en algoritmos paralelos y otros pueden tener muchas dificultades?</span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>  1.3 ¿Cómo se puede reducir la memoria extra necesaria de _merge sort_?</span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Investigue, implemente y pruebe _heap sort_.</span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>  2.1 ¿Cuales son las ventajas y desventajas de _heap sort_?</span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>¿Cuál es el costo en memoria de una _skip list_?.</span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>  3.1 Investigue, implemente y pruebe un _skip list_.</span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Investigue, implemente y pruebe un árbol binario de búsqueda.</span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lecturas</span></span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>Las lecturas de este tema corresponden al capítulo 5 de <span class="co">[</span><span class="ot">@Knuth98</span><span class="co">]</span>, en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen22], que corresponde a _Sorting and order statistics_, en partícular Cap. 6 y 7, así como el Cap. 8.1. El artículo de wikipedia <span class="ot">&lt;https://en.wikipedia.org/wiki/Sorting_algorithm&gt;</span> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.</span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>En la práctica, pocos algoritmos son mejores que _quicksort_. En <span class="co">[</span><span class="ot">@Loeser74</span><span class="co">]</span> se detalla una serie de experimentos donde se compara quicksort contra otros algoritmos relacionados; por lo que es una lectura recomendable.</span>
+<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>La parte adaptable, esto es para algoritmos _oportunistas_ que toman ventaja de instancias simples, esta cubierta por el artículo <span class="co">[</span><span class="ot">@Estivill92</span><span class="co">]</span>. En especial, es muy necesario comprender las secciones 1.1 y 1.2, el resto del artículo debe ser leído aunque no invierta mucho tiempo en comprender las pruebas expuestas si no le son claras. En especial, en las secciones indicadas se establecen las medidas de desorden contra las cuales se mide la complejidad.</span>
+<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>En <span class="co">[</span><span class="ot">@Cook80</span><span class="co">]</span> realiza una comparación del desempeño de varios algoritmos para ordenamiento de listas casi ordenadas, esto es, en cierto sentido donde los algoritmos adaptables tienen sentido. Este artículo es anterior a <span class="co">[</span><span class="ot">@Estivill92</span><span class="co">]</span> pero tiene experimentos que simplifican el entendimiento de los temas.</span>
+<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a><span class="fu">## Material audio-visual sobre algoritmos de ordenamiento</span></span>
+<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
