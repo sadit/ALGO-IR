@@ -267,18 +267,26 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#listas-ordenadas" id="toc-listas-ordenadas" class="nav-link active" data-scroll-target="#listas-ordenadas"><span class="header-section-number">5.0.1</span> Listas ordenadas</a></li>
-  <li><a href="#material-audio-visual" id="toc-material-audio-visual" class="nav-link" data-scroll-target="#material-audio-visual"><span class="header-section-number">5.1</span> Material audio-visual</a>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#problema" id="toc-problema" class="nav-link" data-scroll-target="#problema"><span class="header-section-number">5.1</span> Problema</a>
   <ul class="collapse">
-  <li><a href="#búsqueda" id="toc-búsqueda" class="nav-link" data-scroll-target="#búsqueda"><span class="header-section-number">5.1.1</span> Búsqueda</a></li>
+  <li><a href="#costo-de-peor-caso" id="toc-costo-de-peor-caso" class="nav-link" data-scroll-target="#costo-de-peor-caso"><span class="header-section-number">5.1.1</span> Costo de peor caso</a></li>
   </ul></li>
-  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">5.2</span> Actividades</a>
+  <li><a href="#búsqueda-no-acotada" id="toc-búsqueda-no-acotada" class="nav-link" data-scroll-target="#búsqueda-no-acotada"><span class="header-section-number">5.2</span> Búsqueda <em>no</em> acotada</a>
   <ul class="collapse">
-  <li><a href="#actividad-0-sin-entrega" id="toc-actividad-0-sin-entrega" class="nav-link" data-scroll-target="#actividad-0-sin-entrega"><span class="header-section-number">5.2.1</span> Actividad 0 [sin entrega]</a></li>
-  <li><a href="#actividad-1-con-reporte" id="toc-actividad-1-con-reporte" class="nav-link" data-scroll-target="#actividad-1-con-reporte"><span class="header-section-number">5.2.2</span> Actividad 1 [con reporte]</a></li>
-  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">5.2.3</span> Entregable</a></li>
-  <li><a href="#actividad-2-sin-entrega" id="toc-actividad-2-sin-entrega" class="nav-link" data-scroll-target="#actividad-2-sin-entrega"><span class="header-section-number">5.2.4</span> Actividad 2 [sin entrega]</a></li>
-  <li><a href="#leyendo-las-listas-de-posteo" id="toc-leyendo-las-listas-de-posteo" class="nav-link" data-scroll-target="#leyendo-las-listas-de-posteo"><span class="header-section-number">5.2.5</span> Leyendo las listas de posteo</a></li>
+  <li><a href="#algoritmo-b_0-búsqueda-unaría" id="toc-algoritmo-b_0-búsqueda-unaría" class="nav-link" data-scroll-target="#algoritmo-b_0-búsqueda-unaría"><span class="header-section-number">5.2.1</span> Algoritmo <span class="math inline">\(B_0\)</span> (búsqueda unaría)</a></li>
+  <li><a href="#algoritmo-b_1-búsqueda-doblada-doubling-searchgalloping" id="toc-algoritmo-b_1-búsqueda-doblada-doubling-searchgalloping" class="nav-link" data-scroll-target="#algoritmo-b_1-búsqueda-doblada-doubling-searchgalloping"><span class="header-section-number">5.2.2</span> Algoritmo <span class="math inline">\(B_1\)</span> (búsqueda doblada: <em>doubling search/galloping</em>)</a></li>
+  <li><a href="#algoritmo-b_2-búsqueda-doblemente-doblada-doubling-doubling-search" id="toc-algoritmo-b_2-búsqueda-doblemente-doblada-doubling-doubling-search" class="nav-link" data-scroll-target="#algoritmo-b_2-búsqueda-doblemente-doblada-doubling-doubling-search"><span class="header-section-number">5.2.3</span> Algoritmo <span class="math inline">\(B_2\)</span> (búsqueda doblemente doblada, <em>doubling-doubling search</em>)</a></li>
+  <li><a href="#algoritmo-b_k" id="toc-algoritmo-b_k" class="nav-link" data-scroll-target="#algoritmo-b_k"><span class="header-section-number">5.2.4</span> Algoritmo <span class="math inline">\(B_k\)</span></a></li>
+  </ul></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">5.3</span> Ejercicios</a>
+  <ul class="collapse">
+  <li><a href="#algoritmo-b_k-1" id="toc-algoritmo-b_k-1" class="nav-link" data-scroll-target="#algoritmo-b_k-1"><span class="header-section-number">5.3.1</span> Algoritmo <span class="math inline">\(B_k\)</span></a></li>
+  <li><a href="#listas-ordenadas" id="toc-listas-ordenadas" class="nav-link" data-scroll-target="#listas-ordenadas"><span class="header-section-number">5.3.2</span> Listas ordenadas</a></li>
+  </ul></li>
+  <li><a href="#material-audio-visual" id="toc-material-audio-visual" class="nav-link" data-scroll-target="#material-audio-visual"><span class="header-section-number">5.4</span> Material audio-visual</a>
+  <ul class="collapse">
+  <li><a href="#búsqueda" id="toc-búsqueda" class="nav-link" data-scroll-target="#búsqueda"><span class="header-section-number">5.4.1</span> Búsqueda</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -290,102 +298,203 @@ window.Quarto = {
 
 
 
-<p>Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos <span class="math inline">\(a, b, c\)</span> en el a arreglo se cumple lo siguiente:</p>
+<section id="objetivo" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>Analizar algoritmos de búsqueda en arreglos ordenados basados en funciones de comparación, con el objetivo de localizar elementos y posiciones específicas, usando técnicas de peor caso y adaptables a la distribución de los datos para una solución eficiente de problemas informáticos.</p>
+</section>
+<section id="problema" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="problema"><span class="header-section-number">5.1</span> Problema</h2>
+<p>Sea <span class="math inline">\(A[1..n] = a_1, \cdots, a_n\)</span> un arreglo ordenado con <span class="math inline">\(n \geq 1\)</span> y un operador <span class="math inline">\(&lt;\)</span> (menor que); por simplicidad, también usaremos <span class="math inline">\(\leq\)</span> (menor o igual que). Supondremos que no hay elementos duplicados en <span class="math inline">\(A\)</span>, note que esto no implica una perdida de generalidad.</p>
+<p>La tarea será: dado el valor <span class="math inline">\(x\)</span> a ser localizado en <span class="math inline">\(A\)</span>, el problema consiste en determinar la posición de inserción <span class="math inline">\(p\)</span> tal que suceda alguna de las siguientes condiciones:</p>
 <ul>
-<li>reflexividad: <span class="math inline">\(a \le a\)</span>.</li>
-<li>transitividad: <span class="math inline">\(a \le b\)</span> y <span class="math inline">\(b \le c\)</span> entonces <span class="math inline">\(a \le c\)</span>.</li>
-<li>anti-simetría: <span class="math inline">\(a \leq b\)</span> y <span class="math inline">\(b \leq a\)</span> entonces <span class="math inline">\(a = b\)</span>.</li>
-<li>completitud: <span class="math inline">\(a \leq b\)</span> o <span class="math inline">\(b \leq a\)</span>.</li>
+<li>si <span class="math inline">\(p = 1\)</span> entonces <span class="math inline">\(x \leq A[p]\)</span>.</li>
+<li>si <span class="math inline">\(2 \leq p \leq n\)</span> entonces <span class="math inline">\(A[p-1] &lt; x \leq A[p]\)</span>.</li>
+<li>si <span class="math inline">\(p=n+1\)</span> entonces <span class="math inline">\(A[n] &lt; x\)</span>.</li>
 </ul>
-<p>Note que dada la condición de arreglo consecutivo en memoria, para dos elementos <span class="math inline">\(u_i\)</span> y <span class="math inline">\(u_j\)</span>, donde <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> son posiciones:</p>
+<section id="costo-de-peor-caso" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="costo-de-peor-caso"><span class="header-section-number">5.1.1</span> Costo de peor caso</h3>
+<p>Para <span class="math inline">\(A[1..n]\)</span> y el valor <span class="math inline">\(x\)</span> a localizar su posición de inserción, el resultado puede ser cualquiera de las <span class="math inline">\(n+1\)</span> posiciones posibles, i.e., instancias del problema. Un algoritmo naïve utilizaría <span class="math inline">\(n\)</span> comparaciones para resolverlo.</p>
+<div id="2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">    seqsearch(A, x, sp=1)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">Búsqueda exhaustiva con inicio</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">seqsearch</span>(A, x, sp<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> sp <span class="op">&lt;=</span> n <span class="op">&amp;&amp;</span> x <span class="op">&gt;</span> A[sp]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        sp <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    sp</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> S<span class="op">=</span>[<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">70</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">seqsearch</span>(S, <span class="fl">0</span>), <span class="fu">seqsearch</span>(S, <span class="fl">69</span>), <span class="fu">seqsearch</span>(S, <span class="fl">70</span>), <span class="fu">seqsearch</span>(S, <span class="fl">71</span>))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(1, 7, 7, 8)</code></pre>
+</div>
+</div>
+<p>Sin embargo, dado que el arreglo esta ordenado y no hay duplicados, se puede mejorar mucho el tiempo de búsqueda. ::: {.column-margin} Si se permiten duplicados se pueden mejorar muchos los tiempos; sobre todo si podemos preprocesar el arreglo, i.e., para determinar las zonas con duplicados. :::</p>
+<p>El costo de búsqueda para cualquier instancia es <span class="math inline">\(O(\log n)\)</span>, y viene de la búsqueda binaria:</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="st">    binarysearch(A, x, sp=1, ep=length(A))</span></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a><span class="st">Encuentra la posición de inserción de `x` en `A` en el rango `sp:ep`</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">binarysearch</span>(A, x, sp<span class="op">=</span><span class="fl">1</span>, ep<span class="op">=</span><span class="fu">length</span>(A))</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-7" class="code-annotation-target"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> sp <span class="op">&lt;</span> ep</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-8" class="code-annotation-target"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>        mid <span class="op">=</span> <span class="fu">div</span>(sp <span class="op">+</span> ep, <span class="fl">2</span>)</span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;=</span> A[mid]</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-10" class="code-annotation-target"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>            ep <span class="op">=</span> mid</span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a>            sp <span class="op">=</span> mid <span class="op">+</span> <span class="fl">1</span></span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-16" class="code-annotation-target"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a>    x <span class="op">&lt;=</span> A[sp] ? sp <span class="op">:</span> sp <span class="op">+</span> <span class="fl">1</span></span>
+<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-2-18"><a href="#annotated-cell-2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-19"><a href="#annotated-cell-2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> S<span class="op">=</span>[<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">70</span>]</span>
+<span id="annotated-cell-2-20"><a href="#annotated-cell-2-20" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">binarysearch</span>(S, <span class="fl">0</span>), <span class="fu">binarysearch</span>(S, <span class="fl">69</span>), <span class="fu">binarysearch</span>(S, <span class="fl">70</span>), <span class="fu">binarysearch</span>(S, <span class="fl">71</span>))</span>
+<span id="annotated-cell-2-21"><a href="#annotated-cell-2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="8,9" data-code-annotation="1">Para el rango de búsqueda <span class="math inline">\(sp:ep\)</span> se determina su punto central <span class="math inline">\(mid\)</span> y se compara con <span class="math inline">\(x\)</span>,</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="10,12" data-code-annotation="2">Si el elemento <span class="math inline">\(x\)</span> esta a la izquierda, se ajusta el limite superior <span class="math inline">\(ep,\)</span> o de lo contrario se ajusta <span class="math inline">\(sp\)</span>. Ambos ajustes se hacen tomando en cuenta la posición comparada.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="7" data-code-annotation="3">Se itera mientras no se junten los dos extremos del rango.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="16" data-code-annotation="4">Finalmente, se ajusta para valores fuera del rango.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(1, 7, 7, 8)</code></pre>
+</div>
+</div>
+<p>Este algoritmo es simple y efectivo, y es capaz de resolver cualquier instancia en tiempo logarítmico, y esto lo hace al dividir el rango siempre a la mitad por cada iteración, por lo que no puede hacer más que <span class="math inline">\(O(\log n)\)</span> comparaciones antes de cerrar el rango donde puede estar la posición de inserción.</p>
+<p>Es importante hacer notar que la búsqueda binaria es muy eficiente en memoría y tiene un peor caso óptimo, ya que es idéntico al costo del problema, i.e., así lo determinamos. Si fuera posible tener probar varios puntos, i.e., <span class="math inline">\(m\)</span> segmentos en una sola operación, el costo estaría acotado en <span class="math inline">\(\lceil \log_{m} n \rceil\)</span>. Esto tiene sentido para estructuras de datos que trabajan en diferentes niveles de memoría, donde aunque las comparaciones en hardware moderno sean binarias, la diferencia entre velocidades de los diferentes niveles de memoria se puede pensar que el costo dominante es, por ejemplo, acceder a una zona de disco y obtener una decisión entre <span class="math inline">\(m-1\)</span> posibles, que particionan los rangos en <span class="math inline">\(m\)</span> divisiones.</p>
+</section>
+</section>
+<section id="búsqueda-no-acotada" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="búsqueda-no-acotada"><span class="header-section-number">5.2</span> Búsqueda <em>no</em> acotada</h2>
+<p>Cuando el tamaño del arreglo es demasiado grande, o la relación entre <span class="math inline">\(p / n\)</span> es significativamente pequeña, la búsqueda acotada no es la mejor opción. Aun cuando en la práctica el límite superior <span class="math inline">\(n\)</span> podría estar determinado, y por lo tanto, se pueden resolver búsquedas en <span class="math inline">\(O(\log n)\)</span>, es posible obtener una cota relativa a <span class="math inline">\(p\)</span>, independiente de <span class="math inline">\(n\)</span>, por lo que los casos de interés se verán beneficiados.</p>
+<p>Una estrategia simple y poderosa es la siguiente:</p>
+<ol type="1">
+<li>Determinar un <em>buen</em> rango que contenga la respuesta.</li>
+<li>Aplicar búsqueda binaria en ese rango para obtener la respuesta.</li>
+</ol>
+<p><span class="citation" data-cites="bentley1976almost">Bentley y Yao (<a href="refs.html#ref-bentley1976almost" role="doc-biblioref">1976a</a>)</span> describen a detalle una familia de algoritmos casí óptimos para la búsqueda no acotada siguiendo la estrategía anteriormente mencionada. En particular, poniendo un enfásis importante en la determinación del rango. Lo consigue mediante la definición de algoritmos definidos de manera interesante como sigue en el resto de la sección.</p>
+<section id="algoritmo-b_0-búsqueda-unaría" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="algoritmo-b_0-búsqueda-unaría"><span class="header-section-number">5.2.1</span> Algoritmo <span class="math inline">\(B_0\)</span> (búsqueda unaría)</h3>
+<p>Es el algoritmo más simple, y ya lo vimos con anterioridad, realiza una búsqueda exhaustiva de la posición de inserción, hacendo pruebas para toda posición <span class="math inline">\(x \leq A[1]\)</span>, <span class="math inline">\(x \leq A[2]\)</span>, <span class="math inline">\(x \leq A[p+1]\)</span>, por lo que su costo será de <span class="math inline">\(p+1\)</span>.</p>
+</section>
+<section id="algoritmo-b_1-búsqueda-doblada-doubling-searchgalloping" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="algoritmo-b_1-búsqueda-doblada-doubling-searchgalloping"><span class="header-section-number">5.2.2</span> Algoritmo <span class="math inline">\(B_1\)</span> (búsqueda doblada: <em>doubling search/galloping</em>)</h3>
+<p>Consiste en comparar las posiciones <span class="math inline">\(2^i\)</span>, i.e., <span class="math inline">\(2^1, 2^2, 2^3, \cdots, 2^{\lfloor \log_2{p+1} \rfloor + 1}\)</span>, tal que <span class="math inline">\(A[2^{\lfloor\log_2{p}\rfloor+1}] \leq  x \leq A[2^{\lfloor\log_2{p+1}\rfloor+1}]\)</span>; claramente, el número de comparaciones para determinar el rango esta determinado por <span class="math inline">\(\lfloor \log_2{p+1} \rfloor + 1\)</span>. Una vez determinado el rango la búsqueda binaria sobre <span class="math inline">\(A[2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{p+1}\rfloor+1}]\)</span>, lo cual corresponde a <span class="math inline">\(\log_2 2^{\lfloor\log{p+1}\rfloor} = \lfloor\log_2{p+1}\rfloor\)</span>. Por tanto el costo total de <span class="math inline">\(B_1\)</span> es <span class="math inline">\(\lfloor 2\log_2{p+1} \rfloor + 1\)</span> esto puede ser escrito como <span class="math inline">\(O(\log_2 p)\)</span>.</p>
+<p>Un punto de interés es saber cuando <span class="math inline">\(\lfloor 2\log_2{p+1} \rfloor + 1 &lt; \lfloor \log_2 n \rfloor + 1\)</span>, esto es, cuando <span class="math inline">\(B_1\)</span> es mejor que la búsqueda binaria. Para simplificar este análisis ignoraremos algunos detalles de la expresión.</p>
+<p><span class="math display">\[\begin{align}
+2\log_2{p+1}        &amp; &lt;  \log_2 n, \\
+2^{\log_2{(p+1)^2}} &amp; &lt;  2^{\log_2 n}, \\
+2^{\log_2{(p+1)^2}} &amp; &lt;  2^{\log_2 n}, \\
+(p + 1)^2           &amp; &lt;  n, \\
+p                   &amp; &lt;  \sqrt{n} - 1; \\
+\end{align}\]</span></p>
+<p>Esto indica que sí <span class="math inline">\(p\)</span> es menor que <span class="math inline">\(\sqrt{n}-1\)</span> hay una ventaja al usar <span class="math inline">\(B_1\)</span>; lo cual nos dice que para posiciones cercanas al inicio el uso de <span class="math inline">\(B_1\)</span> puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para <span class="math inline">\(p\)</span> pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.</p>
+<p>El siguiente código implementa <span class="math inline">\(B_1\)</span></p>
+<div id="6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">doublingsearch</span>(A, x, sp<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">length</span>(A)</span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="fl">0</span></span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">1</span></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> sp<span class="op">+</span>i <span class="op">&lt;=</span> n <span class="op">&amp;&amp;</span> A[sp<span class="op">+</span>i] <span class="op">&lt;</span> x</span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> i</span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> i</span>
+<span id="annotated-cell-3-9"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-11" class="code-annotation-target"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">binarysearch</span>(A, x, sp <span class="op">+</span> p, <span class="fu">min</span>(n, sp<span class="op">+</span>i))</span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-14"><a href="#annotated-cell-3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> S<span class="op">=</span>[<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">70</span>]</span>
+<span id="annotated-cell-3-15"><a href="#annotated-cell-3-15" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">doublingsearch</span>(S, <span class="fl">0</span>), <span class="fu">doublingsearch</span>(S, <span class="fl">69</span>), <span class="fu">doublingsearch</span>(S, <span class="fl">70</span>), <span class="fu">doublingsearch</span>(S, <span class="fl">71</span>))</span>
+<span id="annotated-cell-3-16"><a href="#annotated-cell-3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="1">Determinación del rango.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="11" data-code-annotation="2">Aplicar un algoritmo de búsqueda eficiente en el rango que contiene la respuesta.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(1, 7, 7, 8)</code></pre>
+</div>
+</div>
+<p>Es cierto que estos algoritmos son oportunistas, pero hay aplicaciones donde esto realmente sucede. En el peor caso, el costo será apenas dos veces el óptimo.</p>
+</section>
+<section id="algoritmo-b_2-búsqueda-doblemente-doblada-doubling-doubling-search" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="algoritmo-b_2-búsqueda-doblemente-doblada-doubling-doubling-search"><span class="header-section-number">5.2.3</span> Algoritmo <span class="math inline">\(B_2\)</span> (búsqueda doblemente doblada, <em>doubling-doubling search</em>)</h3>
+<p>Aquí será más clara la dinámica. <span class="math inline">\(B_2\)</span> consiste en comparar las posiciones <span class="math inline">\(2^{2^i}\)</span>, i.e., <span class="math inline">\(2^{4}, 2^{16}, 2^{256}, \cdots, 2^{2^{\lfloor \log_2{p+1} \rfloor + 1}}\)</span>, tal que <span class="math display">\[A[2^{2^{\lfloor\log_2{\lfloor\log_2{p}\rfloor+1}\rfloor + 1}}] \leq  x \leq A[2^{2^{\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor + 1}}];\]</span> La determinación de este rango requiere <span class="math inline">\(\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1\)</span> comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar <span class="math inline">\(B_1\)</span> para resolver en ese rango acotado.</p>
+<p>Simplificando la expresión, el costo es como sigue:</p>
+<p><span class="math display">\[\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor + 2\log_2{2^{2^{\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor}}} + O(1)\]</span> <span class="math display">\[\lfloor\log_2{(\lfloor\log_2{p+1}\rfloor+1)}\rfloor + {2\lfloor\log_2{2(p+1)}\rfloor} + O(1)\]</span></p>
+<p>claramente, el número de comparaciones para determinar el rango esta determinado por <span class="math inline">\(\lfloor \log_2{p+1} \rfloor + 1\)</span>. Una vez determinado el rango la búsqueda binaria sobre <span class="math inline">\(A[2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{p+1}\rfloor+1}]\)</span>, lo cual corresponde a <span class="math inline">\(\log_2 2^{\lfloor\log{p+1}\rfloor} = \lfloor\log_2{p+1}\rfloor\)</span>. Por tanto el costo total de <span class="math inline">\(B_1\)</span> es <span class="math inline">\(\lfloor 2\log_2{p+1} \rfloor + 1\)</span> esto puede ser escrito como <span class="math inline">\(O(\log_2 p)\)</span>.</p>
+</section>
+<section id="algoritmo-b_k" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="algoritmo-b_k"><span class="header-section-number">5.2.4</span> Algoritmo <span class="math inline">\(B_k\)</span></h3>
+</section>
+</section>
+<section id="ejercicios" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">5.3</span> Ejercicios</h2>
 <ul>
-<li><span class="math inline">\(u_i &lt; u_j \iff i &lt; j\)</span>; note que el comparador es estricto.</li>
-<li><span class="math inline">\(u_i = u_j \iff i = j\)</span>.</li>
+<li>¿Cuando <span class="math inline">\(B_2\)</span> es mejor que <span class="math inline">\(B_1\)</span>?</li>
+<li>¿Cuando <span class="math inline">\(B_2\)</span> es mejor que búsqueda binaria?</li>
+<li>Haga un pseudo-código para <span class="math inline">\(B_k\)</span>.</li>
 </ul>
-<p>Los algoritmos tomarán ventaja de este hecho para localizar de manera precisa y eficiente elementos deseados, descritos mediante los mismos operadores.</p>
-<section id="listas-ordenadas" class="level3" data-number="5.0.1">
-<h3 data-number="5.0.1" class="anchored" data-anchor-id="listas-ordenadas"><span class="header-section-number">5.0.1</span> Listas ordenadas</h3>
+<section id="algoritmo-b_k-1" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="algoritmo-b_k-1"><span class="header-section-number">5.3.1</span> Algoritmo <span class="math inline">\(B_k\)</span></h3>
+</section>
+<section id="listas-ordenadas" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="listas-ordenadas"><span class="header-section-number">5.3.2</span> Listas ordenadas</h3>
 <p>En esta unidad se aborda la búsqueda en arreglos ordenados, y abusando del término, muchas veces les llamaremos <em>listas ordenadas</em>. Recuerde que a lo largo de este curso, esta será nuestra representación para conjuntos.</p>
 <p>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación <span class="math inline">\(\le\)</span> provoca costo constante <span class="math inline">\(O(1)\)</span>. Este curso no es la excepción. La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</p>
-<p>Utilizaremos como base el artículo <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Jon Louis Bentley y Yao 1976</a>)</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</p>
+<p>Utilizaremos como base el artículo <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Bentley y Yao 1976b</a>)</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</p>
 </section>
-<section id="material-audio-visual" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="material-audio-visual"><span class="header-section-number">5.1</span> Material audio-visual</h2>
+</section>
+<section id="material-audio-visual" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="material-audio-visual"><span class="header-section-number">5.4</span> Material audio-visual</h2>
 <p>En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.</p>
 <p>Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.</p>
-<section id="búsqueda" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="búsqueda"><span class="header-section-number">5.1.1</span> Búsqueda</h3>
+<section id="búsqueda" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="búsqueda"><span class="header-section-number">5.4.1</span> Búsqueda</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VZHlcPPKW5A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
-</section>
-</section>
-<section id="actividades" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="actividades"><span class="header-section-number">5.2</span> Actividades</h2>
-<section id="actividad-0-sin-entrega" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="actividad-0-sin-entrega"><span class="header-section-number">5.2.1</span> Actividad 0 [sin entrega]</h3>
-<p>Realizar las actividades de lectura y comprensión, apoyosé en el video de esta unidad. De preferencia realice los ejercicios de las secciones relacionadas.</p>
-<ul>
-<li>El artículo sobre búsqueda no acotada, como representativo sobre búsqueda adaptativa <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Jon Louis Bentley y Yao 1976</a>)</span>.</li>
-<li>Cap. 12 de <span class="citation" data-cites="Sedgewick98">(<a href="refs.html#ref-Sedgewick98" role="doc-biblioref">Sedgewick 1998</a>)</span>, en partícular Sec. 12.3 y 12.4.</li>
-<li>Cap. 6 de <span class="citation" data-cites="Knuth98">(<a href="refs.html#ref-Knuth98" role="doc-biblioref">Knuth 1998</a>)</span>, en partícular Sec. 6.1 y 6.2.</li>
-<li>El artículo sobre búsqueda adaptativa secuencial <span class="citation" data-cites="Bentley85">(<a href="refs.html#ref-Bentley85" role="doc-biblioref">Jon L. Bentley y McGeoch 1985</a>)</span>.</li>
-<li>Recuerde la referencia básica para la notación y conceptos es <span class="citation" data-cites="Cormen22">(<a href="refs.html#ref-Cormen22" role="doc-biblioref">Cormen et&nbsp;al. 2022</a>)</span>.</li>
-</ul>
-</section>
-<section id="actividad-1-con-reporte" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="actividad-1-con-reporte"><span class="header-section-number">5.2.2</span> Actividad 1 [con reporte]</h3>
-<p>Realice y reporte el siguiente experimento:</p>
-<ul>
-<li>Use el archivo <code>listas-posteo-100.json</code>, contiene las 100 listas de posteo más frecuentes, se encuentran en formato JSON.</li>
-<li>Utilice las listas (sin el término asociado).</li>
-<li>Los usuarios de Julia deberán asegurar que los tipos de los arreglos es <code>Int</code> y no <code>Any</code> para asegurar la velocidad adecuada</li>
-<li>Seleccione 1000 identificadores de documentos al azar, entre <span class="math inline">\(1\)</span> y <span class="math inline">\(n\)</span>, recuerde que <span class="math inline">\(n=50,000\)</span>.</li>
-<li>Grafique el tiempo promedio de <em>buscar</em> los 1000 identificadores en todas las listas (un solo número que represente las <span class="math inline">\(100\times 1000\)</span> búsquedas). Nota: lo que determinará al buscar es la <em>posición de inserción</em> que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</li>
-<li>Los algoritmos que caracterizará son los siguientes (nombres con referencia a <span class="citation" data-cites="Bentley76">(<a href="refs.html#ref-Bentley76" role="doc-biblioref">Jon Louis Bentley y Yao 1976</a>)</span>):
-<ul>
-<li><p>Búsqueda binaria acotada</p></li>
-<li><p>Búsqueda secuencial <span class="math inline">\(B_0\)</span></p></li>
-<li><p>Búsqueda no acotada <span class="math inline">\(B_1\)</span></p></li>
-<li><p>Búsqueda no acotada <span class="math inline">\(B_2\)</span></p></li>
-<li><p><em>Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.</em></p></li>
-</ul></li>
-<li>Bosqueje en pseudo-código la implementación de la búsqueda casí optima <span class="math inline">\(B_k\)</span></li>
-</ul>
-</section>
-<section id="entregable" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5.2.3</span> Entregable</h3>
-<p>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.</p>
-<p>Nota: En las implementaciones podrá usar comparación <span class="math inline">\(&lt;, \leq\)</span>, o incluso <span class="math inline">\(cmp \rightarrow \{-1, 0, 1\}\)</span>, teniendo en cuenta que <span class="math inline">\(cmp\)</span> es común en lenguajes modernos, solo debe indicarlo.</p>
-</section>
-<section id="actividad-2-sin-entrega" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="actividad-2-sin-entrega"><span class="header-section-number">5.2.4</span> Actividad 2 [sin entrega]</h3>
-<p>Revisar el notebook <code>crear-indice-invertido.ipynb</code> para los detalles de como se generó la lista de posteo. Usted puede crear nuevas listas de posteo si lo desea usando los conjuntos de datos disponibles (listados en dicho notebook), y a su vez utilizarlas en las actividades de este Unidad. Solo deberá indicarlo; recuerde que los números de documentos y tamaño de vocabulario cambiarán.</p>
-</section>
-<section id="leyendo-las-listas-de-posteo" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="leyendo-las-listas-de-posteo"><span class="header-section-number">5.2.5</span> Leyendo las listas de posteo</h3>
-<p>Usted no necesita generar las listas de posteo, solo leer las que se le han proporcionado en el archivo <code>listas-posteo-100.json</code> que corresponden a las 100 listas de posteo más pobladas (100 terminos más usados en el conjunto de datos). En el archivo <code>listas-posteo-100.json</code> , cada linea un JSON valido, donde se tiene el término y la lista de posteo.</p>
-<ul>
-<li>En el notebook <code>lectura-listas-de-posteo.ipynb</code> se muestra como se leen las listas de posteo desde Julia</li>
-</ul>
 
 
 <!-- -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Bentley85" class="csl-entry" role="listitem">
-Bentley, Jon L., y Catherine C. McGeoch. 1985. <span>“Amortized analyses of self-organizing sequential search heuristics”</span>. <em>Commun. ACM</em> 28 (4): 404–11. <a href="https://doi.org/10.1145/3341.3349">https://doi.org/10.1145/3341.3349</a>.
+<div id="ref-bentley1976almost" class="csl-entry" role="listitem">
+Bentley, Jon Louis, y Andrew Chi-Chih Yao. 1976a. <span>“An almost optimal algorithm for unbounded searching”</span>. <em>Information processing letters</em> 5 (SLAC-PUB-1679).
 </div>
 <div id="ref-Bentley76" class="csl-entry" role="listitem">
-Bentley, Jon Louis, y Andrew Chi-Chih Yao. 1976. <span>“An almost optimal algorithm for unbounded searching”</span>. <em>Information Processing Letters</em> 5 (3): 82–87. https://doi.org/<a href="https://doi.org/10.1016/0020-0190(76)90071-5">https://doi.org/10.1016/0020-0190(76)90071-5</a>.
-</div>
-<div id="ref-Cormen22" class="csl-entry" role="listitem">
-Cormen, Thomas H, Charles E Leiserson, Ronald L Rivest, y Clifford Stein. 2022. <em>Introduction to algorithms</em>. MIT press.
-</div>
-<div id="ref-Knuth98" class="csl-entry" role="listitem">
-Knuth, Donald. 1998. <em>The Art Of Computer Programming, vol. 3 (2nd ed): Sorting And Searching</em>. Vol. 3. Redwood City, CA, USA.: Addison Wesley Longman Publishing Co. Inc.
-</div>
-<div id="ref-Sedgewick98" class="csl-entry" role="listitem">
-Sedgewick, Robert. 1998. <em>Algorithms in c++, parts 1-4: fundamentals, data structure, sorting, searching</em>. Addison-Wesley-Longman, 1998.
+———. 1976b. <span>“An almost optimal algorithm for unbounded searching”</span>. <em>Information Processing Letters</em> 5 (3): 82–87. https://doi.org/<a href="https://doi.org/10.1016/0020-0190(76)90071-5">https://doi.org/10.1016/0020-0190(76)90071-5</a>.
 </div>
 </div>
 </section>
@@ -872,92 +981,177 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Algoritmos de búsqueda en el modelo de comparación {#sec-busqueda}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Esta unidad esta dedicada a la implementación y análisis de algoritmos de búsqueda sobre arreglos ordenados, esto es que presentan un orden total. Un arreglo es una estructura lineal de elementos contiguos en memoría donde la posición es importante. En esta unidad se estudian algoritmos que para localizar elementos que cumplan con predicados simples de orden. Como restricción adicional, se limita la duplicidad de elementos en los arreglos, esto sin reducir la generalidad de los algoritmos estudiados. Para cualquier tripleta de elementos $a, b, c$ en el a arreglo se cumple lo siguiente:</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>reflexividad: $a \le a$.</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>transitividad: $a \le b$ y $b \le c$ entonces $a \le c$.</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>anti-simetría: $a \leq b$ y $b \leq a$ entonces $a = b$.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>completitud: $a \leq b$ o $b \leq a$.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Note que dada la condición de arreglo consecutivo en memoria, para dos elementos $u_i$ y $u_j$, donde $i$ y $j$ son posiciones:</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u_i &lt; u_j \iff i &lt; j$; note que el comparador es estricto.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u_i = u_j \iff i = j$.</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Los algoritmos tomarán ventaja de este hecho para localizar de manera precisa y eficiente elementos deseados, descritos mediante los mismos operadores.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Listas ordenadas</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>En esta unidad se aborda la búsqueda en arreglos ordenados, y abusando del término, muchas veces les llamaremos _listas ordenadas_. Recuerde que a lo largo de este curso, esta será nuestra representación para conjuntos.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación $\le$ provoca costo constante $O(1)$. Este curso no es la excepción.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Utilizaremos como base el artículo <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Material audio-visual</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Búsqueda</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VZHlcPPKW5A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 0 [sin entrega]</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Realizar las actividades de lectura y comprensión, apoyosé en el video de esta unidad. De preferencia realice los ejercicios de las secciones relacionadas.</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El artículo sobre búsqueda no acotada, como representativo sobre búsqueda adaptativa <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cap. 12 de <span class="co">[</span><span class="ot">@Sedgewick98</span><span class="co">]</span>, en partícular Sec. 12.3 y 12.4.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cap. 6 de <span class="co">[</span><span class="ot">@Knuth98</span><span class="co">]</span>, en partícular Sec. 6.1 y 6.2.</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El artículo sobre búsqueda adaptativa secuencial <span class="co">[</span><span class="ot">@Bentley85</span><span class="co">]</span>.</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Recuerde la referencia básica para la notación y conceptos es <span class="co">[</span><span class="ot">@Cormen22</span><span class="co">]</span>.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 1 [con reporte]</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Realice y reporte el siguiente experimento:</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Use el archivo <span class="in">`listas-posteo-100.json`</span>, contiene las 100 listas de posteo más frecuentes, se encuentran en formato JSON.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Utilice las listas (sin el término asociado).</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Los usuarios de Julia deberán asegurar que los tipos de los arreglos es <span class="in">`Int`</span> y no <span class="in">`Any`</span> para asegurar la velocidad adecuada</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Seleccione 1000 identificadores de documentos al azar, entre $1$ y $n$, recuerde que $n=50,000$.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Grafique el tiempo promedio de _buscar_ los 1000 identificadores en todas las listas (un solo número que represente las $100\times 1000$ búsquedas). Nota: lo que determinará al buscar es la _posición de inserción_ que se define como el lugar donde debería estar el identificador si se encontrara en la lista.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Los algoritmos que caracterizará son los siguientes (nombres con referencia a <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>):</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda binaria acotada</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda secuencial $B_0$</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda no acotada $B_1$</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Búsqueda no acotada $B_2$</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>*Importante: Tal vez deba repetir varias veces cada búsqueda si los tiempos son muy pequeños.*</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Bosqueje en pseudo-código la implementación de la búsqueda casí optima $B_k$</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las implementaciones de los algoritmos solicitados. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una introducción, la explicación de los experimentos realizados, las observaciones, conclusiones y bibliografía.</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>Nota: En las implementaciones podrá usar comparación $&lt;, \leq$, o incluso $cmp \rightarrow <span class="sc">\{</span>-1, 0, 1<span class="sc">\}</span>$, teniendo en cuenta que $cmp$ es común en lenguajes modernos, solo debe indicarlo.</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 2 [sin entrega]</span></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>Revisar el notebook <span class="in">`crear-indice-invertido.ipynb`</span> para los detalles de como se generó la lista de posteo. Usted puede crear nuevas listas de posteo si lo desea usando los conjuntos de datos disponibles (listados en dicho notebook), y a su vez utilizarlas en las actividades de este Unidad. Solo deberá indicarlo; recuerde que los números de documentos y tamaño de vocabulario cambiarán.</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">### Leyendo las listas de posteo</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>Usted no necesita generar las listas de posteo, solo leer las que se le han proporcionado en el archivo <span class="in">`listas-posteo-100.json`</span> que corresponden a las 100 listas de posteo más pobladas (100 terminos más usados en el conjunto de datos).</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>En el archivo <span class="in">`listas-posteo-100.json`</span> , cada linea un JSON valido, donde se tiene el término y la lista de posteo.</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>En el notebook <span class="in">`lectura-listas-de-posteo.ipynb`</span> se muestra como se leen las listas de posteo desde Julia</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Algoritmos de búsqueda en el modelo de comparación {#sec-busqueda}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Analizar algoritmos de búsqueda en arreglos ordenados basados en funciones de comparación, con el objetivo de localizar elementos y posiciones específicas, usando técnicas de peor caso y adaptables a la distribución de los datos para una solución eficiente de problemas informáticos.</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Sea $A<span class="co">[</span><span class="ot">1..n</span><span class="co">]</span> = a_1, \cdots, a_n$ un arreglo ordenado con $n \geq 1$ y un operador $&lt;$ (menor que); por simplicidad, también usaremos $\leq$ (menor o igual que). Supondremos que no hay elementos duplicados en $A$, note que esto no implica una perdida de generalidad.</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>La tarea será: dado el valor $x$ a ser localizado en $A$, el problema consiste en determinar la posición de inserción $p$ tal que suceda alguna de las siguientes condiciones:</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>si $p = 1$ entonces $x \leq A<span class="co">[</span><span class="ot">p</span><span class="co">]</span>$.</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>si $2 \leq p \leq n$ entonces $A<span class="co">[</span><span class="ot">p-1</span><span class="co">]</span> &lt; x \leq A<span class="co">[</span><span class="ot">p</span><span class="co">]</span>$.</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>si $p=n+1$ entonces $A<span class="co">[</span><span class="ot">n</span><span class="co">]</span> &lt; x$.</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### Costo de peor caso</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>Para $A<span class="co">[</span><span class="ot">1..n</span><span class="co">]</span>$ y el valor $x$ a localizar su posición de inserción, el resultado puede ser cualquiera de las $n+1$ posiciones posibles, i.e., instancias del problema. Un algoritmo naïve utilizaría $n$ comparaciones para resolverlo.</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">    seqsearch(A, x, sp=1)</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="in">Búsqueda exhaustiva con inicio</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="in">function seqsearch(A, x, sp=1)</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="in">    n = length(A)</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp &lt;= n &amp;&amp; x &gt; A[sp]</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="in">        sp += 1</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="in">    sp</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="in">let S=[10, 20, 30, 40, 50, 60, 70]</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="in">    (seqsearch(S, 0), seqsearch(S, 69), seqsearch(S, 70), seqsearch(S, 71))</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>Sin embargo, dado que el arreglo esta ordenado y no hay duplicados, se puede mejorar mucho el tiempo de búsqueda.  ::: {.column-margin}</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>Si se permiten duplicados se pueden mejorar muchos los tiempos; sobre todo si podemos preprocesar el arreglo, i.e., para determinar las zonas con duplicados.</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>El costo de búsqueda para cualquier instancia es $O(\log n)$, y viene de la búsqueda binaria:</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="in">    binarysearch(A, x, sp=1, ep=length(A))</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="in">Encuentra la posición de inserción de `x` en `A` en el rango `sp:ep`</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">function binarysearch(A, x, sp=1, ep=length(A))</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp &lt; ep             # &lt;3&gt;</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="in">        mid = div(sp + ep, 2) # &lt;1&gt;</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="in">        if x &lt;= A[mid]        # &lt;1&gt;</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="in">            ep = mid          # &lt;2&gt;</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="in">        else</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="in">            sp = mid + 1      # &lt;2&gt;</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="in">    x &lt;= A[sp] ? sp : sp + 1 # &lt;4&gt;</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="in">let S=[10, 20, 30, 40, 50, 60, 70]</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="in">    (binarysearch(S, 0), binarysearch(S, 69), binarysearch(S, 70), binarysearch(S, 71))</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Para el rango de búsqueda $sp:ep$ se determina su punto central $mid$ y se compara con $x$,</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Si el elemento $x$ esta a la izquierda, se ajusta el limite superior $ep,$ o de lo contrario se ajusta $sp$. Ambos ajustes se hacen tomando en cuenta la posición comparada.</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Se itera mientras no se junten los dos extremos del rango.</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Finalmente, se ajusta para valores fuera del rango. </span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>Este algoritmo es simple y efectivo, y es capaz de resolver cualquier instancia en tiempo logarítmico, y esto lo hace al dividir el rango siempre a la mitad por cada iteración, por lo que no puede hacer más que $O(\log n)$ comparaciones antes de cerrar el rango donde puede estar la posición de inserción. </span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>Es importante hacer notar que la búsqueda binaria es muy eficiente en memoría y tiene un peor caso óptimo, ya que es idéntico al costo del problema, i.e., así lo determinamos. Si fuera posible tener probar varios puntos, i.e., $m$ segmentos en una sola operación, el costo estaría acotado en $\lceil \log_{m} n \rceil$. Esto tiene sentido para estructuras de datos que trabajan en diferentes niveles de memoría, donde aunque las comparaciones en hardware moderno sean binarias, la diferencia entre velocidades de los diferentes niveles de memoria se puede pensar que el costo dominante es, por ejemplo, acceder a una zona de disco y obtener una decisión entre $m-1$ posibles, que particionan los rangos en $m$ divisiones.</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Búsqueda _no_ acotada</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>Cuando el tamaño del arreglo es demasiado grande, o la relación entre $p / n$ es significativamente pequeña, la búsqueda acotada no es la mejor opción. Aun cuando en la práctica el límite superior $n$ podría estar determinado, y por lo tanto, se pueden resolver búsquedas en $O(\log n)$, es posible obtener una cota relativa a $p$, independiente de $n$, por lo que los casos de interés se verán beneficiados.</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>Una estrategia simple y poderosa es la siguiente:</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Determinar un _buen_ rango que contenga la respuesta.</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Aplicar búsqueda binaria en ese rango para obtener la respuesta.</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>@bentley1976almost describen a detalle una familia de algoritmos casí óptimos para la búsqueda no acotada siguiendo la estrategía anteriormente mencionada. En particular, poniendo un enfásis importante en la determinación del rango. Lo consigue mediante la definición de algoritmos definidos de manera interesante como sigue en el resto de la sección.</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo $B_0$ (búsqueda unaría)</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>Es el algoritmo más simple, y ya lo vimos con anterioridad, realiza una búsqueda exhaustiva de la posición de inserción, hacendo pruebas para toda posición $x \leq A<span class="co">[</span><span class="ot">1</span><span class="co">]</span>$, $x \leq A<span class="co">[</span><span class="ot">2</span><span class="co">]</span>$, \cdots $x \leq A<span class="co">[</span><span class="ot">p+1</span><span class="co">]</span>$, por lo que su costo será de $p+1$.</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo $B_1$ (búsqueda doblada: _doubling search/galloping_)</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>Consiste en comparar las posiciones $2^i$, i.e., $2^1, 2^2, 2^3, \cdots, 2^{\lfloor \log_2{p+1} \rfloor + 1}$, tal que $A<span class="co">[</span><span class="ot">2^{\lfloor\log_2{p}\rfloor+1}</span><span class="co">]</span> \leq  x \leq A<span class="co">[</span><span class="ot">2^{\lfloor\log_2{p+1}\rfloor+1}</span><span class="co">]</span>$; claramente, el número de comparaciones para determinar el rango esta determinado por $\lfloor \log_2{p+1} \rfloor + 1$. Una vez determinado el rango la búsqueda binaria sobre $A<span class="co">[</span><span class="ot">2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{p+1}\rfloor+1}</span><span class="co">]</span>$, lo cual corresponde a $\log_2 2^{\lfloor\log{p+1}\rfloor} = \lfloor\log_2{p+1}\rfloor$. Por tanto el costo total de $B_1$ es $\lfloor 2\log_2{p+1} \rfloor + 1$ esto puede ser escrito como $O(\log_2 p)$.</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>Un punto de interés es saber cuando $\lfloor 2\log_2{p+1} \rfloor + 1 &lt; \lfloor \log_2 n \rfloor + 1$, esto es, cuando $B_1$ es mejor que la búsqueda binaria. Para simplificar este análisis ignoraremos algunos detalles de la expresión.</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a> 2\log_2{p+1}        &amp; &lt;  \log_2 n, <span class="sc">\\</span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a> 2^{\log_2{(p+1)^2}} &amp; &lt;  2^{\log_2 n}, <span class="sc">\\</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a> 2^{\log_2{(p+1)^2}} &amp; &lt;  2^{\log_2 n}, <span class="sc">\\</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a> (p + 1)^2           &amp; &lt;  n, <span class="sc">\\</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a> p                   &amp; &lt;  \sqrt{n} - 1; <span class="sc">\\</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>Esto indica que sí $p$ es menor que $\sqrt{n}-1$ hay una ventaja al usar $B_1$; lo cual nos dice que para posiciones cercanas al inicio el uso de $B_1$ puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para $p$ pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>El siguiente código implementa $B_1$</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="in">function doublingsearch(A, x, sp=1)</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="in">    n = length(A)</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a><span class="in">    p = 0</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="in">    i = 1</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp+i &lt;= n &amp;&amp; A[sp+i] &lt; x # &lt;1&gt;</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="in">        p = i</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="in">        i += i</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="in">    binarysearch(A, x, sp + p, min(n, sp+i)) # &lt;2&gt;</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="in">let S=[10, 20, 30, 40, 50, 60, 70]</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="in">    (doublingsearch(S, 0), doublingsearch(S, 69), doublingsearch(S, 70), doublingsearch(S, 71))</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Determinación del rango.</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Aplicar un algoritmo de búsqueda eficiente en el rango que contiene la respuesta.</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>Es cierto que estos algoritmos son oportunistas, pero hay aplicaciones donde esto realmente sucede. En el peor caso, el costo será apenas dos veces el óptimo.</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo $B_2$ (búsqueda doblemente doblada, _doubling-doubling search_)</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>Aquí será más clara la dinámica. $B_2$ consiste en comparar las posiciones $2^{2^i}$, i.e., $2^{4}, 2^{16}, 2^{256}, \cdots, 2^{2^{\lfloor \log_2{p+1} \rfloor + 1}}$, tal que </span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>$$A<span class="co">[</span><span class="ot">2^{2^{\lfloor\log_2{\lfloor\log_2{p}\rfloor+1}\rfloor + 1}}</span><span class="co">]</span> \leq  x \leq A<span class="co">[</span><span class="ot">2^{2^{\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor + 1}}</span><span class="co">]</span>;$$</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1$ comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar $B_1$ para resolver en ese rango acotado.</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>Simplificando la expresión, el costo es como sigue:</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>$$\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor + 2\log_2{2^{2^{\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor}}} + O(1)$$</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>$$\lfloor\log_2{(\lfloor\log_2{p+1}\rfloor+1)}\rfloor + {2\lfloor\log_2{2(p+1)}\rfloor} + O(1)$$</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>claramente, el número de comparaciones para determinar el rango esta determinado por $\lfloor \log_2{p+1} \rfloor + 1$. Una vez determinado el rango la búsqueda binaria sobre $A<span class="co">[</span><span class="ot">2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{p+1}\rfloor+1}</span><span class="co">]</span>$, lo cual corresponde a $\log_2 2^{\lfloor\log{p+1}\rfloor} = \lfloor\log_2{p+1}\rfloor$. Por tanto el costo total de $B_1$ es $\lfloor 2\log_2{p+1} \rfloor + 1$ esto puede ser escrito como $O(\log_2 p)$.</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo $B_k$</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ejercicios</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuando $B_2$ es mejor que $B_1$?</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuando $B_2$ es mejor que búsqueda binaria?</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Haga un pseudo-código para $B_k$.</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo $B_k$</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Listas ordenadas</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>En esta unidad se aborda la búsqueda en arreglos ordenados, y abusando del término, muchas veces les llamaremos _listas ordenadas_. Recuerde que a lo largo de este curso, esta será nuestra representación para conjuntos.</span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>En la literatura es común que se aborde el tema con un modelo de costo basado en comparaciones, esto es, cada comparación $\le$ provoca costo constante $O(1)$. Este curso no es la excepción.</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>La comparación como unidad de costo es un excelente factorizador de las operaciones satelitales en los algoritmos de búsqueda; esto debería quedar claro una vez que se comprendan los algoritmos.</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>Utilizaremos como base el artículo <span class="co">[</span><span class="ot">@Bentley76</span><span class="co">]</span>, que es de lectura forzosa. Nos apoyaremos en una serie de lecturas adicionales para comprender y madurar el concepto.</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Material audio-visual</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada listas ordenadas como sinónimo de arreglos ordenados.</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="fu">### Búsqueda</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VZHlcPPKW5A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+</code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
