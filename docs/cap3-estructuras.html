@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1092c56c6cadf2eb47b1bc8063ab382a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a185852c63625fd9ffbdc57047c9a77e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cf2d42087b478c672072bd1259b5cf1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ff6dac7d6bca90711e5e10d87abc6205.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -472,7 +472,7 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">getmaxdot</span>(<span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>), <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>, <span class="fl">1000</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(740, 2.5505784f0)</code></pre>
+<pre><code>(657, 2.8772643f0)</code></pre>
 </div>
 </div>
 <p>En este código puede verse como se separa el cálculo del producto punto en una función, esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función <span class="math inline">\(getmaxdot\)</span> se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere <span class="math inline">\(O(n)\)</span> comparaciones, para una mátriz de <span class="math inline">\(n\)</span> columnas. Esto implica que cada producto punto se cuenta como <span class="math inline">\(O(1)\)</span>, lo cual simplifica el razonamiento. Por la función <span class="math inline">\(mydot\)</span> podemos observar que el producto punto tiene un costo de <span class="math inline">\(O(m)\)</span>, por lo que la <span class="math inline">\(getmaxdot\)</span> tiene un costo de <span class="math inline">\(O(mn)\)</span> operaciones lógicas y aritméticas.</p>
@@ -501,11 +501,11 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="funcion-producto-matricial" class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float32}:
- 1.15099   1.15099   1.15099   0.0         8.11f-43
- 0.159122  0.159122  0.159122  7.34f-43    4.3639f-41
- 1.16537   1.16537   1.16537   4.3639f-41  3.36f-43
- 1.487     1.487     1.487     3.36f-43    0.0
- 1.32428   1.32428   1.32428   0.0         8.13f-43</code></pre>
+ 0.540907  0.540907  0.540907  0.0  0.0
+ 0.67147   0.67147   0.67147   0.0  0.0
+ 0.437503  0.437503  0.437503  0.0  0.0
+ 0.202534  0.202534  0.202534  0.0  0.0
+ 1.06558   1.06558   1.06558   0.0  0.0</code></pre>
 <p>Funciones sobre diferentes tipos de datos</p>
 </div>
 </div>
