@@ -41,7 +41,9 @@ let S=[10, 20, 30, 40, 50, 60, 70]
 end
 ```
 
-Sin embargo, dado que el arreglo esta ordenado y no hay duplicados, se puede mejorar mucho el tiempo de búsqueda.  ::: {.column-margin}
+Sin embargo, dado que el arreglo esta ordenado y no hay duplicados, se puede mejorar mucho el tiempo de búsqueda.
+
+::: {.column-margin}
 Si se permiten duplicados se pueden mejorar muchos los tiempos; sobre todo si podemos preprocesar el arreglo, i.e., para determinar las zonas con duplicados.
 :::
 
@@ -113,7 +115,7 @@ Es importante saber cuando usar un algoritmo u otro, por tanto determinar cuando
  2\log_2{(p+1)} & < \log_2 n, \\
  2^{\log_2{(p+1)^2}} & < 2^{\log_2 n}, \\
 (p + 1)^2           & <  n , \\
- p                   & <  \sqrt{n}; \\
+ p                   & <  \sqrt{n}-1; \\
 \end{align}
 esto indica que sí $p$ es menor a $\sqrt{n}$ hay una ventaja al usar $B_1$; lo cual nos dice que para posiciones cercanas al inicio el uso de $B_1$ puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para $p$ pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.
 
@@ -148,20 +150,26 @@ $$A[2^{2^{\lfloor\log_2{\lfloor\log_2{p}\rfloor+1}\rfloor + 1}}] \leq  x \leq A[
 La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1$ comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar $B_1$ para resolver en ese rango acotado. 
 
 - $F_2(n) = 2^{2^1}, 2^{2^2}, \cdots, 2^{2^{\lfloor \log_2 {\lfloor \log_2 n \rfloor} + 1 \rfloor + 1}}$.
-- $C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) < 2\log_2 p + 2\log_2{\log_2 p} + O(1).$
+- $C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) < \log_2 p + \log_2{\log_2 p} + O(1).$
 
 
-El termino de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se ver como una constante, sin embargo no lo es. 
+El termino de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se puede ver como una constante. 
 
-La idea principal es que, una vez determinado el rango con $F_2$, en lugar de usar búsqueda binaria y tener un costo $F_2(p) + C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}})$ es preferible usar $B_1$ y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de
+La idea principal es como sigue: una vez determinado el rango con $F_2$, en lugar de usar búsqueda binaria y tener un costo $F_2(p) + C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}})$ es preferible usar $B_1$ y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de
 $$C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}) < C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}})$$ cuando 
 $$p' < \sqrt{2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}}$$
 donde $p'$ es la posición de inserción en el rango ya acotado.
 
+<!--Dado que $p' = p - (2^{2^{F_2(p)-1}})$, el costo de $B_1$ en el rango acotado es $2\log_2{p'} + O(1) \leq 2\log_2{p} + O(1)$.
+$$\log_2{p'} = \log_2{(p - 2^{2^{\log_2 \log_2 {p}}})} $$
+
+$$\log_2{p'} = \log_2{(p - 2^{2^{F_2(p)-1}})} <  \log_2{(p - 2^{2^{F_2(p)-1}})}$$
+-->
+
 Simplificando las expresiones, la relación que nos describe cuando es mejor usar $B_2$ que la búsqueda binaria es como sigue:
 
 \begin{align}
-{2\log_2{p}} + 2\log_2{\log_2{p}} &< \log_2 n\\
+{\log_2{p}} + \log_2{\log_2{p}} &< \log_2 n\\
 2^{\log_2{p} + \log_2{\log_2{p}}} &< 2^{\log_2 {(n-1)}}\\
 2^{\log_2{(p \log_2{p})}} &< 2^{\log_2 {(n-1)}}\\
 p \log_2{p} & < n-1\\
