@@ -411,10 +411,10 @@ window.Quarto = {
 </ul>
 <p>La explicación viene a continuación. El número de comparaciones para determinar el rango esta determinado por <span class="math inline">\(\lfloor \log_2{p+1} \rfloor + 1\)</span>. Una vez determinado el rango la búsqueda binaria sobre <span class="math display">\[A[2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{(p+1)}\rfloor+1}],\]</span> lo cual corresponde a <span class="math inline">\(\log_2 2^{\log{(p+1)}+1}/2 = \log_2{(p+1)}\)</span>. El costo <span class="math inline">\(C_1(p)\)</span> puede ser escrito como <span class="math inline">\(2\log_2 p + O(1)\)</span>, con un poco de manipulación algebraica.</p>
 <p>Es importante saber cuando usar un algoritmo u otro, por tanto determinar cuando <span class="math inline">\(2\log_2{p} + O(1) &lt; \log_2 n + O(1).\)</span> Para simplificar este análisis ignoraremos algunos detalles de la expresión: <span class="math display">\[\begin{align}
-2\log_2{(p+1)} &amp; &lt; \log_2 n, \\
-2^{\log_2{(p+1)^2}} &amp; &lt; 2^{\log_2 n}, \\
-(p + 1)^2           &amp; &lt;  n , \\
-p                   &amp; &lt;  \sqrt{n}-1; \\
+2\log_2{p} &amp; &lt; \log_2 n, \\
+2^{\log_2{p^2}} &amp; &lt; 2^{\log_2 n}, \\
+p^2              &amp; &lt;  n, \\
+p               &amp; &lt;  \sqrt{n}; \\
 \end{align}\]</span> esto indica que sí <span class="math inline">\(p\)</span> es menor a <span class="math inline">\(\sqrt{n}\)</span> hay una ventaja al usar <span class="math inline">\(B_1\)</span>; lo cual nos dice que para posiciones cercanas al inicio el uso de <span class="math inline">\(B_1\)</span> puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para <span class="math inline">\(p\)</span> pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.</p>
 <p>El siguiente código implementa <span class="math inline">\(B_1\)</span></p>
 <div id="6" class="cell" data-execution_count="1">
@@ -457,7 +457,7 @@ p                   &amp; &lt;  \sqrt{n}-1; \\
 <p>Aquí será más clara la dinámica. <span class="math inline">\(B_2\)</span> consiste en comparar las posiciones <span class="math inline">\(2^{2^i}\)</span>, i.e., <span class="math inline">\(2^{4}, 2^{16}, 2^{256}, \cdots, 2^{2^{\lfloor \log_2{p+1} \rfloor + 1}}\)</span>, tal que <span class="math display">\[A[2^{2^{\lfloor\log_2{\lfloor\log_2{p}\rfloor+1}\rfloor + 1}}] \leq  x \leq A[2^{2^{\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor + 1}}];\]</span> La determinación de este rango requiere <span class="math inline">\(\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1\)</span> comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar <span class="math inline">\(B_1\)</span> para resolver en ese rango acotado.</p>
 <ul>
 <li><span class="math inline">\(F_2(n) = 2^{2^1}, 2^{2^2}, \cdots, 2^{2^{\lfloor \log_2 {\lfloor \log_2 n \rfloor} + 1 \rfloor + 1}}\)</span>.</li>
-<li><span class="math inline">\(C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) &lt; \log_2 p + \log_2{\log_2 p} + O(1).\)</span></li>
+<li><span class="math inline">\(C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) &lt; \log_2 p + 2\log_2{\log_2 p} + O(1).\)</span></li>
 </ul>
 <p>El termino de mayor peso es muy similar a <span class="math inline">\(B_1\)</span> pero destaca la inclusión del término <span class="math inline">\(\log\log\)</span> que permite adaptarse a <span class="math inline">\(p\)</span> muy grandes con un pequeño costo adicional, que en términos prácticos se puede ver como una constante.</p>
 <p>La idea principal es como sigue: una vez determinado el rango con <span class="math inline">\(F_2\)</span>, en lugar de usar búsqueda binaria y tener un costo <span class="math inline">\(F_2(p) + C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}})\)</span> es preferible usar <span class="math inline">\(B_1\)</span> y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de <span class="math display">\[C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}) &lt; C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}})\]</span> cuando <span class="math display">\[p' &lt; \sqrt{2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}}\]</span> donde <span class="math inline">\(p'\)</span> es la posición de inserción en el rango ya acotado.</p>
@@ -468,12 +468,12 @@ $$\log_2{p'} = \log_2{(p - 2^{2^{F_2(p)-1}})} <  \log_2{(p - 2^{2^{F_2(p)-1}})}$
 -->
 <p>Simplificando las expresiones, la relación que nos describe cuando es mejor usar <span class="math inline">\(B_2\)</span> que la búsqueda binaria es como sigue:</p>
 <p><span class="math display">\[\begin{align}
-{\log_2{p}} + \log_2{\log_2{p}} &amp;&lt; \log_2 n\\
-2^{\log_2{p} + \log_2{\log_2{p}}} &amp;&lt; 2^{\log_2 {(n-1)}}\\
-2^{\log_2{(p \log_2{p})}} &amp;&lt; 2^{\log_2 {(n-1)}}\\
-p \log_2{p} &amp; &lt; n-1\\
+{\log_2{p}} + 2\log_2{\log_2{p}} &amp;&lt; \log_2 n\\
+2^{\log_2{p} + \log_2{\log^2_2{p}}} &amp;&lt; 2^{\log_2 {n}}\\
+2^{\log_2{(p \log^2_2{p})}} &amp;&lt; 2^{\log_2 {n}}\\
+2p \log_2{p} &amp; &lt; n\\
 \end{align}\]</span></p>
-<p>Si <span class="math inline">\(p = \sqrt{n}\)</span> entonces <span class="math inline">\(\sqrt{n} \log_2 \sqrt{n}\)</span> claramente es menor que <span class="math inline">\(n-1\)</span> incluso para valores relativamente pequeños de <span class="math inline">\(n\)</span>, por lo que <span class="math inline">\(B_2\)</span> funciona mejor para <span class="math inline">\(p\)</span> relativamente grandes en comparación con <span class="math inline">\(B_1\)</span>.</p>
+<p>Si <span class="math inline">\(p = \sqrt{n}\)</span> entonces <span class="math inline">\(2\sqrt{n} \log_2 \sqrt{n}\)</span> claramente es menor que <span class="math inline">\(n\)</span> incluso para valores relativamente pequeños de <span class="math inline">\(n\)</span>, por lo que <span class="math inline">\(B_2\)</span> funciona mejor para <span class="math inline">\(p\)</span> relativamente grandes en comparación con <span class="math inline">\(B_1\)</span>.</p>
 </section>
 <section id="algoritmo-b_k" class="level3" data-number="5.2.4">
 <h3 data-number="5.2.4" class="anchored" data-anchor-id="algoritmo-b_k"><span class="header-section-number">5.2.4</span> Algoritmo <span class="math inline">\(B_k\)</span></h3>
@@ -1107,10 +1107,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>Es importante saber cuando usar un algoritmo u otro, por tanto determinar cuando $2\log_2{p} + O(1) &lt; \log_2 n + O(1).$ Para simplificar este análisis ignoraremos algunos detalles de la expresión:</span>
 <span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a> 2\log_2{(p+1)} &amp; &lt; \log_2 n, <span class="sc">\\</span></span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a> 2^{\log_2{(p+1)^2}} &amp; &lt; 2^{\log_2 n}, <span class="sc">\\</span></span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>(p + 1)^2           &amp; &lt;  n , <span class="sc">\\</span></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a> p                   &amp; &lt;  \sqrt{n}-1; <span class="sc">\\</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a> 2\log_2{p} &amp; &lt; \log_2 n, <span class="sc">\\</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a> 2^{\log_2{p^2}} &amp; &lt; 2^{\log_2 n}, <span class="sc">\\</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>p^2              &amp; &lt;  n, <span class="sc">\\</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a> p               &amp; &lt;  \sqrt{n}; <span class="sc">\\</span></span>
 <span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>esto indica que sí $p$ es menor a $\sqrt{n}$ hay una ventaja al usar $B_1$; lo cual nos dice que para posiciones cercanas al inicio el uso de $B_1$ puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para $p$ pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.</span>
 <span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
@@ -1145,7 +1145,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1$ comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar $B_1$ para resolver en ese rango acotado. </span>
 <span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$F_2(n) = 2^{2^1}, 2^{2^2}, \cdots, 2^{2^{\lfloor \log_2 {\lfloor \log_2 n \rfloor} + 1 \rfloor + 1}}$.</span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) &lt; \log_2 p + \log_2{\log_2 p} + O(1).$</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) &lt; \log_2 p + 2\log_2{\log_2 p} + O(1).$</span>
 <span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>El termino de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se puede ver como una constante. </span>
@@ -1164,13 +1164,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>Simplificando las expresiones, la relación que nos describe cuando es mejor usar $B_2$ que la búsqueda binaria es como sigue:</span>
 <span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>{\log_2{p}} + \log_2{\log_2{p}} &amp;&lt; \log_2 n<span class="sc">\\</span></span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>2^{\log_2{p} + \log_2{\log_2{p}}} &amp;&lt; 2^{\log_2 {(n-1)}}<span class="sc">\\</span></span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>2^{\log_2{(p \log_2{p})}} &amp;&lt; 2^{\log_2 {(n-1)}}<span class="sc">\\</span></span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>p \log_2{p} &amp; &lt; n-1<span class="sc">\\</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>{\log_2{p}} + 2\log_2{\log_2{p}} &amp;&lt; \log_2 n<span class="sc">\\</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>2^{\log_2{p} + \log_2{\log^2_2{p}}} &amp;&lt; 2^{\log_2 {n}}<span class="sc">\\</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>2^{\log_2{(p \log^2_2{p})}} &amp;&lt; 2^{\log_2 {n}}<span class="sc">\\</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>2p \log_2{p} &amp; &lt; n<span class="sc">\\</span></span>
 <span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>Si $p = \sqrt{n}$ entonces $\sqrt{n} \log_2 \sqrt{n}$ claramente es menor que $n-1$ incluso para valores relativamente pequeños de $n$, por lo que $B_2$ funciona mejor para $p$ relativamente grandes en comparación con $B_1$.</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>Si $p = \sqrt{n}$ entonces $2\sqrt{n} \log_2 \sqrt{n}$ claramente es menor que $n$ incluso para valores relativamente pequeños de $n$, por lo que $B_2$ funciona mejor para $p$ relativamente grandes en comparación con $B_1$.</span>
 <span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo $B_k$</span></span>
 <span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>@bentley1976almost generalizan la estrategía para cualquier $k$. De manera simplificada:</span>

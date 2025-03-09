@@ -112,10 +112,10 @@ lo cual corresponde a $\log_2 2^{\log{(p+1)}+1}/2 = \log_2{(p+1)}$. El costo $C_
 
 Es importante saber cuando usar un algoritmo u otro, por tanto determinar cuando $2\log_2{p} + O(1) < \log_2 n + O(1).$ Para simplificar este análisis ignoraremos algunos detalles de la expresión:
 \begin{align}
- 2\log_2{(p+1)} & < \log_2 n, \\
- 2^{\log_2{(p+1)^2}} & < 2^{\log_2 n}, \\
-(p + 1)^2           & <  n , \\
- p                   & <  \sqrt{n}-1; \\
+ 2\log_2{p} & < \log_2 n, \\
+ 2^{\log_2{p^2}} & < 2^{\log_2 n}, \\
+p^2              & <  n, \\
+ p               & <  \sqrt{n}; \\
 \end{align}
 esto indica que sí $p$ es menor a $\sqrt{n}$ hay una ventaja al usar $B_1$; lo cual nos dice que para posiciones cercanas al inicio el uso de $B_1$ puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para $p$ pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.
 
@@ -150,7 +150,7 @@ $$A[2^{2^{\lfloor\log_2{\lfloor\log_2{p}\rfloor+1}\rfloor + 1}}] \leq  x \leq A[
 La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1$ comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar $B_1$ para resolver en ese rango acotado. 
 
 - $F_2(n) = 2^{2^1}, 2^{2^2}, \cdots, 2^{2^{\lfloor \log_2 {\lfloor \log_2 n \rfloor} + 1 \rfloor + 1}}$.
-- $C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) < \log_2 p + \log_2{\log_2 p} + O(1).$
+- $C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) < \log_2 p + 2\log_2{\log_2 p} + O(1).$
 
 
 El termino de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se puede ver como una constante. 
@@ -169,13 +169,13 @@ $$\log_2{p'} = \log_2{(p - 2^{2^{F_2(p)-1}})} <  \log_2{(p - 2^{2^{F_2(p)-1}})}$
 Simplificando las expresiones, la relación que nos describe cuando es mejor usar $B_2$ que la búsqueda binaria es como sigue:
 
 \begin{align}
-{\log_2{p}} + \log_2{\log_2{p}} &< \log_2 n\\
-2^{\log_2{p} + \log_2{\log_2{p}}} &< 2^{\log_2 {(n-1)}}\\
-2^{\log_2{(p \log_2{p})}} &< 2^{\log_2 {(n-1)}}\\
-p \log_2{p} & < n-1\\
+{\log_2{p}} + 2\log_2{\log_2{p}} &< \log_2 n\\
+2^{\log_2{p} + \log_2{\log^2_2{p}}} &< 2^{\log_2 {n}}\\
+2^{\log_2{(p \log^2_2{p})}} &< 2^{\log_2 {n}}\\
+2p \log_2{p} & < n\\
 \end{align}
 
-Si $p = \sqrt{n}$ entonces $\sqrt{n} \log_2 \sqrt{n}$ claramente es menor que $n-1$ incluso para valores relativamente pequeños de $n$, por lo que $B_2$ funciona mejor para $p$ relativamente grandes en comparación con $B_1$.
+Si $p = \sqrt{n}$ entonces $2\sqrt{n} \log_2 \sqrt{n}$ claramente es menor que $n$ incluso para valores relativamente pequeños de $n$, por lo que $B_2$ funciona mejor para $p$ relativamente grandes en comparación con $B_1$.
 
 ### Algoritmo $B_k$
 @bentley1976almost generalizan la estrategía para cualquier $k$. De manera simplificada:
