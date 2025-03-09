@@ -153,9 +153,9 @@ La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloo
 
 El termino de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se ver como una constante, sin embargo no lo es. 
 
-La idea principal es que, una vez determinado el rango con $F_2$, en lugar de usar búsqueda binaria y tener un costo $F_2(p) + C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}})$ es preferible usar $B_1$ y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de......
-$$C_1(2^{2^{F_2(p) - F_2(p)/2}}) < C_\text{bin}(2^{2^{F_2(p) - F_2(p)}})$$ cuando 
-$$p' < \sqrt{2^{F_2(p) - F_2(p)/2}}$$
+La idea principal es que, una vez determinado el rango con $F_2$, en lugar de usar búsqueda binaria y tener un costo $F_2(p) + C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}})$ es preferible usar $B_1$ y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de
+$$C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}) < C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}})$$ cuando 
+$$p' < \sqrt{2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}}$$
 donde $p'$ es la posición de inserción en el rango ya acotado.
 
 Simplificando las expresiones, la relación que nos describe cuando es mejor usar $B_2$ que la búsqueda binaria es como sigue:
