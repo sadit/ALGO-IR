@@ -191,7 +191,12 @@ La estrategia lleva a que el valor casi óptimo para la búsqueda por comparaci�
 - Derivar el costo $C_2(p)$.
 - ¿Cuando $B_1$ es mejor que $B_2$?
 - Haga un pseudo-código para $B_k$.
-- Cuál es el costo $C_k$
+- ¿Cuál es el costo $C_k$?
+- ¿Qué es un árbol binario de búsqueda?
+- ¿Cuál es el costo de búsqueda en un árbol? ¿qué se debe hacer para asegurar los costos?
+- ¿Qué es un finger tree?
+- ¿Cuál es el costo de búsqueda de la _skip list_?
+- ¿Cómo se puede hacer la _skip list_ adaptativa? ¿qué otra forma podría aplicar?
 
 ## Material audio-visual
 En el siguiente video se adentraran en diferentes estrategías de búsqueda, notoriamente aquellas que llamaremos oportunistas o adaptables (adaptative). Estas técnicas nos permitirán tomar provecho de instancias sencillas de problemas e incrementar el desempeño en ese tipo de instancias.

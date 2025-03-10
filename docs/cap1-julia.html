@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-a185852c63625fd9ffbdc57047c9a77e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ff6dac7d6bca90711e5e10d87abc6205.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-cf2d42087b478c672072bd1259b5cf1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -860,41 +860,35 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <p>En este código, se utiliza la estructa de agrupación de expresiones <code>let...end</code>. Cada expresión puede estar compuesta de otras expresiones, y casi todo es una expresión en Julia. La mayoria de las expresiones serán finalizadas por un salto de linea, pero las compuestas como <code>let</code>, <code>begin</code>, <code>function</code>, <code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, <code>module</code> estarán finalizadas con <code>end</code>. La indentación no importa la indentación como en Python, pero es aconsejable para mantener la legibilidad del código. La linea 2 define e inicializa la variable <code>e</code>; la linea 3 llama a la función <code>println</code>, que imprimirá el resultado de <code>e*e</code> en la consola. La función <code>println</code> esta dentro de la biblioteca estándar de Julia y siempre esta <em>visible</em>. La linea 4 es un tanto diferente, es una macro que toma la expresión <code>e*e</code> y realiza algo sobre la expresión misma, en particular <code>@code_type</code> muestra como se reescribe la expresión para ser ejecutada. Note como se hará una llamada a la función <code>Base.mul_float</code> que recibe dos argumentos y que regresará un valor <code>Float64</code>. Esta información es necesaria para que Julia pueda generar un código veloz, el flujo de compilación llevaría esta información a generar un código intermedio de <em>Low Level Virtual Machine</em> (LLVM), que es el compilador empotrado en Julia, el cual estaría generando el siguiente código LLVM (usando la macro <code>@code_llvm</code>):</p>
 <div id="38" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>; Function Signature: *(Float64, Float64)
-;  @ float.jl:493 within `*`
-define double @"julia_*_10577"(double %"x::Float64", double %"y::Float64") #0 {
+<pre><code>;  @ float.jl:411 within `*`
+define double @"julia_*_1779"(double %0, double %1) #0 {
 top:
-  %0 = fmul double %"x::Float64", %"y::Float64"
-  ret double %0
+  %2 = fmul double %0, %1
+  ret double %2
 }</code></pre>
 </div>
 </div>
 <p>Este código ya no es específico para Julia, sino para la maquinaría LLVM. Observe la especificidad de los tipos y lo corto del código. El flujo de compilación requeriría generar el código nativo, que puede ser observado a continuación mediante la macro <code>@code_native</code>:</p>
 <div id="40" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>    .section    __TEXT,__text,regular,pure_instructions
-    .build_version macos, 15, 0
-    .globl  "_julia_*_10770"                ## -- Begin function julia_*_10770
+<pre><code>    .text
+    .file   "*"
+    .globl  "julia_*_1818"                  # -- Begin function julia_*_1818
     .p2align    4, 0x90
-"_julia_*_10770":                       ## @"julia_*_10770"
-; Function Signature: *(Float64, Float64)
-; ┌ @ float.jl:493 within `*`
-## %bb.0:                               ## %top
-; │ @ float.jl within `*`
-    ##DEBUG_VALUE: *:x &lt;- $xmm0
-    ##DEBUG_VALUE: *:y &lt;- $xmm1
-; │ @ float.jl:493 within `*`
+    .type   "julia_*_1818",@function
+"julia_*_1818":                         # @"julia_*_1818"
+; ┌ @ float.jl:411 within `*`
+# %bb.0:                                # %top
+    push    rbp
+    mov rbp, rsp
     vmulsd  xmm0, xmm0, xmm1
+    pop rbp
     ret
+.Lfunc_end0:
+    .size   "julia_*_1818", .Lfunc_end0-"julia_*_1818"
 ; └
-                                        ## -- End function
-    .section    __DATA,__const
-    .p2align    3, 0x0                          ## @"+Core.Float64#10772"
-"l_+Core.Float64#10772":
-    .quad   "l_+Core.Float64#10772.jit"
-
-.set "l_+Core.Float64#10772.jit", 4757452736
-.subsections_via_symbols</code></pre>
+                                        # -- End function
+    .section    ".note.GNU-stack","",@progbits</code></pre>
 </div>
 </div>
 <p>En este caso podemos observar código específico para la computadora que esta generando este documento, es posible ver el manejo de registros y el uso de instrucciones del CPU en cuestión.</p>
