@@ -103,8 +103,8 @@ Sea $F_0(n)$ una secuencia de puntos para un arreglo de longitud $n$, donde se h
 Consiste en comparar las posiciones $2^i$, i.e., $2^1, 2^2, 2^3, \cdots, 2^{\lfloor \log_2{p+1} \rfloor + 1}$, tal que $A[2^{\lfloor\log_2{p}\rfloor+1}] \leq  x \leq A[2^{\lfloor\log_2{p+1}\rfloor+1}]$.
 De manera similar que para $B_0$ definimos $F_1(n)$ y $C_1$:
 
-- $F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor n \rfloor + 1},$
-- $C_1(p) = C_\text{bin}{2^{\log_2{p+1}}} + \log_2{(p+1)} + 1 < 2\log_2 p + O(1).$
+- $F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor n \rfloor + 1};$
+- $C_1(p) = C_\text{bin}{(2^{\log_2{p+1}})} + \log_2{(p+1)} + 1 < 2\log_2 p + O(1).$
 
 La explicación viene a continuación. El número de comparaciones para determinar el rango esta determinado por $\lfloor \log_2{p+1} \rfloor + 1$. Una vez determinado el rango la búsqueda binaria sobre 
 $$A[2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{(p+1)}\rfloor+1}],$$ 
@@ -117,7 +117,7 @@ Es importante saber cuando usar un algoritmo u otro, por tanto determinar cuando
 p^2              & <  n, \\
  p               & <  \sqrt{n}; \\
 \end{align}
-esto indica que sí $p$ es menor a $\sqrt{n}$ hay una ventaja al usar $B_1$; lo cual nos dice que para posiciones cercanas al inicio el uso de $B_1$ puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para $p$ pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.
+esto indica que si $p$ es menor a $\sqrt{n}$ entonces hay una ventaja al usar $B_1$; lo cual nos dice que para posiciones cercanas al inicio el uso de $B_1$ puede llevar a búsquedas más veloces. Note que en la práctica es necesario tener en cuenta la memoria, interesantemente, para $p$ pequeñas es posible que esto beneficie al algoritmo ya que podría mantener las listas en cache.
 
 El siguiente código implementa $B_1$
 
@@ -145,20 +145,23 @@ end
 Es cierto que estos algoritmos son oportunistas, pero hay aplicaciones donde esto realmente sucede. En el peor caso, el costo será apenas dos veces el óptimo.
 
 ### Algoritmo $B_2$ (búsqueda doblemente doblada, _doubling-doubling search_)
-Aquí será más clara la dinámica. $B_2$ consiste en comparar las posiciones $2^{2^i}$, i.e., $2^{4}, 2^{16}, 2^{256}, \cdots, 2^{2^{\lfloor \log_2{p+1} \rfloor + 1}}$, tal que 
+Aquí será más clara la dinámica. $B_2$ consiste en comparar las posiciones $2^{2^i}$, i.e., $2^{4}, 2^{16}, 2^{256}, \cdots, 2^{2^{\lfloor \log_2{\lfloor\log_2{p+1}\rfloor + 1} \rfloor + 1}}$, tal que 
 $$A[2^{2^{\lfloor\log_2{\lfloor\log_2{p}\rfloor+1}\rfloor + 1}}] \leq  x \leq A[2^{2^{\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor + 1}}];$$
-La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1$ comparaciones; sin embargo, este rango seguramente será muy grande, por el tipo de saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar $B_1$ para resolver en ese rango acotado. 
+La determinación de este rango requiere $\lfloor\log_2{\lfloor\log_2{p+1}\rfloor+1}\rfloor+1$ comparaciones; sin embargo, este rango seguramente será muy grande, por el tamaño de los saltos que se estan dando entre puntos de comparación, por lo que no conviene usar busqueda binaria y podemos aplicar $B_1$ para resolver en ese rango acotado. 
 
-- $F_2(n) = 2^{2^1}, 2^{2^2}, \cdots, 2^{2^{\lfloor \log_2 {\lfloor \log_2 n \rfloor} + 1 \rfloor + 1}}$.
-- $C_2(p) = F_2(p) + C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}}) < \log_2 p + 2\log_2{\log_2 p} + O(1).$
+\begin{align}
+F_2(n) &= 2^{2^1}, 2^{2^2}, \cdots, 2^{2^{\lfloor \log_2 {\lfloor \log_2 n \rfloor} + 1 \rfloor + 1}};\\
+C_2(p) &= \lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor + 1 + C_1(p') \\
+       &< \log_2 p + 2\log_2{\log_2 p} + O(1);\\
+\end{align}
+donde $p' = p - 2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor}}$, es decir, la posición de inserción en el rango ya acotado.
 
+Note como el término de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se puede ver como una constante. 
 
-El termino de mayor peso es muy similar a $B_1$ pero destaca la inclusión del término $\log\log$ que permite adaptarse a $p$ muy grandes con un pequeño costo adicional, que en términos prácticos se puede ver como una constante. 
+La idea principal es como sigue: una vez determinado el rango, en lugar de usar búsqueda binaria y tener un costo $\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor + 1 + C_\text{bin}(2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor + 1}} - 2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor}})$ es preferible usar $B_1$ y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de
+$$C_1(2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor + 1}} - 2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor}}) < C_\text{bin}(2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor + 1}} - 2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor}})$$ cuando 
+$$p' < \sqrt{2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor + 1}} - 2^{2^{\lfloor \log_2 {\lfloor \log_2 p \rfloor} + 1 \rfloor}}}$$.
 
-La idea principal es como sigue: una vez determinado el rango con $F_2$, en lugar de usar búsqueda binaria y tener un costo $F_2(p) + C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p) - 1}})$ es preferible usar $B_1$ y conseguir un algoritmo que se adapte a la entrada. De manera más precisa, tomar ventaja de
-$$C_1(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}) < C_\text{bin}(2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}})$$ cuando 
-$$p' < \sqrt{2^{2^{F_2(p)}} - 2^{2^{F_2(p)-1}}}$$
-donde $p'$ es la posición de inserción en el rango ya acotado.
 
 <!--Dado que $p' = p - (2^{2^{F_2(p)-1}})$, el costo de $B_1$ en el rango acotado es $2\log_2{p'} + O(1) \leq 2\log_2{p} + O(1)$.
 $$\log_2{p'} = \log_2{(p - 2^{2^{\log_2 \log_2 {p}}})} $$
@@ -173,15 +176,18 @@ Simplificando las expresiones, la relación que nos describe cuando es mejor usa
 2^{\log_2{p} + \log_2{\log^2_2{p}}} &< 2^{\log_2 {n}}\\
 2^{\log_2{(p \log^2_2{p})}} &< 2^{\log_2 {n}}\\
 2p \log_2{p} & < n\\
+p \log_2{p^2} & < n\\
 \end{align}
 
-Si $p = \sqrt{n}$ entonces $2\sqrt{n} \log_2 \sqrt{n}$ claramente es menor que $n$ incluso para valores relativamente pequeños de $n$, por lo que $B_2$ funciona mejor para $p$ relativamente grandes en comparación con $B_1$.
+Si $p = \sqrt{n}$ entonces $\sqrt{n} \log_2 n$ claramente es menor que $n$ incluso para valores relativamente pequeños de $n$, por lo que $B_2$ funciona mejor para $p$ relativamente grandes en comparación con $B_1$. 
 
 ### Algoritmo $B_k$
 @bentley1976almost generalizan la estrategía para cualquier $k$. De manera simplificada:
 
-- $F_k(n) = 2^{\cdot^{\cdot^{\cdot^{2^i}}}}$ (exponenciando $k$ veces) para $i$ desde $1$ a $\log_2^{(k)}{n}$ donde $\log_2^{(k)}(n) = \log_2(\log_2^{(k-1)}{n})$, con el caso base de $\log_2^{(1)} n = \log_2 n$.
-- $C_k(p) = F_k(p) + C_{k-1}(2^{{\cdot^{\cdot^{\cdot^{2^{F_{k}(p)}}}}}} - 2^{{\cdot^{\cdot^{\cdot^{2^{F_{k}(p)-1}}}}}})$
+- $F_k(n) = 2^{\cdot^{\cdot^{\cdot^{2^i}}}}$ (exponenciando $k$ veces) para $i$ desde $1$ a $\log_2^{(k)}{n};$
+- $C_k(p) = \log_2^{(k)}(p) + C_{k-1}(2^{{\cdot^{\cdot^{\cdot^{2^{\log_2^{(k)}(p)}}}}}} - 2^{{\cdot^{\cdot^{\cdot^{2^{\log_2^{(k)}(p)-1}}}}}});$
+
+donde $\log_2^{(k)}(n) = \log_2(\lfloor \log_2^{(k-1)}{(n)} \rfloor + 1)$, con el caso base de $\log_2^{(1)} n = \lfloor \log_2 n \rfloor + 1$.
 
 
 La estrategia lleva a que el valor casi óptimo para la búsqueda por comparación se da cuando $k=\log^\star_2{n}$ donde $\log^\star_2$ es el logaritmo iterado, que esta definido como las veces que se debe iterar aplicando el logaritmo para obtener un valor de $1$ o menor que $1$, i.e., la $k$ más pequeña tal que $\log_2^{(k)}n \leq 1$.
