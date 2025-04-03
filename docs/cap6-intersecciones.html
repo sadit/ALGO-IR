@@ -279,6 +279,7 @@ window.Quarto = {
   <li><a href="#algoritmos-para-arreglos-de-tamaño-muy-diferente" id="toc-algoritmos-para-arreglos-de-tamaño-muy-diferente" class="nav-link" data-scroll-target="#algoritmos-para-arreglos-de-tamaño-muy-diferente"><span class="header-section-number">6.3</span> Algoritmos para arreglos de tamaño muy diferente</a>
   <ul class="collapse">
   <li><a href="#algoritmo-de-baeza-yates" id="toc-algoritmo-de-baeza-yates" class="nav-link" data-scroll-target="#algoritmo-de-baeza-yates"><span class="header-section-number">6.3.1</span> Algoritmo de Baeza Yates</a></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">6.3.2</span> Ejercicios</a></li>
   </ul></li>
   <li><a href="#operaciones-con-tres-o-más-conjuntos" id="toc-operaciones-con-tres-o-más-conjuntos" class="nav-link" data-scroll-target="#operaciones-con-tres-o-más-conjuntos"><span class="header-section-number">6.4</span> Operaciones con tres o más conjuntos</a>
   <ul class="collapse">
@@ -323,7 +324,7 @@ window.Quarto = {
 <section id="algoritmos" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="algoritmos"><span class="header-section-number">6.2</span> Algoritmos</h2>
 <p>Se puede observar que si <span class="math inline">\(m \approx n\)</span>, entonces el costo se convierte en <span class="math inline">\(O(m + n)\)</span>, esto es, lo más eficiente sería tomar el siguiente algoritmo:</p>
-<div id="2" class="cell" data-execution_count="1">
+<div id="4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode julia code-annotation-code code-with-copy"><code class="sourceCode julia"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">merge2!</span>(C, A, B)</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> j <span class="op">=</span> <span class="fl">1</span></span>
@@ -597,13 +598,36 @@ Figura&nbsp;6.1: Dos listas alineadas donde los nodos sombreados son elementos d
 </div>
 </div>
 </div>
-<p>Se hace notar que <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> estan ordenados, y por lo tanto, localizar <span class="math inline">\(A[i]\)</span> en <span class="math inline">\(B[j]\)</span> significa que <span class="math inline">\(B[j-1] &lt; A[i]\)</span>, por lo que intentar localizar <span class="math inline">\(A[i+1]\)</span> puede comenzar en <span class="math inline">\(B[j+1]\)</span>. <span class="citation" data-cites="hwang1971optimal">Hwang y Lin (<a href="refs.html#ref-hwang1971optimal" role="doc-biblioref">1971</a>)</span> propone otro algoritmo que funciona para casos similares:</p>
+<p>Se hace notar que <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> estan ordenados, y por lo tanto, localizar <span class="math inline">\(A[i]\)</span> en <span class="math inline">\(B[j]\)</span> significa que <span class="math inline">\(B[j-1] &lt; A[i]\)</span>, por lo que intentar localizar <span class="math inline">\(A[i+1]\)</span> puede comenzar en <span class="math inline">\(B[j+1]\)</span>. A continuación se muestra el código de un algoritmo de intersección usando algoritmos de búsqueda con memoria de la posición anterior.</p>
+<div id="8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">intsearch!</span>(C, A, B, algosearch<span class="op">=</span>doublingsearch)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">length</span>(B) <span class="op">&lt;</span> <span class="fu">length</span>(A)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        A, B <span class="op">=</span> B, A</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i, a) <span class="kw">in</span> <span class="fu">enumerate</span>(A)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> <span class="fu">algosearch</span>(B, a, p)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        p <span class="op">&gt;</span> <span class="fu">length</span>(B) <span class="op">&amp;&amp;</span> <span class="cf">break</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="op">==</span> B[p]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            p <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(C, a)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    C</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>intsearch! (generic function with 2 methods)</code></pre>
+</div>
+</div>
+<p><span class="citation" data-cites="hwang1971optimal">Hwang y Lin (<a href="refs.html#ref-hwang1971optimal" role="doc-biblioref">1971</a>)</span> propone otro algoritmo que funciona para casos similares:</p>
 <ol type="1">
 <li>Divide <span class="math inline">\(B\)</span> en bloques de tamaño <span class="math inline">\(m\)</span>, define un arreglo <em>virtual</em> <span class="math inline">\(B'[1..n/m]\)</span> donde <span class="math inline">\(B'[i] = B[i \cdot m]\)</span></li>
 <li>Se búsca la posición de inserción <span class="math inline">\(p\)</span> de cada <span class="math inline">\(a \in A\)</span> en <span class="math inline">\(B'\)</span>, costando <span class="math inline">\(\log n/m\)</span> para cada búsqueda.</li>
 <li>Después se localiza dentro del <span class="math inline">\(B\)</span> en el <span class="math inline">\(p\)</span>-ésimo bloque, i.e., <span class="math inline">\(B[(p-1)m + 1 .. p\cdot m]\)</span>, por la posición de inserción del bloque, con un costo de <span class="math inline">\(\log m\)</span>.</li>
 </ol>
-<p>Entonces, se obtiene un costo de <span class="math inline">\(O(m \log{n/m} + m \log m)\)</span>; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de <span class="math inline">\(a \in A\)</span> se encuentran distribuidas de manera uniforme en <span class="math inline">\(B\)</span>. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de <span class="math inline">\(A\)</span> en bloques de <span class="math inline">\(B\)</span>.</p>
+<p>Entonces, se obtiene un costo de <span class="math inline">\(O(m \log{n/m} + m \log m)\)</span>; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de <span class="math inline">\(a \in A\)</span> se encuentran distribuidas de manera uniforme en <span class="math inline">\(B\)</span>. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de <span class="math inline">\(A\)</span> en bloques de <span class="math inline">\(B\)</span>. Para esto, es necesario un análisis de costo promedio, el cual se muestra en el artículo.</p>
 <p>Incluso cuando hay concentración, podemos recordar la <span class="math inline">\((i-1)\)</span> posición de inserción para iniciar la <span class="math inline">\(i\)</span>-ésima búsqueda, y sacar provecho de posiciones esperadas cercanas de la posición inicial de búsqueda, i.e., podemos utilizar algoritmos de búsqueda adaptables para mejorar el desempeño.</p>
 <section id="algoritmo-de-baeza-yates" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="algoritmo-de-baeza-yates"><span class="header-section-number">6.3.1</span> Algoritmo de Baeza Yates</h3>
@@ -619,51 +643,58 @@ C_&gt; &amp;: \{A[M+1..m] \cap B[p+e..n]\} \\
 <li>El problema <span class="math inline">\(C_=\)</span> es trivial, y <span class="math inline">\(C_&lt;\)</span> y <span class="math inline">\(C_&gt;\)</span> se implementan recurriendo, ajustando los rangos de trabajo.</li>
 </ol>
 <p>A continuación se muestra el código en Julia, usando los algoritmos de búsqueda del Cap. 5.</p>
-<div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">baezayates!</span>(output, A, B, findpos<span class="op">::</span><span class="dt">Function</span>=binarysearch)</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">baezayates!</span>(output, A, <span class="fl">1</span>, <span class="fu">length</span>(A), B, <span class="fl">1</span>, <span class="fu">length</span>(B), findpos)</span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">baezayates!</span>(output, A, a_sp<span class="op">::</span><span class="dt">Int</span>, a_ep<span class="op">::</span><span class="dt">Int</span>, B, b_sp<span class="op">::</span><span class="dt">Int</span>, b_ep<span class="op">::</span><span class="dt">Int</span>, findpos<span class="op">::</span><span class="dt">Function</span>)</span>
-<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>    (a_ep <span class="op">&lt;</span> a_sp <span class="op">||</span> b_ep <span class="op">&lt;</span> b_sp) <span class="op">&amp;&amp;</span> <span class="cf">return</span> output</span>
-<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>    imedian <span class="op">=</span> <span class="fu">ceil</span>(<span class="dt">Int</span>, (a_ep <span class="op">+</span> a_sp) <span class="op">/</span> <span class="fl">2</span>)</span>
-<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>    median <span class="op">=</span> A[imedian]</span>
-<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">## our findpos returns n + 1 when median is larger than B[end]</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-12" class="code-annotation-target"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a>    medpos <span class="op">=</span> <span class="fu">min</span>(<span class="fu">findpos</span>(B, median, b_sp), b_ep)</span>
-<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> median <span class="op">==</span> B[medpos] </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-15" class="code-annotation-target"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">baezayates!</span>(output, A, a_sp, imedian <span class="op">-</span> <span class="fl">1</span>, B, b_sp, medpos <span class="op">-</span> matches, findpos)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-16" class="code-annotation-target"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">&amp;&amp;</span> <span class="fu">push!</span>(output, median)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-2-17" class="code-annotation-target"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">baezayates!</span>(output, A, imedian <span class="op">+</span> <span class="fl">1</span>, a_ep, B, medpos <span class="op">+</span> matches, b_ep, findpos)</span>
-<span id="annotated-cell-2-18"><a href="#annotated-cell-2-18" aria-hidden="true" tabindex="-1"></a>    output</span>
-<span id="annotated-cell-2-19"><a href="#annotated-cell-2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="12" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">baezayates!</span>(output, A, B, findpos<span class="op">::</span><span class="dt">Function</span>=binarysearch)</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">baezayates!</span>(output, A, <span class="fl">1</span>, <span class="fu">length</span>(A), B, <span class="fl">1</span>, <span class="fu">length</span>(B), findpos)</span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">baezayates!</span>(output, A, a_sp<span class="op">::</span><span class="dt">Int</span>, a_ep<span class="op">::</span><span class="dt">Int</span>, B, b_sp<span class="op">::</span><span class="dt">Int</span>, b_ep<span class="op">::</span><span class="dt">Int</span>, findpos<span class="op">::</span><span class="dt">Function</span>)</span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>    (a_ep <span class="op">&lt;</span> a_sp <span class="op">||</span> b_ep <span class="op">&lt;</span> b_sp) <span class="op">&amp;&amp;</span> <span class="cf">return</span> output</span>
+<span id="annotated-cell-3-9"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>    imedian <span class="op">=</span> <span class="fu">ceil</span>(<span class="dt">Int</span>, (a_ep <span class="op">+</span> a_sp) <span class="op">/</span> <span class="fl">2</span>)</span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a>    median <span class="op">=</span> A[imedian]</span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">## our findpos returns n + 1 when median is larger than B[end]</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-12" class="code-annotation-target"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a>    medpos <span class="op">=</span> <span class="fu">min</span>(<span class="fu">findpos</span>(B, median, b_sp), b_ep)</span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="annotated-cell-3-14"><a href="#annotated-cell-3-14" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> median <span class="op">==</span> B[medpos] </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-15" class="code-annotation-target"><a href="#annotated-cell-3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">baezayates!</span>(output, A, a_sp, imedian <span class="op">-</span> <span class="fl">1</span>, B, b_sp, medpos <span class="op">-</span> matches, findpos)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-16" class="code-annotation-target"><a href="#annotated-cell-3-16" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">&amp;&amp;</span> <span class="fu">push!</span>(output, median)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-3-17" class="code-annotation-target"><a href="#annotated-cell-3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">baezayates!</span>(output, A, imedian <span class="op">+</span> <span class="fl">1</span>, a_ep, B, medpos <span class="op">+</span> matches, b_ep, findpos)</span>
+<span id="annotated-cell-3-18"><a href="#annotated-cell-3-18" aria-hidden="true" tabindex="-1"></a>    output</span>
+<span id="annotated-cell-3-19"><a href="#annotated-cell-3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1">Punto de entrada.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">Punto de entrada.</span>
 </dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="12" data-code-annotation="2">Búsqueda de la posición de inserción de la mediana de <span class="math inline">\(A\)</span> en <span class="math inline">\(B\)</span>.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="12" data-code-annotation="2">Búsqueda de la posición de inserción de la mediana de <span class="math inline">\(A\)</span> en <span class="math inline">\(B\)</span>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="15" data-code-annotation="3">Recurrencia para el problema <span class="math inline">\(C_&lt;\)</span>.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="15" data-code-annotation="3">Recurrencia para el problema <span class="math inline">\(C_&lt;\)</span>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="16" data-code-annotation="4">Añadir al resultado el valor de la mediana si es que se encontro en <span class="math inline">\(B\)</span>; es importante que este paso este entre las recurrencias para que <em>output</em> sea un arreglo ordenado.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="16" data-code-annotation="4">Añadir al resultado el valor de la mediana si es que se encontró en <span class="math inline">\(B\)</span>; es importante que este paso este entre las recurrencias para que <em>output</em> sea un arreglo ordenado.</span>
 </dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="17" data-code-annotation="5">Recurencia para el problema <span class="math inline">\(C_&gt;\)</span>.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="17" data-code-annotation="5">Recurencia para el problema <span class="math inline">\(C_&gt;\)</span>.</span>
 </dd>
 </dl>
 </div>
 </div>
+<p>El algoritmo de Baeza Yates es óptimo en el peor caso y es capaz de aprovechar casos donde <span class="math inline">\(C_&lt;\)</span> o <span class="math inline">\(C_&gt;\)</span> se convierten en triviales, lo cual da muy buenos casos en algunas distribuciones.</p>
+</section>
+<section id="ejercicios" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">6.3.2</span> Ejercicios</h3>
+<ol type="1">
+<li>Implemente la unión con el algoritmo de Baeza Yates.</li>
+</ol>
 </section>
 </section>
 <section id="operaciones-con-tres-o-más-conjuntos" class="level2" data-number="6.4">
@@ -672,10 +703,28 @@ C_&gt; &amp;: \{A[M+1..m] \cap B[p+e..n]\} \\
 <p>En particular, es importante hacer notar que ni el problema ni las aplicaciones estan limitadas a dos conjuntos, y por tanto, es importante algoritmos y estrategías para resolver <span class="math inline">\(\bigcup_i A_i\)</span> así como <span class="math inline">\(\bigcap_i A_i\)</span>.</p>
 <section id="algoritmo-svs" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="algoritmo-svs"><span class="header-section-number">6.4.1</span> Algoritmo SvS</h3>
+<p>Dado <span class="math inline">\(C = A \cap B\)</span> es un hecho que <span class="math inline">\(|C| \leq min \{|A|, |B|\}\)</span>. Recordando, que hay maneras relativamente simples y eficientes de resolver la intersección cuando <span class="math inline">\(m \ll n\)</span>; por tanto, cuando tenemos más de dos conjuntos podemos aplicar la estrategía <em>Small vs Small (SvS)</em>, que consisten en intersectar los <span class="math inline">\(k\)</span> conjuntos por pares intersectando el par de arreglos más pequeños cada vez.</p>
+<div id="16" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">svs</span>(L<span class="op">::</span><span class="dt">Vector{T}</span>, in2<span class="op">::</span><span class="dt">Function</span>=baezayates!) <span class="kw">where</span> T</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    prev, curr <span class="op">=</span> <span class="fu">eltype</span>(T)[], <span class="fu">eltype</span>(T)[]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sort!</span>(L, by<span class="op">=</span>length, rev<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    curr <span class="op">=</span> <span class="fu">pop!</span>(L)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="fu">length</span>(L) <span class="op">&gt;</span> <span class="fl">0</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">empty!</span>(prev)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        isize <span class="op">=</span> <span class="fu">in2</span>(prev, curr, <span class="fu">pop!</span>(L))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        isize <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">return</span> prev</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        prev, curr <span class="op">=</span> curr, prev</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    curr</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="algoritmo-de-barbay-y-kenyon" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="algoritmo-de-barbay-y-kenyon"><span class="header-section-number">6.4.2</span> Algoritmo de Barbay y Kenyon</h3>
-<p>Cuando <span class="math inline">\(k&gt;2\)</span>, la intersección se puede realizar usando las <span class="math inline">\(k\)</span> listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son “más faciles” de intersectar con un algoritmo <em>na"ive</em>. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy popular llamada <em>Small vs Small (SvS)</em>.</p>
 <p>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="citation" data-cites="DLOPM2001">(<a href="refs.html#ref-DLOPM2001" role="doc-biblioref">Demaine, López-Ortiz, y Ian Munro 2001</a>)</span>, <span class="citation" data-cites="BLOL2006">(<a href="refs.html#ref-BLOL2006" role="doc-biblioref">Barbay, López-Ortiz, y Lu 2006</a>)</span>, <span class="citation" data-cites="BLOLS2010">(<a href="refs.html#ref-BLOLS2010" role="doc-biblioref">Barbay et&nbsp;al. 2010</a>)</span>, y <span class="citation" data-cites="BYS2005">(<a href="refs.html#ref-BYS2005" role="doc-biblioref">Baeza-Yates y Salinger 2005</a>)</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="citation" data-cites="DLOM2000">(<a href="refs.html#ref-DLOM2000" role="doc-biblioref">Demaine, López-Ortiz, y Munro 2000</a>)</span>, <span class="citation" data-cites="DLOPM2001">(<a href="refs.html#ref-DLOPM2001" role="doc-biblioref">Demaine, López-Ortiz, y Ian Munro 2001</a>)</span>, <span class="citation" data-cites="BK2002">(<a href="refs.html#ref-BK2002" role="doc-biblioref">Barbay y Kenyon 2002</a>)</span>, <span class="citation" data-cites="BY2004">(<a href="refs.html#ref-BY2004" role="doc-biblioref">Baeza-Yates 2004</a>)</span>.</p>
 </section>
 </section>
@@ -1238,293 +1287,359 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Algoritmos de intersección y unión de conjuntos en el modelo de comparación"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>Analizar el rendimiento de algoritmos de unión e intersección de conjuntos representados como listas ordenadas parametrizando los algoritmos con los algoritmos internos de búsqueda, tamaño de los conjuntos y la distribución de los elementos, bajo un enfoque experimental midiendo los costos en términos del tiempo de ejecución y el uso de memoria.</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Cómo se vió en Capítulos anteriores, un conjunto es una colección de elementos donde no hay repetición. El uso de conjuntos es fundamental para un gran número de problemas. En particular, en este capítulo representaremos conjuntos como arreglos ordenados de números enteros; esto para posicionarlo dentro de un dominio de aplicación objetivo, que es la Recuperación de Información, como parte de la representación de una la matriz dispersa muy grande, llamada _índice invertido_. </span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>Estaremos resolviendo los problemas de intersección y unión de conjuntos. @DLOM2000 demuestra que el costo y procedimiento de las intersecciones y uniones de conjuntos representados como arreglos ordenados, es básicamente el mismo; ya que requieren determinar la misma información. Claramente, colectar los datos para la unión y la intersección, requieren diferentes esfuerzos.</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Costo del problema</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>En general, dados dos conjuntos $A<span class="co">[</span><span class="ot">1..m</span><span class="co">]</span> = <span class="sc">\{</span>a_1 &lt; a_2 &lt; \cdots &lt; a_m <span class="sc">\}</span>$ y $B<span class="co">[</span><span class="ot">1..n</span><span class="co">]</span> = <span class="sc">\{</span>b_1 &lt; b_2 &lt; \cdots &lt; b_n <span class="sc">\}</span>$, el costo de unión es $$\log{m+n \choose m},$$ ver @hwang1971optimal.</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>De manera más detallada, supongamos que $A \cap B = \emptyset$, esto es, el conjunto de salida será de tamaño $m+n$. De manera similar al razonamiento que se utilizó para el problema de ordenamiento, el problema puede verse como todas las posibles instancias de ordenes o permutaciones de tamaño $n+m$; removiendo la necesidad de los ordenes parciales, esto es ${n+m \choose m}$ posibles instancias de tamaño $n+m$, generadas por dos conjuntos de tamaño $n$ y $m$. Dado que estamos en un modelo basado en comparaciones, y dado el mejor algoritmo $s$ puede dividir el espacio de posibles ordenes en 2, por tanto, dicho algoritmo necesitará $$\log_2 {n+m \choose m}$$ comparaciones para resolver la unión de cualquier par de conjuntos de tamaño $m$ y $n$.</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>Usando la aproximación de Stirling para coefficientes binomiales de @mackay2003information, el costo se convierte en:</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>$$\log{m+n \choose m} = n\log{\frac{m+n}{n}} + m \log\frac{n+m}{m} $$</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>Recuerde que $\log_2 x = \frac{\log_e x}{\log e}$.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmos</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>Se puede observar que si $m \approx n$, entonces el costo se convierte en $O(m + n)$, esto es, lo más eficiente sería tomar el siguiente algoritmo:</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">function merge2!(C, A, B) # &lt;1&gt;</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="in">    i = j = 1</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="in">    m, n = length(A), length(B)</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">    @inbounds while i &lt;= m ||  j &lt;= n # &lt;2&gt;</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">        a, b = A[i], B[j]</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">        if a == b</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, a)</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="in">            i += 1</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="in">            j += 1</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">        elseif a &lt; b</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, a)</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="in">            i += 1</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="in">        else</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, b)</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="in">            j += 1</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="in">    C</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicio</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Escriba y pruebe el algoritmo de intersección de merge para $n \approx m$.</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:8 == merge2!(Int[], [1, 3, 4, 6, 8], [2, 5, 7])</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 0:9 == merge2!(Int[], [1, 3, 4, 6, 8], [0, 2, 5, 7, 9])</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:10 == merge2!(Int[], 1:5, 6:10)</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmos para arreglos de tamaño muy diferente</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>Si $m \ll n$, el costo tenderá a $O(m \log n)$, por lo que se pueden realizar $m$ búsquedas binarias _directas_ para localizar la posición de inserción en $B$. </span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-interseccion</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 100%</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Dos listas alineadas donde los nodos sombreados son elementos de los conjuntos.</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="in">  //layout=neato;</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="in">  //node [style="invis"];</span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="in">  subgraph A {</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="in">    cluster=true;</span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="in">    a1 [label="1"];</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="in">    a2 [label="2", style="filled"];</span></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="in">    a3 [label="3"];</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="in">    a4 [label="4"];</span></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="in">    a5 [label="5", style="filled"];</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="in">    a6 [label="6"];</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="in">    a7 [label="7", style="filled"];</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="in">    a8 [label="8"];</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="in">    a9 [label="9"];</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="in">    a10 [label="10"];</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="in">    a11 [label="11"];</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="in">    a12 [label="12"];</span></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="in">    a13 [label="13"];</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="in">    a15 [label="15", style="filled"];</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="in">    a16 [label="16"];</span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="in">  } </span></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="in"> subgraph B {</span></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="in">    cluster=true;</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="in">  1 [label="1", style="filled"];</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="in">  2 [label="2"];</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="in">  3 [label="3"];</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="in">  4 [label="4"];</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="in">  5 [label="5", style="filled"];</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="in">  6 [label="6"];</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="in">  7 [label="7", style="filled"];</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="in">  8 [label="8"];</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="in">  9 [label="9"];</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">  10 [label="10", style="filled"];</span></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="in">  11 [label="11"];</span></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="in">  12 [label="12", style="filled"];</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="in">  13 [label="13"];</span></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="in">  15 [label="15", style="filled"];</span></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="in">  16 [label="16"];</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="in"> }</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style="invis"];</span></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="in">  1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7 -&gt; 8 -&gt; 9 -&gt; 10 -&gt; 11 -&gt; 12 -&gt; 13 -&gt; 15 -&gt; 16[weight=30];</span></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="in">  a1 -&gt; a2 -&gt; a3 -&gt; a4 -&gt; a5 -&gt; a6 -&gt; a7 -&gt; a8 -&gt; a9 -&gt; a10 -&gt; a11 -&gt; a12 -&gt; a13 -&gt; a15 -&gt; a16 [weight=30];</span></span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="in">  //A -&gt; B</span></span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="in">  //edge [style=""];</span></span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="in">  //5 -&gt; a5 [weight=0];</span></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="in">  //7 -&gt; a7 [weight=0];</span></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="in">  //15 -&gt; a15 [weight=0];</span></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>Se hace notar que $A$ y $B$ estan ordenados, y por lo tanto, localizar $A<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$ en $B<span class="co">[</span><span class="ot">j</span><span class="co">]</span>$ significa que $B<span class="co">[</span><span class="ot">j-1</span><span class="co">]</span> &lt; A<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$, por lo que intentar localizar $A<span class="co">[</span><span class="ot">i+1</span><span class="co">]</span>$ puede comenzar en $B<span class="co">[</span><span class="ot">j+1</span><span class="co">]</span>$.</span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>@hwang1971optimal propone otro algoritmo que funciona para casos similares:</span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Divide $B$ en bloques de tamaño $m$, define un arreglo _virtual_ $B'<span class="co">[</span><span class="ot">1..n/m</span><span class="co">]</span>$ donde $B'<span class="co">[</span><span class="ot">i</span><span class="co">]</span> = B<span class="co">[</span><span class="ot">i \cdot m</span><span class="co">]</span>$</span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Se búsca la posición de inserción $p$ de cada $a \in A$ en $B'$, costando $\log n/m$ para cada búsqueda.</span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Después se localiza dentro del $B$ en el $p$-ésimo bloque, i.e., $B<span class="co">[</span><span class="ot">(p-1)m + 1 .. p\cdot m</span><span class="co">]</span>$, por la posición de inserción del bloque, con un costo de $\log m$.</span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>Entonces, se obtiene un costo de $O(m \log{n/m} + m \log m)$; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de $a \in A$ se encuentran distribuidas de manera uniforme en $B$. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de $A$ en bloques de $B$. </span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inserción para iniciar la $i$-ésima búsqueda, y sacar provecho de posiciones esperadas cercanas de la posición inicial de búsqueda, i.e., podemos utilizar algoritmos de búsqueda adaptables para mejorar el desempeño.</span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo de Baeza Yates</span></span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>@BY2004 propone un algoritmo eficiente para intersecciones de dos conjuntos. El algoritmo tiene una estrategía _dividir para vencer_:</span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Se toma la mediana $M$ de $A$ y se busca en $B$ obteniendo su posición de inserción $p$.</span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>El problema entonces se divide en 3 subproblemas:</span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>    \begin{align}</span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>    C_&lt; &amp;: <span class="sc">\{</span>A<span class="co">[</span><span class="ot">1..M-1</span><span class="co">]</span> \cap B<span class="co">[</span><span class="ot">1..p-e</span><span class="co">]</span><span class="sc">\}</span> <span class="sc">\\</span></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>    C_= &amp;: <span class="sc">\{</span>A<span class="co">[</span><span class="ot">M</span><span class="co">]</span><span class="sc">\}</span> \cap <span class="sc">\{</span>B<span class="co">[</span><span class="ot">p</span><span class="co">]</span><span class="sc">\}</span> <span class="sc">\\</span> </span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>    C_&gt; &amp;: <span class="sc">\{</span>A<span class="co">[</span><span class="ot">M+1..m</span><span class="co">]</span> \cap B<span class="co">[</span><span class="ot">p+e..n</span><span class="co">]</span><span class="sc">\}</span> <span class="sc">\\</span></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    \end{align}</span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>  donde $e=1$ si $A<span class="co">[</span><span class="ot">M</span><span class="co">]</span> = B<span class="co">[</span><span class="ot">p</span><span class="co">]</span>$ y $e=0$ cuando $A<span class="co">[</span><span class="ot">M</span><span class="co">]</span> \not= B<span class="co">[</span><span class="ot">p</span><span class="co">]</span>$.</span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>La unión de estos tres conjuntos es la solución $C_&lt; \cup C_= \cup C_&gt;$.</span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>El problema $C_=$ es trivial, y $C_&lt;$ y $C_&gt;$ se implementan recurriendo, ajustando los rangos de trabajo.</span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>A continuación se muestra el código en Julia, usando los algoritmos de búsqueda del Cap. 5.</span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a><span class="in"># tomados de cap5</span></span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a><span class="in">function binarysearch(A, x, sp=1, ep=length(A))</span></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp &lt; ep             # &lt;3&gt;</span></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a><span class="in">        mid = div(sp + ep, 2) # &lt;1&gt;</span></span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="in">        if x &lt;= A[mid]        # &lt;1&gt;</span></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="in">            ep = mid          # &lt;2&gt;</span></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="in">        else</span></span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="in">            sp = mid + 1      # &lt;2&gt;</span></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="in">    x &lt;= A[sp] ? sp : sp + 1 # &lt;4&gt;</span></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a><span class="in">function doublingsearch(A, x, sp=1)</span></span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a><span class="in">    n = length(A)</span></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a><span class="in">    p = 0</span></span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a><span class="in">    i = 1</span></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp+i &lt;= n &amp;&amp; A[sp+i] &lt; x # &lt;1&gt;</span></span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a><span class="in">        p = i</span></span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="in">        i += i</span></span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a><span class="in">    binarysearch(A, x, sp + p, min(n, sp+i)) # &lt;2&gt;</span></span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a><span class="in"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a><span class="in">function baezayates!(output, A, B, findpos::Function=binarysearch) # &lt;1&gt; </span></span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a><span class="in">    baezayates!(output, A, 1, length(A), B, 1, length(B), findpos)</span></span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a><span class="in">function baezayates!(output, A, a_sp::Int, a_ep::Int, B, b_sp::Int, b_ep::Int, findpos::Function)</span></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a><span class="in">    (a_ep &lt; a_sp || b_ep &lt; b_sp) &amp;&amp; return output</span></span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a><span class="in">    imedian = ceil(Int, (a_ep + a_sp) / 2)</span></span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a><span class="in">    median = A[imedian]</span></span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a><span class="in">    ## our findpos returns n + 1 when median is larger than B[end]</span></span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a><span class="in">    medpos = min(findpos(B, median, b_sp), b_ep)  # &lt;2&gt;</span></span>
-<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a><span class="in">    matches = median == B[medpos] </span></span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a><span class="in">    baezayates!(output, A, a_sp, imedian - 1, B, b_sp, medpos - matches, findpos) # &lt;3&gt;</span></span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a><span class="in">    matches &amp;&amp; push!(output, median) # &lt;4&gt;</span></span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a><span class="in">    baezayates!(output, A, imedian + 1, a_ep, B, medpos + matches, b_ep, findpos) # &lt;5&gt;</span></span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a><span class="in">    output</span></span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Punto de entrada.</span>
-<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Búsqueda de la posición de inserción de la mediana de $A$ en $B$.</span>
-<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Recurrencia para el problema $C_&lt;$.</span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Añadir al resultado el valor de la mediana si es que se encontro en $B$; es importante que este paso este entre las recurrencias para que _output_ sea un arreglo ordenado.</span>
-<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Recurencia para el problema $C_&gt;$.</span>
-<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
-<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
-<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a><span class="in">@assert [4, 6] == baezayates!(Int[], [1, 3, 4, 6, 8], [2, 4, 5, 6, 7])</span></span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:5 == baezayates!(Int[], 1:10, 1:5)</span></span>
-<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:9 == baezayates!(Int[], 0:10, 1:9)</span></span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:2:9 == baezayates!(Int[], 0:10, 1:2:9)</span></span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operaciones con tres o más conjuntos</span></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>Los algoritmos y costos hasta ahora revisados se cumplen para dos conjuntos; se mencionaron diferentes algoritmos, algunos de ellos especializados por características como las proporciones de los conjuntos de entrada. </span>
-<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>En particular, es importante hacer notar que ni el problema ni las aplicaciones estan limitadas a dos conjuntos, y por tanto, es importante algoritmos y estrategías para resolver $\bigcup_i A_i$ así como $\bigcap_i A_i$.</span>
-<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo SvS</span></span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo de Barbay y Kenyon</span></span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>Cuando $k&gt;2$, la intersección se puede realizar usando las $k$ listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son "más faciles" de intersectar con un algoritmo _na\"ive_. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy</span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>popular llamada _Small vs Small (SvS)_.</span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="co">[</span><span class="ot">@DLOPM2001</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BLOL2006</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BLOLS2010</span><span class="co">]</span>, y <span class="co">[</span><span class="ot">@BYS2005</span><span class="co">]</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="co">[</span><span class="ot">@DLOM2000</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@DLOPM2001</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BK2002</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BY2004</span><span class="co">]</span>.</span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recursos audio-visuales de la unidad</span></span>
-<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas</span>
-<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
-<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>Parte 2: Algoritmos de intersección y algunas aplicaciones</span>
-<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
-<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
-<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</span>
-<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</span>
-<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 0 [Sin entrega]</span></span>
-<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Lea y comprenda los artículos relacionados (listados en la introducción).</span>
-<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 1 [Con reporte]</span></span>
-<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cargue el archivo <span class="in">`listas-posteo-100.json`</span> del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</span>
-<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.</span>
-<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.</span>
-<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(4)}$ el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria $C \subset P^{(4)}$, $|C| = 1000$.</span>
-<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Implemente los algoritmos de las secciones 3.1 _Melding Algorithms_ y 3.2 _Search algorithms_ (en especial 3.2.1 y 3.2.2) de <span class="co">[</span><span class="ot">@BLOLS2010</span><span class="co">]</span>.</span>
-<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Realice y reporte los siguientes experimentos:</span>
-<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. </span>
-<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. </span>
-<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada tetrapleta de listas $a, b, c, d \in C$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</span>
-<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa el tiempo en segundos para los tres experimentos.</span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa el número de comparaciones para los tres experimentos.</span>
-<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.</span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
-<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las</span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una</span>
-<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.</span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>_Nota sobre la generación del PDF_: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</span>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Algoritmos de intersección y unión de conjuntos en el modelo de comparación"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo {.unnumbered}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Analizar el rendimiento de algoritmos de unión e intersección de conjuntos representados como listas ordenadas parametrizando los algoritmos con los algoritmos internos de búsqueda, tamaño de los conjuntos y la distribución de los elementos, bajo un enfoque experimental midiendo los costos en términos del tiempo de ejecución y el uso de memoria.</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Cómo se vió en Capítulos anteriores, un conjunto es una colección de elementos donde no hay repetición. El uso de conjuntos es fundamental para un gran número de problemas. En particular, en este capítulo representaremos conjuntos como arreglos ordenados de números enteros; esto para posicionarlo dentro de un dominio de aplicación objetivo, que es la Recuperación de Información, como parte de la representación de una la matriz dispersa muy grande, llamada _índice invertido_. </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>Estaremos resolviendo los problemas de intersección y unión de conjuntos. @DLOM2000 demuestra que el costo y procedimiento de las intersecciones y uniones de conjuntos representados como arreglos ordenados, es básicamente el mismo; ya que requieren determinar la misma información. Claramente, colectar los datos para la unión y la intersección, requieren diferentes esfuerzos.</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Costo del problema</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>En general, dados dos conjuntos $A<span class="co">[</span><span class="ot">1..m</span><span class="co">]</span> = <span class="sc">\{</span>a_1 &lt; a_2 &lt; \cdots &lt; a_m <span class="sc">\}</span>$ y $B<span class="co">[</span><span class="ot">1..n</span><span class="co">]</span> = <span class="sc">\{</span>b_1 &lt; b_2 &lt; \cdots &lt; b_n <span class="sc">\}</span>$, el costo de unión es $$\log{m+n \choose m},$$ ver @hwang1971optimal.</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>De manera más detallada, supongamos que $A \cap B = \emptyset$, esto es, el conjunto de salida será de tamaño $m+n$. De manera similar al razonamiento que se utilizó para el problema de ordenamiento, el problema puede verse como todas las posibles instancias de ordenes o permutaciones de tamaño $n+m$; removiendo la necesidad de los ordenes parciales, esto es ${n+m \choose m}$ posibles instancias de tamaño $n+m$, generadas por dos conjuntos de tamaño $n$ y $m$. Dado que estamos en un modelo basado en comparaciones, y dado el mejor algoritmo $s$ puede dividir el espacio de posibles ordenes en 2, por tanto, dicho algoritmo necesitará $$\log_2 {n+m \choose m}$$ comparaciones para resolver la unión de cualquier par de conjuntos de tamaño $m$ y $n$.</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>Usando la aproximación de Stirling para coefficientes binomiales de @mackay2003information, el costo se convierte en:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>$$\log{m+n \choose m} = n\log{\frac{m+n}{n}} + m \log\frac{n+m}{m} $$</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>Recuerde que $\log_2 x = \frac{\log_e x}{\log e}$.</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="in"># tomados de cap5</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="in">function binarysearch(A, x, sp=1, ep=length(A))</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp &lt; ep             # &lt;3&gt;</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="in">        mid = div(sp + ep, 2) # &lt;1&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="in">        if x &lt;= A[mid]        # &lt;1&gt;</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="in">            ep = mid          # &lt;2&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="in">        else</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="in">            sp = mid + 1      # &lt;2&gt;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="in">    x &lt;= A[sp] ? sp : sp + 1 # &lt;4&gt;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="in">function doublingsearch(A, x, sp=1)</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="in">    n = length(A)</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="in">    p = 0</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="in">    i = 1</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="in">    while sp+i &lt;= n &amp;&amp; A[sp+i] &lt; x # &lt;1&gt;</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="in">        p = i</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="in">        i += i</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">    binarysearch(A, x, sp + p, min(n, sp+i)) # &lt;2&gt;</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmos</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>Se puede observar que si $m \approx n$, entonces el costo se convierte en $O(m + n)$, esto es, lo más eficiente sería tomar el siguiente algoritmo:</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="in">function merge2!(C, A, B) # &lt;1&gt;</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="in">    i = j = 1</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="in">    m, n = length(A), length(B)</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="in">    @inbounds while i &lt;= m ||  j &lt;= n # &lt;2&gt;</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="in">        a, b = A[i], B[j]</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="in">        if a == b</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, a)</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="in">            i += 1</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="in">            j += 1</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="in">        elseif a &lt; b</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, a)</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="in">            i += 1</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="in">        else</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, b)</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="in">            j += 1</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="in">    C</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicio</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Escriba y pruebe el algoritmo de intersección de merge para $n \approx m$.</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:8 == merge2!(Int[], [1, 3, 4, 6, 8], [2, 5, 7])</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 0:9 == merge2!(Int[], [1, 3, 4, 6, 8], [0, 2, 5, 7, 9])</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:10 == merge2!(Int[], 1:5, 6:10)</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmos para arreglos de tamaño muy diferente</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>Si $m \ll n$, el costo tenderá a $O(m \log n)$, por lo que se pueden realizar $m$ búsquedas binarias _directas_ para localizar la posición de inserción en $B$. </span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-interseccion</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 100%</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Dos listas alineadas donde los nodos sombreados son elementos de los conjuntos.</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="in">digraph lista {</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="in">  //layout=neato;</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="in">  rankdir=LR;</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="in">  graph [pad="0.5", nodesep="0.5", ranksep="0.5"];</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="in">  //{rank=same; a; b; c; nothing;}</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="in">  splines="true";</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="in">  //node [style="invis"];</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="in">  subgraph A {</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="in">    cluster=true;</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="in">    a1 [label="1"];</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="in">    a2 [label="2", style="filled"];</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="in">    a3 [label="3"];</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="in">    a4 [label="4"];</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="in">    a5 [label="5", style="filled"];</span></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="in">    a6 [label="6"];</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="in">    a7 [label="7", style="filled"];</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="in">    a8 [label="8"];</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="in">    a9 [label="9"];</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="in">    a10 [label="10"];</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="in">    a11 [label="11"];</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="in">    a12 [label="12"];</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="in">    a13 [label="13"];</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="in">    a15 [label="15", style="filled"];</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="in">    a16 [label="16"];</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="in">  } </span></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="in"> subgraph B {</span></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="in">    cluster=true;</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="in">  1 [label="1", style="filled"];</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="in">  2 [label="2"];</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="in">  3 [label="3"];</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="in">  4 [label="4"];</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="in">  5 [label="5", style="filled"];</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="in">  6 [label="6"];</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="in">  7 [label="7", style="filled"];</span></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="in">  8 [label="8"];</span></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="in">  9 [label="9"];</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="in">  10 [label="10", style="filled"];</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="in">  11 [label="11"];</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="in">  12 [label="12", style="filled"];</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="in">  13 [label="13"];</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="in">  15 [label="15", style="filled"];</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="in">  16 [label="16"];</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="in"> }</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="in">  edge [style="invis"];</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="in">  1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7 -&gt; 8 -&gt; 9 -&gt; 10 -&gt; 11 -&gt; 12 -&gt; 13 -&gt; 15 -&gt; 16[weight=30];</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="in">  a1 -&gt; a2 -&gt; a3 -&gt; a4 -&gt; a5 -&gt; a6 -&gt; a7 -&gt; a8 -&gt; a9 -&gt; a10 -&gt; a11 -&gt; a12 -&gt; a13 -&gt; a15 -&gt; a16 [weight=30];</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="in">  //A -&gt; B</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="in">  //edge [style=""];</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="in">  //5 -&gt; a5 [weight=0];</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="in">  //7 -&gt; a7 [weight=0];</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="in">  //15 -&gt; a15 [weight=0];</span></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>Se hace notar que $A$ y $B$ estan ordenados, y por lo tanto, localizar $A<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$ en $B<span class="co">[</span><span class="ot">j</span><span class="co">]</span>$ significa que $B<span class="co">[</span><span class="ot">j-1</span><span class="co">]</span> &lt; A<span class="co">[</span><span class="ot">i</span><span class="co">]</span>$, por lo que intentar localizar $A<span class="co">[</span><span class="ot">i+1</span><span class="co">]</span>$ puede comenzar en $B<span class="co">[</span><span class="ot">j+1</span><span class="co">]</span>$. A continuación se muestra el código de un algoritmo de intersección usando algoritmos de búsqueda con memoria de la posición anterior.</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="in">function intsearch!(C, A, B, algosearch=doublingsearch)</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="in">    if length(B) &lt; length(A)</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="in">        A, B = B, A</span></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="in">    p = 1</span></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="in">    for (i, a) in enumerate(A)</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="in">        p = algosearch(B, a, p)</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="in">        p &gt; length(B) &amp;&amp; break</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="in">        if a == B[p]</span></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="in">            p += 1</span></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="in">            push!(C, a)</span></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="in">    C</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a><span class="in">@assert [4, 6] == intsearch!(Int[], [1, 3, 4, 6, 8], [2, 4, 5, 6, 7])</span></span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:5 == intsearch!(Int[], 1:10, 1:5)</span></span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:9 == intsearch!(Int[], 0:10, 1:9)</span></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:2:9 == intsearch!(Int[], 0:10, 1:2:9)</span></span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>@hwang1971optimal propone otro algoritmo que funciona para casos similares:</span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Divide $B$ en bloques de tamaño $m$, define un arreglo _virtual_ $B'<span class="co">[</span><span class="ot">1..n/m</span><span class="co">]</span>$ donde $B'<span class="co">[</span><span class="ot">i</span><span class="co">]</span> = B<span class="co">[</span><span class="ot">i \cdot m</span><span class="co">]</span>$</span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Se búsca la posición de inserción $p$ de cada $a \in A$ en $B'$, costando $\log n/m$ para cada búsqueda.</span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Después se localiza dentro del $B$ en el $p$-ésimo bloque, i.e., $B<span class="co">[</span><span class="ot">(p-1)m + 1 .. p\cdot m</span><span class="co">]</span>$, por la posición de inserción del bloque, con un costo de $\log m$.</span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>Entonces, se obtiene un costo de $O(m \log{n/m} + m \log m)$; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de $a \in A$ se encuentran distribuidas de manera uniforme en $B$. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de $A$ en bloques de $B$. Para esto, es necesario un análisis de costo promedio, el cual se muestra en el artículo.</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inserción para iniciar la $i$-ésima búsqueda, y sacar provecho de posiciones esperadas cercanas de la posición inicial de búsqueda, i.e., podemos utilizar algoritmos de búsqueda adaptables para mejorar el desempeño.</span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo de Baeza Yates</span></span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>@BY2004 propone un algoritmo eficiente para intersecciones de dos conjuntos. El algoritmo tiene una estrategía _dividir para vencer_:</span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Se toma la mediana $M$ de $A$ y se busca en $B$ obteniendo su posición de inserción $p$.</span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>El problema entonces se divide en 3 subproblemas:</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>    \begin{align}</span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>    C_&lt; &amp;: <span class="sc">\{</span>A<span class="co">[</span><span class="ot">1..M-1</span><span class="co">]</span> \cap B<span class="co">[</span><span class="ot">1..p-e</span><span class="co">]</span><span class="sc">\}</span> <span class="sc">\\</span></span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>    C_= &amp;: <span class="sc">\{</span>A<span class="co">[</span><span class="ot">M</span><span class="co">]</span><span class="sc">\}</span> \cap <span class="sc">\{</span>B<span class="co">[</span><span class="ot">p</span><span class="co">]</span><span class="sc">\}</span> <span class="sc">\\</span> </span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>    C_&gt; &amp;: <span class="sc">\{</span>A<span class="co">[</span><span class="ot">M+1..m</span><span class="co">]</span> \cap B<span class="co">[</span><span class="ot">p+e..n</span><span class="co">]</span><span class="sc">\}</span> <span class="sc">\\</span></span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>    \end{align}</span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>  donde $e=1$ si $A<span class="co">[</span><span class="ot">M</span><span class="co">]</span> = B<span class="co">[</span><span class="ot">p</span><span class="co">]</span>$ y $e=0$ cuando $A<span class="co">[</span><span class="ot">M</span><span class="co">]</span> \not= B<span class="co">[</span><span class="ot">p</span><span class="co">]</span>$.</span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>La unión de estos tres conjuntos es la solución $C_&lt; \cup C_= \cup C_&gt;$.</span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>El problema $C_=$ es trivial, y $C_&lt;$ y $C_&gt;$ se implementan recurriendo, ajustando los rangos de trabajo.</span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>A continuación se muestra el código en Julia, usando los algoritmos de búsqueda del Cap. 5.</span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a><span class="in"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="in">function baezayates!(output, A, B, findpos::Function=binarysearch) # &lt;1&gt; </span></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a><span class="in">    baezayates!(output, A, 1, length(A), B, 1, length(B), findpos)</span></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a><span class="in">function baezayates!(output, A, a_sp::Int, a_ep::Int, B, b_sp::Int, b_ep::Int, findpos::Function)</span></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a><span class="in">    (a_ep &lt; a_sp || b_ep &lt; b_sp) &amp;&amp; return output</span></span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a><span class="in">    imedian = ceil(Int, (a_ep + a_sp) / 2)</span></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a><span class="in">    median = A[imedian]</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a><span class="in">    ## our findpos returns n + 1 when median is larger than B[end]</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a><span class="in">    medpos = min(findpos(B, median, b_sp), b_ep)  # &lt;2&gt;</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a><span class="in">    matches = median == B[medpos] </span></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a><span class="in">    baezayates!(output, A, a_sp, imedian - 1, B, b_sp, medpos - matches, findpos) # &lt;3&gt;</span></span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a><span class="in">    matches &amp;&amp; push!(output, median) # &lt;4&gt;</span></span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a><span class="in">    baezayates!(output, A, imedian + 1, a_ep, B, medpos + matches, b_ep, findpos) # &lt;5&gt;</span></span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a><span class="in">    output</span></span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Punto de entrada.</span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Búsqueda de la posición de inserción de la mediana de $A$ en $B$.</span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Recurrencia para el problema $C_&lt;$.</span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Añadir al resultado el valor de la mediana si es que se encontró en $B$; es importante que este paso este entre las recurrencias para que _output_ sea un arreglo ordenado.</span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Recurencia para el problema $C_&gt;$.</span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a><span class="in">@assert [4, 6] == baezayates!(Int[], [1, 3, 4, 6, 8], [2, 4, 5, 6, 7])</span></span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:5 == baezayates!(Int[], 1:10, 1:5)</span></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:9 == baezayates!(Int[], 0:10, 1:9)</span></span>
+<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:2:9 == baezayates!(Int[], 0:10, 1:2:9)</span></span>
+<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a>El algoritmo de Baeza Yates es óptimo en el peor caso y es capaz de aprovechar casos donde $C_&lt;$ o $C_&gt;$ se convierten en triviales, lo cual da muy buenos casos en algunas distribuciones.</span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicios</span></span>
+<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Implemente la unión con el algoritmo de Baeza Yates.</span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operaciones con tres o más conjuntos</span></span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>Los algoritmos y costos hasta ahora revisados se cumplen para dos conjuntos; se mencionaron diferentes algoritmos, algunos de ellos especializados por características como las proporciones de los conjuntos de entrada. </span>
+<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>En particular, es importante hacer notar que ni el problema ni las aplicaciones estan limitadas a dos conjuntos, y por tanto, es importante algoritmos y estrategías para resolver $\bigcup_i A_i$ así como $\bigcap_i A_i$.</span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo SvS</span></span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>Dado $C = A \cap B$ es un hecho que $|C| \leq min <span class="sc">\{</span>|A|, |B|<span class="sc">\}</span>$. Recordando, que hay maneras relativamente simples y eficientes de resolver la intersección cuando $m \ll n$; por tanto, cuando tenemos más de dos conjuntos podemos aplicar la estrategía _Small vs Small (SvS)_, que consisten en intersectar los $k$ conjuntos por pares intersectando el par de arreglos más pequeños cada vez.</span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a><span class="in"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a><span class="in">function svs(L::Vector{T}, in2::Function=baezayates!) where T</span></span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a><span class="in">    prev, curr = eltype(T)[], eltype(T)[]</span></span>
+<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a><span class="in">    sort!(L, by=length, rev=true)</span></span>
+<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a><span class="in">    curr = pop!(L)</span></span>
+<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a><span class="in">    while length(L) &gt; 0</span></span>
+<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a><span class="in">        empty!(prev)</span></span>
+<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a><span class="in">        isize = in2(prev, curr, pop!(L))</span></span>
+<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a><span class="in">        isize == 0 &amp;&amp; return prev</span></span>
+<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a><span class="in">        prev, curr = curr, prev</span></span>
+<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a><span class="in">    curr</span></span>
+<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a><span class="in">@assert [4, 6] == svs([[1, 3, 4, 6, 8], [2, 4, 5, 6, 7]])</span></span>
+<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:5 == svs([1:10, 1:5])</span></span>
+<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:9 == svs([0:10, 1:9])</span></span>
+<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a><span class="in">@assert 1:2:9 == svs([0:10, 1:2:9])</span></span>
+<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo de Barbay y Kenyon</span></span>
+<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En <span class="co">[</span><span class="ot">@DLOPM2001</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BLOL2006</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BLOLS2010</span><span class="co">]</span>, y <span class="co">[</span><span class="ot">@BYS2005</span><span class="co">]</span> se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores <span class="co">[</span><span class="ot">@DLOM2000</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@DLOPM2001</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BK2002</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@BY2004</span><span class="co">]</span>.</span>
+<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recursos audio-visuales de la unidad</span></span>
+<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas</span>
+<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a>Parte 2: Algoritmos de intersección y algunas aplicaciones</span>
+<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
+<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</span>
+<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</span>
+<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 0 [Sin entrega]</span></span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Lea y comprenda los artículos relacionados (listados en la introducción).</span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a><span class="fu">### Actividad 1 [Con reporte]</span></span>
+<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cargue el archivo <span class="in">`listas-posteo-100.json`</span> del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.</span>
+<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.</span>
+<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.</span>
+<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Sea $P^{(4)}$ el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria $C \subset P^{(4)}$, $|C| = 1000$.</span>
+<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Implemente los algoritmos de las secciones 3.1 _Melding Algorithms_ y 3.2 _Search algorithms_ (en especial 3.2.1 y 3.2.2) de <span class="co">[</span><span class="ot">@BLOLS2010</span><span class="co">]</span>.</span>
+<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Realice y reporte los siguientes experimentos:</span>
+<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. </span>
+<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. </span>
+<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Intersecte cada tetrapleta de listas $a, b, c, d \in C$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.</span>
+<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa el tiempo en segundos para los tres experimentos.</span>
+<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa el número de comparaciones para los tres experimentos.</span>
+<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Cree una figura <span class="in">`boxplot`</span> que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.</span>
+<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a>El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las</span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una</span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.</span>
+<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>_Nota sobre la generación del PDF_: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.</span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

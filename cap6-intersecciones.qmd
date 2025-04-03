@@ -28,6 +28,37 @@ Recuerde que $\log_2 x = \frac{\log_e x}{\log e}$.
 
 :::
 
+```{julia}
+#| echo: false
+#| output: false
+# tomados de cap5
+function binarysearch(A, x, sp=1, ep=length(A))
+	while sp < ep             # <3>
+		mid = div(sp + ep, 2) # <1>
+		if x <= A[mid]        # <1>
+			ep = mid          # <2>
+		else
+			sp = mid + 1      # <2>
+		end
+	end
+	
+    x <= A[sp] ? sp : sp + 1 # <4>
+end
+
+function doublingsearch(A, x, sp=1)
+    n = length(A)
+	p = 0
+    i = 1
+
+    while sp+i <= n && A[sp+i] < x # <1>
+		p = i
+		i += i
+    end
+
+    binarysearch(A, x, sp + p, min(n, sp+i)) # <2>
+end
+```
+
 ## Algoritmos
 Se puede observar que si $m \approx n$, entonces el costo se convierte en $O(m + n)$, esto es, lo más eficiente sería tomar el siguiente algoritmo:
 
@@ -134,14 +165,45 @@ digraph lista {
 }
 ```
 
-Se hace notar que $A$ y $B$ estan ordenados, y por lo tanto, localizar $A[i]$ en $B[j]$ significa que $B[j-1] < A[i]$, por lo que intentar localizar $A[i+1]$ puede comenzar en $B[j+1]$.
+Se hace notar que $A$ y $B$ estan ordenados, y por lo tanto, localizar $A[i]$ en $B[j]$ significa que $B[j-1] < A[i]$, por lo que intentar localizar $A[i+1]$ puede comenzar en $B[j+1]$. A continuación se muestra el código de un algoritmo de intersección usando algoritmos de búsqueda con memoria de la posición anterior.
+
+```{julia}
+function intsearch!(C, A, B, algosearch=doublingsearch)
+    if length(B) < length(A)
+        A, B = B, A
+    end
+
+    p = 1
+    for (i, a) in enumerate(A)
+        p = algosearch(B, a, p)
+        p > length(B) && break
+        if a == B[p]
+            p += 1
+            push!(C, a)
+        end
+    end
+
+    C
+end
+
+```
+
+```{julia}
+#| output: false
+#| echo: false
+@assert [4, 6] == intsearch!(Int[], [1, 3, 4, 6, 8], [2, 4, 5, 6, 7])
+@assert 1:5 == intsearch!(Int[], 1:10, 1:5)
+@assert 1:9 == intsearch!(Int[], 0:10, 1:9)
+@assert 1:2:9 == intsearch!(Int[], 0:10, 1:2:9)
+```
+
 @hwang1971optimal propone otro algoritmo que funciona para casos similares:
 
 1. Divide $B$ en bloques de tamaño $m$, define un arreglo _virtual_ $B'[1..n/m]$ donde $B'[i] = B[i \cdot m]$
 2. Se búsca la posición de inserción $p$ de cada $a \in A$ en $B'$, costando $\log n/m$ para cada búsqueda.
 3. Después se localiza dentro del $B$ en el $p$-ésimo bloque, i.e., $B[(p-1)m + 1 .. p\cdot m]$, por la posición de inserción del bloque, con un costo de $\log m$.
 
-Entonces, se obtiene un costo de $O(m \log{n/m} + m \log m)$; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de $a \in A$ se encuentran distribuidas de manera uniforme en $B$. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de $A$ en bloques de $B$. 
+Entonces, se obtiene un costo de $O(m \log{n/m} + m \log m)$; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de $a \in A$ se encuentran distribuidas de manera uniforme en $B$. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de $A$ en bloques de $B$. Para esto, es necesario un análisis de costo promedio, el cual se muestra en el artículo.
 
 Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inserción para iniciar la $i$-ésima búsqueda, y sacar provecho de posiciones esperadas cercanas de la posición inicial de búsqueda, i.e., podemos utilizar algoritmos de búsqueda adaptables para mejorar el desempeño.
 
@@ -160,36 +222,6 @@ Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inse
 4. El problema $C_=$ es trivial, y $C_<$ y $C_>$ se implementan recurriendo, ajustando los rangos de trabajo.
 
 A continuación se muestra el código en Julia, usando los algoritmos de búsqueda del Cap. 5.
-```{julia}
-#| echo: false
-#| output: false
-# tomados de cap5
-function binarysearch(A, x, sp=1, ep=length(A))
-	while sp < ep             # <3>
-		mid = div(sp + ep, 2) # <1>
-		if x <= A[mid]        # <1>
-			ep = mid          # <2>
-		else
-			sp = mid + 1      # <2>
-		end
-	end
-	
-    x <= A[sp] ? sp : sp + 1 # <4>
-end
-
-function doublingsearch(A, x, sp=1)
-    n = length(A)
-	p = 0
-    i = 1
-
-    while sp+i <= n && A[sp+i] < x # <1>
-		p = i
-		i += i
-    end
-
-    binarysearch(A, x, sp + p, min(n, sp+i)) # <2>
-end
-```
 
 ```{julia}
 #| output: false
@@ -216,7 +248,7 @@ end
 1. Punto de entrada.
 2. Búsqueda de la posición de inserción de la mediana de $A$ en $B$.
 3. Recurrencia para el problema $C_<$.
-4. Añadir al resultado el valor de la mediana si es que se encontro en $B$; es importante que este paso este entre las recurrencias para que _output_ sea un arreglo ordenado.
+4. Añadir al resultado el valor de la mediana si es que se encontró en $B$; es importante que este paso este entre las recurrencias para que _output_ sea un arreglo ordenado.
 5. Recurencia para el problema $C_>$.
 
 
@@ -229,19 +261,53 @@ end
 @assert 1:2:9 == baezayates!(Int[], 0:10, 1:2:9)
 ```
 
+El algoritmo de Baeza Yates es óptimo en el peor caso y es capaz de aprovechar casos donde $C_<$ o $C_>$ se convierten en triviales, lo cual da muy buenos casos en algunas distribuciones.
+
+### Ejercicios
+1. Implemente la unión con el algoritmo de Baeza Yates.
+
 ## Operaciones con tres o más conjuntos
 Los algoritmos y costos hasta ahora revisados se cumplen para dos conjuntos; se mencionaron diferentes algoritmos, algunos de ellos especializados por características como las proporciones de los conjuntos de entrada. 
 
 En particular, es importante hacer notar que ni el problema ni las aplicaciones estan limitadas a dos conjuntos, y por tanto, es importante algoritmos y estrategías para resolver $\bigcup_i A_i$ así como $\bigcap_i A_i$.
 
 ### Algoritmo SvS
+Dado $C = A \cap B$ es un hecho que $|C| \leq min \{|A|, |B|\}$. Recordando, que hay maneras relativamente simples y eficientes de resolver la intersección cuando $m \ll n$; por tanto, cuando tenemos más de dos conjuntos podemos aplicar la estrategía _Small vs Small (SvS)_, que consisten en intersectar los $k$ conjuntos por pares intersectando el par de arreglos más pequeños cada vez.
+
+```{julia}
+#| output: false
+# Adaptado de https://github.com/sadit/Intersections.jl
+
+function svs(L::Vector{T}, in2::Function=baezayates!) where T
+    prev, curr = eltype(T)[], eltype(T)[]
+    sort!(L, by=length, rev=true)
+    curr = pop!(L)
+
+    while length(L) > 0
+        empty!(prev)
+        isize = in2(prev, curr, pop!(L))
+        isize == 0 && return prev
+        prev, curr = curr, prev
+    end
+
+    curr
+end
+```
+
+```{julia}
+#| output: false
+#| echo: false
+@assert [4, 6] == svs([[1, 3, 4, 6, 8], [2, 4, 5, 6, 7]])
+@assert 1:5 == svs([1:10, 1:5])
+@assert 1:9 == svs([0:10, 1:9])
+@assert 1:2:9 == svs([0:10, 1:2:9])
+```
 
 ### Algoritmo de Barbay y Kenyon
 
 
 
-Cuando $k>2$, la intersección se puede realizar usando las $k$ listas a la vez, o se puede hace por pares. Se puede observar que la intersección de dos conjuntos da como resultado un conjunto igual o más pequeño que el más pequeño de los conjuntos intersectados. Adicionalmente, los conjuntos pequeños son "más faciles" de intersectar con un algoritmo _na\"ive_. Por tanto, una estrategía que funciona bien en el peor caso es intersectar los 2 arreglos más pequeños cada vez. Esta una idea muy
-popular llamada _Small vs Small (SvS)_.
+
 
 Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En [@DLOPM2001], [@BLOL2006], [@BLOLS2010], y [@BYS2005] se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores [@DLOM2000], [@DLOPM2001], [@BK2002], [@BY2004].
 
