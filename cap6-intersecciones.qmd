@@ -168,6 +168,7 @@ digraph lista {
 Se hace notar que $A$ y $B$ estan ordenados, y por lo tanto, localizar $A[i]$ en $B[j]$ significa que $B[j-1] < A[i]$, por lo que intentar localizar $A[i+1]$ puede comenzar en $B[j+1]$. A continuación se muestra el código de un algoritmo de intersección usando algoritmos de búsqueda con memoria de la posición anterior.
 
 ```{julia}
+#| output: false
 function intsearch!(C, A, B, algosearch=doublingsearch)
     if length(B) < length(A)
         A, B = B, A
@@ -301,15 +302,21 @@ end
 @assert 1:5 == svs([1:10, 1:5])
 @assert 1:9 == svs([0:10, 1:9])
 @assert 1:2:9 == svs([0:10, 1:2:9])
+
+@assert [4, 6] == svs([[1, 3, 4, 6, 8], [2, 4, 5, 6, 7]], intsearch!)
+@assert 1:5 == svs([1:10, 1:5], intsearch!)
+@assert 1:9 == svs([0:10, 1:9], intsearch!)
+@assert 1:2:9 == svs([0:10, 1:2:9], intsearch!)
 ```
 
 ### Algoritmo de Barbay y Kenyon
 
 
+Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. @DLOPM2001, @BLOL2006, y @BLOLS2010 muestran algoritmos de intersección basados en búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores: @DLOM2000, @DLOPM2001, @BK2002 y @BY2004.
 
+De manera particular, @BLOL2006...
 
-
-Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. En [@DLOPM2001], [@BLOL2006], [@BLOLS2010], y [@BYS2005] se muestran comparaciones experimentales de diversos algoritmos de intersección, entre ellos adaptables, que utilizan de manera creativa algoritmos de búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores [@DLOM2000], [@DLOPM2001], [@BK2002], [@BY2004].
+... en construcción ...
 
 ## Recursos audio-visuales de la unidad
 
@@ -325,30 +332,4 @@ Implementación y comparación de diferentes algoritmos de intersección de conj
 Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.
 
 
-### Actividad 0 [Sin entrega]
 
-1. Lea y comprenda los artículos relacionados (listados en la introducción).
-
-### Actividad 1 [Con reporte]
-1. Cargue el archivo `listas-posteo-100.json` del tema 3. Si lo desea, puede usar listas de posteo generadas con otros conjuntos de datos, usando los scripts de las unidades pasadas. Si es necesario, repase los temas anteriores para recordar la naturaleza y propiedades de las listas.
-
- - Sea $P^{(2)}$ el conjunto de todos los posibles pares de listas entre las 100 listas de posteo. Seleccione de manera aleatoria $A \subset P^{(2)}$, $|A| = 1000$.
- - Sea $P^{(3)}$ el conjunto de todas las posibles combinaciones de tres listas de posteo entre las 100 listas disponibles, Seleccione de manera aleatoria $B \subset P^{(3)}$, $|B| = 1000$.
- - Sea $P^{(4)}$ el conjunto de todas las posibles combinaciones de cuatro listas de posteo entre las 100 listas disponibles. Seleccione de manera aleatoria $C \subset P^{(4)}$, $|C| = 1000$.
-
-2. Implemente los algoritmos de las secciones 3.1 _Melding Algorithms_ y 3.2 _Search algorithms_ (en especial 3.2.1 y 3.2.2) de [@BLOLS2010].
-
-3. Realice y reporte los siguientes experimentos:
- - Intersecte cada par de listas $a, b \in A$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
- - Intersecte cada tripleta de listas $a, b, c \in B$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones. 
- - Intersecte cada tetrapleta de listas $a, b, c, d \in C$, y reporte de manera acumulada el tiempo en segundos y el número de comparaciones.
- - Cree una figura `boxplot` que describa el tiempo en segundos para los tres experimentos.
- - Cree una figura `boxplot` que describa el número de comparaciones para los tres experimentos.
- - Cree una figura `boxplot` que describa las longitudes de las intersecciones resultantes para $A$, $B$, $C$.
-
-### Entregable
-El reporte deberá ser en formato notebook y el PDF del mismo notebook. El notebook debe contener las
-implementaciones. Recuerde que el reporte debe llevar claramente su nombre, debe incluir una
-introducción, la explicación de los métodos usados, la explicación de los experimentos realizados, la discusión de los resultados, y finalizar con sus observaciones y conclusiones.
-
-_Nota sobre la generación del PDF_: Jupyter no genera el PDF directamente, a menos que se tengan instalados una gran cantidad de paquetes, entre ellos una instalación completa de LaTeX. En su lugar, para generar el PDF en Jupyter primero guarde el notebook como HTML y luego genere el PDF renderizando e imprimiendo el HTML con su navegador. En lugar de imprimir, seleccione guardar como PDF.
