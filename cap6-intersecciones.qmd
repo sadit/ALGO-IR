@@ -214,9 +214,9 @@ Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inse
 1. Se toma la mediana $M$ de $A$ y se busca en $B$ obteniendo su posición de inserción $p$.
 2. El problema entonces se divide en 3 subproblemas:
     \begin{align}
-    C_< &: \{A[1..M-1] \cap B[1..p-e]\} \\
-    C_= &: \{A[M]\} \cap \{B[p]\} \\ 
-    C_> &: \{A[M+1..m] \cap B[p+e..n]\} \\
+    C_< &= \{A[1..M-1] \cap B[1..p-e]\} \\
+    C_= &= \{A[M]\} \cap \{B[p]\} \\ 
+    C_> &= \{A[M+1..m] \cap B[p+e..n]\} \\
     \end{align}
   donde $e=1$ si $A[M] = B[p]$ y $e=0$ cuando $A[M] \not= B[p]$.
 3. La unión de estos tres conjuntos es la solución $C_< \cup C_= \cup C_>$.
@@ -312,11 +312,70 @@ end
 ### Algoritmo de Barbay y Kenyon
 
 
-Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. @DLOPM2001, @BLOL2006, y @BLOLS2010 muestran algoritmos de intersección basados en búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teoricas de los mismos autores: @DLOM2000, @DLOPM2001, @BK2002 y @BY2004.
+Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. @DLOPM2001, @BLOL2006, y @BLOLS2010 muestran algoritmos de intersección basados en búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teóricas de los mismos autores: @DLOM2000, @DLOPM2001, @BK2002 y @BY2004.
 
-De manera particular, @BLOL2006...
+El algoritmo de @BLOL2006 trabaja sobre los $k$ conjuntos de entrada, representados como arreglos ordenados de números enteros. Es un algoritmo simple pero poderoso: hace uso de búsquedas adaptivas con memoria para guardar las posiciones donde se avanza, de tal forma que no se recalculen posiciones. Las diferentes estrategias para revisar los conjuntos pueden dar diferentes desempeños, como se valida en @BLOLS2010, donde además de hacer una gran variedad de experimentos sobre diferentes algoritmos de búsqueda, se introducen variantes en el orden de acceso de cada conjunto.
 
-... en construcción ...
+A continuacións se muestra el código del algoritmo base:
+
+```{julia}
+#| output: false
+# Adaptado de https://github.com/sadit/Intersections.jl
+
+function bk!(output, L::AbstractVector, findpos::Function=doublingsearch)
+    P = ones(Int, length(L))
+    bk!(output, L, P, findpos)
+end
+ 
+function bk!(output, L, P, findpos::Function=doublingsearch)  # <1>
+    n = length(L) # <2>
+    el = L[1][1]  # <3>
+    c = 0 # <4>
+
+    @inbounds while true
+        for i in eachindex(P)
+            P[i] = findpos(L[i], el, P[i])  # <5>
+            P[i] > length(L[i]) && return output
+            pval = L[i][P[i]]
+            if pval == el
+                c += 1
+                if c == n # <6>
+                    push!(output, el)
+                    c = 0  # <7>
+                    P[i] += 1 # <7>
+                    P[i] > length(L[i]) && return output
+                    el = L[i][P[i]] # <7>
+                end
+            else
+                c = 0 # <7>
+                el = pval # <7>
+            end
+        end
+    end
+
+    output
+end
+```
+1. El algoritmo de Barbay & Kenyon recibe: i) `output` el conjunto de salida. ii) `L` la lista de conjuntos (representados como arreglos ordenados). iii) `P` arreglo de posiciones _actuales_ para cada arreglo. iv) findpos` función de búsqueda.
+2. Número de conjuntos en `L`.
+3. `el` es el elemento siendo búscado en todos los arreglos. 
+4. `c` número de listas que contienen `el`.
+5. Búscando la posición de inserción de `el` en `L[i]`, comenzando en `P[i]`.
+6. Esta igualdad implica que hay interección.
+7. Reiniciando `el` y `c` y actualizando `P[i]`.
+
+```{julia}
+#| output: false
+#| echo: false
+@assert [4, 6] == bk!([], [[1, 3, 4, 6, 8], [2, 4, 5, 6, 7]])
+@assert 1:5 == bk!([], [1:10, 1:5])
+@assert 1:9 == bk!([], [0:10, 1:9])
+@assert 1:2:9 == bk!([], [0:10, 1:2:9])
+
+```
+
+De manera particular, @BLOLS2010 presentan un estudio experimental sobre los algoritmos presentados en el área durante la decada de 2000 a 2010, dichos algoritmos se parametrizaron de maneras que nos permiten aprender diferentes características de cada uno de ellos, dependiendo de los algoritmos de búsqueda que usan, la arquitectura computacional donde se evalúa, y el número de conjuntos siendo procesados.
+
 
 ## Recursos audio-visuales de la unidad
 
