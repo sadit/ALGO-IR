@@ -1,0 +1,15 @@
+
+# Galería de actividades MCDI {.unnumbered}
+Este curso se impartió en este formato en MCDI-2025-1; el plan es modificar las actividades ligeramente con forme pasan los semestres y que la galería apoye a los nuevos estudiantes para tener ejemplos claros de lo que se solicita.
+
+## Semestre 2025-1
+
+| Alumno | Sitio |
+|--------|-------|
+| Arif Narváez | <https://arifnvz.github.io/about.html> |
+| José Francisco Cázarez Marroquín | <https://dsfrankcaza.github.io/Analsis-de-Algoritmos/> |
+| Luis Alberto Rodríguez Catana | <https://albertocat.github.io/Algoritmos/> |
+| Brigitte Rarinka Godinez Montoya | <https://github.com/Programadari/analisis-de-algoritmos-2025-1/> |
+| Alma Diana Herrera Ortiz | <https://aldihero.github.io/datascience_foundations/> |
+| Isaac Hernández Ramírez | <https://isaachr141522.github.io/reportes_algoritmos/> |
+| Santiago Botero Sierra | <https://sboteros.com/about.html> |

@@ -316,7 +316,7 @@ Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden 
 
 El algoritmo de @BLOL2006 trabaja sobre los $k$ conjuntos de entrada, representados como arreglos ordenados de números enteros. Es un algoritmo simple pero poderoso: hace uso de búsquedas adaptivas con memoria para guardar las posiciones donde se avanza, de tal forma que no se recalculen posiciones. Las diferentes estrategias para revisar los conjuntos pueden dar diferentes desempeños, como se valida en @BLOLS2010, donde además de hacer una gran variedad de experimentos sobre diferentes algoritmos de búsqueda, se introducen variantes en el orden de acceso de cada conjunto.
 
-A continuacións se muestra el código del algoritmo base:
+A continuación se muestra el código del algoritmo base:
 
 ```{julia}
 #| output: false
@@ -375,7 +375,6 @@ end
 ```
 
 De manera particular, @BLOLS2010 presentan un estudio experimental sobre los algoritmos presentados en el área durante la decada de 2000 a 2010, dichos algoritmos se parametrizaron de maneras que nos permiten aprender diferentes características de cada uno de ellos, dependiendo de los algoritmos de búsqueda que usan, la arquitectura computacional donde se evalúa, y el número de conjuntos siendo procesados.
-
 
 ## Recursos audio-visuales de la unidad
 

@@ -257,6 +257,23 @@ window.Quarto = {
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./galeria-actividades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Galería de actividades MCDI</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -719,7 +736,7 @@ C_&gt; &amp;= \{A[M+1..m] \cap B[p+e..n]\} \\
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="algoritmo-de-barbay-y-kenyon"><span class="header-section-number">6.4.2</span> Algoritmo de Barbay y Kenyon</h3>
 <p>Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. <span class="citation" data-cites="DLOPM2001">Demaine, López-Ortiz, y Ian Munro (<a href="refs.html#ref-DLOPM2001" role="doc-biblioref">2001</a>)</span>, <span class="citation" data-cites="BLOL2006">Barbay, López-Ortiz, y Lu (<a href="refs.html#ref-BLOL2006" role="doc-biblioref">2006</a>)</span>, y <span class="citation" data-cites="BLOLS2010">Barbay et&nbsp;al. (<a href="refs.html#ref-BLOLS2010" role="doc-biblioref">2010</a>)</span> muestran algoritmos de intersección basados en búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teóricas de los mismos autores: <span class="citation" data-cites="DLOM2000">Demaine, López-Ortiz, y Munro (<a href="refs.html#ref-DLOM2000" role="doc-biblioref">2000</a>)</span>, <span class="citation" data-cites="DLOPM2001">Demaine, López-Ortiz, y Ian Munro (<a href="refs.html#ref-DLOPM2001" role="doc-biblioref">2001</a>)</span>, <span class="citation" data-cites="BK2002">Barbay y Kenyon (<a href="refs.html#ref-BK2002" role="doc-biblioref">2002</a>)</span> y <span class="citation" data-cites="BY2004">Baeza-Yates (<a href="refs.html#ref-BY2004" role="doc-biblioref">2004</a>)</span>.</p>
 <p>El algoritmo de <span class="citation" data-cites="BLOL2006">Barbay, López-Ortiz, y Lu (<a href="refs.html#ref-BLOL2006" role="doc-biblioref">2006</a>)</span> trabaja sobre los <span class="math inline">\(k\)</span> conjuntos de entrada, representados como arreglos ordenados de números enteros. Es un algoritmo simple pero poderoso: hace uso de búsquedas adaptivas con memoria para guardar las posiciones donde se avanza, de tal forma que no se recalculen posiciones. Las diferentes estrategias para revisar los conjuntos pueden dar diferentes desempeños, como se valida en <span class="citation" data-cites="BLOLS2010">Barbay et&nbsp;al. (<a href="refs.html#ref-BLOLS2010" role="doc-biblioref">2010</a>)</span>, donde además de hacer una gran variedad de experimentos sobre diferentes algoritmos de búsqueda, se introducen variantes en el orden de acceso de cada conjunto.</p>
-<p>A continuacións se muestra el código del algoritmo base:</p>
+<p>A continuación se muestra el código del algoritmo base:</p>
 <div id="20" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptado de https://github.com/sadit/Intersections.jl</span></span>
 <span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1631,7 +1648,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a>El algoritmo de @BLOL2006 trabaja sobre los $k$ conjuntos de entrada, representados como arreglos ordenados de números enteros. Es un algoritmo simple pero poderoso: hace uso de búsquedas adaptivas con memoria para guardar las posiciones donde se avanza, de tal forma que no se recalculen posiciones. Las diferentes estrategias para revisar los conjuntos pueden dar diferentes desempeños, como se valida en @BLOLS2010, donde además de hacer una gran variedad de experimentos sobre diferentes algoritmos de búsqueda, se introducen variantes en el orden de acceso de cada conjunto.</span>
 <span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>A continuacións se muestra el código del algoritmo base:</span>
+<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>A continuación se muestra el código del algoritmo base:</span>
 <span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
 <span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
@@ -1691,21 +1708,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a>De manera particular, @BLOLS2010 presentan un estudio experimental sobre los algoritmos presentados en el área durante la decada de 2000 a 2010, dichos algoritmos se parametrizaron de maneras que nos permiten aprender diferentes características de cada uno de ellos, dependiendo de los algoritmos de búsqueda que usan, la arquitectura computacional donde se evalúa, y el número de conjuntos siendo procesados.</span>
 <span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recursos audio-visuales de la unidad</span></span>
-<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas</span>
-<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
-<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a>Parte 2: Algoritmos de intersección y algunas aplicaciones</span>
-<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
-<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-411"><a href="#cb4-411" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
-<span id="cb4-412"><a href="#cb4-412" aria-hidden="true" tabindex="-1"></a>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</span>
-<span id="cb4-413"><a href="#cb4-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-414"><a href="#cb4-414" aria-hidden="true" tabindex="-1"></a>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</span>
+<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recursos audio-visuales de la unidad</span></span>
+<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a>Parte 1: Algoritmos de intersección (y unión) de listas ordenadas</span>
+<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/aDYO39yi-4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a>Parte 2: Algoritmos de intersección y algunas aplicaciones</span>
+<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
+<span id="cb4-411"><a href="#cb4-411" aria-hidden="true" tabindex="-1"></a>Implementación y comparación de diferentes algoritmos de intersección de conjuntos.</span>
+<span id="cb4-412"><a href="#cb4-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-413"><a href="#cb4-413" aria-hidden="true" tabindex="-1"></a>Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.</span>
+<span id="cb4-414"><a href="#cb4-414" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-415"><a href="#cb4-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-416"><a href="#cb4-416" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

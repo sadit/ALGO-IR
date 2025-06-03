@@ -19,6 +19,8 @@ book:
     - cap5-busqueda.qmd
     - cap6-intersecciones.qmd
     - refs.qmd
+  appendices:
+    - galeria-actividades.qmd
   site-url: https://sadit.github.io/ALGO-IR
   repo-url: https://github.com/sadit/ALGO-IR
   downloads: pdf
