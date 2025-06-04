@@ -6,10 +6,13 @@ Este curso se impartió en este formato en MCDI-2025-1; el plan es modificar las
 
 | Alumno | Sitio |
 |--------|-------|
-| Arif Narváez | <https://arifnvz.github.io/about.html> |
-| José Francisco Cázarez Marroquín | <https://dsfrankcaza.github.io/Analsis-de-Algoritmos/> |
-| Luis Alberto Rodríguez Catana | <https://albertocat.github.io/Algoritmos/> |
-| Brigitte Rarinka Godinez Montoya | <https://github.com/Programadari/analisis-de-algoritmos-2025-1/> |
 | Alma Diana Herrera Ortiz | <https://aldihero.github.io/datascience_foundations/> |
+| Arif Narváez de la O | <https://arifnvz.github.io/about.html> |
+| Brigitte Rarinka Godinez Montoya | <https://github.com/Programadari/analisis-de-algoritmos-2025-1/> |
+| David Segundo Garcia | <https://davidsg24.github.io/An-lisis-de-algoritmos/> |
 | Isaac Hernández Ramírez | <https://isaachr141522.github.io/reportes_algoritmos/> |
+| José Alberto Villegas Díaz Disciplina | <https://albertovillegas07.github.io/AnalisisAlgoritmos2025/> |
+| José Francisco Cázarez Marroquín | <https://dsfrankcaza.github.io/Analsis-de-Algoritmos/> |
+| Juan Antonio Velasquez Martinez | <https://juan21javm.github.io/proyecto-analisis-de-algoritmos/> |
+| Luis Alberto Rodríguez Catana | <https://albertocat.github.io/Algoritmos/> |
 | Santiago Botero Sierra | <https://sboteros.com/about.html> |

@@ -1,10 +1,10 @@
 ---
-title: "Algoritmos de intersección y unión de conjuntos en el modelo de comparación"
 lang: es-MX
 engine: julia
 
 ---
 
+# Algoritmos de intersección y unión de conjuntos en el modelo de comparación {#sec-intersecciones}
 
 ## Objetivo {.unnumbered}
 Analizar el rendimiento de algoritmos de unión e intersección de conjuntos representados como listas ordenadas parametrizando los algoritmos con los algoritmos internos de búsqueda, tamaño de los conjuntos y la distribución de los elementos, bajo un enfoque experimental midiendo los costos en términos del tiempo de ejecución y el uso de memoria.
