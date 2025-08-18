@@ -5,19 +5,186 @@ lang: es-MX
 
 # Introducción al análisis de algoritmos con Julia {#sec-analisis}
 
-Este capítulo introduce los fundamentos de análisis de algoritmos. Se introduce el concepto de modelo de cómputo, se itroduce y se motiva la notación asintótica, ya que es el lenguaje común en el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar algoritmos que resuelvan una tarea dada, así como permitirnos catalogarlos con respecto a los recursos de computo necesarios para ejecutarlos.
+Este capítulo introduce a los fundamentos de análisis de algoritmos. Se introduce el concepto de modelo de cómputo y la notación asintótica, preparandonos para usar el lenguaje común en el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar algoritmos que resuelvan una tarea dada, así como catalogarlos con respecto a los recursos de computo necesarios para ejecutarlos.
 
 ## Concepto de algoritmo y estructura de datos
-Los algoritmos son especificaciones formales de los pasos u operaciones que deben aplicarse a un conjunto de entradas para resolver un problema, obteniendo una solución correcta a dicho problema. Establecen los fundamentos de la programación y de la manera en como se diseñan los programas de computadoras. Dependiendo del problema, pueden existir múltiples algoritmos que lo resuelvan, cada uno de ellos con sus diferentes particularidades. Así mismo, un problema suele estar conformado por una cantidad enorme de instancias de dicho problema, por ejemplo, para una lista de $n$ números, existen $n!$ formas de acomodarlos, de tal forma que puedan ser la entrada a un algoritmo cuya entrada sea una lista de números donde el orden es importante. En ocasiones, los problemas pueden tener infinitas de instancias. En este curso nos enfocaremos en problemas que pueden ser simplificados a una cantidad finita instancias.
+Los algoritmos son especificaciones formales de los pasos u operaciones que deben aplicarse a un conjunto de entradas para resolver un problema, obteniendo una solución correcta a dicho problema. Establecen los fundamentos de la programación y delinean la manera en como se diseñan los programas de computadoras. 
+
+Es común encontrar que un problema puede ser resuelto por múltiples algoritmos, cada uno de ellos con sus diferentes particularidades. Así mismo, un problema suele estar conformado por una cantidad enorme de instancias de dicho problema, por ejemplo, para una lista de $n$ números, existen $n!$ formas de acomodarlos, de tal forma que puedan ser la entrada a un algoritmo cuya entrada sea una lista de números donde el orden es importante. En ocasiones, los problemas pueden tener infinitas de instancias. En este curso nos enfocaremos en problemas que pueden ser simplificados a una cantidad finita instancias.
 
 Cada paso u operación en un algoritmo esta bien definido y puede ser aplicado o ejecutado para producir un resultado. A su vez, cada operación suele tener un costo, dependiente del módelo de computación. Conocer el número de operaciones necesarias para transformar la entrada en la salida esperada, i.e., resolver el problema, es de vital importancia para seleccionar el mejor algoritmo para dicho problema, o aun más, para instancias de dicho problema que cumplen con ciertas características.
 
 Una estructura de datos es una abstracción en memoria de entidades matemáticas y lógicas que nos permite organizar, almacenar y procesar datos en una computadora. El objetivo es que la información representada puede ser manipulada de manera eficiente en un contexto específico, además de simplificar la aplicación de operaciones para la aplicación de algoritmos. 
 
 ## Modelos de cómputo 
-Un modelo de cómputo es una abstracción matemática de una computadora o marco de trabajo algorítmico que nos permite estudiar y medir los costos de los algoritmos funcionando en este modelo de tal forma que sea más simple que una computadora física real. Ejemplos de estos modelos son las máquinas de Turing, las funciones recursivas, el cálculo lambda, o la máquina de acceso aleatorio. Todas estos modelos son _equivalentes_ en sus capacidades, pero sus diferentes planteamientos permiten enfocarse en diferentes aspectos de los problemas.
+Un modelo de cómputo es una abstracción matemática de una computadora o marco de trabajo algorítmico que nos permite estudiar y medir los costos de los algoritmos funcionando en este modelo de tal forma que sea más simple que una computadora física real. Ejemplos de estos modelos:
 
-- [La máquina de Turing](https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing). Es un módelo creado por Alan Turing a principios del siglo XX; la idea es un dispositivo que podría ser implementada de manera mecánica si se tuvieran recursos infinitos; esta máquina puede leer y escribir en una cinta _infinita_ una cantidad de símbolos predeterminada para cada problema siguiendo una serie de reglas simples sobre lo que lee y escribe, dichas reglas y la cienta, forman una máquina de estados y memoria, que pueden realizar cualquier cálculo si el tiempo no fuera un problema.
+- [La máquina de Turing](https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing).
+- [Funciones recursivas](https://es.wikipedia.org/wiki/Funci%C3%B3n_recursiva). 
+- [Cálculo lambda](https://es.wikipedia.org/wiki/C%C3%A1lculo_lambda). 
+- [Máquina de acceso aleatorio (RAM)](https://en.wikipedia.org/wiki/Random-access_machine). 
+
+Todas estos modelos son _equivalentes_ en sus capacidades, pero sus diferentes planteamientos permiten enfocarse en diferentes aspectos de los problemas.
+
+### Máquina de Turing
+ Es un módelo creado por Alan Turing a principios del siglo XX; la idea es un dispositivo que podría ser implementada de manera mecánica si se tuvieran recursos infinitos; esta máquina puede leer y escribir mediante un cabezal en una cinta _infinita_ (ver @fig-turing-cinta) una cantidad de símbolos predeterminada para cada problema siguiendo una serie de reglas simples sobre lo que lee y escribe, dichas reglas y la cienta, forman una máquina de estados y memoria, que pueden realizar cualquier cálculo.
+
+ ```{dot}
+//| label: fig-turing-cinta
+//| echo: false
+//| fig-width: 60%
+//| fig-cap: |
+//|   Cabezal y cinta.
+//| 
+ digraph TuringTape {
+    rankdir=TB;
+    node [shape=box, fixedsize=true, width=0.5];
+
+    // Celdas de la cinta
+    subgraph cluster_tape {
+        label="cinta";
+        style=filled;
+        color=lightgrey;
+        nodesep=0.02;
+        node [margin=0.1];
+        start [label=""]; // Celda vacía al inicio
+        01 [label="0"];
+        02 [label="0"];
+        03 [label="0"];
+        11 [label="1"];
+        12 [label="1"];
+        13 [label="1"];
+        end [label=""]; // Celda vacía al final
+
+        // Organizar las celdas en una línea horizontal
+        {
+            rank=same;
+            nodesep=0.02;
+            start -> 01 -> 02 -> 03 -> 11 -> 12 -> 13 -> end [style=invis, width=0.02];
+        }
+    }
+    
+    // Cabezal de la máquina de Turing
+    node [shape=invhouse, label="cabezal", color=red, style=filledk, width=1, height=0.5];
+    head;
+
+    // Conectar el cabezal a la celda que se lee
+    head -> 01;
+}
+```
+
+Una máquina de Turing se puede escribir como una tupla de 7 elementos $M=(Q, \Sigma, \Gamma, s, \epsilon, F, \delta)$ donde:
+
+- $Q$ es un conjunto finito de estados.
+- $\Sigma$ es el alfabeto de entrada, i.e., un conjunto finito de símbolos que no incluye el espacio en blanco.
+- $\Gamma$ es el alfabeto de la cinta , i.e., un conjunto finito de símbolos $\Sigma \subseteq \Gamma$.
+- $s \in Q$ es el estado inicial.
+- $\epsilon \in \Gamma$ es un símbolo especial denominado _blanco_; y puede llenar la cinta al infinito.
+- $F \subseteq Q$ conjunto de estados finales de aceptación.
+- $\delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{L, R\}$, es la función de transición, i.e., una función parcial que índica que se debe hacer al leer un símbolo en la posición actual de lectura, esto es, qué se escribe, hacia que estado se cambia, y la dirección de movimiento de la cinta (siempre se mueve en una celda).
+
+Hay muchas variantes de la definición de máquina de Turing, por ejemplo, una cinta especial para lectura y una para escritura, diferentes formas de definir las transiciones, símbolos para no moverse, etc. Hasta ahora, todas las formas son a lo más equivalentes en términos de poder de cómputo, la diferencia viene en la expresividad para definir soluciones.
+
+Todos los problemas entonces se deben plantear en forma de lenguajes, i.e., cadenas de símbolos; esto es, en términos de _dada la cadena S ¿la máquina $M$ la acepta?_, dónde _acepta_ quiere decir que la máquina es capaz de ir desde el estado inicial al estado de aceptación leyendo $S$. Si $M$ no termina en un estado de aceptación, entonces implicará un _no_ (e.g., no existe una definición en la función de transición para un estado y símbolo o no es suficiente para llegar a un estado de aceptación).
+
+Por ejemplo, sea $M_{01}$ una máquina capaz de detectar $n \geq 0$ ceros terminados por un único $1$. Entonces
+
+$$M_{01} = (\{q_0, q_1, q_2\}, \{0, 1\}, \{0, 1, X, \epsilon \}, q_0, \epsilon, \{q_2\}, \delta_{01})$$
+
+donde la función de transición se define como:
+
+- $\delta_{01}(q_0, 0) = (q_0, X, R)$
+- $\delta_{01}(q_0, 1) = (q_1, X, R)$
+- $\delta_{01}(q_1, \epsilon) = (q_2, \epsilon, R)$
+
+Dada la regularidad de la función de transición, es común escribirla como una tabla:
+
+| entrada  | salida       |
+|----------|--------------|
+| $(q_0, 0)$ | $(q_0, X, R)$ |
+| $(q_0, 1)$ | $(q_1, X, R)$ |
+| $(q_1, \epsilon)$ | $(q_2, \epsilon, R)$ |
+
+Una máquina de Turing se puede representar mediante un autómata
+
+
+```{dot}
+//| label: fig-turing
+//| echo: false
+//| fig-width: 60%
+//| fig-cap: |
+//|   Ejemplo de máquina de Turing que reconoce cadenas $0^n 1$
+
+digraph G {
+    rankdir=LR;
+    // Nodos de los estados
+    node [shape = doublecircle]; q0;
+    node [shape = circle]; q1;
+    node [shape = doublecircle, style=filled, fillcolor=lightgreen]; q2;
+    //node [shape = doublecircle, style=filled, fillcolor=lightgreen];
+    // Transiciones
+    q0 -> q0 [label = "0 → X, R"];
+    q0 -> q1 [label = "1 → X, R"];
+    q1 -> q2 [label = "ϵ → ϵ, R"];
+}
+```
+
+Supongamos ahora el problema de reconocer cadenas $0^n 1^n$; para esto podemos definir la siguiente máquina de Turing 
+$$(\{q_0, q_1, q_2, q_3, q_4\}, \{0, 1\}, \{0, 1, X, Y, \epsilon\}, q_0, \epsilon, \{q_4\}, \delta),$$
+donde la función de transición es como sigue:
+
+- $\delta(q_0, 0) = (q_1, X, R)$
+- $\delta(q_0, Y) = (q_3, Y, R)$
+- $\delta(q_1, 0) = (q_1, 0, R)$
+- $\delta(q_1, 1) = (q_2, Y, L)$
+- $\delta(q_1, Y) = (q_1, Y, R)$
+- $\delta(q_2, 0) = (q_2, 0, L)$
+- $\delta(q_2, X) = (q_0, X, R)$
+- $\delta(q_2, Y) = (q_2, Y, L)$
+- $\delta(q_3, Y) = (q_3, Y, R)$
+- $\delta(q_3, \epsilon) = (q_4, \epsilon, R)$
+
+```{dot}
+//| label: fig-turing
+//| echo: false
+//| fig-width: 60%
+//| fig-cap: |
+//|   Ejemplo de máquina de Turing que reconoce cadenas $0^n 1^n$
+
+digraph G {
+    rankdir=LR;
+    // Nodos de los estados
+    node [shape = doublecircle] q0;
+    node [shape = circle]; q1, q2, q3;
+    node [shape = doublecircle, style=filled, fillcolor=lightgreen]; q4;
+    
+    // Transiciones
+    
+    q0 -> q1 [label = "0 → X, R"];
+    q0 -> q3 [label = "Y → Y, R"];
+
+    q1 -> q1 [label = "0 → 0, R"];
+    q1 -> q1 [label = "Y → Y, R"];
+    q1 -> q2 [label = "1 → Y, L"];
+
+    q2 -> q2 [label = "Y → Y, L"];
+    q2 -> q2 [label = "0 → 0, L"];
+    q2 -> q0 [label = "X → X, R"];
+
+    q3 -> q3 [label = "Y → Y, R"];
+    q3 -> q4 [label = "ϵ → ϵ, R"];
+}
+```
+
+Todo inicia con una cadena de la forma esperada, e.g., $000111$, la idea general del algoritmo es aparear 0's y 1's, ya que solo es valido si ambas subcadenas tienen igual longitud. Para esto se marcan los 0's vistos con $X$ y los 1's con $Y$. La máquina estará entonces marcando las primeras ocurrencias y moviendose a traves de la cinta para encontrar los correspondientes.
+
+
+::: {.callout-important}
+Las máquinas de Turing son expresiones mínimas de lo que es cómputable con una clara analogía mecánica, lo cual hace evidente su implementación en el mundo físico. 
+:::
+
+### Otros modelos
+
 - [Funciones recursivas](https://es.wikipedia.org/wiki/Funci%C3%B3n_recursiva). Se basa en funciones que trabajan sobre los números naturales y que definen en conjunto el espacio de funciones computables. Son una herramienta abstracta que permite a los teóricos de la lógica y computación establecer los límites de lo computable.
 -  [Cálculo lambda](https://es.wikipedia.org/wiki/C%C3%A1lculo_lambda). Es un módelo creado por Alonzo Church y Stephen Kleene a principios del siglo XX, al igual que las funciones recursivas, se fundamenta en el uso de funciones y es una herramienta abstracta con própositos similares, sin embargo el cálculo lambda no se limita a recursiones, y se enfoca en diferentes reglas de reducción y composición de funciones, y es natural la inclusión de operadores de alto nivel, aunque estos mismos sean definidos mediante un esquema funcional.
 - [Máquina de acceso aleatorio (RAM)](https://en.wikipedia.org/wiki/Random-access_machine). Es un módelo que describe una computadora con registros. Adiferencia de una computadora física, no tienen limitación en su capacidad, ni en la cantidad de registros ni en la precisión de los mismos. Cada registro puede ser identicado de manera única y su contenido leído y escrito mediante reglas o instrucciones formando un programa. En particular reconoce las diferencias entre registros de los programas y registros de datos, i.e., [arquitectura harvard](https://en.wikipedia.org/wiki/Harvard_architecture). Existe un número mínimo de instrucciones necesarias (i.e., incremento, decremento, poner a cero, copiar, salto condicional, parar) pero es común construir esquemas más complejos basados en estas primitivas. Se necesita un registro especial que indica el registro de programa siendo ejecutado. Los accesos a los registros tienen un tiempo constante a diferencia de otros esquemas; es el modelo más cercano a una implementación moderna de computadora. 
@@ -25,6 +192,7 @@ Un modelo de cómputo es una abstracción matemática de una computadora o marco
 ::: {.margin-column}
 Una computadora moderna difiere de muchas formas de una máquina RAM. De entrada, las limitaciones físicas requieren memorias finitas y registros con valores mínimos y máximos. También se debe trabajar con una jerarquía de memoria con diferentes niveles, donde los niveles más rápidos también son los más escasos; por tanto, es importante sacar provecho de esta jerarquía siempre que sea posible. Las operaciones también tienen costos diferentes, dependiendo de su implementación a nivel de circuitería, así como también existe cierto nivel de paralelización que no esta presente en una máquina RAM, tanto a nivel de procesamiento de datos como lectura de datos y el programa, esto sin tener en cuenta la arquitecturas multitarea que ya es común en el equipo actual.
 :::
+
 En este curso nos enfocaremos en especificaciones de alto nivel, donde los algoritmos pueden ser implementados en una computadora física, y estaremos contando operaciones de interés pensando en costos constantes en el acceso a memoria y en una selección de operaciones, al estilo de una máquina RAM.
 
 La selección de operaciones de interés tiene el espíritu de simplificar el análisis, focalizando nuestros esfuerzos en operaciones que acumulan mayor costo y que capturan la dinámica del resto. Adicionalmente al conteo de operaciones nos interesa el desempeño de los algoritmos en tiempo real y en la cantidad de memoria consumida, por lo que se aboradará el costo realizando mediciones experimentales, contrastando con el análisis basado en conteo de operaciones siempre que sea posible. 
