@@ -85,7 +85,11 @@ Una máquina de Turing se puede escribir como una tupla de 7 elementos $M=(Q, \S
 
 Hay muchas variantes de la definición de máquina de Turing, por ejemplo, una cinta especial para lectura y una para escritura, diferentes formas de definir las transiciones, símbolos para no moverse, etc. Hasta ahora, todas las formas son a lo más equivalentes en términos de poder de cómputo, la diferencia viene en la expresividad para definir soluciones.
 
-Todos los problemas entonces se deben plantear en forma de lenguajes, i.e., cadenas de símbolos; esto es, en términos de _dada la cadena S ¿la máquina $M$ la acepta?_, dónde _acepta_ quiere decir que la máquina es capaz de ir desde el estado inicial al estado de aceptación leyendo $S$. Si $M$ no termina en un estado de aceptación, entonces implicará un _no_ (e.g., no existe una definición en la función de transición para un estado y símbolo o no es suficiente para llegar a un estado de aceptación).
+Es cómun plantear los problemas en forma de lenguajes; esto es, en términos de _dada la cadena S ¿la máquina $M$ la acepta?_, dónde _acepta_ quiere decir que la máquina es capaz de ir desde el estado inicial al estado de aceptación leyendo/transformando $S$. Si $M$ no termina en un estado de aceptación, entonces se implica el fallo o respuesta negativa.
+
+::: {.callout-note}
+Algunas causas de fallo son que la función de transición no este definida para un estado y símbolo particular y el no alcanzar un estado de salida aceptación.
+:::
 
 Por ejemplo, sea $M_{01}$ una máquina capaz de detectar $n \geq 0$ ceros terminados por un único $1$. Entonces
 
