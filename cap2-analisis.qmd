@@ -93,21 +93,23 @@ Algunas causas de fallo son que la función de transición no este definida para
 
 Por ejemplo, sea $M_{01}$ una máquina capaz de detectar $n \geq 0$ ceros terminados por un único $1$. Entonces
 
-$$M_{01} = (\{q_0, q_1, q_2\}, \{0, 1\}, \{0, 1, X, \epsilon \}, q_0, \epsilon, \{q_2\}, \delta_{01})$$
+$$M_{01} = (\{q_0, q_1, q_2\}, \{\mathtt{0}, \mathtt{1}\}, \{\mathtt{0}, \mathtt{1}, \mathtt{X}, \mathtt{\epsilon} \}, q_0, \mathtt{\epsilon}, \{q_2\}, \delta_{01})$$
 
 donde la función de transición se define como:
 
-- $\delta_{01}(q_0, 0) = (q_0, X, R)$
-- $\delta_{01}(q_0, 1) = (q_1, X, R)$
-- $\delta_{01}(q_1, \epsilon) = (q_2, \epsilon, R)$
+\begin{align}
+\delta_{01}(q_0, \mathtt{0}) &= (q_0, \mathtt{X}, \mathtt{R}) \\
+\delta_{01}(q_0, \mathtt{1}) &= (q_1, \mathtt{X}, \mathtt{R}) \\
+\delta_{01}(q_1, \mathtt{\epsilon}) &= (q_2, \mathtt{\epsilon}, \mathtt{R}) \\
+\end{align}
 
 Dada la regularidad de la función de transición, es común escribirla como una tabla:
 
 | entrada  | salida       |
 |----------|--------------|
-| $(q_0, 0)$ | $(q_0, X, R)$ |
-| $(q_0, 1)$ | $(q_1, X, R)$ |
-| $(q_1, \epsilon)$ | $(q_2, \epsilon, R)$ |
+| $(q_0, \mathtt{0})$ | $(q_0, \mathtt{X}, \mathtt{R})$ |
+| $(q_0, \mathtt{1})$ | $(q_1, \mathtt{X}, \mathtt{R})$ |
+| $(q_1, \mathtt{\epsilon})$ | $(q_2, \mathtt{\epsilon}, \mathtt{R})$ |
 
 Una máquina de Turing se puede representar mediante un autómata
 
@@ -134,19 +136,21 @@ digraph G {
 ```
 
 Supongamos ahora el problema de reconocer cadenas $0^n 1^n$; para esto podemos definir la siguiente máquina de Turing 
-$$(\{q_0, q_1, q_2, q_3, q_4\}, \{0, 1\}, \{0, 1, X, Y, \epsilon\}, q_0, \epsilon, \{q_4\}, \delta),$$
+$$M = (\{q_0, q_1, q_2, q_3, q_4\}, \{\mathtt{0}, \mathtt{1}\}, \{\mathtt{0}, \mathtt{1}, \mathtt{X}, \mathtt{Y}, \mathtt{\epsilon}\}, q_0, \mathtt{\epsilon}, \{q_4\}, \delta),$$
 donde la función de transición es como sigue:
 
-- $\delta(q_0, 0) = (q_1, X, R)$
-- $\delta(q_0, Y) = (q_3, Y, R)$
-- $\delta(q_1, 0) = (q_1, 0, R)$
-- $\delta(q_1, 1) = (q_2, Y, L)$
-- $\delta(q_1, Y) = (q_1, Y, R)$
-- $\delta(q_2, 0) = (q_2, 0, L)$
-- $\delta(q_2, X) = (q_0, X, R)$
-- $\delta(q_2, Y) = (q_2, Y, L)$
-- $\delta(q_3, Y) = (q_3, Y, R)$
-- $\delta(q_3, \epsilon) = (q_4, \epsilon, R)$
+\begin{align*}
+\delta(q_0, \mathtt{0}) &= (q_1, \mathtt{X}, \mathtt{R}) \\
+\delta(q_0, \mathtt{Y}) &= (q_3, \mathtt{Y}, \mathtt{R}) \\
+\delta(q_1, \mathtt{0}) &= (q_1, \mathtt{0}, \mathtt{R}) \\
+\delta(q_1, \mathtt{1}) &= (q_2, \mathtt{Y}, \mathtt{L}) \\
+\delta(q_1, \mathtt{Y}) &= (q_1, \mathtt{Y}, \mathtt{R}) \\
+\delta(q_2, \mathtt{0}) &= (q_2, \mathtt{0}, \mathtt{L}) \\
+\delta(q_2, \mathtt{X}) &= (q_0, \mathtt{X}, \mathtt{R}) \\
+\delta(q_2, \mathtt{Y}) &= (q_2, \mathtt{Y}, \mathtt{L}) \\
+\delta(q_3, \mathtt{Y}) &= (q_3, \mathtt{Y}, \mathtt{R}) \\
+\delta(q_3, \mathtt{\epsilon}) &= (q_4, \mathtt{\epsilon}, \mathtt{R}) \\
+\end{align*}
 
 ```{dot}
 //| label: fig-turing
@@ -180,26 +184,29 @@ digraph G {
 }
 ```
 
-Todo inicia con una cadena de la forma esperada, e.g., $000111$, la idea general del algoritmo es aparear 0's y 1's, ya que solo es valido si ambas subcadenas tienen igual longitud. Para esto se marcan los 0's vistos con $X$ y los 1's con $Y$. La máquina estará entonces marcando las primeras ocurrencias y moviendose a traves de la cinta para encontrar los correspondientes.
+Todo inicia con una cadena de la forma esperada, e.g., $\mathtt{000111}$, la idea general del algoritmo es aparear $\mathtt{0}$'s y $\mathtt{1}$'s, ya que solo es valido si ambas subcadenas tienen igual longitud. Para esto se marcan los $\mathtt{0}$'s vistos con $\mathtt{X}$ y los $\mathtt{1}$'s con $\mathtt{Y}$. La máquina estará entonces marcando las primeras ocurrencias y moviendose a traves de la cinta para encontrar los correspondientes.
 
 
 ::: {.callout-important}
-Las máquinas de Turing son expresiones mínimas de lo que es cómputable con una clara analogía mecánica, lo cual hace evidente su implementación en el mundo físico. 
+Las máquinas de Turing son capaces del representar cualquier problema cómputable con una analogía mecánica, lo cual hace evidente su implementación en el mundo físico. 
 :::
 
-### Otros modelos
+### Modelos funcionales
 
 - [Funciones recursivas](https://es.wikipedia.org/wiki/Funci%C3%B3n_recursiva). Se basa en funciones que trabajan sobre los números naturales y que definen en conjunto el espacio de funciones computables. Son una herramienta abstracta que permite a los teóricos de la lógica y computación establecer los límites de lo computable.
 -  [Cálculo lambda](https://es.wikipedia.org/wiki/C%C3%A1lculo_lambda). Es un módelo creado por Alonzo Church y Stephen Kleene a principios del siglo XX, al igual que las funciones recursivas, se fundamenta en el uso de funciones y es una herramienta abstracta con própositos similares, sin embargo el cálculo lambda no se limita a recursiones, y se enfoca en diferentes reglas de reducción y composición de funciones, y es natural la inclusión de operadores de alto nivel, aunque estos mismos sean definidos mediante un esquema funcional.
-- [Máquina de acceso aleatorio (RAM)](https://en.wikipedia.org/wiki/Random-access_machine). Es un módelo que describe una computadora con registros. Adiferencia de una computadora física, no tienen limitación en su capacidad, ni en la cantidad de registros ni en la precisión de los mismos. Cada registro puede ser identicado de manera única y su contenido leído y escrito mediante reglas o instrucciones formando un programa. En particular reconoce las diferencias entre registros de los programas y registros de datos, i.e., [arquitectura harvard](https://en.wikipedia.org/wiki/Harvard_architecture). Existe un número mínimo de instrucciones necesarias (i.e., incremento, decremento, poner a cero, copiar, salto condicional, parar) pero es común construir esquemas más complejos basados en estas primitivas. Se necesita un registro especial que indica el registro de programa siendo ejecutado. Los accesos a los registros tienen un tiempo constante a diferencia de otros esquemas; es el modelo más cercano a una implementación moderna de computadora. 
+
+### Máquina de acceso aleatorio (RAM)
+Es un módelo que describe una computadora con registros. A diferencia de una computadora física, no tienen limitación en su capacidad, ni en la cantidad de registros, ni en la precisión de los mismos. Cada registro puede ser identicado de manera única y su contenido leído y escrito mediante reglas o instrucciones formando un programa. En particular reconoce las diferencias entre registros de los programas y registros de datos, i.e., [arquitectura harvard](https://en.wikipedia.org/wiki/Harvard_architecture). Existe un número mínimo de instrucciones necesarias (i.e., incremento, decremento, poner a cero, copiar, salto condicional, parar) pero es común construir esquemas más complejos basados en estas primitivas. Se necesita un registro especial que indica el registro de programa siendo ejecutado. Los accesos a los registros tienen un tiempo constante a diferencia de otros esquemas; es el modelo más cercano a como funciona una computadora moderna entre los que se hemos revisado.
 
 ::: {.margin-column}
-Una computadora moderna difiere de muchas formas de una máquina RAM. De entrada, las limitaciones físicas requieren memorias finitas y registros con valores mínimos y máximos. También se debe trabajar con una jerarquía de memoria con diferentes niveles, donde los niveles más rápidos también son los más escasos; por tanto, es importante sacar provecho de esta jerarquía siempre que sea posible. Las operaciones también tienen costos diferentes, dependiendo de su implementación a nivel de circuitería, así como también existe cierto nivel de paralelización que no esta presente en una máquina RAM, tanto a nivel de procesamiento de datos como lectura de datos y el programa, esto sin tener en cuenta la arquitecturas multitarea que ya es común en el equipo actual.
+Una computadora moderna difieres de una máquina RAM, por ejemplo, a diferencia de una computadora física se suponen infinitos registros con precisión infinita. Debido a los costos de los semiconductores y la energía necesaría, es conveniente construir computadoras con una jerarquía de memoria: los niveles con mayores prestaciones (e.g., rápidez) son los más escasos. Es importante sacar provecho de esta jerarquía siempre que sea posible. Las operaciones también tienen costos diferentes, dependiendo de su implementación a nivel de circuitería, así como también existe cierto nivel de paralelización que no esta presente en una máquina RAM, tanto a nivel de procesamiento y lectura de datos.
 :::
 
-En este curso nos enfocaremos en especificaciones de alto nivel, donde los algoritmos pueden ser implementados en una computadora física, y estaremos contando operaciones de interés pensando en costos constantes en el acceso a memoria y en una selección de operaciones, al estilo de una máquina RAM.
+## Sobre la importancia del modelo de cómputo en el curso
+En este curso nos enfocaremos en especificaciones de alto nivel, donde los algoritmos son convenientes para una computadora física. Sin embargo, estaremos contando operaciones de interés pensando en costos constantes en el acceso a memoria y en una selección de operaciones, al estilo de una máquina RAM.
 
-La selección de operaciones de interés tiene el espíritu de simplificar el análisis, focalizando nuestros esfuerzos en operaciones que acumulan mayor costo y que capturan la dinámica del resto. Adicionalmente al conteo de operaciones nos interesa el desempeño de los algoritmos en tiempo real y en la cantidad de memoria consumida, por lo que se aboradará el costo realizando mediciones experimentales, contrastando con el análisis basado en conteo de operaciones siempre que sea posible. 
+La selección de operaciones de interés tiene el espíritu de simplificar el análisis, focalizando nuestros esfuerzos en operaciones que acumulan mayor costo y que capturan la dinámica del resto. Adicionalmente al conteo de operaciones nos interesa el desempeño de los algoritmos en tiempo como magnitud física medible, así como en la cantidad de memoria consumida, por lo que se aboradará el costo realizando mediciones experimentales. Se contrastará con el análisis basado en conteo de operaciones siempre que sea posible. 
 
 ## Tipos de análisis
 La pregunta inicial sería ¿qué nos interesa saber de un algoritmo que resuelve un problema? probablemente, lo primero sería saber si produce resultados correctos. Después, entre el conjunto de las alternativas que producen resultados correctos, es determinante obtener su desempeño para conocer cuál es más conveniente para resolver un problema. 
