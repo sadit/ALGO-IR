@@ -7,24 +7,21 @@ lang: es-MX
 
 ## Objetivo {.unnumbered}
 
-Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos .
+Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos.
 
 
 ## Introducción
 
-En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. 
-La intención es utilizar código en el lenguaje de programación Julia, que pueda ser traducido fácilmente en otros lenguajes de programación; así como explicar
-las particularidades de las estructuras.
-
+En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. Los ejemplos de código se muestran en el lenguaje de programación Julia, pero que puede ser traducido fácilmente en otros lenguajes de programación. 
 
 
 ## Conjuntos
-Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable, esto es que puede aceptar modificaciones a dicha colección. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $\{a, b, c\}$. Un conjunto puede unirse con otro conjunto, e.g., $\{a, b\} \cup \{c\} = \{a, b, c\}$, así como puede intersectarse con otros conjuntos, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. El tamaño de una colección lo representamos con barras, e.g., $|\{a, b\}| = 2$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por la negación de membrsia, i.e., $a \not\in \{a, b, c\}$. En contraste con la definición matemática de conjunto, es común necesitar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura. Esto es sumamente útil ya que nos permite hacer una representación en memoria que no requiera realizar copias y gestionar más memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada, y es solo una convención, no un operador en sí mismo. Así mismo, note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos. 
+Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $\{a, b, c\}$. La operación _unión_ $\cup$ construye un nuevo conjunto a partir de otros $\{a, b\} \cup \{c\} = \{a, b, c\}$; la intersección se indica con el operador $\cap$, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. El tamaño de una colección lo representamos con barras, e.g., $|\{a, b\}| = 2$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por su negación, i.e., $d \not\in \{a, b, c\}$. Es común usar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura; desde el punto de vista de eficiencia, esto puede reducir las operaciones de manipulación de datos así como de la gestión de memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada; es una convención, no un operador en sí mismo. Note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos.
 
-Es importante hacer notar, que aunque es uno de los conceptos fundamentales, no existe una única manera de representar conjuntos, ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser la diferencia. Las implementaciones  y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.
+Hay múltiples formas de representar conjuntos ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser una diferencia importante en el rendimiento. Las implementaciones y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.
 
 ## Tuplas y estructuras
-Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amérita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
+Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amerita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
 
 ```{julia}
 #| label: codigo-acceso-tupla
@@ -37,7 +34,7 @@ t[1] * t[3] - t[2]
 ```
 
 ::: {.column-margin}
-Dado que es amena para representarse de manera contigua en memoria, en los lenguajes de programación que aprovechen este hecho, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación
+En algunos lenguajes de programación como Julia, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación.
 ::: 
 
 Una _estructura_ es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:
@@ -196,10 +193,10 @@ C = myprod(A, B)
 display(C)
 ```
 
-Se pueden ver dos ciclos iterando a lo largo de filas y columnas, adicionalmente un producto punto, el cual tiene un costo lineal en la dimensión del vector, por lo que el costo es cúbico. Esta implementación es directa con la definición misma del producto matricial. Dado su implacto, existen diferentes algoritmos para hacer esta operación más eficiente, incluso hay áreas completas dedicadas a mejorar los costos para diferentes casos o características de las matrices. 
+Se pueden ver dos ciclos iterando a lo largo de filas y columnas, adicionalmente un producto punto, el cual tiene un costo lineal en la dimensión del vector, por lo que el costo es cúbico. Esta implementación es directa con la definición misma del producto matricial. Existen diferentes algoritmos para hacer esta operación más eficiente para diferentes casos o características de las matrices, siendo un área de investigación activa.
 
 ## Listas
-Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _cabeza_ y _cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso a los elementos y sus reemplazos, ya que su aplicación es diferente.
+Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _head/cabeza_ y _tail/cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso aleatorio a los elementos; los accesos típicos son a los extremos de la lista (cabeza y cola), sucesor y predecesor.
 
 ```{dot}
 //| label: fig-lista
@@ -243,22 +240,22 @@ El siguiente código muestra como la definición de lista ligada.
 #| lst-label: lst-lista-ligada
 #| lst-cap: Código para una lista ligada simple
 
-struct Nodo
+struct Node
   data::Int
-  next::Union{Nodo,Nothing}
+  next::Union{Node,Nothing}
 end
 
-nodo = Nodo(10, Nodo(20, Nodo(30, nothing)))
+node = Node(10, Node(20, Node(30, nothing)))
 
-println(nodo)
-(nodo.data, nodo.next.data, nodo.next.next.data)
+println(node)
+(node.data, node.next.data, node.next.next.data)
 ```
 
-En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _nodo_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.
+En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _node_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.
 
 Por su manera en la cual son accedidos los datos, se tienen dos tipos de listas muy útiles: las _colas_ y las _pilas_. Las _colas_ son listas que se acceden solo por sus extremos, y emulan la política de _el primero en entrar es el primero en salir_ (first in - first out, FIFO), y es por eso que se les llama colas haciendo referencia a una cola para realizar un trámite o recibir un servicio. Las _pilas_ o _stack_ son listas con la política _el último en entrar es el primero en salir_ (last in - first out, LIFO). Mientras que cualquier lista puede ser útil para implementarlas, algunas maneras serán mejores que otras dependiendo de los requerimientos de los problemas siendo resueltos; sin embargo, es importante recordar sus políticas de acceso para comprender los algoritmos que las utilicen.
 
-En este curso, se tienen en cuenta las siguientes operaciones, nombrando diferente cada operación:
+Entre las operaciones comunes tenemos las siguientes:
 
 - _push!(L, a)_: insertar $a$ al final de la lista $L$.
 - _pop!(L)_: remueve el último elemento en $L$.
@@ -333,7 +330,7 @@ Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; 
 
 Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas compimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) [@Scott2023]. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.
 
-Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo revisitar aristas, es imposible regresar a un vértice antes visto.
+Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo _regresarse_ aristas, es imposible regresar a un vértice antes visto.
 
 ```{dot}
 //| label: fig-arbol
@@ -351,7 +348,7 @@ graph lista {
   }
 ```
 
-En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la raíz del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener o no hijos, $children(T, u) = \{ v \mid (u, v) \in E \}$. Se dice que $u$ es un hoja (leaf) si $children(T, u) = \emptyset$, e interno (inner) si no es ni raíz ni hoja.
+En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la _raíz_ del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener, o no, _hijos_ $children(T, u) = \{ v \mid (u, v) \in E \}$. Se dice que $u$ es un _hoja_ (leaf) si $children(T, u) = \emptyset$, e _interno_ (inner) si no es ni raíz ni hoja.
 
 ```{dot}
 //| label: fig-arbol-dirigido
@@ -402,7 +399,7 @@ DFS((vértices, aristas), vérticeinicial, visitados)
 
 ```
 
-Las llamadas recursivas a DFS tienen el efecto de _memorizar_ el orden de visita anterior y regresarlo cuando se sale de este, por lo que hay una memoria implicita utilizada, implementanda por el _stack_ de llamadas. La función _operación!_ es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.
+Las llamadas recursivas a DFS tienen el efecto de _memorizar_ el orden de visita anterior y _recordarlo_ cuando se sale de una visita anidada. Entonces, hay una memoria implicita utilizada, implementanda por el _stack_ de llamadas. La función _operación!_ es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.
 
 El _recorrido a lo ancho_, Breadth First Search (BSF), visita los vértices locales primero que los alejados contrarío al avance voraz utilizado por DFS.
 
