@@ -131,6 +131,9 @@ La representación precisa en memoria es significativa en el desempeño de opera
 
 El siguiente ejemplo define un vector $u$ de $m$ elementos y una matriz $X$ de tamaño $m \times n$, ambos en un cubo unitario de 4 dimensiones, y define una función que selecciona el producto punto máximo del vector $u$ a los vectores columna de $X$:
 ```{julia}
+#| label: fig-getmaxdot
+#| fig-cap: |
+#|   Algoritmos para encotrar el vector columna con mayor producto en $X$ punto contra $u$.
 
 function mydot(u, x)
   s = 0f0
@@ -269,7 +272,7 @@ Entre las operaciones comunes tenemos las siguientes:
 - ¿Cuales serían sus costos?
 - Añadiendo más memoria, como podemos mejorar _pred_?
 
-### Grafos
+## Grafos
 
 Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})$
 
