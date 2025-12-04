@@ -2,6 +2,13 @@
 # Galería de actividades MCDI {.unnumbered}
 Este curso se impartió en este formato en MCDI-2025-1; el plan es modificar las actividades ligeramente con forme pasan los semestres y que la galería apoye a los nuevos estudiantes para tener ejemplos claros de lo que se solicita.
 
+## Semestre 2025-2
+| Alumno | Sitio |
+|--------|-------|
+| Dalia Isabel Mendiola Alavéz | <https://isabelmend.github.io/analisis-de-algoritmos/> |
+| Edgar Santiago Gonzalez Martinez | <https://edgarsanti.github.io/edgarsantiago/> |
+| Emmanuel Ruiz Guarneros | <https://ruge1507.github.io/Analisis-de-Algoritmos/> |
+
 ## Semestre 2025-1
 
 | Alumno | Sitio |
@@ -17,9 +24,3 @@ Este curso se impartió en este formato en MCDI-2025-1; el plan es modificar las
 | Luis Alberto Rodríguez Catana | <https://albertocat.github.io/Algoritmos/> |
 | Santiago Botero Sierra | <https://sboteros.com/about.html> |
 
-## Semestre 2025-2
-| Alumno | Sitio |
-|--------|-------|
-| Edgar Santiago Gonzalez Martinez | https://edgarsanti.github.io/edgarsantiago/ |
-| Emmanuel Ruiz Guarneros | https://ruge1507.github.io/Analisis-de-Algoritmos/ |
-| Dalia Isabel Mendiola Alavéz | https://isabelmend.github.io/analisis-de-algoritmos/ |
