@@ -27,3 +27,5 @@ Manifest.toml
 /.quarto/
 
 /_*.local
+
+**/*.quarto_ipynb

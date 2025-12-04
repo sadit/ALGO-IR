@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +67,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./cap3-estructuras.html" rel="next">
 <link href="./cap1-julia.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a185852c63625fd9ffbdc57047c9a77e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-95f147d06fdb9f8ce149f95e323965f4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cf2d42087b478c672072bd1259b5cf1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-aa5541670ca7bdc719d689fd730b675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -89,7 +92,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "No se han encontrado resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -120,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -138,7 +141,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -176,7 +179,9 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Curso Introductorio al Análisis de Algoritmos con Julia</a> 
         <div class="sidebar-tools-main">
@@ -772,12 +777,12 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <h4 data-number="2.5.5.1" class="anchored" data-anchor-id="costo-constante-logaritmo-y-lineal"><span class="header-section-number">2.5.5.1</span> Costo constante, logaritmo y lineal</h4>
 <p>La siguiente figura muestra un crecimiento nulo (constante), logaritmico y lineal. Note como la función logarítmica crece lentamente.</p>
 <div id="2" class="cell" data-fig-width="90%" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">300</span> <span class="co"># 300 puntos</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">10</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"c"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">log2</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"\log{n}"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
@@ -832,11 +837,11 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <h4 data-number="2.5.5.2" class="anchored" data-anchor-id="costo-n-log-n-y-polinomial"><span class="header-section-number">2.5.5.2</span> Costo <span class="math inline">\(n \log n\)</span> y polinomial</h4>
 <p>A continuación veremos tres funciones, una función con <span class="math inline">\(n\log n\)</span> y una función cuadrática y una cúbica. Note como para valores pequeños de <span class="math inline">\(n\)</span> las diferencias no son tan apreciables para como cuando comienza a crecer <span class="math inline">\(n\)</span>; así mismo, observe los valores de <span class="math inline">\(n\)</span> de las figuras previas y de la siguiente, este ajuste de rangos se hizo para que las diferencias sean apreciables.</p>
 <div id="4" class="cell" data-fig-width="90%" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">7</span> <span class="co"># note que se usan menos puntos porque 300 serían demasiados para el rango</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">7</span> <span class="co"># note que se usan menos puntos porque 300 serían demasiados para el rango</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [x <span class="op">*</span> <span class="fu">log2</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n\log_2{n}"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">2</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^2"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">3</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^3"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">3</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^3"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
@@ -897,10 +902,10 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <h4 data-number="2.5.5.3" class="anchored" data-anchor-id="exponencial"><span class="header-section-number">2.5.5.3</span> Exponencial</h4>
 <p>A continuación se compara el crecimiento de una función exponencial con una función polinomial. Note que la función polinomial es de grado 4 y que la función exponencial tiene como base 2; aún cuando para números menores de aproximadamente 16 la función polinomial es mayor, a partir de ese valor la función <span class="math inline">\(2^n\)</span> supera rapidamente a la polinomial.</p>
 <div id="6" class="cell" data-fig-width="90%" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">4</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^4"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">2</span><span class="op">^</span>x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"2^n"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">2</span><span class="op">^</span>x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"2^n"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
@@ -955,10 +960,10 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <h4 data-number="2.5.5.4" class="anchored" data-anchor-id="crecimiento-factorial"><span class="header-section-number">2.5.5.4</span> Crecimiento factorial</h4>
 <p>Vease como la función factorial crece mucho más rápido que la función exponencial para una <span class="math inline">\(n\)</span> relativamente pequeña. Vea las magnitudes que se alcanzan en el <em>eje</em> <span class="math inline">\(y\)</span>, y comparelas con aquellas con los anteriores crecimientos.</p>
 <div id="8" class="cell" data-fig-width="90%" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">2</span><span class="op">^</span>x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"2^n"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">factorial</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n!"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">factorial</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n!"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
@@ -1014,10 +1019,10 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <section id="un-poco-más-sobre-funciones-de-muy-alto-costo" class="level4" data-number="2.5.5.5">
 <h4 data-number="2.5.5.5" class="anchored" data-anchor-id="un-poco-más-sobre-funciones-de-muy-alto-costo"><span class="header-section-number">2.5.5.5</span> Un poco más sobre funciones de muy alto costo</h4>
 <div id="10" class="cell" data-fig-width="90%" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">10</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">10</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">factorial</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n!"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span>x for x <span class="kw">in</span> <span class="fu">Int128</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Int128</span>(n)], label<span class="op">=</span>L<span class="st">"n^n"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span>x for x <span class="kw">in</span> <span class="fu">Int128</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Int128</span>(n)], label<span class="op">=</span>L<span class="st">"n^n"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
@@ -1090,9 +1095,9 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <li><code>@btime expr params</code> macro del paquete <code>BenchmarkTools</code> que mimetiza la salida de <code>@time</code>.</li>
 </ul>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
@@ -1118,9 +1123,9 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <p>Tanto <code>@benchmark</code> como <code>@btime</code> aceptan interpolación de variables con el prefijo <code>$</code> para controlar la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parametro <code>setup</code> para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de <code>expr</code>.</p>
 <div id="14" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">BenchmarkTools</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">BenchmarkTools</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>BenchmarkTools.Trial: 10000 samples with 985 evaluations.
  Range (min … max):  46.417 ns …  2.232 μs  ┊ GC (min … max): 0.00% … 96.36%
@@ -1135,9 +1140,9 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 </div>
 <div id="16" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  47.875 ns (1 allocation: 96 bytes)</code></pre>
 </div>
@@ -1150,9 +1155,9 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <p>El parametro <code>sample</code> controla el número máximo de muestras que se tomarán para el análisis, y <code>seconds</code> limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que <code>seconds</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div id="18" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>BenchmarkTools.Trial: 1000 samples with 980 evaluations.
  Range (min … max):  63.631 ns … 880.123 ns  ┊ GC (min … max): 0.00% … 89.30%
@@ -1171,7 +1176,7 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo."><span class="header-section-number">2.6.2</span> Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</h3>
 <p>–</p>
 <div id="20" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maximo</span>(col)</span>
 <span id="annotated-cell-10-3"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>    maxpos <span class="op">=</span> <span class="fl">1</span></span>
 <span id="annotated-cell-10-4"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a>    actualizaciones <span class="op">=</span> <span class="fl">1</span></span>
@@ -1186,7 +1191,7 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="annotated-cell-10-13"><a href="#annotated-cell-10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="annotated-cell-10-14"><a href="#annotated-cell-10-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-10-15"><a href="#annotated-cell-10-15" aria-hidden="true" tabindex="-1"></a>    maxpos, actualizaciones</span>
-<span id="annotated-cell-10-16"><a href="#annotated-cell-10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-10-16"><a href="#annotated-cell-10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
@@ -1200,8 +1205,8 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 </div>
 <div id="22" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> <span class="fu">maximo</span>(<span class="op">$</span>a) samples<span class="op">=</span><span class="fl">100</span> seconds<span class="op">=</span><span class="fl">3</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> <span class="fu">maximo</span>(<span class="op">$</span>a) samples<span class="op">=</span><span class="fl">100</span> seconds<span class="op">=</span><span class="fl">3</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
@@ -1225,9 +1230,9 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <p>Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que el número de <code>actualizaciones</code> es nuesta medida de desempeño, un código donde se capturen las actualizaciones</p>
 <div id="24" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fu">maximo</span>(<span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>))[<span class="fl">2</span>] for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>]</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(a, [<span class="fl">0.0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(a, [<span class="fl">0.0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
@@ -1308,287 +1313,294 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiado");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copiado");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/sadit\.github\.io\/ALGO-IR");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
         }
-        return container.innerHTML
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sadit\.github\.io\/ALGO-IR");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1596,185 +1608,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./cap1-julia.html" class="pagination-link" aria-label="Julia como lenguaje de programación para un curso de algoritmos">
@@ -1787,7 +1775,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
@@ -1819,47 +1807,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a> Es un módelo creado por Alan Turing a principios del siglo XX; la idea es un dispositivo que podría ser implementada de manera mecánica si se tuvieran recursos infinitos; esta máquina puede leer y escribir mediante un cabezal en una cinta _infinita_ (ver @fig-turing-cinta) una cantidad de símbolos predeterminada para cada problema siguiendo una serie de reglas simples sobre lo que lee y escribe, dichas reglas y la cienta, forman una máquina de estados y memoria, que pueden realizar cualquier cálculo.</span>
 <span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a> <span class="in">```{dot}</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-turing-cinta</span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 60%</span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Cabezal y cinta.</span></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="in">//| </span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="in"> digraph TuringTape {</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="in">    rankdir=TB;</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape=box, fixedsize=true, width=0.5];</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co">//| label: fig-turing-cinta</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">//| fig-width: 60%</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">//| fig-cap: |</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co">//|   Cabezal y cinta.</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">//| </span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a> <span class="kw">digraph</span> <span class="va">TuringTape</span> <span class="ot">{</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">TB</span><span class="ot">;</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="va">box</span><span class="co">, </span><span class="va">fixedsize</span><span class="ot">=</span><span class="va">true</span><span class="co">, </span><span class="at">width</span><span class="ot">=</span><span class="dv">0.5</span><span class="ot">];</span></span>
 <span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="in">    // Celdas de la cinta</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph cluster_tape {</span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="in">        label="cinta";</span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="in">        style=filled;</span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="in">        color=lightgrey;</span></span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="in">        nodesep=0.02;</span></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="in">        node [margin=0.1];</span></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="in">        start [label=""]; // Celda vacía al inicio</span></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="in">        01 [label="0"];</span></span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a><span class="in">        02 [label="0"];</span></span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="in">        03 [label="0"];</span></span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="in">        11 [label="1"];</span></span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="in">        12 [label="1"];</span></span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="in">        13 [label="1"];</span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="in">        end [label=""]; // Celda vacía al final</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">    // Celdas de la cinta</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">subgraph</span><span class="co"> </span><span class="va">cluster_tape</span><span class="co"> </span><span class="ot">{</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="at">label</span><span class="ot">=</span><span class="st">"cinta"</span><span class="ot">;</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="at">style</span><span class="ot">=</span><span class="va">filled</span><span class="ot">;</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="at">color</span><span class="ot">=</span><span class="va">lightgrey</span><span class="ot">;</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="at">nodesep</span><span class="ot">=</span><span class="dv">0.02</span><span class="ot">;</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">margin</span><span class="ot">=</span><span class="dv">0.1</span><span class="ot">];</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="va">start</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">""</span><span class="ot">];</span><span class="co"> // Celda vacía al inicio</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="dv">01</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"0"</span><span class="ot">];</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="dv">02</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"0"</span><span class="ot">];</span></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="dv">03</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"0"</span><span class="ot">];</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="dv">11</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"1"</span><span class="ot">];</span></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="dv">12</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"1"</span><span class="ot">];</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="dv">13</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"1"</span><span class="ot">];</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="va">end</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">""</span><span class="ot">];</span><span class="co"> // Celda vacía al final</span></span>
 <span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="in">        // Organizar las celdas en una línea horizontal</span></span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="in">        {</span></span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="in">            rank=same;</span></span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="in">            nodesep=0.02;</span></span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="in">            start -&gt; 01 -&gt; 02 -&gt; 03 -&gt; 11 -&gt; 12 -&gt; 13 -&gt; end [style=invis, width=0.02];</span></span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="in">    }</span></span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="in">    // Cabezal de la máquina de Turing</span></span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape=invhouse, label="cabezal", color=red, style=filledk, width=1, height=0.5];</span></span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="in">    head;</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="co">        // Organizar las celdas en una línea horizontal</span></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="ot">{</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co">            </span><span class="at">rank</span><span class="ot">=</span><span class="va">same</span><span class="ot">;</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="co">            </span><span class="at">nodesep</span><span class="ot">=</span><span class="dv">0.02</span><span class="ot">;</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="co">            </span><span class="va">start</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">01</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">02</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">03</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">11</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">12</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">13</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">end</span><span class="co"> </span><span class="ot">[</span><span class="at">style</span><span class="ot">=</span><span class="va">invis</span><span class="co">, </span><span class="at">width</span><span class="ot">=</span><span class="dv">0.02</span><span class="ot">];</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co">        </span><span class="ot">}</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="ot">}</span></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="co">    // Cabezal de la máquina de Turing</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="va">invhouse</span><span class="co">, </span><span class="at">label</span><span class="ot">=</span><span class="st">"cabezal"</span><span class="co">, </span><span class="at">color</span><span class="ot">=</span><span class="va">red</span><span class="co">, </span><span class="at">style</span><span class="ot">=</span><span class="va">filledk</span><span class="co">, </span><span class="at">width</span><span class="ot">=</span><span class="dv">1</span><span class="co">, </span><span class="at">height</span><span class="ot">=</span><span class="dv">0.5</span><span class="ot">];</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">head</span><span class="ot">;</span></span>
 <span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="in">    // Conectar el cabezal a la celda que se lee</span></span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="in">    head -&gt; 01;</span></span>
-<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="co">    // Conectar el cabezal a la celda que se lee</span></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">head</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="dv">01</span><span class="ot">;</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="ot">}</span></span>
 <span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>Una máquina de Turing se puede escribir como una tupla de 7 elementos $M=(Q, \Sigma, \Gamma, s, \epsilon, F, \delta)$ donde:</span>
@@ -1894,34 +1882,34 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a>Dada la regularidad de la función de transición, es común escribirla como una tabla:</span>
 <span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>| entrada  | salida       |</span>
-<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>|----------|--------------|</span>
-<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>| $(q_0, \mathtt{0})$ | $(q_0, \mathtt{X}, \mathtt{R})$ |</span>
-<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>| $(q_0, \mathtt{1})$ | $(q_1, \mathtt{X}, \mathtt{R})$ |</span>
-<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>| $(q_1, \mathtt{\epsilon})$ | $(q_2, \mathtt{\epsilon}, \mathtt{R})$ |</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> entrada  <span class="pp">|</span> salida       <span class="pp">|</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------------|</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $(q_0, \mathtt{0})$ <span class="pp">|</span> $(q_0, \mathtt{X}, \mathtt{R})$ <span class="pp">|</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $(q_0, \mathtt{1})$ <span class="pp">|</span> $(q_1, \mathtt{X}, \mathtt{R})$ <span class="pp">|</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $(q_1, \mathtt{\epsilon})$ <span class="pp">|</span> $(q_2, \mathtt{\epsilon}, \mathtt{R})$ <span class="pp">|</span></span>
 <span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>Una máquina de Turing se puede representar mediante un autómata</span>
 <span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-turing</span></span>
-<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 60%</span></span>
-<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Ejemplo de máquina de Turing que reconoce cadenas $0^n 1$</span></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a><span class="co">//| label: fig-turing</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a><span class="co">//| fig-width: 60%</span></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a><span class="co">//| fig-cap: |</span></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="co">//|   Ejemplo de máquina de Turing que reconoce cadenas $0^n 1$</span></span>
 <span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="in">digraph G {</span></span>
-<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="in">    rankdir=LR;</span></span>
-<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a><span class="in">    // Nodos de los estados</span></span>
-<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape = doublecircle]; q0;</span></span>
-<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape = circle]; q1;</span></span>
-<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape = doublecircle, style=filled, fillcolor=lightgreen]; q2;</span></span>
-<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="in">    //node [shape = doublecircle, style=filled, fillcolor=lightgreen];</span></span>
-<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="in">    // Transiciones</span></span>
-<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a><span class="in">    q0 -&gt; q0 [label = "0 → X, R"];</span></span>
-<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="in">    q0 -&gt; q1 [label = "1 → X, R"];</span></span>
-<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a><span class="in">    q1 -&gt; q2 [label = "ϵ → ϵ, R"];</span></span>
-<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="kw">digraph</span> <span class="va">G</span> <span class="ot">{</span></span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a><span class="co">    // Nodos de los estados</span></span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="va">doublecircle</span><span class="ot">];</span><span class="co"> </span><span class="va">q0</span><span class="ot">;</span></span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="va">circle</span><span class="ot">];</span><span class="co"> </span><span class="va">q1</span><span class="ot">;</span></span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="va">doublecircle</span><span class="co">, </span><span class="at">style</span><span class="ot">=</span><span class="va">filled</span><span class="co">, </span><span class="at">fillcolor</span><span class="ot">=</span><span class="va">lightgreen</span><span class="ot">];</span><span class="co"> </span><span class="va">q2</span><span class="ot">;</span></span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="co">    //node [shape = doublecircle, style=filled, fillcolor=lightgreen];</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="co">    // Transiciones</span></span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q0</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q0</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"0 → X, R"</span><span class="ot">];</span></span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q0</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q1</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"1 → X, R"</span><span class="ot">];</span></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q1</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q2</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"ϵ → ϵ, R"</span><span class="ot">];</span></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="ot">}</span></span>
 <span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>Supongamos ahora el problema de reconocer cadenas $0^n 1^n$; para esto podemos definir la siguiente máquina de Turing </span>
@@ -1942,35 +1930,35 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{dot}</span></span>
-<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a><span class="in">//| label: fig-turing</span></span>
-<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a><span class="in">//| echo: false</span></span>
-<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-width: 60%</span></span>
-<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a><span class="in">//| fig-cap: |</span></span>
-<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a><span class="in">//|   Ejemplo de máquina de Turing que reconoce cadenas $0^n 1^n$</span></span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a><span class="co">//| label: fig-turing</span></span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a><span class="co">//| fig-width: 60%</span></span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a><span class="co">//| fig-cap: |</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a><span class="co">//|   Ejemplo de máquina de Turing que reconoce cadenas $0^n 1^n$</span></span>
 <span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a><span class="in">digraph G {</span></span>
-<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a><span class="in">    rankdir=LR;</span></span>
-<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a><span class="in">    // Nodos de los estados</span></span>
-<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape = doublecircle] q0;</span></span>
-<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape = circle]; q1, q2, q3;</span></span>
-<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a><span class="in">    node [shape = doublecircle, style=filled, fillcolor=lightgreen]; q4;</span></span>
-<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a><span class="in">    // Transiciones</span></span>
-<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a><span class="in">    q0 -&gt; q1 [label = "0 → X, R"];</span></span>
-<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a><span class="in">    q0 -&gt; q3 [label = "Y → Y, R"];</span></span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a><span class="kw">digraph</span> <span class="va">G</span> <span class="ot">{</span></span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span></span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a><span class="co">    // Nodos de los estados</span></span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="va">doublecircle</span><span class="ot">]</span><span class="co"> </span><span class="va">q0</span><span class="ot">;</span></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="va">circle</span><span class="ot">];</span><span class="co"> </span><span class="va">q1</span><span class="co">, </span><span class="va">q2</span><span class="co">, </span><span class="va">q3</span><span class="ot">;</span></span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="va">doublecircle</span><span class="co">, </span><span class="at">style</span><span class="ot">=</span><span class="va">filled</span><span class="co">, </span><span class="at">fillcolor</span><span class="ot">=</span><span class="va">lightgreen</span><span class="ot">];</span><span class="co"> </span><span class="va">q4</span><span class="ot">;</span></span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a><span class="co">    // Transiciones</span></span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q0</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q1</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"0 → X, R"</span><span class="ot">];</span></span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q0</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q3</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Y → Y, R"</span><span class="ot">];</span></span>
 <span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="in">    q1 -&gt; q1 [label = "0 → 0, R"];</span></span>
-<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="in">    q1 -&gt; q1 [label = "Y → Y, R"];</span></span>
-<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a><span class="in">    q1 -&gt; q2 [label = "1 → Y, L"];</span></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q1</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q1</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"0 → 0, R"</span><span class="ot">];</span></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q1</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q1</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Y → Y, R"</span><span class="ot">];</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q1</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q2</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"1 → Y, L"</span><span class="ot">];</span></span>
 <span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a><span class="in">    q2 -&gt; q2 [label = "Y → Y, L"];</span></span>
-<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="in">    q2 -&gt; q2 [label = "0 → 0, L"];</span></span>
-<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a><span class="in">    q2 -&gt; q0 [label = "X → X, R"];</span></span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q2</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q2</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Y → Y, L"</span><span class="ot">];</span></span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q2</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q2</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"0 → 0, L"</span><span class="ot">];</span></span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q2</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q0</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"X → X, R"</span><span class="ot">];</span></span>
 <span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="in">    q3 -&gt; q3 [label = "Y → Y, R"];</span></span>
-<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a><span class="in">    q3 -&gt; q4 [label = "ϵ → ϵ, R"];</span></span>
-<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q3</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q3</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Y → Y, R"</span><span class="ot">];</span></span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">q3</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">q4</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"ϵ → ϵ, R"</span><span class="ot">];</span></span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a><span class="ot">}</span></span>
 <span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a>Todo inicia con una cadena de la forma esperada, e.g., $\mathtt{000111}$, la idea general del algoritmo es aparear $\mathtt{0}$'s y $\mathtt{1}$'s, ya que solo es valido si ambas subcadenas tienen igual longitud. Para esto se marcan los $\mathtt{0}$'s vistos con $\mathtt{X}$ y los $\mathtt{1}$'s con $\mathtt{Y}$. La máquina estará entonces marcando las primeras ocurrencias y moviendose a traves de la cinta para encontrar los correspondientes.</span>
@@ -2057,14 +2045,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte 1:</span>
-<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/uUZnpaoEQXs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/uUZnpaoEQXs"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte 2:</span>
-<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/CkvfliomNqk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/CkvfliomNqk"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte 3:</span>
-<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/zRtjk2X2aDE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/zRtjk2X2aDE"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ordenes de crecimiento</span></span>
-<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/mX7mZH0Dz8s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/mX7mZH0Dz8s"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
 <span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a>Dado que la idea es realizar un análisis asintótico, las constantes suelen ignorarse, ya que cuando el tamaño de la entrada es suficientemente grande, los términos con mayor orden de magnitud o crecimiento dominarán el costo. Esto es, es una simplificación necesaría.</span>
 <span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a></span>
@@ -2075,13 +2063,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>La siguiente figura muestra un crecimiento nulo (constante), logaritmico y lineal. Note como la función logarítmica crece lentamente.</span>
 <span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 90%</span></span>
-<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a><span class="in">using Plots, LaTeXStrings</span></span>
-<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a><span class="in">n = 300 # 300 puntos</span></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 90%</span></span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span></span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">300</span> <span class="co"># 300 puntos</span></span>
 <span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="in">plot(1:n, [10 for x in 1:n], label=L"c")</span></span>
-<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [log2(x) for x in 1:n], label=L"\log{n}")</span></span>
-<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [x for x in 1:n], label=L"n")</span></span>
+<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">10</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"c"</span>)</span>
+<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">log2</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"\log{n}"</span>)</span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n"</span>)</span>
 <span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Costo $n \log n$ y polinomial</span></span>
@@ -2089,12 +2077,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 90%</span></span>
-<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a><span class="in">n = 7 # note que se usan menos puntos porque 300 serían demasiados para el rango</span></span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 90%</span></span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">7</span> <span class="co"># note que se usan menos puntos porque 300 serían demasiados para el rango</span></span>
 <span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a><span class="in">plot(1:n, [x * log2(x) for x in 1:n], label=L"n\log_2{n}")</span></span>
-<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [x^2 for x in 1:n], label=L"n^2")</span></span>
-<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [x^3 for x in 1:n], label=L"n^3")</span></span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [x <span class="op">*</span> <span class="fu">log2</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n\log_2{n}"</span>)</span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">2</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^2"</span>)</span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">3</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^3"</span>)</span>
 <span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Exponencial</span></span>
@@ -2102,11 +2090,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 90%</span></span>
-<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a><span class="in">n = 20</span></span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 90%</span></span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
 <span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a><span class="in">plot(1:n, [x^4 for x in 1:n], label=L"n^4")</span></span>
-<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [2^x for x in 1:n], label=L"2^n")</span></span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span><span class="fl">4</span> for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n^4"</span>)</span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">2</span><span class="op">^</span>x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"2^n"</span>)</span>
 <span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Crecimiento factorial</span></span>
@@ -2114,21 +2102,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>Vease como la función factorial crece mucho más rápido que la función exponencial para una $n$ relativamente pequeña. Vea las magnitudes que se alcanzan en el _eje_ $y$, y comparelas con aquellas con los anteriores crecimientos. </span>
 <span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 90%</span></span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 90%</span></span>
 <span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a><span class="in">n = 20</span></span>
+<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
 <span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a><span class="in">plot(1:n, [2^x for x in 1:n], label=L"2^n")</span></span>
-<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [factorial(x) for x in 1:n], label=L"n!")</span></span>
+<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fl">2</span><span class="op">^</span>x for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"2^n"</span>)</span>
+<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">factorial</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n!"</span>)</span>
 <span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Un poco más sobre funciones de muy alto costo</span></span>
 <span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 90%</span></span>
-<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a><span class="in">n = 10</span></span>
+<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 90%</span></span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">10</span></span>
 <span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a><span class="in">plot(1:n, [factorial(x) for x in 1:n], label=L"n!")</span></span>
-<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a><span class="in">plot!(1:n, [x^x for x in Int128(1):Int128(n)], label=L"n^n")</span></span>
+<span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fl">1</span><span class="op">:</span>n, [<span class="fu">factorial</span>(x) for x <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n], label<span class="op">=</span>L<span class="st">"n!"</span>)</span>
+<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(<span class="fl">1</span><span class="op">:</span>n, [x<span class="op">^</span>x for x <span class="kw">in</span> <span class="fu">Int128</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Int128</span>(n)], label<span class="op">=</span>L<span class="st">"n^n"</span>)</span>
 <span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a>Vea la figura anterior, donde se compara $n!$ con $n^n$, observe como es que cualquier constante se vuelve irrelevante rapidamente; aun para $n^n$ piense en $n^{n^n}$.</span>
@@ -2155,9 +2143,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@btime expr params`</span>  macro del paquete <span class="in">`BenchmarkTools`</span> que mimetiza la salida de <span class="in">`@time`</span>.</span>
 <span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a><span class="in">a = rand(Float32, 3, 3)</span></span>
-<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a><span class="in">@time a * a # &lt;1&gt;</span></span>
-<span id="cb18-387"><a href="#cb18-387" aria-hidden="true" tabindex="-1"></a><span class="in">@time a * a # &lt;2&gt;</span></span>
+<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a <span class="co"># &lt;1&gt;</span></span>
+<span id="cb18-387"><a href="#cb18-387" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a <span class="co"># &lt;2&gt;</span></span>
 <span id="cb18-388"><a href="#cb18-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-389"><a href="#cb18-389" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Todas las fuciones se deben compilar, la primera llamada uncluye los costos de compilación.</span>
 <span id="cb18-390"><a href="#cb18-390" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>El costo sin compilación, hay una alojación que es la matriz donde se guarda el resultado.</span>
@@ -2165,14 +2153,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-392"><a href="#cb18-392" aria-hidden="true" tabindex="-1"></a>Tanto <span class="in">`@benchmark`</span> como <span class="in">`@btime`</span> aceptan interpolación de variables con el prefijo <span class="in">`$`</span> para controlar la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parametro <span class="in">`setup`</span> para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de <span class="in">`expr`</span>.</span>
 <span id="cb18-393"><a href="#cb18-393" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-396"><a href="#cb18-396" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-397"><a href="#cb18-397" aria-hidden="true" tabindex="-1"></a><span class="in">using BenchmarkTools</span></span>
+<span id="cb18-397"><a href="#cb18-397" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">BenchmarkTools</span></span>
 <span id="cb18-398"><a href="#cb18-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a><span class="in">@benchmark a * a setup=(a=rand(Float32, 3, 3))</span></span>
+<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span>
 <span id="cb18-400"><a href="#cb18-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-401"><a href="#cb18-401" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-404"><a href="#cb18-404" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a><span class="in">a = rand(Float32, 3, 3)</span></span>
-<span id="cb18-406"><a href="#cb18-406" aria-hidden="true" tabindex="-1"></a><span class="in">@btime a * a setup=(a=$a)</span></span>
+<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb18-406"><a href="#cb18-406" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span>
 <span id="cb18-407"><a href="#cb18-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-408"><a href="#cb18-408" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-409"><a href="#cb18-409" aria-hidden="true" tabindex="-1"></a>El parametro <span class="in">`sample`</span> controla el número máximo de muestras que se tomarán para el análisis, y <span class="in">`seconds`</span> limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que <span class="in">`seconds`</span>.<span class="ot">[^btools]</span></span>
@@ -2180,36 +2168,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-411"><a href="#cb18-411" aria-hidden="true" tabindex="-1"></a><span class="ot">[^btools]: </span>Se recomienda visitar el sitio <span class="ot">&lt;https://juliaci.github.io/BenchmarkTools.jl/stable/&gt;</span> para más información sobre el paquete <span class="in">`BenchmarkTools`</span>, y en particular para sus parametros, como guardar información de corridas.</span>
 <span id="cb18-412"><a href="#cb18-412" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-415"><a href="#cb18-415" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a><span class="in">a = rand(Float32, 3, 3)</span></span>
-<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a><span class="in">b = rand(Float32, 3, 3)</span></span>
-<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a><span class="in">@benchmark a * b setup=(a=$a, b=$b) samples=1000 seconds=0.33</span></span>
+<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span>
 <span id="cb18-419"><a href="#cb18-419" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-420"><a href="#cb18-420" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-421"><a href="#cb18-421" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</span></span>
 <span id="cb18-422"><a href="#cb18-422" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-423"><a href="#cb18-423" aria-hidden="true" tabindex="-1"></a>--</span>
 <span id="cb18-426"><a href="#cb18-426" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a><span class="in">function maximo(col) # &lt;1&gt;</span></span>
-<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a><span class="in">    maxpos = 1</span></span>
-<span id="cb18-429"><a href="#cb18-429" aria-hidden="true" tabindex="-1"></a><span class="in">    actualizaciones = 1</span></span>
-<span id="cb18-430"><a href="#cb18-430" aria-hidden="true" tabindex="-1"></a><span class="in">    i = 2</span></span>
+<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maximo</span>(col) <span class="co"># &lt;1&gt;</span></span>
+<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a>    maxpos <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb18-429"><a href="#cb18-429" aria-hidden="true" tabindex="-1"></a>    actualizaciones <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb18-430"><a href="#cb18-430" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">2</span></span>
 <span id="cb18-431"><a href="#cb18-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a><span class="in">    while i &lt; length(col)</span></span>
-<span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a><span class="in">        if col[maxpos] &lt; col[i]</span></span>
-<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a><span class="in">            maxpos = i</span></span>
-<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a><span class="in">            actualizaciones += 1</span></span>
-<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
-<span id="cb18-437"><a href="#cb18-437" aria-hidden="true" tabindex="-1"></a><span class="in">        i += 1</span></span>
-<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="fu">length</span>(col)</span>
+<span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> col[maxpos] <span class="op">&lt;</span> col[i]</span>
+<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a>            maxpos <span class="op">=</span> i</span>
+<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a>            actualizaciones <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb18-437"><a href="#cb18-437" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb18-439"><a href="#cb18-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a><span class="in">    maxpos, actualizaciones</span></span>
-<span id="cb18-441"><a href="#cb18-441" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a>    maxpos, actualizaciones</span>
+<span id="cb18-441"><a href="#cb18-441" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb18-442"><a href="#cb18-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
 <span id="cb18-443"><a href="#cb18-443" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Función que encuentra el máximo en una secuencia y devuelve su posición, y además devuelve el número de veces que se actualizó el máximo en el recorrido.</span>
 <span id="cb18-444"><a href="#cb18-444" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-447"><a href="#cb18-447" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-448"><a href="#cb18-448" aria-hidden="true" tabindex="-1"></a><span class="in">a = rand(UInt32, 128)</span></span>
-<span id="cb18-449"><a href="#cb18-449" aria-hidden="true" tabindex="-1"></a><span class="in">@benchmark maximo($a) samples=100 seconds=3 # &lt;1&gt;</span></span>
+<span id="cb18-448"><a href="#cb18-448" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>)</span>
+<span id="cb18-449"><a href="#cb18-449" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> <span class="fu">maximo</span>(<span class="op">$</span>a) samples<span class="op">=</span><span class="fl">100</span> seconds<span class="op">=</span><span class="fl">3</span> <span class="co"># &lt;1&gt;</span></span>
 <span id="cb18-450"><a href="#cb18-450" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-451"><a href="#cb18-451" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Un análisis de desempeño usando <span class="in">`@benchmark`</span>; probando con máximo 100 samples en 3 segundos. </span>
 <span id="cb18-452"><a href="#cb18-452" aria-hidden="true" tabindex="-1"></a></span>
@@ -2217,9 +2205,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-454"><a href="#cb18-454" aria-hidden="true" tabindex="-1"></a>Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que el número de <span class="in">`actualizaciones`</span> es nuesta medida de desempeño, un código donde se capturen las actualizaciones</span>
 <span id="cb18-455"><a href="#cb18-455" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-458"><a href="#cb18-458" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-459"><a href="#cb18-459" aria-hidden="true" tabindex="-1"></a><span class="in">using StatsBase # &lt;1&gt;</span></span>
-<span id="cb18-460"><a href="#cb18-460" aria-hidden="true" tabindex="-1"></a><span class="in">a = [maximo(rand(UInt32, 128))[2] for i in 1:100] # &lt;2&gt;</span></span>
-<span id="cb18-461"><a href="#cb18-461" aria-hidden="true" tabindex="-1"></a><span class="in">quantile(a, [0.0, 0.25, 0.5, 0.75, 1.0]) # &lt;3&gt;</span></span>
+<span id="cb18-459"><a href="#cb18-459" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span> <span class="co"># &lt;1&gt;</span></span>
+<span id="cb18-460"><a href="#cb18-460" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fu">maximo</span>(<span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>))[<span class="fl">2</span>] for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>] <span class="co"># &lt;2&gt;</span></span>
+<span id="cb18-461"><a href="#cb18-461" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(a, [<span class="fl">0.0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>]) <span class="co"># &lt;3&gt;</span></span>
 <span id="cb18-462"><a href="#cb18-462" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-463"><a href="#cb18-463" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Inclusión de un paquete para cálculo de estadísticas básicas.</span>
 <span id="cb18-464"><a href="#cb18-464" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Definición de 100 experimentos que calculan <span class="in">`maximo`</span> sobre arreglos aleatorios.</span>
@@ -2260,7 +2248,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-499"><a href="#cb18-499" aria-hidden="true" tabindex="-1"></a>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</span>
 <span id="cb18-500"><a href="#cb18-500" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-501"><a href="#cb18-501" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte I: Cap. 1, 2, 3</span>
-</code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
