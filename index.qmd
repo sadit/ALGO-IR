@@ -18,9 +18,7 @@ Este libro esta diseñado para ser impartido en un semestre de licenciatura o ma
 
 ## Trabajo en progreso
 
-Este libro es un trabajo en progreso, que se pretende términar durante el primer semestre de 2025, mientras se imparte el curso _Análisis de algoritmos_ en la Maestría en Ciencia de Datos e Información de INFOTEC, México. El perfil de ingreso de la maestría es multidisciplinario, y esto es parte esencial del diseño de este libro.
-
-En particular, los capítulos 1, 2, y 3 tienen un avance significativo, aunque no estan terminados. El resto de los capítulos ese encuentran en un estado incipiente.
+Este libro es un trabajo en progreso, que se imparte el curso _Análisis de algoritmos_ en la Maestría en Ciencia de Datos e Información de INFOTEC, México. El perfil de ingreso de la maestría es multidisciplinario, y esto es parte esencial del diseño de este libro.
 
 
 ## Licencia

@@ -1,6 +1,9 @@
 ---
-engine: julia
 lang: es-MX
+engine: julia
+julia:
+  exeflags: ["+1.12"]
+
 ---
 
 # Estructuras de datos elementales {#sec-estructuras}

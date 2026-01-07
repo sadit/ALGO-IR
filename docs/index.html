@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-95f147d06fdb9f8ce149f95e323965f4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-aa5541670ca7bdc719d689fd730b675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -160,9 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Curso Introductorio al Análisis de Algoritmos con Julia</a> 
         <div class="sidebar-tools-main">
@@ -278,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="contenido-del-libro">Contenido del libro</h2>
 <p>Este libro esta diseñado para ser impartido en un semestre de licenciatura o maestría con un enfoque experimental, de Ingeniería en Computación o Ciencias de la Computación, así como Ciencia de Datos. Los algoritmos que se van develando desentrañan los algoritmos clásicos de Recuperación de Información, algoritmos detrás de grandes máquinas de búsqueda, sistemas de información basados en similitud, <em>retrieval augmented generation</em> (RAG), así como de los métodos detrás de la aceleración de otras técnicas de análisis de datos como agrupamiento y reducción de dimensión no-lineal.</p>
 <ul>
-<li>El <a href="cap1-julia.html" class="quarto-xref">Cap.&nbsp;<span>1&nbsp; Julia como lenguaje de programación para un curso de algoritmos</span></a> se dedica a revisar el lenguaje de programación Julia, desde un punto de vista de alguien que podría no conocer el lenguaje, pero que definitivamente sabe programar y esta familiarizado con los conceptos generales de un lenguaje de programación moderno.</li>
+<li>El <a href="cap1-julia.html#sec-julia" class="quarto-xref">Cap.&nbsp;<span>El lenguaje de programación Julia</span></a> se dedica a revisar el lenguaje de programación Julia, desde un punto de vista de alguien que podría no conocer el lenguaje, pero que definitivamente sabe programar y esta familiarizado con los conceptos generales de un lenguaje de programación moderno.</li>
 <li>El <a href="cap2-analisis.html" class="quarto-xref">Cap.&nbsp;<span>2&nbsp; Introducción al análisis de algoritmos con Julia</span></a> introduce los conceptos de análisis asintótico y compara ordenes de crecimiento con la idea de formar intuición.</li>
 <li>En el <a href="cap3-estructuras.html" class="quarto-xref">Cap.&nbsp;<span>3&nbsp; Estructuras de datos elementales</span></a> nos encontramos con las estructuras de datos elementales como son las estructuras de datos lineales y de acceso aleatorio, y su organización en memoria.</li>
 <li>El <a href="cap4-ordenamiento.html" class="quarto-xref">Cap.&nbsp;<span>4&nbsp; Algoritmos de ordenamiento</span></a> esta dedicado a algoritmos de ordenamiento en el modelo de comparación, estudia algoritmos tanto de peor caso como aquellos que toman ventaja de la distribución de entrada.</li>
@@ -288,8 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="trabajo-en-progreso" class="level2">
 <h2 class="anchored" data-anchor-id="trabajo-en-progreso">Trabajo en progreso</h2>
-<p>Este libro es un trabajo en progreso, que se pretende términar durante el primer semestre de 2025, mientras se imparte el curso <em>Análisis de algoritmos</em> en la Maestría en Ciencia de Datos e Información de INFOTEC, México. El perfil de ingreso de la maestría es multidisciplinario, y esto es parte esencial del diseño de este libro.</p>
-<p>En particular, los capítulos 1, 2, y 3 tienen un avance significativo, aunque no estan terminados. El resto de los capítulos ese encuentran en un estado incipiente.</p>
+<p>Este libro es un trabajo en progreso, que se imparte el curso <em>Análisis de algoritmos</em> en la Maestría en Ciencia de Datos e Información de INFOTEC, México. El perfil de ingreso de la maestría es multidisciplinario, y esto es parte esencial del diseño de este libro.</p>
 </section>
 <section id="licencia" class="level2">
 <h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
@@ -783,16 +780,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Trabajo en progreso</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Este libro es un trabajo en progreso, que se pretende términar durante el primer semestre de 2025, mientras se imparte el curso _Análisis de algoritmos_ en la Maestría en Ciencia de Datos e Información de INFOTEC, México. El perfil de ingreso de la maestría es multidisciplinario, y esto es parte esencial del diseño de este libro.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Este libro es un trabajo en progreso, que se imparte el curso _Análisis de algoritmos_ en la Maestría en Ciencia de Datos e Información de INFOTEC, México. El perfil de ingreso de la maestría es multidisciplinario, y esto es parte esencial del diseño de este libro.</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>En particular, los capítulos 1, 2, y 3 tienen un avance significativo, aunque no estan terminados. El resto de los capítulos ese encuentran en un estado incipiente.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Licencia</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Licencia</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)</span><span class="co">](http://creativecommons.org/licenses/by-sa/4.0/)</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)</span><span class="co">](http://creativecommons.org/licenses/by-sa/4.0/)</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Esta obra está bajo una <span class="co">[</span><span class="ot">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</span><span class="co">](http://creativecommons.org/licenses/by-sa/4.0/)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Esta obra está bajo una <span class="co">[</span><span class="ot">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</span><span class="co">](http://creativecommons.org/licenses/by-sa/4.0/)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

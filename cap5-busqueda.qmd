@@ -1,6 +1,9 @@
 ---
-engine: julia
 lang: es-MX
+engine: julia
+julia:
+  exeflags: ["+1.12"]
+
 ---
 
 # Algoritmos de búsqueda en el modelo de comparación {#sec-busqueda}

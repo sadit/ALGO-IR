@@ -1,6 +1,8 @@
 ---
 lang: es-MX
 engine: julia
+julia:
+  exeflags: ["+1.12"]
 
 ---
 

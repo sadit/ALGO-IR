@@ -1,6 +1,9 @@
 ---
-engine: julia
 lang: es-MX
+engine: julia
+julia:
+  exeflags: ["+1.12"]
+
 ---
 
 # Introducción al análisis de algoritmos con Julia {#sec-analisis}
