@@ -5,6 +5,16 @@ julia:
   exeflags: ["+1.12"]
 
 ---
+```{julia}
+#| echo: false
+#| label: setup
+#| #| output: false
+
+ENV["GKSwstype"] = "100" # Use "100" on Linux/macOS
+using Plots
+gr() # Force GR backend to acknowledge the change
+```
+
 
 # Algoritmos de búsqueda en el modelo de comparación {#sec-busqueda}
 

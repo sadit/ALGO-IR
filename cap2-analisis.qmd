@@ -6,6 +6,16 @@ julia:
 
 ---
 
+```{julia}
+#| echo: false
+#| label: setup
+#| output: false
+
+ENV["GKSwstype"] = "100" # Use "100" on Linux/macOS
+using Plots
+gr() # Force GR backend to acknowledge the change
+```
+
 # Introducción al análisis de algoritmos con Julia {#sec-analisis}
 
 Este capítulo introduce a los fundamentos de análisis de algoritmos. Se introduce el concepto de modelo de cómputo y la notación asintótica, preparandonos para usar el lenguaje común en el análisis de algoritmos. También se mostrarán algunos de los ordenes de crecimiento más representativos, que nos permitirán comparar algoritmos que resuelvan una tarea dada, así como catalogarlos con respecto a los recursos de computo necesarios para ejecutarlos.
@@ -442,35 +452,99 @@ quantile(a, [0.0, 0.25, 0.5, 0.75, 1.0]) # <3>
 3. Cálculo del mínimo, cuantiles 0.25, 0.5, 0.75, y el máximo, para determinar el desempeño.
 
 ## Actividades
-Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
 
-- $O(1)$ vs $O(\log n)$
-- $O(n)$ vs $O(n \log n)$
-- $O(n^2)$ vs $O(n^3)$
-- $O(a^n)$ vs $O(n!)$
-- $O(n!)$ vs $O(n^n)$
+1. Códifique de manera matemática (e.g., definición de estados y $\delta$) la siguiente máquina de Turing que cálcula la expresión $3n + 1$.
+```{dot}
+//| label: fig-turing-actividad
+//| echo: false
+//| fig-width: 60%
+//| fig-cap: |
+//|   Máquina de Turing que cálcula $3n + 1$.
 
-- Escoja los rangos adecuados para cada comparación, ya que como será evidente después, no es práctico fijar los rangos.
-- Cree una figura por comparación, i.e., cinco figuras. Discuta lo observado por figura.
-- Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.
-    - Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.
-    - Note que para algunas fórmulas, los números pueden ser muy grandes, tome decisiones en estos casos y defiendalas en el reporte.
-- Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información, en el mismo notebook.
+
+digraph Turing3nPlus1 {
+    rankdir=LR;
+    node [shape = circle, fontname="Helvetica"];
+    
+    // Estados
+    start [shape = plaintext, label = "Inicio"];
+    q0 [label = "q0\n(Ir al final)"];
+    q1 [label = "q1\n(Volver inicio)"];
+    q2 [label = "q2\n(Escanear)"];
+    q3 [label = "q3\n(Ir a salida)"];
+    q4 [label = "q4\n(Escribir 1º)"];
+    q5 [label = "q5\n(Escribir 2º)"];
+    // q6 eliminado por simplificación (la acción se realiza en la transición a q7)
+    q7 [label = "q7\n(Retornar)"];
+    q8 [label = "q8\n(Sumar +1)"];
+    q_halt [shape = doublecircle, label = "Halt\n(Terminado)", style=filled, fillcolor=lightgreen];
+
+    // Transiciones
+    
+    // Inicio -> q0
+    start -> q0;
+
+    // q0: Moverse a la derecha hasta encontrar el primer blanco para poner el separador #
+    q0 -> q0 [label = "1 -> 1, R"];
+    q0 -> q1 [label = "_ -> #, L"];
+
+    // q1: Volver al principio de la cinta
+    q1 -> q1 [label = "1 -> 1, L"];
+    q1 -> q2 [label = "_ -> _, R"];
+
+    // q2: Escanear entrada. Si ve 1, lo marca como X y va a escribir. Si ve #, terminó la multiplicación.
+    q2 -> q2 [label = "X -> X, R"]; // Saltar procesados
+    q2 -> q3 [label = "1 -> X, R"]; // Marcar y procesar
+    q2 -> q8 [label = "# -> #, R"]; // Fin de entrada, ir a sumar el +1
+
+    // q3: Moverse a la derecha pasando el separador y los unos de salida existentes
+    q3 -> q3 [label = "1 -> 1, R\n# -> #, R\nX -> X, R"];
+    q3 -> q4 [label = "_ -> 1, R"]; // Escribe el primer 1 del triplete
+
+    // q4: Escribir el segundo 1
+    q4 -> q5 [label = "_ -> 1, R"];
+
+    // q5: Escribir el tercer 1 y empezar a regresar
+    // Se pasa directamente a q7 para iniciar el retorno a la izquierda
+    q5 -> q7 [label = "_ -> 1, L"]; 
+
+    // q7: Retornar a la izquierda buscando la X que acabamos de marcar
+    q7 -> q7 [label = "1 -> 1, L\n# -> #, L"];
+    q7 -> q2 [label = "X -> X, R"]; // Al encontrar X, mueve R para buscar el siguiente 1
+
+    // q8: Añadir el +1 final (la parte '+1' de la función)
+    q8 -> q8 [label = "1 -> 1, R"]; // Moverse al final de los resultados
+    q8 -> q_halt [label = "_ -> 1, S"]; // Escribir el 1 final y detenerse
+}
+```
+
+2. Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
+    - $O(1)$ vs $O(\log n)$
+    - $O(n)$ vs $O(n \log n)$
+    - $O(n^2)$ vs $O(n^3)$
+    - $O(a^n)$ vs $O(n!)$
+    - $O(n!)$ vs $O(n^n)$
+
+    a. Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.
+    b. Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.
+    c. Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.
+    d. Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.
 
 ### Entregable
 
-
-Su trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
+Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
 
 No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
 
 - Título del reporte, su nombre.
 - Introducción.
-- Código cercano a la presentación de resultados.
-- Figuras y comparación de los órdenes de crecimiento.
-- Análisis y simulación de costo en formato de tabla.
-- Conclusión. Debe abordar las comparaciones hechas y la simulación; también toque el tema de casos extremos y una $n$ variable y asintóticamente muy grande.
+- Actividad 1. Máquina de turing 
+- Actividad 2. Comparación de los órdenes de crecimiento.
+  - Nota: poner el código cercano a la presentación de resultados.
+- Conclusiones
 - Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
+
+Nota: no olvides revisar la rúbrica del curso.
 
 ## Bibliografía
 Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.

@@ -316,7 +316,7 @@ window.Quarto = {
 
 
 
-<p>Nuestro objetivo trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.</p>
+<p>Nuestro objetivo es trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.</p>
 <p>Ambos lenguajes de programación son fáciles de aprender y altamente productivos. Python es un lenguaje excelente para realizar prototipos, o para cuando existen bibliotecas que resuelvan el problema que se este enfrentando. Por otro lado, cuando se necesita control sobre las operaciones que se estan ejecutando, o la memoria que se aloja, Python no es un lenguaje que nos permita trabajar en ese sentido. Julia esta diseñado para ser veloz y a la vez mantener el dinámismo que se espera de un lenguaje moderno, adicionalmente, es posible conocer los tipos de instrucciones que realmente se ejecutan, así como también es posible controlar la alojación de memoria, ya se mediante la utilización de patrones que así nos lo permitan, o mediante instrucciones que nos lo aseguren.</p>
 <p>Este curso esta escrito en Quarto, y se esperan reportes de de tareas y actividades tanto en Quarto <a href="https://quarto.org" class="uri">https://quarto.org</a> como en Jupyter <a href="https://jupyter.org/" class="uri">https://jupyter.org/</a>. La mayoría de los ejemplos estarán empotrados en el sitio, y en principio, deberían poder replicarse copiando, pegando, y ejecutando en una terminal de Julia.</p>
 <p>Es importante clarificar que este capítulo introducirá el lenguaje de programación Julia hasta el nivel que se requiere en este curso, ignorando una gran cantidad de capacidades que no son de interés para nuestro curso. Se recomienda al alumno interesado la revisión del manual y la documentación oficial para un estudio más profundo del lenguaje.</p>
@@ -602,7 +602,7 @@ julia&gt; String(take!(io))
 </tr>
 <tr class="even">
 <td><code>a === b</code></td>
-<td>comparación de igualdad (a nivel de tipo)</td>
+<td>comparación de igualdad (a nivel de tipo/memoria)</td>
 </tr>
 <tr class="odd">
 <td><code>a != b</code></td>
@@ -610,7 +610,7 @@ julia&gt; String(take!(io))
 </tr>
 <tr class="even">
 <td><code>a !== b</code></td>
-<td>comparación de desigualdad (a nivel de tipo)</td>
+<td>comparación de desigualdad (a nivel de tipo/memoria)</td>
 </tr>
 </tbody>
 </table>
@@ -781,7 +781,7 @@ es divisible entre tres</code></pre>
 <p>Los ciclos son expresiones de control de flujo que nos permiten iterar sobre una colección o repetir un código hasta que se cumpla alguna condición. En Julia existen dos expresiones de ciclos:</p>
 <ul>
 <li><code>for x in colección ...expresiones... end</code> y</li>
-<li><code>while condición ...expresioens... end</code></li>
+<li><code>while condición ...expresiones... end</code></li>
 </ul>
 <p>En el caso de <code>for</code>, la idea es iterar sobre una colección, esta colección puede ser un rango, i.e., <code>inicio:fin</code>, <code>inicio:paso:fin</code>, o una colección como las tuplas, los arreglos, o cualquiera que cumpla con la interfaz de colección iterable del lenguaje.</p>
 <div id="24" class="cell" data-execution_count="1">
@@ -1075,7 +1075,7 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <div class="ansi-escaped-output">
 <pre><span class="ansi-bright-black-fg">; Function Signature: *(Float64, Float64)</span>
 <span class="ansi-bright-black-fg">;  @ float.jl:497 within `*`</span>
-<span class="ansi-bright-magenta-fg">define</span> <span class="ansi-cyan-fg">double</span> <span class="ansi-bright-yellow-fg">@"julia_</span>*_12244"<span class="ansi-yellow-fg">(</span><span class="ansi-cyan-fg">double</span> %"x::Float64", <span class="ansi-cyan-fg">double</span> %"y::Float64"<span class="ansi-yellow-fg">)</span> #0 <span class="ansi-yellow-fg">{</span>
+<span class="ansi-bright-magenta-fg">define</span> <span class="ansi-cyan-fg">double</span> <span class="ansi-bright-yellow-fg">@"julia_</span>*_12156"<span class="ansi-yellow-fg">(</span><span class="ansi-cyan-fg">double</span> %"x::Float64", <span class="ansi-cyan-fg">double</span> %"y::Float64"<span class="ansi-yellow-fg">)</span> #0 <span class="ansi-yellow-fg">{</span>
 <span class="ansi-bright-red-fg">top:</span>
   %0 = <span class="ansi-bright-cyan-fg ansi-bold">fmul</span> <span class="ansi-cyan-fg">double</span> %"x::Float64", %"y::Float64"
   <span class="ansi-bright-cyan-fg ansi-bold">ret</span> <span class="ansi-cyan-fg">double</span> %0
@@ -1091,10 +1091,10 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <pre>   .text
     .file   "*"
     .section    .ltext,"axl",@progbits
-    .globl  "julia_*_12360"                 <span class="ansi-bright-black-fg"># -- Begin function julia_*_12360</span>
+    .globl  "julia_*_12272"                 <span class="ansi-bright-black-fg"># -- Begin function julia_*_12272</span>
     .p2align    <span class="ansi-yellow-fg">4</span>, <span class="ansi-yellow-fg">0x90</span>
-    .type   "julia_*_12360",@function
-<span class="ansi-bright-red-fg">"julia_*_12360":</span>                        <span class="ansi-bright-black-fg"># @"julia_*_12360"</span>
+    .type   "julia_*_12272",@function
+<span class="ansi-bright-red-fg">"julia_*_12272":</span>                        <span class="ansi-bright-black-fg"># @"julia_*_12272"</span>
 <span class="ansi-bright-black-fg">; Function Signature: *(Float64, Float64)</span>
 <span class="ansi-bright-black-fg">; ┌ @ float.jl:497 within `*`</span>
 <span class="ansi-bright-black-fg"># %bb.0:                                # %top</span>
@@ -1106,18 +1106,18 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
     <span class="ansi-bright-cyan-fg ansi-bold">pop</span>  rbp
     <span class="ansi-bright-cyan-fg ansi-bold">ret</span>
 <span class="ansi-bright-red-fg">.Lfunc_end0:</span>
-    .size   "julia_*_12360", .Lfunc_end0-"julia_*_12360"
+    .size   "julia_*_12272", .Lfunc_end0-"julia_*_12272"
 <span class="ansi-bright-black-fg">; └</span>
                                         <span class="ansi-bright-black-fg"># -- End function</span>
-    .type   ".L+Core.Float64#12362",@object <span class="ansi-bright-black-fg"># @"+Core.Float64#12362"</span>
+    .type   ".L+Core.Float64#12274",@object <span class="ansi-bright-black-fg"># @"+Core.Float64#12274"</span>
     .section    .lrodata,"al",@progbits
     .p2align    <span class="ansi-yellow-fg">3</span>, <span class="ansi-yellow-fg">0x0</span>
-<span class="ansi-bright-red-fg">".L+Core.Float64#12362":</span>
-    .quad   ".L+Core.Float64#12362.jit"
-    .size   ".L+Core.Float64#12362", <span class="ansi-yellow-fg">8</span>
+<span class="ansi-bright-red-fg">".L+Core.Float64#12274":</span>
+    .quad   ".L+Core.Float64#12274.jit"
+    .size   ".L+Core.Float64#12274", <span class="ansi-yellow-fg">8</span>
 
-.set ".L+Core.Float64#12362.jit", <span class="ansi-yellow-fg">136693400152560</span>
-    .size   ".L+Core.Float64#12362.jit", <span class="ansi-yellow-fg">8</span>
+.set ".L+Core.Float64#12274.jit", <span class="ansi-yellow-fg">128953772616176</span>
+    .size   ".L+Core.Float64#12274.jit", <span class="ansi-yellow-fg">8</span>
     .section    ".note.GNU-stack","",@progbits
 </pre>
 </div>
@@ -1197,10 +1197,10 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>, <span class="fl">6</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×6 Matrix{Float32}:
- 0.232042   0.466391  0.499494  0.846333   0.897227  0.0595378
- 0.85357    0.745177  0.706061  0.222596   0.10986   0.405231
- 0.627722   0.735726  0.805461  0.0346665  0.888399  0.652803
- 0.0431642  0.218822  0.270003  0.958919   0.589503  0.696576</code></pre>
+ 0.8358    0.309711  0.258171  0.0793639  0.678398  0.59407
+ 0.784485  0.350497  0.402035  0.224535   0.109351  0.270337
+ 0.199536  0.570861  0.544277  0.10487    0.865695  0.688674
+ 0.710535  0.936328  0.989251  0.0613883  0.153327  0.815167</code></pre>
 </div>
 </div>
 <p>Un vector aleatorio de 6 dimensiones sería como sigue:</p>
@@ -1208,10 +1208,10 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">4</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4-element Vector{Float32}:
- 0.344626
- 0.5597655
- 0.80959284
- 0.3791939</code></pre>
+ 0.46093136
+ 0.46436906
+ 0.09765369
+ 0.9613556</code></pre>
 </div>
 </div>
 <p>entonces podriamos multiplicar <code>x</code> con <code>A</code> como sigue:</p>
@@ -1219,19 +1219,19 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x<span class="op">'</span> <span class="op">*</span> A</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>1×6 adjoint(::Vector{Float32}) with eltype Float32:
- 1.08233  1.25647  1.32185  0.807952  1.31348  1.03999</code></pre>
+ 1.4521  1.26141  1.30986  0.210105  0.595414  1.25028</code></pre>
 </div>
 </div>
 <div id="62" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>y<span class="op">'</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>6-element Vector{Float32}:
- 1.0823333
- 1.2564692
- 1.3218465
- 0.8079518
- 1.3134811
- 1.0399944</code></pre>
+ 1.4520993
+ 1.2614062
+ 1.3098645
+ 0.21010543
+ 0.5954138
+ 1.250279</code></pre>
 </div>
 </div>
 <p>También existen otras formas para realizarla, aunque no suelen ser la mejor idea si se tienen alternativas canónicas:</p>
@@ -1241,12 +1241,12 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dot</span>.(<span class="fu">Ref</span>(x), <span class="fu">eachcol</span>(A))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>6-element Vector{Float32}:
- 1.0823333
- 1.2564691
- 1.3218466
- 0.8079518
- 1.3134812
- 1.0399944</code></pre>
+ 1.4520993
+ 1.2614062
+ 1.3098646
+ 0.21010543
+ 0.5954138
+ 1.250279</code></pre>
 </div>
 </div>
 <p>Este ejemplo muestra la técnica <em>broadcasting</em> que aplica una función a una colección; se indica añadiendo un punto al final del nombre de la función. Adicionalmente, hay una serie de reglas que se deben seguir para el manejo de las colecciones. La función <code>eachcol</code> crea un iterador sobre cada columna de la matriz <code>A</code> y <code>Ref(x)</code>, nos permite que el <code>broadcasting</code> reconozca al vector <code>x</code> como un único elemento en lugar de una colección de valores.</p>
@@ -1968,7 +1968,7 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># Julia como lenguaje de programación para un curso de algoritmos {#sec-julia}</span></span>
 <span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>Nuestro objetivo trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.<span class="ot">[^julia]</span> Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>Nuestro objetivo es trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.<span class="ot">[^julia]</span> Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.</span>
 <span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="ot">[^julia]: </span>Se recomienda utilizar la versión 1.10 o superior, y puede obtenerse en <span class="ot">&lt;https://julialang.org/&gt;</span>.</span>
 <span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a></span>
@@ -2221,9 +2221,9 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <span id="cb69-268"><a href="#cb69-268" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> <span class="op">&lt;</span>= b<span class="kw">`</span>  <span class="kw">|</span> <span class="ex">comparación</span> <span class="kw">`</span><span class="ex">a</span><span class="kw">`</span> es menor o igual que <span class="kw">`</span><span class="ex">b</span><span class="kw">`</span>     <span class="kw">|</span></span>
 <span id="cb69-269"><a href="#cb69-269" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> <span class="op">&gt;</span>= b<span class="kw">`</span>  <span class="kw">|</span> <span class="ex">comparación</span> <span class="kw">`</span><span class="ex">a</span><span class="kw">`</span> es mayor o igual que <span class="kw">`</span><span class="ex">b</span><span class="kw">`</span>     <span class="kw">|</span></span>
 <span id="cb69-270"><a href="#cb69-270" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> == b<span class="kw">`</span>  <span class="kw">|</span> <span class="ex">comparación</span> de igualdad                      <span class="kw">|</span></span>
-<span id="cb69-271"><a href="#cb69-271" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> === b<span class="kw">`</span> <span class="kw">|</span> <span class="ex">comparación</span> de igualdad <span class="er">(</span><span class="ex">a</span> nivel de tipo<span class="kw">)</span>    <span class="kw">|</span></span>
+<span id="cb69-271"><a href="#cb69-271" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> === b<span class="kw">`</span> <span class="kw">|</span> <span class="ex">comparación</span> de igualdad <span class="er">(</span><span class="ex">a</span> nivel de tipo/memoria<span class="kw">)</span>    <span class="kw">|</span></span>
 <span id="cb69-272"><a href="#cb69-272" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> != b<span class="kw">`</span>  <span class="kw">|</span> <span class="ex">comparación</span> de desigualdad                   <span class="kw">|</span></span>
-<span id="cb69-273"><a href="#cb69-273" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> !== b<span class="kw">`</span> <span class="kw">|</span> <span class="ex">comparación</span> de desigualdad <span class="er">(</span><span class="ex">a</span> nivel de tipo<span class="kw">)</span> <span class="kw">|</span></span>
+<span id="cb69-273"><a href="#cb69-273" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">`</span><span class="ex">a</span> !== b<span class="kw">`</span> <span class="kw">|</span> <span class="ex">comparación</span> de desigualdad <span class="er">(</span><span class="ex">a</span> nivel de tipo/memoria<span class="kw">)</span> <span class="kw">|</span></span>
 <span id="cb69-274"><a href="#cb69-274" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-275"><a href="#cb69-275" aria-hidden="true" tabindex="-1"></a><span class="ex">En</span> particular <span class="kw">`&amp;&amp;`</span> y <span class="kw">`||`</span> implementan _corto circuito de código_, por lo que pueden usarse para el control de que operaciones se ejecutan. Cuando se compara a nivel de tipo 0 <span class="er">(</span><span class="ex">entero</span><span class="kw">)</span> <span class="ex">será</span> diferente de 0.0 <span class="er">(</span><span class="ex">real</span><span class="kw">)</span><span class="bu">.</span></span>
 <span id="cb69-276"><a href="#cb69-276" aria-hidden="true" tabindex="-1"></a></span>
@@ -2340,7 +2340,7 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <span id="cb69-401"><a href="#cb69-401" aria-hidden="true" tabindex="-1"></a><span class="ex">Los</span> ciclos son expresiones de control de flujo que nos permiten iterar sobre una colección o repetir un código hasta que se cumpla alguna condición. En Julia existen dos expresiones de ciclos: </span>
 <span id="cb69-402"><a href="#cb69-402" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-403"><a href="#cb69-403" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> <span class="kw">`</span><span class="cf">for</span> x <span class="kw">in</span> colección ...expresiones... end<span class="kw">`</span> y</span>
-<span id="cb69-404"><a href="#cb69-404" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> <span class="kw">`</span><span class="cf">while</span> <span class="ex">condición</span> ...expresioens... end<span class="kw">`</span></span>
+<span id="cb69-404"><a href="#cb69-404" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> <span class="kw">`</span><span class="cf">while</span> <span class="ex">condición</span> ...expresiones... end<span class="kw">`</span></span>
 <span id="cb69-405"><a href="#cb69-405" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-406"><a href="#cb69-406" aria-hidden="true" tabindex="-1"></a><span class="ex">En</span> el caso de <span class="kw">`</span><span class="cf">for</span><span class="kw">`</span>, la idea es iterar sobre una colección, esta colección puede ser un rango, i.e., <span class="kw">`</span><span class="ex">inicio:fin</span><span class="kw">`</span>, <span class="kw">`</span><span class="ex">inicio:paso:fin</span><span class="kw">`</span>, o una colección como las tuplas, los arreglos, o cualquiera que cumpla con la interfaz de colección iterable del lenguaje. </span>
 <span id="cb69-407"><a href="#cb69-407" aria-hidden="true" tabindex="-1"></a></span>
@@ -2739,7 +2739,6 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <span id="cb69-842"><a href="#cb69-842" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> Información sobre como instalar Julia y flujos de trabajo simples <span class="er">(</span><span class="ex">e.g.,</span> REPL, editores, etc.<span class="kw">)</span> <span class="ex">para</span> trabajar con este lenguaje de programación: _Modern Julia Workflows_ <span class="op">&lt;</span>https://modernjuliaworkflows.github.io/<span class="op">&gt;</span>.</span>
 <span id="cb69-843"><a href="#cb69-843" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> Libro sobre julia _Think Julia: How to Think Like a Computer Scientist_ <span class="op">&lt;</span>https://benlauwens.github.io/ThinkJulia.jl/latest/book.html<span class="op">&gt;</span>.</span>
 <span id="cb69-844"><a href="#cb69-844" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> Curso _Introduction to computational thinking_ <span class="op">&lt;</span>https://computationalthinking.mit.edu/Fall20/<span class="op">&gt;</span></span>
-<span id="cb69-845"><a href="#cb69-845" aria-hidden="true" tabindex="-1"></a></span>
 </code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

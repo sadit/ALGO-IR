@@ -41,7 +41,7 @@ format:
     code-tools: true
     echo: true
   pdf:
-    documentclass: scrbook
+    documentclass: scrreport
     echo: true
     toc: true
     colorlinks: true

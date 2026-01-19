@@ -6,12 +6,17 @@ julia:
 
 ---
 
+```{julia}
+#| echo: false
+#| label: setup
+#| output: false
+
+ENV["GKSwstype"] = "100" # Use "100" on Linux/macOS
+using Plots
+gr() # Force GR backend to acknowledge the change
+```
+
 # Estructuras de datos elementales {#sec-estructuras}
-
-## Objetivo {.unnumbered}
-
-Implementar, aplicar y caracterizar el desempeño de algoritmos en peor caso y adaptativos para búsqueda en arreglos ordenados. Se discutirán estructuras de datos básicas que serán de gran utilidad al momento de construir programas y de resolver problemas más complejos; nos enfocaremos en las estructuras de datos.
-
 
 ## Introducción
 
@@ -444,30 +449,51 @@ El BFS hace uso explícito de la memoria para guardar el orden en que se visitar
 - Implemente el algoritmo de recorrido DFS y BFS con implementaciones de grafos.
 
 ## Actividades
-Implementar los siguientes algoritmos sobre matrices.
-- Multiplicación de matrices
-- Eliminación gaussiana / Gauss-Jordan
-Compare los desempeños de ambos algoritmos contando el número de operaciones y el tiempo real para matrices aleatorias de tamaño \( n \times n \) para \( n= 100, 300, 1000\).
-Maneje de manera separada los datos de conteo de operaciones (multiplicaciones y sumas escalares) y las de tiempo real.
-Discuta sus resultados experimentales; ¿qué puede concluir?
-¿Cuál es el impacto de acceder los elementos contiguos en memoria de una matriz?
-¿Qué cambiaría si utiliza matrices dispersas? ¿Cuáles serían los costos?
+
+Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times n$, para cada vector columna $q \in Q$, encontrar el vector columna de $x \in X$ que maximiza su producto punto. Dicho de otra forma, el problema consiste en asociar cada $q$ con $\arg\max \{ q \cdot x \mid x \in X \}$. Este será el problema de _encontrar el producto punto máximo_ o **top-1**. Obtenga un arreglo de identificadores de columna como resultado (_nns_) y otro con el valor del producto punto máximo (_dots_) para cada columna en $Q$.
+
+\begin{align*}
+\mathbf{Q} &= 
+\begin{pmatrix}
+ q_{1,1} & q_{1,2} & \cdots & q_{1,m} \\
+ q_{2,1} & q_{2,2} & \cdots & q_{2,m} \\
+ \vdots  & \vdots  & \ddots & \vdots  \\
+ q_{d,1} & q_{d,2} & \cdots & q_{d,m} 
+\end{pmatrix} \\[1em]
+\mathbf{X} &= 
+\begin{pmatrix}
+ x_{1,1} & x_{1,2} & \cdots & x_{1,n} \\
+ x_{2,1} & x_{2,2} & \cdots & x_{2,n} \\
+ \vdots  & \vdots  & \ddots & \vdots  \\
+ x_{d,1} & x_{d,2} & \cdots & x_{d,n} 
+\end{pmatrix}
+\end{align*}
 
 
-**Entregable**
+  a. Cree el algoritmo **A1** con operaciones matriciales explicitas.
+  b. Adapte el algoritmo _getmaxdot_ de las notas (Cap. 2) para el mismo lenguaje de tu implementación para resolver el mismo problema, llamemoslo **A2**.
 
-Su trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
+1. Considere un conjunto de datos como una tupla $Q, X$.
+
+2. Considere las combinaciones de $m \in \{10^3, 10^6, 10^9\}$, $n \in \{10^3, 10^6, 10^9\}$, $d \in \{8, 16, 32\}$.
+3. Las matrices $Q$ y $X$ deberán ser aleatorias cuyos vectores columna esten en la esfera unitaria.
+4. Analice la memoria necesaria por cada algoritmo (A1 y A2) para cada combinación en argumentos; grafique y discuta.
+5. Reporte los costos en tiempo real para $m=10^3, n=10^6$ y $d=16$ para cada A1 y A2.
+6. Grafique la distribución del arreglo _dots_ para la corrida previa, i.e., $m=10^3, n=10^6$ y $d=16$.
+
+### Entregable
+
+Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
 
 No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
 
 - Título del reporte, su nombre.
 - Introducción.
-- Código cercano a la presentación de resultados.
-- Figuras y tablas
-- Análisis de los resultados
-- Conclusión, discusiones de las preguntas
-- Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto 
-será interpretada como una lista vacía.
+- Desarrollo de las actividades.
+- Conclusiones
+- Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
+
+Nota: no olvides revisar la rúbrica del curso.
 
 ## Bibliografía
 Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.

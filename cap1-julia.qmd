@@ -7,7 +7,7 @@ julia:
 ---
 # Julia como lenguaje de programación para un curso de algoritmos {#sec-julia}
 
-Nuestro objetivo trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.[^julia] Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.
+Nuestro objetivo es trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.[^julia] Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.
 
 [^julia]: Se recomienda utilizar la versión 1.10 o superior, y puede obtenerse en <https://julialang.org/>.
 
@@ -260,9 +260,9 @@ Los operadores lógicos también tienen el significado esperado.
 | `a <= b`  | comparación `a` es menor o igual que `b`     |
 | `a >= b`  | comparación `a` es mayor o igual que `b`     |
 | `a == b`  | comparación de igualdad                      |
-| `a === b` | comparación de igualdad (a nivel de tipo)    |
+| `a === b` | comparación de igualdad (a nivel de tipo/memoria)    |
 | `a != b`  | comparación de desigualdad                   |
-| `a !== b` | comparación de desigualdad (a nivel de tipo) |
+| `a !== b` | comparación de desigualdad (a nivel de tipo/memoria) |
 
 En particular `&&` y `||` implementan _corto circuito de código_, por lo que pueden usarse para el control de que operaciones se ejecutan. Cuando se compara a nivel de tipo 0 (entero) será diferente de 0.0 (real).
 
@@ -379,7 +379,7 @@ println(a % 3 == 0 ? "es divisible entre tres" : "no es divisible entre tres")
 Los ciclos son expresiones de control de flujo que nos permiten iterar sobre una colección o repetir un código hasta que se cumpla alguna condición. En Julia existen dos expresiones de ciclos: 
 
 - `for x in colección ...expresiones... end` y
-- `while condición ...expresioens... end`
+- `while condición ...expresiones... end`
 
 En el caso de `for`, la idea es iterar sobre una colección, esta colección puede ser un rango, i.e., `inicio:fin`, `inicio:paso:fin`, o una colección como las tuplas, los arreglos, o cualquiera que cumpla con la interfaz de colección iterable del lenguaje. 
 
@@ -778,5 +778,3 @@ En particular, los _paquetes_ pueden verse como la preparación de un módulo pa
 - Información sobre como instalar Julia y flujos de trabajo simples (e.g., REPL, editores, etc.) para trabajar con este lenguaje de programación: _Modern Julia Workflows_ <https://modernjuliaworkflows.github.io/>.
 - Libro sobre julia _Think Julia: How to Think Like a Computer Scientist_ <https://benlauwens.github.io/ThinkJulia.jl/latest/book.html>.
 - Curso _Introduction to computational thinking_ <https://computationalthinking.mit.edu/Fall20/>
-
-

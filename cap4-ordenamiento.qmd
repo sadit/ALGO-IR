@@ -6,6 +6,17 @@ julia:
 
 ---
 
+```{julia}
+#| echo: false
+#| label: setup
+#| output: false
+
+ENV["GKSwstype"] = "100" # Use "100" on Linux/macOS
+using Plots
+gr() # Force GR backend to acknowledge the change
+```
+
+
 # Algoritmos de ordenamiento {#sec-ordenamiento}
 
 ## Objetivo {.unnumbered}
@@ -306,3 +317,38 @@ En [@Cook80] realiza una comparación del desempeño de varios algoritmos para o
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F9jh0IJsg1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
+## Actividades
+
+1. Implementa y compara los siguientes algoritmos de ordenamiento:
+  - heapsort
+  - mergesort
+  - quicksort
+  - bubblesort
+
+2. Utiliza los diferentes archivos proporcionados, los cuales tienen diferentes niveles de desorden y mide tanto el número de comparaciones como el tiempo necesario para ordenarlos.
+
+3. Por cada archivo de datos, compara todos los métodos implementados mediante figuras o tablas de datos (número de comparaciones y tiempo por separado).
+
+4. Discute tus resultados.
+
+
+
+Entregable:
+
+1. Tu trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
+
+2. No olvides estructurar tu reporte, en particular, debe cubrir los siguientes puntos:
+
+     - Título del reporte, su nombre.
+
+     - Introducción.
+
+     - Código cercano a la presentación de resultados.
+
+     - Figuras y tablas
+
+     - Análisis de los resultados
+
+     - Conclusión, discusiones de las preguntas
+
+     - Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.

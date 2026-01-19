@@ -6,6 +6,17 @@ julia:
 
 ---
 
+```{julia}
+#| echo: false
+#| label: setup
+#| output: false
+
+ENV["GKSwstype"] = "100" # Use "100" on Linux/macOS
+using Plots
+gr() # Force GR backend to acknowledge the change
+```
+
+
 # Algoritmos de intersección y unión de conjuntos en el modelo de comparación {#sec-intersecciones}
 
 ## Objetivo {.unnumbered}
