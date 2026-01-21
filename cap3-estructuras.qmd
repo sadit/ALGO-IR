@@ -469,7 +469,6 @@ Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times 
 \end{pmatrix}
 \end{align*}
 
-
   a. Cree el algoritmo **A1** con operaciones matriciales explicitas.
   b. Adapte el algoritmo _getmaxdot_ de las notas (Cap. 2) para el mismo lenguaje de tu implementación para resolver el mismo problema, llamemoslo **A2**.
 
@@ -477,8 +476,8 @@ Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times 
 
 2. Considere las combinaciones de $m \in \{10^3, 10^6, 10^9\}$, $n \in \{10^3, 10^6, 10^9\}$, $d \in \{8, 16, 32\}$.
 3. Las matrices $Q$ y $X$ deberán ser aleatorias cuyos vectores columna esten en la esfera unitaria.
-4. Analice la memoria necesaria por cada algoritmo (A1 y A2) para cada combinación en argumentos; grafique y discuta.
-5. Reporte los costos en tiempo real para $m=10^3, n=10^6$ y $d=16$ para cada A1 y A2.
+4. Analice la memoria necesaria por cada algoritmo (**A1** y **A2**) para cada combinación en argumentos; grafique y discuta.
+5. Reporte los costos en tiempo real para $m=10^3, n=10^6$ y $d=16$ para cada **A1** y **A2**.
 6. Grafique la distribución del arreglo _dots_ para la corrida previa, i.e., $m=10^3, n=10^6$ y $d=16$.
 
 ### Entregable

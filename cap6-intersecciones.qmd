@@ -19,8 +19,6 @@ gr() # Force GR backend to acknowledge the change
 
 # Algoritmos de intersección y unión de conjuntos en el modelo de comparación {#sec-intersecciones}
 
-## Objetivo {.unnumbered}
-Analizar el rendimiento de algoritmos de unión e intersección de conjuntos representados como listas ordenadas parametrizando los algoritmos con los algoritmos internos de búsqueda, tamaño de los conjuntos y la distribución de los elementos, bajo un enfoque experimental midiendo los costos en términos del tiempo de ejecución y el uso de memoria.
 
 ## Problema
 
@@ -398,9 +396,38 @@ Parte 2: Algoritmos de intersección y algunas aplicaciones
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oOd5LoVJcAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Actividades
-Implementación y comparación de diferentes algoritmos de intersección de conjuntos.
+1. Lea el archivo de datos provisto, el cual se encuentra en formato JSON, y contiene múltiples listas de datos:
 
-Lea cuidadosamente las instrucciones y desarrolle las actividades. Entregue el reporte correspondiente en tiempo.
+    - Conjunto $A$ que contiene pares de listas.
+    - Conjunto $B$ que contiene tripletas de listas.
+    - Conjunto $C$ que contiene tuplas de 4 listas.
 
+2. Implementación de algoritmos:
+    - Implementa los algoritmos de Melding (ME), Baeza-Yates (BY) y de Barbay & Kenyon (BK).
+    - Implementa BY parametrizando con algoritmos de búsqueda: bisección, y búsqueda no acotada $B_1$ y $B_2$ (ver Unidad 4).
 
+3. Experimentación:
+    - Calcula las intersecciones para los datos de cada grupo de listas ($A$, $B$, y $C$).
+    - Acumula el tiempo en segundos y el número de comparaciones para cada operación, es posible que necesites repetir varias veces el procedimiento para medir tiempos de manera fiable.
+    - Crea gráficos boxplot para cada cada conjunto de listas con los siguientes aspectos, incluye en cada gráfica todos los algoritmos para que sean fáciles de comparar:
+        - Tiempo en segundos de los tres experimentos, por algoritmo.
+        - Número de comparaciones de los tres experimentos, por algoritmo.
+        - Longitudes de las intersecciones resultantes para $A$, $B$, $C$, este también es un gráfico de control, úsalo para detectar posibles errores.
 
+4. Análisis:
+    - Analiza los resultados obtenidos en los gráficos boxplot. Examina las diferencias en tiempo, número de comparaciones y longitud de las intersecciones entre los distintos algoritmos y conjuntos de listas.
+    - Discuta cualquier tendencia, anomalía o patrón interesante observado. Reflexiona sobre cómo los diferentes algoritmos afectan el rendimiento y la eficiencia en las operaciones de intersección.
+
+### Entregable
+
+Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
+
+No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
+
+- Título del reporte, su nombre.
+- Introducción.
+- Desarrollo de las actividades.
+- Conclusiones
+- Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
+
+Nota: no olvides revisar la rúbrica del curso.

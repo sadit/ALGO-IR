@@ -19,8 +19,6 @@ gr() # Force GR backend to acknowledge the change
 
 # Algoritmos de ordenamiento {#sec-ordenamiento}
 
-## Objetivo {.unnumbered}
-Implementar y analizar algoritmos de ordenamiento de arreglos con costo óptimo en el peor caso, así como algoritmos adaptativos a la entrada para caracterizar su desempeño bajo un enfoque experimental para la solución efectiva de problemas informáticos.
 
 ## Introducción
 
@@ -323,32 +321,22 @@ En [@Cook80] realiza una comparación del desempeño de varios algoritmos para o
   - heapsort
   - mergesort
   - quicksort
-  - bubblesort
+  - bubblesort adaptativo
 
 2. Utiliza los diferentes archivos proporcionados, los cuales tienen diferentes niveles de desorden y mide tanto el número de comparaciones como el tiempo necesario para ordenarlos.
-
 3. Por cada archivo de datos, compara todos los métodos implementados mediante figuras o tablas de datos (número de comparaciones y tiempo por separado).
-
 4. Discute tus resultados.
 
 
+ ### Entregable
+Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
 
-Entregable:
+No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:
 
-1. Tu trabajo se entregará en PDF y con el notebook fuente; deberá estar plenamente documentado, con una estructura que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
+- Título del reporte, su nombre.
+- Introducción.
+- Desarrollo de las actividades.
+- Conclusiones
+- Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
 
-2. No olvides estructurar tu reporte, en particular, debe cubrir los siguientes puntos:
-
-     - Título del reporte, su nombre.
-
-     - Introducción.
-
-     - Código cercano a la presentación de resultados.
-
-     - Figuras y tablas
-
-     - Análisis de los resultados
-
-     - Conclusión, discusiones de las preguntas
-
-     - Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
+Nota: no olvides revisar la rúbrica del curso.
