@@ -226,6 +226,7 @@ Tenga en cuenta que, honrando la literatura, usaremos de forma indiscriminada li
 ## Actividades
 
 1.Implementa y compara los siguientes algoritmos de búsqueda:
+
   - Búsqueda binaria acotada
   - Búsqueda secuencial $B_0$
   - Búsqueda no acotada $B_1$

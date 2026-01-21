@@ -473,7 +473,6 @@ Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times 
   b. Adapte el algoritmo _getmaxdot_ de las notas (Cap. 2) para el mismo lenguaje de tu implementación para resolver el mismo problema, llamemoslo **A2**.
 
 1. Considere un conjunto de datos como una tupla $Q, X$.
-
 2. Considere las combinaciones de $m \in \{10^3, 10^6, 10^9\}$, $n \in \{10^3, 10^6, 10^9\}$, $d \in \{8, 16, 32\}$.
 3. Las matrices $Q$ y $X$ deberán ser aleatorias cuyos vectores columna esten en la esfera unitaria.
 4. Analice la memoria necesaria por cada algoritmo (**A1** y **A2**) para cada combinación en argumentos; grafique y discuta.

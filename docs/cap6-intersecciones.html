@@ -818,18 +818,18 @@ C_&gt; &amp;= \{A[M+1..m] \cap B[p+e..n]\} \\
 <section id="actividades" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="actividades"><span class="header-section-number">6.6</span> Actividades</h2>
 <ol type="1">
-<li><p>Lea el archivo de datos provisto, el cual se encuentra en formato JSON, y contiene múltiples listas de datos:</p>
+<li>Lea el archivo de datos provisto, el cual se encuentra en formato JSON, y contiene múltiples listas de datos:
 <ul>
 <li>Conjunto <span class="math inline">\(A\)</span> que contiene pares de listas.</li>
 <li>Conjunto <span class="math inline">\(B\)</span> que contiene tripletas de listas.</li>
 <li>Conjunto <span class="math inline">\(C\)</span> que contiene tuplas de 4 listas.</li>
 </ul></li>
-<li><p>Implementación de algoritmos:</p>
+<li>Implementación de algoritmos:
 <ul>
 <li>Implementa los algoritmos de Melding (ME), Baeza-Yates (BY) y de Barbay &amp; Kenyon (BK).</li>
 <li>Implementa BY parametrizando con algoritmos de búsqueda: bisección, y búsqueda no acotada <span class="math inline">\(B_1\)</span> y <span class="math inline">\(B_2\)</span> (ver Unidad 4).</li>
 </ul></li>
-<li><p>Experimentación:</p>
+<li>Experimentación:
 <ul>
 <li>Calcula las intersecciones para los datos de cada grupo de listas (<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, y <span class="math inline">\(C\)</span>).</li>
 <li>Acumula el tiempo en segundos y el número de comparaciones para cada operación, es posible que necesites repetir varias veces el procedimiento para medir tiempos de manera fiable.</li>
@@ -840,7 +840,7 @@ C_&gt; &amp;= \{A[M+1..m] \cap B[p+e..n]\} \\
 <li>Longitudes de las intersecciones resultantes para <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, este también es un gráfico de control, úsalo para detectar posibles errores.</li>
 </ul></li>
 </ul></li>
-<li><p>Análisis:</p>
+<li>Análisis:
 <ul>
 <li>Analiza los resultados obtenidos en los gráficos boxplot. Examina las diferencias en tiempo, número de comparaciones y longitud de las intersecciones entre los distintos algoritmos y conjuntos de listas.</li>
 <li>Discuta cualquier tendencia, anomalía o patrón interesante observado. Reflexiona sobre cómo los diferentes algoritmos afectan el rendimiento y la eficiencia en las operaciones de intersección.</li>
@@ -1753,40 +1753,39 @@ MacKay, David JC. 2003. <em>Information theory, inference and learning algorithm
 <span id="cb4-422"><a href="#cb4-422" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-423"><a href="#cb4-423" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
 <span id="cb4-424"><a href="#cb4-424" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Lea el archivo de datos provisto, el cual se encuentra en formato JSON, y contiene múltiples listas de datos:</span>
-<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Conjunto $A$ que contiene pares de listas.</span>
-<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Conjunto $B$ que contiene tripletas de listas.</span>
-<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Conjunto $C$ que contiene tuplas de 4 listas.</span>
-<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Implementación de algoritmos:</span>
-<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Implementa los algoritmos de Melding (ME), Baeza-Yates (BY) y de Barbay &amp; Kenyon (BK).</span>
-<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Implementa BY parametrizando con algoritmos de búsqueda: bisección, y búsqueda no acotada $B_1$ y $B_2$ (ver Unidad 4).</span>
-<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Experimentación:</span>
-<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Calcula las intersecciones para los datos de cada grupo de listas ($A$, $B$, y $C$).</span>
-<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Acumula el tiempo en segundos y el número de comparaciones para cada operación, es posible que necesites repetir varias veces el procedimiento para medir tiempos de manera fiable.</span>
-<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Crea gráficos boxplot para cada cada conjunto de listas con los siguientes aspectos, incluye en cada gráfica todos los algoritmos para que sean fáciles de comparar:</span>
-<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Tiempo en segundos de los tres experimentos, por algoritmo.</span>
-<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Número de comparaciones de los tres experimentos, por algoritmo.</span>
-<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Longitudes de las intersecciones resultantes para $A$, $B$, $C$, este también es un gráfico de control, úsalo para detectar posibles errores.</span>
-<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Análisis:</span>
-<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Analiza los resultados obtenidos en los gráficos boxplot. Examina las diferencias en tiempo, número de comparaciones y longitud de las intersecciones entre los distintos algoritmos y conjuntos de listas.</span>
-<span id="cb4-444"><a href="#cb4-444" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Discuta cualquier tendencia, anomalía o patrón interesante observado. Reflexiona sobre cómo los diferentes algoritmos afectan el rendimiento y la eficiencia en las operaciones de intersección.</span>
-<span id="cb4-445"><a href="#cb4-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-446"><a href="#cb4-446" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
-<span id="cb4-447"><a href="#cb4-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-448"><a href="#cb4-448" aria-hidden="true" tabindex="-1"></a>Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.</span>
-<span id="cb4-449"><a href="#cb4-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-450"><a href="#cb4-450" aria-hidden="true" tabindex="-1"></a>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:</span>
-<span id="cb4-451"><a href="#cb4-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-452"><a href="#cb4-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Título del reporte, su nombre.</span>
-<span id="cb4-453"><a href="#cb4-453" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introducción.</span>
-<span id="cb4-454"><a href="#cb4-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Desarrollo de las actividades.</span>
-<span id="cb4-455"><a href="#cb4-455" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conclusiones</span>
-<span id="cb4-456"><a href="#cb4-456" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.</span>
-<span id="cb4-457"><a href="#cb4-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-458"><a href="#cb4-458" aria-hidden="true" tabindex="-1"></a>Nota: no olvides revisar la rúbrica del curso.</span>
+<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Conjunto $A$ que contiene pares de listas.</span>
+<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Conjunto $B$ que contiene tripletas de listas.</span>
+<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Conjunto $C$ que contiene tuplas de 4 listas.</span>
+<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Implementación de algoritmos:</span>
+<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Implementa los algoritmos de Melding (ME), Baeza-Yates (BY) y de Barbay &amp; Kenyon (BK).</span>
+<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Implementa BY parametrizando con algoritmos de búsqueda: bisección, y búsqueda no acotada $B_1$ y $B_2$ (ver Unidad 4).</span>
+<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Experimentación:</span>
+<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Calcula las intersecciones para los datos de cada grupo de listas ($A$, $B$, y $C$).</span>
+<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Acumula el tiempo en segundos y el número de comparaciones para cada operación, es posible que necesites repetir varias veces el procedimiento para medir tiempos de manera fiable.</span>
+<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Crea gráficos boxplot para cada cada conjunto de listas con los siguientes aspectos, incluye en cada gráfica todos los algoritmos para que sean fáciles de comparar:</span>
+<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Tiempo en segundos de los tres experimentos, por algoritmo.</span>
+<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Número de comparaciones de los tres experimentos, por algoritmo.</span>
+<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Longitudes de las intersecciones resultantes para $A$, $B$, $C$, este también es un gráfico de control, úsalo para detectar posibles errores.</span>
+<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Análisis:</span>
+<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Analiza los resultados obtenidos en los gráficos boxplot. Examina las diferencias en tiempo, número de comparaciones y longitud de las intersecciones entre los distintos algoritmos y conjuntos de listas.</span>
+<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Discuta cualquier tendencia, anomalía o patrón interesante observado. Reflexiona sobre cómo los diferentes algoritmos afectan el rendimiento y la eficiencia en las operaciones de intersección.</span>
+<span id="cb4-444"><a href="#cb4-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-445"><a href="#cb4-445" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
+<span id="cb4-446"><a href="#cb4-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-447"><a href="#cb4-447" aria-hidden="true" tabindex="-1"></a>Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.</span>
+<span id="cb4-448"><a href="#cb4-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-449"><a href="#cb4-449" aria-hidden="true" tabindex="-1"></a>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:</span>
+<span id="cb4-450"><a href="#cb4-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-451"><a href="#cb4-451" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Título del reporte, su nombre.</span>
+<span id="cb4-452"><a href="#cb4-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introducción.</span>
+<span id="cb4-453"><a href="#cb4-453" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Desarrollo de las actividades.</span>
+<span id="cb4-454"><a href="#cb4-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conclusiones</span>
+<span id="cb4-455"><a href="#cb4-455" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.</span>
+<span id="cb4-456"><a href="#cb4-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-457"><a href="#cb4-457" aria-hidden="true" tabindex="-1"></a>Nota: no olvides revisar la rúbrica del curso.</span>
 </code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

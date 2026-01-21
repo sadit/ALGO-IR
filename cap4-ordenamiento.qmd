@@ -328,7 +328,7 @@ En [@Cook80] realiza una comparación del desempeño de varios algoritmos para o
 4. Discute tus resultados.
 
 
- ### Entregable
+### Entregable
 Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
 
 No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:

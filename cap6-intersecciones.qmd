@@ -397,7 +397,6 @@ Parte 2: Algoritmos de intersección y algunas aplicaciones
 
 ## Actividades
 1. Lea el archivo de datos provisto, el cual se encuentra en formato JSON, y contiene múltiples listas de datos:
-
     - Conjunto $A$ que contiene pares de listas.
     - Conjunto $B$ que contiene tripletas de listas.
     - Conjunto $C$ que contiene tuplas de 4 listas.
