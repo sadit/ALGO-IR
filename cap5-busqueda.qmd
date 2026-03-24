@@ -2,7 +2,7 @@
 lang: es-MX
 engine: julia
 julia:
-  exeflags: ["+1.12"]
+  exeflags: ["+1.10"]
 
 ---
 ```{julia}
@@ -115,7 +115,7 @@ Sea $F_0(n)$ una secuencia de puntos para un arreglo de longitud $n$, donde se h
 Consiste en comparar las posiciones $2^i$, i.e., $2^1, 2^2, 2^3, \cdots, 2^{\lfloor \log_2{p+1} \rfloor + 1}$, tal que $A[2^{\lfloor\log_2{p}\rfloor+1}] \leq  x \leq A[2^{\lfloor\log_2{p+1}\rfloor+1}]$.
 De manera similar que para $B_0$ definimos $F_1(n)$ y $C_1$:
 
-- $F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor n \rfloor + 1};$
+- $F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor p \rfloor + 1};$
 - $C_1(p) = C_\text{bin}{(2^{\log_2{p+1}})} + \log_2{(p+1)} + 1 < 2\log_2 p + O(1).$
 
 La explicación viene a continuación. El número de comparaciones para determinar el rango esta determinado por $\lfloor \log_2{p+1} \rfloor + 1$. Una vez determinado el rango la búsqueda binaria sobre 

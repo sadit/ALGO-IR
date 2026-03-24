@@ -2,7 +2,7 @@
 lang: es-MX
 engine: julia
 julia:
-  exeflags: ["+1.12"]
+  exeflags: ["+1.10"]
 
 ---
 
@@ -37,7 +37,7 @@ El operador cumple con las siguientes propiedades:
 Usar un operador como $<$ es suficiente para crear algoritmos correctos y eficientes, sin embargo, en la práctica y en una computadora real, también es válido utilizar operadores como $=$ o $\leq$, o intercambiar por $>$ y $\geq$ según convenga. No hay impacto en la eficiencia.
 ::: 
 
-Sin perdida de generalidad, podemos planter el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo $A[1, n] = a_1, a_2, \cdots, a_n$; un algoritmo de ordenamiento obtiene la permutación $\pi$ tal que $a_{\pi(1)} < a_{\pi(2)} < \cdots < a_{\pi(n)}$. 
+Sin perdida de generalidad, podemos plantear el problema de ordenamiento sin permitir repeticiones como sigue: dado un arreglo $A[1, n] = a_1, a_2, \cdots, a_n$; un algoritmo de ordenamiento obtiene la permutación $\pi$ tal que $a_{\pi(1)} < a_{\pi(2)} < \cdots < a_{\pi(n)}$. 
 
 ::: {.column-margin}
 Cuando se permiten elementos repetidos, se le llama _ordenamiento estable_ i se asegura que en el arreglo ordenado se preserven el orden original posicional cuando $a = b$. Esta propiedad es importante cuando hay datos satélitales asociados a la llave de comparación.

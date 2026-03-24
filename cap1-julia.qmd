@@ -2,7 +2,7 @@
 lang: es-MX
 engine: julia
 julia:
-  exeflags: ["+1.12"]
+  exeflags: ["+1.10"]
 
 ---
 # Julia como lenguaje de programación para un curso de algoritmos {#sec-julia}
@@ -192,7 +192,7 @@ end
 
 entre las más utilizadas; claramentre hay infinidad de formas de componerlas para formar los algoritmos que se esten escribiendo.
 
-### Comentarios
+### Comentarios en el código
 Los comentarios en Julia se hacen por linea o por bloque.
 
 Para comentar una linea se usa el carácter hash `#` y define una linea comentada desde ese punto  hasta el salto de linea
@@ -210,7 +210,7 @@ Para comentar por bloque, dicho bloque se encierra entre `#= ... =#`
 println("hola mundo!" #=Symbol("hola mundo")=#)
 ```
 
-### Documentación 
+### Documentación del código
 La documentación oficial se encuentra en <https://docs.julialang.org>; la cuál cubre el lenguaje y las bibliotecas estandar. Fuera de eso, habrá que ver los sitios y documentaciones de cada paquete, que casi siempre estan en _github_.
 
 Actualmente los chatbots como ChatGPT y Gemini también pueden ser una buena fuente de información sobre el API y las formas de trabajo. Nota: siempre se debe corroborar la información, ya que suelen alucinar.
@@ -219,15 +219,14 @@ La manera _empotrada_ de consultar la documentación sobre una función es con e
 
 ::: {style="margin-left: 2cm; background-color: lightgray;"}
 #### Ejemplo
-Nota: Las ligas que salen estan rotas ya que no se adjunta la documentación en este manuscrito.
 
-```{julia}
-?println("holi")
+```{{julia}}
+?println("hola")
 ```
 
 :::
 
-Esto también indica que debemos documentar nuestro código, en particular se hace de la siguiente forma
+Al documentar nuestro código también lo tendremos accesible por este medio, y esto se puede hacer de la siguiente forma:
 
 ```{{julia}}
 

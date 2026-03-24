@@ -426,7 +426,7 @@ window.Quarto = {
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="algoritmo-b_1-búsqueda-doblada-doubling-searchgalloping"><span class="header-section-number">5.2.2</span> Algoritmo <span class="math inline">\(B_1\)</span> (búsqueda doblada: <em>doubling search/galloping</em>)</h3>
 <p>Consiste en comparar las posiciones <span class="math inline">\(2^i\)</span>, i.e., <span class="math inline">\(2^1, 2^2, 2^3, \cdots, 2^{\lfloor \log_2{p+1} \rfloor + 1}\)</span>, tal que <span class="math inline">\(A[2^{\lfloor\log_2{p}\rfloor+1}] \leq  x \leq A[2^{\lfloor\log_2{p+1}\rfloor+1}]\)</span>. De manera similar que para <span class="math inline">\(B_0\)</span> definimos <span class="math inline">\(F_1(n)\)</span> y <span class="math inline">\(C_1\)</span>:</p>
 <ul>
-<li><span class="math inline">\(F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor n \rfloor + 1};\)</span></li>
+<li><span class="math inline">\(F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor p \rfloor + 1};\)</span></li>
 <li><span class="math inline">\(C_1(p) = C_\text{bin}{(2^{\log_2{p+1}})} + \log_2{(p+1)} + 1 &lt; 2\log_2 p + O(1).\)</span></li>
 </ul>
 <p>La explicación viene a continuación. El número de comparaciones para determinar el rango esta determinado por <span class="math inline">\(\lfloor \log_2{p+1} \rfloor + 1\)</span>. Una vez determinado el rango la búsqueda binaria sobre <span class="math display">\[A[2^{\lfloor\log_2{p}\rfloor+1}:2^{\lfloor\log_2{(p+1)}\rfloor+1}],\]</span> lo cual corresponde a <span class="math inline">\(\log_2 2^{\log{(p+1)}+1}/2 = \log_2{(p+1)}\)</span>. El costo <span class="math inline">\(C_1(p)\)</span> puede ser escrito como <span class="math inline">\(2\log_2 p + O(1)\)</span>, con un poco de manipulación algebraica.</p>
@@ -1036,7 +1036,7 @@ Bentley, Jon Louis, y Andrew Chi-Chih Yao. 1976. <span>“An almost optimal algo
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">julia:</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  exeflags: ["+1.12"]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  exeflags: ["+1.10"]</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
@@ -1149,7 +1149,7 @@ Bentley, Jon Louis, y Andrew Chi-Chih Yao. 1976. <span>“An almost optimal algo
 <span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>Consiste en comparar las posiciones $2^i$, i.e., $2^1, 2^2, 2^3, \cdots, 2^{\lfloor \log_2{p+1} \rfloor + 1}$, tal que $A<span class="co">[</span><span class="ot">2^{\lfloor\log_2{p}\rfloor+1}</span><span class="co">]</span> \leq  x \leq A<span class="co">[</span><span class="ot">2^{\lfloor\log_2{p+1}\rfloor+1}</span><span class="co">]</span>$.</span>
 <span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>De manera similar que para $B_0$ definimos $F_1(n)$ y $C_1$:</span>
 <span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor n \rfloor + 1};$</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$F_1(n) = 2^1, 2^2, \cdots, 2^{\log \lfloor p \rfloor + 1};$</span>
 <span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$C_1(p) = C_\text{bin}{(2^{\log_2{p+1}})} + \log_2{(p+1)} + 1 &lt; 2\log_2 p + O(1).$</span>
 <span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>La explicación viene a continuación. El número de comparaciones para determinar el rango esta determinado por $\lfloor \log_2{p+1} \rfloor + 1$. Una vez determinado el rango la búsqueda binaria sobre </span>

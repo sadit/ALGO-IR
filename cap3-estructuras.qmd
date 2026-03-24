@@ -2,7 +2,7 @@
 lang: es-MX
 engine: julia
 julia:
-  exeflags: ["+1.12"]
+  exeflags: ["+1.10"]
 
 ---
 
@@ -383,9 +383,9 @@ Los nodos y las aristas de un grafo pueden _recorrerse_ de diferentes maneras, d
 
 El recorrido _primero a lo profundo_, Depth First Search (DFS), comienza en un nodo dado y de manera _voraz_ avanzará recordando orden de visita y avanzando al ver un nuevo nodo repitiendo el procedimiento hasta que todos los vértices alcanzables sean visitados. El siguiente pseudo-código lo implementa:
 
-```julia
+```{{julia}}
 #| lst-label: lst-dfs
-#| lst-cap: Psudo-código DFS
+#| lst-cap: Pseudo-código DFS
 
 function operación!(vértice)
   #... operaciones sobre el vértice siendo visitado ...
@@ -395,7 +395,7 @@ function DFS(grafo, vértice, visitados)
   operación!(vértice)
   push!(visitados, vértice)
   for v in neighbors(grafo, vértice)
-    if v ∉ visitados
+    if !(v in visitados)
       operación!(v)
       push!(visitados, v)
       DFS(grafo, v, visitados)

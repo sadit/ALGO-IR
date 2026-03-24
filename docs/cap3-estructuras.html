@@ -489,7 +489,7 @@ Figura&nbsp;3.1: Esquema de una matriz en memoria.
 <div id="fig-getmaxdot" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-getmaxdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre><code>(887, 2.1170585f0)</code></pre>
+<pre><code>(770, 2.2708108f0)</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-getmaxdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.2: Algoritmos para encotrar el vector columna con mayor producto en <span class="math inline">\(X\)</span> punto contra <span class="math inline">\(u\)</span>.
@@ -523,11 +523,11 @@ Figura&nbsp;3.2: Algoritmos para encotrar el vector columna con mayor producto e
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(C)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="funcion-producto-matricial" class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float32}:
- 0.191909  0.191909  0.191909  0.0  0.0
- 0.978823  0.978823  0.978823  0.0  0.0
- 0.33585   0.33585   0.33585   0.0  0.0
- 0.736783  0.736783  0.736783  0.0  0.0
- 0.616086  0.616086  0.616086  0.0  7.94279f-18</code></pre>
+ 0.452019  0.452019  0.452019  0.0  0.0
+ 0.694162  0.694162  0.694162  0.0  0.0
+ 0.671822  0.671822  0.671822  0.0  0.0
+ 1.06291   1.06291   1.06291   0.0  0.0
+ 0.564801  0.564801  0.564801  0.0  0.0</code></pre>
 <p>Funciones sobre diferentes tipos de datos</p>
 </div>
 </div>
@@ -1002,29 +1002,32 @@ Figura&nbsp;3.7: Árbol con aristas dirigidas, note que es fácil saber si hay u
 <p>Al igual que en los grafos más generales, en los árboles es útil definir funciones sobre vértices y aristas, así como marcar tipos de vértices, e.g., posición u color, que simplifiquen el razonamiento para con los algoritmos asociados.</p>
 <p>Los nodos y las aristas de un grafo pueden <em>recorrerse</em> de diferentes maneras, donde se aprovechan las relaciones representadas. En un grafo general podría ser importante solo visitar una vez cada vértice, o guiarse en el recorrido por alguna heurística o función asociada a vértices o aristas.</p>
 <p>El recorrido <em>primero a lo profundo</em>, Depth First Search (DFS), comienza en un nodo dado y de manera <em>voraz</em> avanzará recordando orden de visita y avanzando al ver un nuevo nodo repitiendo el procedimiento hasta que todos los vértices alcanzables sean visitados. El siguiente pseudo-código lo implementa:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-dfs</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Psudo-código DFS</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">operación!</span>(vértice)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#... operaciones sobre el vértice siendo visitado ...</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">DFS</span>(grafo, vértice, visitados)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">operación!</span>(vértice)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">push!</span>(visitados, vértice)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> v <span class="kw">in</span> <span class="fu">neighbors</span>(grafo, vértice)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="op">∉</span> visitados</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">operación!</span>(v)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">push!</span>(visitados, v)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">DFS</span>(grafo, v, visitados)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código de preparación del grafo</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>visitados <span class="op">=</span> <span class="fu">Set</span>()</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">DFS</span>((vértices, aristas), vérticeinicial, visitados)</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código posterior a la visita DFS</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-dfs</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Pseudo-código DFS</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">operación!</span>(vértice)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#... operaciones sobre el vértice siendo visitado ...</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">DFS</span>(grafo, vértice, visitados)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">operación!</span>(vértice)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">push!</span>(visitados, vértice)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> v <span class="kw">in</span> <span class="fu">neighbors</span>(grafo, vértice)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !(v <span class="kw">in</span> visitados)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">operación!</span>(v)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">push!</span>(visitados, v)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">DFS</span>(grafo, v, visitados)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código de preparación del grafo</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>visitados <span class="op">=</span> <span class="fu">Set</span>()</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">DFS</span>((vértices, aristas), vérticeinicial, visitados)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ... código posterior a la visita DFS</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Las llamadas recursivas a DFS tienen el efecto de <em>memorizar</em> el orden de visita anterior y <em>recordarlo</em> cuando se sale de una visita anidada. Entonces, hay una memoria implicita utilizada, implementanda por el <em>stack</em> de llamadas. La función <em>operación!</em> es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.</p>
 <p>El <em>recorrido a lo ancho</em>, Breadth First Search (BSF), visita los vértices locales primero que los alejados contrarío al avance voraz utilizado por DFS.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: lst-bfs</span></span>
@@ -1593,7 +1596,7 @@ Scott, Jennifer, y Miroslav Tůma. 2023. <span>“An Introduction to Sparse Matr
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es-MX</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">julia:</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">  exeflags: ["+1.12"]</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">  exeflags: ["+1.10"]</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -1974,9 +1977,9 @@ Scott, Jennifer, y Miroslav Tůma. 2023. <span>“An Introduction to Sparse Matr
 <span id="cb15-409"><a href="#cb15-409" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-410"><a href="#cb15-410" aria-hidden="true" tabindex="-1"></a><span class="va">El</span><span class="co"> </span><span class="va">recorrido</span><span class="co"> </span><span class="va">_primero</span><span class="co"> </span><span class="va">a</span><span class="co"> </span><span class="va">lo</span><span class="co"> </span><span class="va">profundo_</span><span class="co">, </span><span class="va">Depth</span><span class="co"> </span><span class="va">First</span><span class="co"> </span><span class="va">Search</span><span class="co"> </span><span class="ot">(</span><span class="va">DFS</span><span class="ot">)</span><span class="co">, </span><span class="va">comienza</span><span class="co"> </span><span class="va">en</span><span class="co"> </span><span class="va">un</span><span class="co"> </span><span class="va">nodo</span><span class="co"> </span><span class="va">dado</span><span class="co"> </span><span class="va">y</span><span class="co"> </span><span class="va">de</span><span class="co"> </span><span class="va">manera</span><span class="co"> </span><span class="va">_voraz_</span><span class="co"> avanzará </span><span class="va">recordando</span><span class="co"> </span><span class="va">orden</span><span class="co"> </span><span class="va">de</span><span class="co"> </span><span class="va">visita</span><span class="co"> </span><span class="va">y</span><span class="co"> </span><span class="va">avanzando</span><span class="co"> </span><span class="va">al</span><span class="co"> </span><span class="va">ver</span><span class="co"> </span><span class="va">un</span><span class="co"> </span><span class="va">nuevo</span><span class="co"> </span><span class="va">nodo</span><span class="co"> </span><span class="va">repitiendo</span><span class="co"> </span><span class="va">el</span><span class="co"> </span><span class="va">procedimiento</span><span class="co"> </span><span class="va">hasta</span><span class="co"> </span><span class="va">que</span><span class="co"> </span><span class="va">todos</span><span class="co"> </span><span class="va">los</span><span class="co"> </span><span class="va">vértices</span><span class="co"> </span><span class="va">alcanzables</span><span class="co"> </span><span class="va">sean</span><span class="co"> </span><span class="va">visitados</span><span class="co">. </span><span class="va">El</span><span class="co"> </span><span class="va">siguiente</span><span class="co"> </span><span class="va">pseudo</span><span class="co">-</span><span class="va">código</span><span class="co"> </span><span class="va">lo</span><span class="co"> </span><span class="va">implementa</span><span class="co">:</span></span>
 <span id="cb15-411"><a href="#cb15-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-412"><a href="#cb15-412" aria-hidden="true" tabindex="-1"></a><span class="co">```</span><span class="va">julia</span></span>
+<span id="cb15-412"><a href="#cb15-412" aria-hidden="true" tabindex="-1"></a><span class="co">```</span><span class="ot">{</span><span class="va">julia</span><span class="ot">}</span></span>
 <span id="cb15-413"><a href="#cb15-413" aria-hidden="true" tabindex="-1"></a><span class="co">#| </span><span class="va">lst</span><span class="co">-</span><span class="at">label</span><span class="co">: </span><span class="va">lst</span><span class="co">-</span><span class="va">dfs</span></span>
-<span id="cb15-414"><a href="#cb15-414" aria-hidden="true" tabindex="-1"></a><span class="co">#| </span><span class="va">lst</span><span class="co">-</span><span class="va">cap</span><span class="co">: </span><span class="va">Psudo</span><span class="co">-</span><span class="va">código</span><span class="co"> </span><span class="va">DFS</span></span>
+<span id="cb15-414"><a href="#cb15-414" aria-hidden="true" tabindex="-1"></a><span class="co">#| </span><span class="va">lst</span><span class="co">-</span><span class="va">cap</span><span class="co">: </span><span class="va">Pseudo</span><span class="co">-</span><span class="va">código</span><span class="co"> </span><span class="va">DFS</span></span>
 <span id="cb15-415"><a href="#cb15-415" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-416"><a href="#cb15-416" aria-hidden="true" tabindex="-1"></a><span class="va">function</span><span class="co"> </span><span class="va">operación</span><span class="co">!</span><span class="ot">(</span><span class="va">vértice</span><span class="ot">)</span></span>
 <span id="cb15-417"><a href="#cb15-417" aria-hidden="true" tabindex="-1"></a><span class="co">  #... </span><span class="va">operaciones</span><span class="co"> </span><span class="va">sobre</span><span class="co"> </span><span class="va">el</span><span class="co"> </span><span class="va">vértice</span><span class="co"> </span><span class="va">siendo</span><span class="co"> </span><span class="va">visitado</span><span class="co"> ...</span></span>
@@ -1986,7 +1989,7 @@ Scott, Jennifer, y Miroslav Tůma. 2023. <span>“An Introduction to Sparse Matr
 <span id="cb15-421"><a href="#cb15-421" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">operación</span><span class="co">!</span><span class="ot">(</span><span class="va">vértice</span><span class="ot">)</span></span>
 <span id="cb15-422"><a href="#cb15-422" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">push</span><span class="co">!</span><span class="ot">(</span><span class="va">visitados</span><span class="co">, </span><span class="va">vértice</span><span class="ot">)</span></span>
 <span id="cb15-423"><a href="#cb15-423" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">for</span><span class="co"> </span><span class="va">v</span><span class="co"> </span><span class="va">in</span><span class="co"> </span><span class="va">neighbors</span><span class="ot">(</span><span class="va">grafo</span><span class="co">, </span><span class="va">vértice</span><span class="ot">)</span></span>
-<span id="cb15-424"><a href="#cb15-424" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">if</span><span class="co"> </span><span class="va">v</span><span class="co"> ∉ </span><span class="va">visitados</span></span>
+<span id="cb15-424"><a href="#cb15-424" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="va">if</span><span class="co"> !</span><span class="ot">(</span><span class="va">v</span><span class="co"> </span><span class="va">in</span><span class="co"> </span><span class="va">visitados</span><span class="ot">)</span></span>
 <span id="cb15-425"><a href="#cb15-425" aria-hidden="true" tabindex="-1"></a><span class="co">      </span><span class="va">operación</span><span class="co">!</span><span class="ot">(</span><span class="va">v</span><span class="ot">)</span></span>
 <span id="cb15-426"><a href="#cb15-426" aria-hidden="true" tabindex="-1"></a><span class="co">      </span><span class="va">push</span><span class="co">!</span><span class="ot">(</span><span class="va">visitados</span><span class="co">, </span><span class="va">v</span><span class="ot">)</span></span>
 <span id="cb15-427"><a href="#cb15-427" aria-hidden="true" tabindex="-1"></a><span class="co">      </span><span class="va">DFS</span><span class="ot">(</span><span class="va">grafo</span><span class="co">, </span><span class="va">v</span><span class="co">, </span><span class="va">visitados</span><span class="ot">)</span></span>
