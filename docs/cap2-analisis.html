@@ -360,12 +360,13 @@ window.Quarto = {
   <li><a href="#crecimiento-factorial" id="toc-crecimiento-factorial" class="nav-link" data-scroll-target="#crecimiento-factorial"><span class="header-section-number">1.5.6.4</span> Crecimiento factorial</a></li>
   <li><a href="#un-poco-más-sobre-funciones-de-muy-alto-costo" id="toc-un-poco-más-sobre-funciones-de-muy-alto-costo" class="nav-link" data-scroll-target="#un-poco-más-sobre-funciones-de-muy-alto-costo"><span class="header-section-number">1.5.6.5</span> Un poco más sobre funciones de muy alto costo</a></li>
   </ul></li>
+  <li><a href="#ejercicios-4" id="toc-ejercicios-4" class="nav-link" data-scroll-target="#ejercicios-4"><span class="header-section-number">1.5.7</span> Ejercicios</a></li>
   </ul></li>
   <li><a href="#el-enfoque-experimental" id="toc-el-enfoque-experimental" class="nav-link" data-scroll-target="#el-enfoque-experimental"><span class="header-section-number">1.6</span> El enfoque experimental</a>
   <ul class="collapse">
   <li><a href="#metodología-experimental" id="toc-metodología-experimental" class="nav-link" data-scroll-target="#metodología-experimental"><span class="header-section-number">1.6.1</span> Metodología experimental</a></li>
   <li><a href="#ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo." id="toc-ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo." class="nav-link" data-scroll-target="#ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo."><span class="header-section-number">1.6.2</span> Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</a></li>
-  <li><a href="#ejercicios-4" id="toc-ejercicios-4" class="nav-link" data-scroll-target="#ejercicios-4"><span class="header-section-number">1.6.3</span> Ejercicios</a></li>
+  <li><a href="#ejercicios-5" id="toc-ejercicios-5" class="nav-link" data-scroll-target="#ejercicios-5"><span class="header-section-number">1.6.3</span> Ejercicios</a></li>
   </ul></li>
   <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">1.7</span> Actividades</a>
   <ul class="collapse">
@@ -1174,6 +1175,25 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <p>Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, o si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuándo es posible solucionarlos, o cuándo se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordarán problemas con un costo menor, pero que por la cantidad de datos, i.e., <span class="math inline">\(n\)</span>, se vuelven muy costosos y veremos cómo aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.</p>
 </section>
 </section>
+<section id="ejercicios-4" class="level3" data-number="1.5.7">
+<h3 data-number="1.5.7" class="anchored" data-anchor-id="ejercicios-4"><span class="header-section-number">1.5.7</span> Ejercicios</h3>
+<ol type="1">
+<li>Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
+<ul>
+<li><span class="math inline">\(O(1)\)</span> vs <span class="math inline">\(O(\log n)\)</span></li>
+<li><span class="math inline">\(O(n)\)</span> vs <span class="math inline">\(O(n \log n)\)</span></li>
+<li><span class="math inline">\(O(n^2)\)</span> vs <span class="math inline">\(O(n^3)\)</span></li>
+<li><span class="math inline">\(O(a^n)\)</span> vs <span class="math inline">\(O(n!)\)</span></li>
+<li><span class="math inline">\(O(n!)\)</span> vs <span class="math inline">\(O(n^n)\)</span></li>
+</ul>
+<ol type="a">
+<li>Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.</li>
+<li>Use diferentes tamaños de entrada <span class="math inline">\(n=100\)</span>, <span class="math inline">\(n=1000\)</span>, <span class="math inline">\(n=10000\)</span> y <span class="math inline">\(n=100000\)</span>.</li>
+<li>Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.</li>
+<li>Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.</li>
+</ol></li>
+</ol>
+</section>
 </section>
 <section id="el-enfoque-experimental" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="el-enfoque-experimental"><span class="header-section-number">1.6</span> El enfoque experimental</h2>
@@ -1207,14 +1227,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </dl>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  0.889952 seconds (2.02 M allocations: 137.009 MiB, 99.97% compilation time)
-  0.000007 seconds (1 allocation: 96 bytes)</code></pre>
+<pre><code>  0.884702 seconds (2.02 M allocations: 137.010 MiB, 99.97% compilation time)
+  0.000006 seconds (1 allocation: 96 bytes)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×3 Matrix{Float32}:
- 1.48711   1.75112   1.0644
- 1.00947   1.48827   0.920788
- 0.621791  0.896854  0.706554</code></pre>
+ 0.733125   1.32046   1.08174
+ 0.848319   1.54712   1.27832
+ 0.0892135  0.151094  0.15841</code></pre>
 </div>
 </div>
 <p>Tanto <code>@benchmark</code> como <code>@btime</code> aceptan interpolación de variables con el prefijo <code>$</code> para controlar si la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parámetro <code>setup</code> para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de <code>expr</code>.</p>
@@ -1224,14 +1244,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
-<pre>BenchmarkTools.Trial: 10000 samples with 986 evaluations per sample.
- Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">47.128 ns</span> … <span class="ansi-magenta-fg">  7.744 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 98.39%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">51.939 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">66.875 ns</span> ± <span class="ansi-green-fg">200.001 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>9.30% ±  3.11%
+<pre>BenchmarkTools.Trial: 10000 samples with 984 evaluations per sample.
+ Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">47.835 ns</span> … <span class="ansi-magenta-fg"> 19.725 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span> 0.00% … 99.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">57.910 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span> 0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">74.153 ns</span> ± <span class="ansi-green-fg">275.136 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>10.26% ±  3.11%
 
-   █      <span class="ansi-blue-fg"> </span>                         <span class="ansi-green-fg"> </span>                           
-  ▄█▃▅▃▂▂▂<span class="ansi-blue-fg">▂</span>▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁<span class="ansi-green-fg">▁</span>▁▁▁▁▁▁▁▁▂▄▄▆▅▃▃▂▂▂▁▁▁▁▁▁▁ ▂
-  47.1 ns<span class="ansi-bright-black-fg">         Histogram: frequency by time</span>         82.4 ns <span class="ansi-bold">&lt;</span>
+  █▇▅▄▃<span class="ansi-blue-fg">▂</span>▁▁     ▂<span class="ansi-green-fg">▇</span>▇▅▃▃▂▂▁                                       ▂
+  █████<span class="ansi-blue-fg">█</span>███▇█▇▅█<span class="ansi-green-fg">█</span>████████▇▇▇▆▅▆▇▅▆▇▇▇▇▇▇▆▆▆▆▆▇▆▆▆▇▆▆▆▆▅▆▅▅▄▅▅▅ █
+  47.8 ns<span class="ansi-bright-black-fg">       </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>       158 ns <span class="ansi-bold">&lt;</span>
 
  Memory estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">96 bytes</span>, allocs estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">1</span>.</pre>
 </div>
@@ -1242,13 +1262,13 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  47.272 ns (1 allocation: 96 bytes)</code></pre>
+<pre><code>  47.691 ns (1 allocation: 96 bytes)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×3 Matrix{Float32}:
- 0.916167  1.35307  1.28882
- 0.38996   1.05993  1.00124
- 0.448433  1.01074  1.12383</code></pre>
+ 0.717326  0.657367  0.860776
+ 0.642168  0.651055  0.916698
+ 0.768152  0.83929   1.24698</code></pre>
 </div>
 </div>
 <p>El parámetro <code>sample</code> controla el número máximo de muestras que se tomarán para el análisis, y <code>seconds</code> limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que <code>seconds</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
@@ -1258,14 +1278,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
-<pre>BenchmarkTools.Trial: 1000 samples with 979 evaluations per sample.
- Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">59.303 ns</span> … <span class="ansi-magenta-fg">  6.056 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 98.10%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">64.047 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">84.464 ns</span> ± <span class="ansi-green-fg">190.884 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>7.03% ±  3.10%
+<pre>BenchmarkTools.Trial: 1000 samples with 976 evaluations per sample.
+ Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">61.332 ns</span> … <span class="ansi-magenta-fg">  6.023 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 98.06%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">66.520 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">85.787 ns</span> ± <span class="ansi-green-fg">189.633 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>6.88% ±  3.10%
 
-  █▆<span class="ansi-blue-fg">▃</span>         <span class="ansi-green-fg"> </span>▅▆▅▂                                             
-  ██<span class="ansi-blue-fg">█</span>▇▅▆▄▅▄▅▁▁<span class="ansi-green-fg">▁</span>█████▇▁▅▅▄▁▁▁▁▄▄▁▁▄▄▁▁▁▁▁▁▁▄▄▄▄▄▄▆▄▁▁▄▅▅▄▅▇▅▅▁▅ █
-  59.3 ns<span class="ansi-bright-black-fg">       </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>       183 ns <span class="ansi-bold">&lt;</span>
+  █▆<span class="ansi-blue-fg">▃</span>▁        <span class="ansi-green-fg"> </span>▅▇▄▁                                             
+  ██<span class="ansi-blue-fg">█</span>█▅▅▅▄▁▁▁▁<span class="ansi-green-fg">▁</span>████▅▅▄▅▁▄▁▁▁▄▁▁▁▁▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▄▁▁▁▄▄▄▅▅▆▆▅▅ █
+  61.3 ns<span class="ansi-bright-black-fg">       </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>       185 ns <span class="ansi-bold">&lt;</span>
 
  Memory estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">96 bytes</span>, allocs estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">1</span>.</pre>
 </div>
@@ -1317,14 +1337,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
-<pre>BenchmarkTools.Trial: 100 samples with 878 evaluations per sample.
- Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">132.820 ns</span> … <span class="ansi-magenta-fg">135.637 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">132.851 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">133.109 ns</span> ± <span class="ansi-green-fg">  0.717 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>0.00% ± 0.00%
+<pre>BenchmarkTools.Trial: 100 samples with 842 evaluations per sample.
+ Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">158.728 ns</span> … <span class="ansi-magenta-fg">259.776 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">164.591 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">177.892 ns</span> ± <span class="ansi-green-fg"> 24.501 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>0.00% ± 0.00%
 
-  █<span class="ansi-blue-fg">▅</span>     <span class="ansi-green-fg"> </span>                                                       
-  █<span class="ansi-blue-fg">█</span>▁▁▄▁▁<span class="ansi-green-fg">▁</span>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▄▁▁▄▁▁▁▄▄▁▇▄▆▁▄ ▄
-  133 ns<span class="ansi-bright-black-fg">        </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>        135 ns <span class="ansi-bold">&lt;</span>
+  ▄ ▂█<span class="ansi-blue-fg"> </span>       <span class="ansi-green-fg"> </span>                                                  
+  █▆██<span class="ansi-blue-fg">█</span>▁▇▇▅▅▅▅<span class="ansi-green-fg">█</span>▅▅▆▆▅▆▆▁▁▁▁▁▁▅▁▁▁▅▅▆▁▁▅▁▅▁▁▁▅▆▁▁▆▅▁▁▅▁▅▁▁▁▁▁▁▁▁▅ ▅
+  159 ns<span class="ansi-bright-black-fg">        </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>        257 ns <span class="ansi-bold">&lt;</span>
 
  Memory estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">0 bytes</span>, allocs estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">0</span>.</pre>
 </div>
@@ -1353,16 +1373,16 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>5-element Vector{Float64}:
-  1.0
+  2.0
   4.0
   5.0
-  6.25
- 10.0</code></pre>
+  6.0
+ 12.0</code></pre>
 </div>
 </div>
 </section>
-<section id="ejercicios-4" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="ejercicios-4"><span class="header-section-number">1.6.3</span> Ejercicios</h3>
+<section id="ejercicios-5" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="ejercicios-5"><span class="header-section-number">1.6.3</span> Ejercicios</h3>
 <ol type="1">
 <li>Considere dos implementaciones de un mismo problema con distinto costo teórico, por ejemplo, la suma de los primeros <span class="math inline">\(n\)</span> enteros mediante un ciclo (<span class="math inline">\(O(n)\)</span>) contra la fórmula cerrada <span class="math inline">\(n(n+1)/2\)</span> (<span class="math inline">\(O(1)\)</span>). Mida ambas con <code>@benchmark</code> para valores crecientes de <span class="math inline">\(n\)</span> y contraste el resultado empírico contra lo esperado por el análisis teórico.</li>
 </ol>
@@ -1371,20 +1391,21 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <section id="actividades" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="actividades"><span class="header-section-number">1.7</span> Actividades</h2>
 <ol type="1">
-<li>Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
+<li><p>Considere dos estructuras para representar un mapa de enteros (<code>Int64</code>) a flotantes (<code>Float64</code>), sin llaves repetidas:</p>
 <ul>
-<li><span class="math inline">\(O(1)\)</span> vs <span class="math inline">\(O(\log n)\)</span></li>
-<li><span class="math inline">\(O(n)\)</span> vs <span class="math inline">\(O(n \log n)\)</span></li>
-<li><span class="math inline">\(O(n^2)\)</span> vs <span class="math inline">\(O(n^3)\)</span></li>
-<li><span class="math inline">\(O(a^n)\)</span> vs <span class="math inline">\(O(n!)\)</span></li>
-<li><span class="math inline">\(O(n!)\)</span> vs <span class="math inline">\(O(n^n)\)</span></li>
+<li>Un vector de pares sin ordenar (e.g., <code>Vector{Union{Nothing,Pair{Int64,Float64}}}</code>), donde toda operación recorre linealmente el vector.</li>
+<li>Un <code>Dict{Int64,Float64}</code>, la tabla hash nativa de Julia.</li>
 </ul>
-<ol type="a">
-<li>Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.</li>
-<li>Use diferentes tamaños de entrada <span class="math inline">\(n=100\)</span>, <span class="math inline">\(n=1000\)</span>, <span class="math inline">\(n=10000\)</span> y <span class="math inline">\(n=100000\)</span>.</li>
-<li>Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.</li>
-<li>Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.</li>
-</ol></li>
+<p>Implemente, para ambas estructuras, las operaciones <code>buscar</code>, <code>insertar!</code> y <code>borrar!</code> con la misma semántica de mapa (a lo más un valor por llave).</p>
+<p><strong>Restricción importante:</strong> <code>insertar!</code> y <code>borrar!</code> sobre el vector deben implementarse sin modificar el tamaño (longitud) del arreglo, es decir, sin usar <code>push!</code>, <code>pop!</code>, <code>deleteat!</code> ni operaciones equivalentes que provoquen realojamiento o desplazamiento de memoria. Esto aísla el efecto que se quiere medir (costo del recorrido y localidad de referencia) del efecto de las políticas de crecimiento dinámico de arreglos. Para lograrlo:</p>
+<ul>
+<li>Reserve el vector con una capacidad fija desde el inicio (la <span class="math inline">\(n\)</span> máxima que va a usar en el experimento).</li>
+<li>Use un valor centinela (e.g., <code>nothing</code>, o una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente “vacías”.</li>
+<li><code>borrar!</code> sobrescribe la posición encontrada con el centinela; <code>insertar!</code> busca primero la llave (para actualizar) y, si no existe, busca una posición marcada como vacía para colocar el nuevo par; ambas búsquedas son recorridos lineales, nunca hay cambio de tamaño del arreglo.</li>
+</ul></li>
+<li><p>Mida con <code>@benchmark</code> el tiempo de cada operación (<code>buscar</code>, <code>insertar!</code>, <code>borrar!</code>) para <span class="math inline">\(n\)</span> creciente (potencias de 2 desde <span class="math inline">\(2^2\)</span> hasta el máximo práctico en su equipo), con la estructura ya poblada con <span class="math inline">\(n\)</span> pares aleatorios antes de medir. Para <code>buscar</code> y <code>borrar!</code> la llave a consultar debe elegirse aleatoriamente dentro del <code>setup=</code> de cada muestra (no fija), para capturar el caso promedio y no solo el mejor o peor caso posicional. Aplique el mismo cuidado del lado del <code>Dict</code> (considere <code>sizehint!</code> para controlar el efecto de <em>rehash</em> al crecer).</p></li>
+<li><p>Para cada una de las tres operaciones, determine el o los rangos de <span class="math inline">\(n\)</span> donde el vector es más rápido que el diccionario, y viceversa. Reporte con gráficas tiempo-vs-<span class="math inline">\(n\)</span> (escala log-log recomendada) y/o tablas.</p></li>
+<li><p>Discuta sus resultados en términos de localidad de referencia (fallos de caché por saltos de puntero en el diccionario vs.&nbsp;recorrido contiguo en el vector) y el costo de calcular el hash y resolver colisiones.</p></li>
 </ol>
 <section id="entregable" class="level3" data-number="1.7.1">
 <h3 data-number="1.7.1" class="anchored" data-anchor-id="entregable"><span class="header-section-number">1.7.1</span> Entregable</h3>
@@ -1393,7 +1414,7 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <ul>
 <li>Título del reporte, su nombre.</li>
 <li>Introducción.</li>
-<li>Actividad 1. Comparación de los órdenes de crecimiento.
+<li>Actividad 1. Vector vs.&nbsp;diccionario para mapas pequeños.
 <ul>
 <li>Nota: poner el código cercano a la presentación de resultados.</li>
 </ul></li>
@@ -2326,133 +2347,150 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb15-468"><a href="#cb15-468" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-469"><a href="#cb15-469" aria-hidden="true" tabindex="-1"></a> Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, o si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuándo es posible solucionarlos, o cuándo se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordarán problemas con un costo menor, pero que por la cantidad de datos, i.e., $n$, se vuelven muy costosos y veremos cómo aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.</span>
 <span id="cb15-470"><a href="#cb15-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-471"><a href="#cb15-471" aria-hidden="true" tabindex="-1"></a><span class="fu">##  El enfoque experimental</span></span>
-<span id="cb15-472"><a href="#cb15-472" aria-hidden="true" tabindex="-1"></a>La notación asintótica nos permite alcanzar un lenguaje común y preciso sobre los costos de problemas y algoritmos; es de especial importancia para la evaluación de las alternativas en la literatura especializada, y elegir algoritmos aún sin la necesidad de implementación. El análisis asintótico da la posibilidad de conocer el desempeño desde diferentes perspectivas como peor caso o caso promedio, utilizando un modelo de computación, y siempre pensando en entradas lo suficientemente grandes.</span>
-<span id="cb15-473"><a href="#cb15-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-474"><a href="#cb15-474" aria-hidden="true" tabindex="-1"></a>En la práctica, existe una multitud de razones por los cuales los problemas que se resuelven podrían no ser tan grandes como para que un algoritmo domine a otros de manera asintótica, las instancias podrían no ser tan generales como para preocuparse en el peor caso, o el caso promedio general. En muchas situaciones, es importante sacar provecho de los casos _fáciles_, sobre todo cuando el problema a resolver podría asegurar que dichos casos simples sean abundantes. Dada la complejidad detrás de definir sub-conjuntos de instancias y llevar a cabo un análisis formal, se vuelve imperativo realizar pruebas experimentales.</span>
-<span id="cb15-475"><a href="#cb15-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-476"><a href="#cb15-476" aria-hidden="true" tabindex="-1"></a>Por otra parte, dada la complejidad de una computadora moderna, es necesario realizar evaluaciones experimentales de los algoritmos que tengan una complejidad similar. Las computadoras reales tienen una jerarquía de memoria con tamaños y velocidades de acceso divergentes entre sí, con optimizaciones integradas sobre la predicción de acceso y cierto nivel de paralelismo. </span>
-<span id="cb15-477"><a href="#cb15-477" aria-hidden="true" tabindex="-1"></a>Incluso, cada cierto tiempo se obtienen optimizaciones en los dispositivos que podrían mejorar los rendimientos, por lo que es posible que con una generación a otra, lo que sabemos de los algoritmos y su desempeño en computadoras y cargas de trabajo reales cambie.</span>
-<span id="cb15-478"><a href="#cb15-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-479"><a href="#cb15-479" aria-hidden="true" tabindex="-1"></a><span class="fu">### Metodología experimental</span></span>
-<span id="cb15-480"><a href="#cb15-480" aria-hidden="true" tabindex="-1"></a>Algunos de los algoritmos que se verán en este libro son sumamente rápidos en la práctica para resolver una instancia práctica por lo que medir el desempeño de instancias solas podría no tener sentido. La acumulación de operaciones es fundamental, así como la diversidad de las instancias también lo es. Caracterizar las entradas es de vital importancia ya que la adaptabilidad a las instancias es parte de los objetivos.</span>
-<span id="cb15-481"><a href="#cb15-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-482"><a href="#cb15-482" aria-hidden="true" tabindex="-1"></a>Entonces, estaremos probando conjuntos de instancias, caracterizadas y estaremos utilizando tiempos promedios. También estaremos usando conteo de operaciones, por lo que los algoritmos en cuestión muchas veces serán adaptados para poder realizar este conteo. </span>
-<span id="cb15-483"><a href="#cb15-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-484"><a href="#cb15-484" aria-hidden="true" tabindex="-1"></a>En Julia estaremos utilizando las siguientes instrucciones:</span>
-<span id="cb15-485"><a href="#cb15-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-486"><a href="#cb15-486" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@time expr`</span> macro que mide el tiempo en segundos utilizado por <span class="in">`expr`</span>, también reporta el número de asignaciones de memoria. Note que reducir la cantidad de memoria alojada puede significar reducir el tiempo de una implementación, ya que el manejo de memoria dinámica es costoso.</span>
-<span id="cb15-487"><a href="#cb15-487" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@benchmark expr params`</span> macro del paquete <span class="in">`BenchmarkTools`</span> que automatiza la repetición de <span class="in">`expr`</span> para obtener diferentes mediciones y hacer un reporte, <span class="in">`params`</span> permite manipular la forma en que se realiza la evaluación.</span>
-<span id="cb15-488"><a href="#cb15-488" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@btime expr params`</span>  macro del paquete <span class="in">`BenchmarkTools`</span> que mimetiza la salida de <span class="in">`@time`</span>.</span>
+<span id="cb15-471"><a href="#cb15-471" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicios</span></span>
+<span id="cb15-472"><a href="#cb15-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-473"><a href="#cb15-473" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:</span>
+<span id="cb15-474"><a href="#cb15-474" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(1)$ vs $O(\log n)$</span>
+<span id="cb15-475"><a href="#cb15-475" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(n)$ vs $O(n \log n)$</span>
+<span id="cb15-476"><a href="#cb15-476" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(n^2)$ vs $O(n^3)$</span>
+<span id="cb15-477"><a href="#cb15-477" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(a^n)$ vs $O(n!)$</span>
+<span id="cb15-478"><a href="#cb15-478" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(n!)$ vs $O(n^n)$</span>
+<span id="cb15-479"><a href="#cb15-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-480"><a href="#cb15-480" aria-hidden="true" tabindex="-1"></a>    a. Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.</span>
+<span id="cb15-481"><a href="#cb15-481" aria-hidden="true" tabindex="-1"></a>    b. Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.</span>
+<span id="cb15-482"><a href="#cb15-482" aria-hidden="true" tabindex="-1"></a>    c. Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.</span>
+<span id="cb15-483"><a href="#cb15-483" aria-hidden="true" tabindex="-1"></a>    d. Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.</span>
+<span id="cb15-484"><a href="#cb15-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-485"><a href="#cb15-485" aria-hidden="true" tabindex="-1"></a><span class="fu">##  El enfoque experimental</span></span>
+<span id="cb15-486"><a href="#cb15-486" aria-hidden="true" tabindex="-1"></a>La notación asintótica nos permite alcanzar un lenguaje común y preciso sobre los costos de problemas y algoritmos; es de especial importancia para la evaluación de las alternativas en la literatura especializada, y elegir algoritmos aún sin la necesidad de implementación. El análisis asintótico da la posibilidad de conocer el desempeño desde diferentes perspectivas como peor caso o caso promedio, utilizando un modelo de computación, y siempre pensando en entradas lo suficientemente grandes.</span>
+<span id="cb15-487"><a href="#cb15-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-488"><a href="#cb15-488" aria-hidden="true" tabindex="-1"></a>En la práctica, existe una multitud de razones por los cuales los problemas que se resuelven podrían no ser tan grandes como para que un algoritmo domine a otros de manera asintótica, las instancias podrían no ser tan generales como para preocuparse en el peor caso, o el caso promedio general. En muchas situaciones, es importante sacar provecho de los casos _fáciles_, sobre todo cuando el problema a resolver podría asegurar que dichos casos simples sean abundantes. Dada la complejidad detrás de definir sub-conjuntos de instancias y llevar a cabo un análisis formal, se vuelve imperativo realizar pruebas experimentales.</span>
 <span id="cb15-489"><a href="#cb15-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-492"><a href="#cb15-492" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-493"><a href="#cb15-493" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
-<span id="cb15-494"><a href="#cb15-494" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a <span class="co"># &lt;1&gt;</span></span>
-<span id="cb15-495"><a href="#cb15-495" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a <span class="co"># &lt;2&gt;</span></span>
-<span id="cb15-496"><a href="#cb15-496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-497"><a href="#cb15-497" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Todas las funciones se deben compilar, la primera llamada incluye los costos de compilación.</span>
-<span id="cb15-498"><a href="#cb15-498" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>El costo sin compilación, hay una asignación que es la matriz donde se guarda el resultado.</span>
+<span id="cb15-490"><a href="#cb15-490" aria-hidden="true" tabindex="-1"></a>Por otra parte, dada la complejidad de una computadora moderna, es necesario realizar evaluaciones experimentales de los algoritmos que tengan una complejidad similar. Las computadoras reales tienen una jerarquía de memoria con tamaños y velocidades de acceso divergentes entre sí, con optimizaciones integradas sobre la predicción de acceso y cierto nivel de paralelismo. </span>
+<span id="cb15-491"><a href="#cb15-491" aria-hidden="true" tabindex="-1"></a>Incluso, cada cierto tiempo se obtienen optimizaciones en los dispositivos que podrían mejorar los rendimientos, por lo que es posible que con una generación a otra, lo que sabemos de los algoritmos y su desempeño en computadoras y cargas de trabajo reales cambie.</span>
+<span id="cb15-492"><a href="#cb15-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-493"><a href="#cb15-493" aria-hidden="true" tabindex="-1"></a><span class="fu">### Metodología experimental</span></span>
+<span id="cb15-494"><a href="#cb15-494" aria-hidden="true" tabindex="-1"></a>Algunos de los algoritmos que se verán en este libro son sumamente rápidos en la práctica para resolver una instancia práctica por lo que medir el desempeño de instancias solas podría no tener sentido. La acumulación de operaciones es fundamental, así como la diversidad de las instancias también lo es. Caracterizar las entradas es de vital importancia ya que la adaptabilidad a las instancias es parte de los objetivos.</span>
+<span id="cb15-495"><a href="#cb15-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-496"><a href="#cb15-496" aria-hidden="true" tabindex="-1"></a>Entonces, estaremos probando conjuntos de instancias, caracterizadas y estaremos utilizando tiempos promedios. También estaremos usando conteo de operaciones, por lo que los algoritmos en cuestión muchas veces serán adaptados para poder realizar este conteo. </span>
+<span id="cb15-497"><a href="#cb15-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-498"><a href="#cb15-498" aria-hidden="true" tabindex="-1"></a>En Julia estaremos utilizando las siguientes instrucciones:</span>
 <span id="cb15-499"><a href="#cb15-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-500"><a href="#cb15-500" aria-hidden="true" tabindex="-1"></a>Tanto <span class="in">`@benchmark`</span> como <span class="in">`@btime`</span> aceptan interpolación de variables con el prefijo <span class="in">`$`</span> para controlar si la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parámetro <span class="in">`setup`</span> para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de <span class="in">`expr`</span>.</span>
-<span id="cb15-501"><a href="#cb15-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-504"><a href="#cb15-504" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-505"><a href="#cb15-505" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">BenchmarkTools</span></span>
-<span id="cb15-506"><a href="#cb15-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-507"><a href="#cb15-507" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span>
-<span id="cb15-508"><a href="#cb15-508" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-509"><a href="#cb15-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-512"><a href="#cb15-512" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-513"><a href="#cb15-513" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
-<span id="cb15-514"><a href="#cb15-514" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span>
-<span id="cb15-515"><a href="#cb15-515" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-516"><a href="#cb15-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-517"><a href="#cb15-517" aria-hidden="true" tabindex="-1"></a>El parámetro <span class="in">`sample`</span> controla el número máximo de muestras que se tomarán para el análisis, y <span class="in">`seconds`</span> limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que <span class="in">`seconds`</span>.<span class="ot">[^btools]</span></span>
-<span id="cb15-518"><a href="#cb15-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-519"><a href="#cb15-519" aria-hidden="true" tabindex="-1"></a><span class="ot">[^btools]: </span>Se recomienda visitar el sitio <span class="ot">&lt;https://juliaci.github.io/BenchmarkTools.jl/stable/&gt;</span> para más información sobre el paquete <span class="in">`BenchmarkTools`</span>, y en particular para sus parámetros, como guardar información de corridas.</span>
+<span id="cb15-500"><a href="#cb15-500" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@time expr`</span> macro que mide el tiempo en segundos utilizado por <span class="in">`expr`</span>, también reporta el número de asignaciones de memoria. Note que reducir la cantidad de memoria alojada puede significar reducir el tiempo de una implementación, ya que el manejo de memoria dinámica es costoso.</span>
+<span id="cb15-501"><a href="#cb15-501" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@benchmark expr params`</span> macro del paquete <span class="in">`BenchmarkTools`</span> que automatiza la repetición de <span class="in">`expr`</span> para obtener diferentes mediciones y hacer un reporte, <span class="in">`params`</span> permite manipular la forma en que se realiza la evaluación.</span>
+<span id="cb15-502"><a href="#cb15-502" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`@btime expr params`</span>  macro del paquete <span class="in">`BenchmarkTools`</span> que mimetiza la salida de <span class="in">`@time`</span>.</span>
+<span id="cb15-503"><a href="#cb15-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-506"><a href="#cb15-506" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-507"><a href="#cb15-507" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb15-508"><a href="#cb15-508" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a <span class="co"># &lt;1&gt;</span></span>
+<span id="cb15-509"><a href="#cb15-509" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> a <span class="op">*</span> a <span class="co"># &lt;2&gt;</span></span>
+<span id="cb15-510"><a href="#cb15-510" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-511"><a href="#cb15-511" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Todas las funciones se deben compilar, la primera llamada incluye los costos de compilación.</span>
+<span id="cb15-512"><a href="#cb15-512" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>El costo sin compilación, hay una asignación que es la matriz donde se guarda el resultado.</span>
+<span id="cb15-513"><a href="#cb15-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-514"><a href="#cb15-514" aria-hidden="true" tabindex="-1"></a>Tanto <span class="in">`@benchmark`</span> como <span class="in">`@btime`</span> aceptan interpolación de variables con el prefijo <span class="in">`$`</span> para controlar si la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parámetro <span class="in">`setup`</span> para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de <span class="in">`expr`</span>.</span>
+<span id="cb15-515"><a href="#cb15-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-518"><a href="#cb15-518" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-519"><a href="#cb15-519" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">BenchmarkTools</span></span>
 <span id="cb15-520"><a href="#cb15-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-523"><a href="#cb15-523" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-524"><a href="#cb15-524" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
-<span id="cb15-525"><a href="#cb15-525" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
-<span id="cb15-526"><a href="#cb15-526" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span>
-<span id="cb15-527"><a href="#cb15-527" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-528"><a href="#cb15-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-529"><a href="#cb15-529" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</span></span>
+<span id="cb15-521"><a href="#cb15-521" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span>
+<span id="cb15-522"><a href="#cb15-522" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-523"><a href="#cb15-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-526"><a href="#cb15-526" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-527"><a href="#cb15-527" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb15-528"><a href="#cb15-528" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span>
+<span id="cb15-529"><a href="#cb15-529" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-530"><a href="#cb15-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-531"><a href="#cb15-531" aria-hidden="true" tabindex="-1"></a>--</span>
-<span id="cb15-534"><a href="#cb15-534" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-535"><a href="#cb15-535" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maximo</span>(col) <span class="co"># &lt;1&gt;</span></span>
-<span id="cb15-536"><a href="#cb15-536" aria-hidden="true" tabindex="-1"></a>    maxpos <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb15-537"><a href="#cb15-537" aria-hidden="true" tabindex="-1"></a>    actualizaciones <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb15-538"><a href="#cb15-538" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb15-539"><a href="#cb15-539" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-540"><a href="#cb15-540" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="fu">length</span>(col)</span>
-<span id="cb15-541"><a href="#cb15-541" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> col[maxpos] <span class="op">&lt;</span> col[i]</span>
-<span id="cb15-542"><a href="#cb15-542" aria-hidden="true" tabindex="-1"></a>            maxpos <span class="op">=</span> i</span>
-<span id="cb15-543"><a href="#cb15-543" aria-hidden="true" tabindex="-1"></a>            actualizaciones <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb15-544"><a href="#cb15-544" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb15-545"><a href="#cb15-545" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb15-546"><a href="#cb15-546" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb15-547"><a href="#cb15-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-548"><a href="#cb15-548" aria-hidden="true" tabindex="-1"></a>    maxpos, actualizaciones</span>
-<span id="cb15-549"><a href="#cb15-549" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb15-550"><a href="#cb15-550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
-<span id="cb15-551"><a href="#cb15-551" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Función que encuentra el máximo en una secuencia y devuelve su posición, y además devuelve el número de veces que se actualizó el máximo en el recorrido.</span>
-<span id="cb15-552"><a href="#cb15-552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-555"><a href="#cb15-555" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-556"><a href="#cb15-556" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>)</span>
-<span id="cb15-557"><a href="#cb15-557" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> <span class="fu">maximo</span>(<span class="op">$</span>a) samples<span class="op">=</span><span class="fl">100</span> seconds<span class="op">=</span><span class="fl">3</span> <span class="co"># &lt;1&gt;</span></span>
-<span id="cb15-558"><a href="#cb15-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-559"><a href="#cb15-559" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Un análisis de desempeño usando <span class="in">`@benchmark`</span>; probando con máximo 100 samples en 3 segundos. </span>
-<span id="cb15-560"><a href="#cb15-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-531"><a href="#cb15-531" aria-hidden="true" tabindex="-1"></a>El parámetro <span class="in">`sample`</span> controla el número máximo de muestras que se tomarán para el análisis, y <span class="in">`seconds`</span> limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que <span class="in">`seconds`</span>.<span class="ot">[^btools]</span></span>
+<span id="cb15-532"><a href="#cb15-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-533"><a href="#cb15-533" aria-hidden="true" tabindex="-1"></a><span class="ot">[^btools]: </span>Se recomienda visitar el sitio <span class="ot">&lt;https://juliaci.github.io/BenchmarkTools.jl/stable/&gt;</span> para más información sobre el paquete <span class="in">`BenchmarkTools`</span>, y en particular para sus parámetros, como guardar información de corridas.</span>
+<span id="cb15-534"><a href="#cb15-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-537"><a href="#cb15-537" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-538"><a href="#cb15-538" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb15-539"><a href="#cb15-539" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
+<span id="cb15-540"><a href="#cb15-540" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span>
+<span id="cb15-541"><a href="#cb15-541" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-542"><a href="#cb15-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-543"><a href="#cb15-543" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</span></span>
+<span id="cb15-544"><a href="#cb15-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-545"><a href="#cb15-545" aria-hidden="true" tabindex="-1"></a>--</span>
+<span id="cb15-548"><a href="#cb15-548" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-549"><a href="#cb15-549" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maximo</span>(col) <span class="co"># &lt;1&gt;</span></span>
+<span id="cb15-550"><a href="#cb15-550" aria-hidden="true" tabindex="-1"></a>    maxpos <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb15-551"><a href="#cb15-551" aria-hidden="true" tabindex="-1"></a>    actualizaciones <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb15-552"><a href="#cb15-552" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb15-553"><a href="#cb15-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-554"><a href="#cb15-554" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="fu">length</span>(col)</span>
+<span id="cb15-555"><a href="#cb15-555" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> col[maxpos] <span class="op">&lt;</span> col[i]</span>
+<span id="cb15-556"><a href="#cb15-556" aria-hidden="true" tabindex="-1"></a>            maxpos <span class="op">=</span> i</span>
+<span id="cb15-557"><a href="#cb15-557" aria-hidden="true" tabindex="-1"></a>            actualizaciones <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb15-558"><a href="#cb15-558" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb15-559"><a href="#cb15-559" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb15-560"><a href="#cb15-560" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb15-561"><a href="#cb15-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-562"><a href="#cb15-562" aria-hidden="true" tabindex="-1"></a>Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que el número de <span class="in">`actualizaciones`</span> es nuestra medida de desempeño, un código donde se capturen las actualizaciones</span>
-<span id="cb15-563"><a href="#cb15-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-566"><a href="#cb15-566" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb15-567"><a href="#cb15-567" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span> <span class="co"># &lt;1&gt;</span></span>
-<span id="cb15-568"><a href="#cb15-568" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fu">maximo</span>(<span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>))[<span class="fl">2</span>] for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>] <span class="co"># &lt;2&gt;</span></span>
-<span id="cb15-569"><a href="#cb15-569" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(a, [<span class="fl">0.0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>]) <span class="co"># &lt;3&gt;</span></span>
-<span id="cb15-570"><a href="#cb15-570" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-571"><a href="#cb15-571" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Inclusión de un paquete para cálculo de estadísticas básicas.</span>
-<span id="cb15-572"><a href="#cb15-572" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Definición de 100 experimentos que calculan <span class="in">`maximo`</span> sobre arreglos aleatorios.</span>
-<span id="cb15-573"><a href="#cb15-573" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cálculo del mínimo, cuantiles 0.25, 0.5, 0.75, y el máximo, para determinar el desempeño.</span>
+<span id="cb15-562"><a href="#cb15-562" aria-hidden="true" tabindex="-1"></a>    maxpos, actualizaciones</span>
+<span id="cb15-563"><a href="#cb15-563" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-564"><a href="#cb15-564" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
+<span id="cb15-565"><a href="#cb15-565" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Función que encuentra el máximo en una secuencia y devuelve su posición, y además devuelve el número de veces que se actualizó el máximo en el recorrido.</span>
+<span id="cb15-566"><a href="#cb15-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-569"><a href="#cb15-569" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-570"><a href="#cb15-570" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>)</span>
+<span id="cb15-571"><a href="#cb15-571" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> <span class="fu">maximo</span>(<span class="op">$</span>a) samples<span class="op">=</span><span class="fl">100</span> seconds<span class="op">=</span><span class="fl">3</span> <span class="co"># &lt;1&gt;</span></span>
+<span id="cb15-572"><a href="#cb15-572" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-573"><a href="#cb15-573" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Un análisis de desempeño usando <span class="in">`@benchmark`</span>; probando con máximo 100 samples en 3 segundos. </span>
 <span id="cb15-574"><a href="#cb15-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-575"><a href="#cb15-575" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicios</span></span>
-<span id="cb15-576"><a href="#cb15-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-577"><a href="#cb15-577" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Considere dos implementaciones de un mismo problema con distinto costo teórico, por ejemplo, la suma de los primeros $n$ enteros mediante un ciclo ($O(n)$) contra la fórmula cerrada $n(n+1)/2$ ($O(1)$). Mida ambas con <span class="in">`@benchmark`</span> para valores crecientes de $n$ y contraste el resultado empírico contra lo esperado por el análisis teórico.</span>
-<span id="cb15-578"><a href="#cb15-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-579"><a href="#cb15-579" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
-<span id="cb15-580"><a href="#cb15-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-581"><a href="#cb15-581" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:</span>
-<span id="cb15-582"><a href="#cb15-582" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(1)$ vs $O(\log n)$</span>
-<span id="cb15-583"><a href="#cb15-583" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(n)$ vs $O(n \log n)$</span>
-<span id="cb15-584"><a href="#cb15-584" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(n^2)$ vs $O(n^3)$</span>
-<span id="cb15-585"><a href="#cb15-585" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(a^n)$ vs $O(n!)$</span>
-<span id="cb15-586"><a href="#cb15-586" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>$O(n!)$ vs $O(n^n)$</span>
-<span id="cb15-587"><a href="#cb15-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-588"><a href="#cb15-588" aria-hidden="true" tabindex="-1"></a>    a. Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.</span>
-<span id="cb15-589"><a href="#cb15-589" aria-hidden="true" tabindex="-1"></a>    b. Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.</span>
-<span id="cb15-590"><a href="#cb15-590" aria-hidden="true" tabindex="-1"></a>    c. Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.</span>
-<span id="cb15-591"><a href="#cb15-591" aria-hidden="true" tabindex="-1"></a>    d. Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.</span>
+<span id="cb15-575"><a href="#cb15-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-576"><a href="#cb15-576" aria-hidden="true" tabindex="-1"></a>Note que aunque se tiene un análisis muy detallado del desempeño, otras medidas de costo caen fuera del diseño del paquete, por lo que es necesario hacerlas por otros medios. Por ejemplo, suponga que el número de <span class="in">`actualizaciones`</span> es nuestra medida de desempeño, un código donde se capturen las actualizaciones</span>
+<span id="cb15-577"><a href="#cb15-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-580"><a href="#cb15-580" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb15-581"><a href="#cb15-581" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span> <span class="co"># &lt;1&gt;</span></span>
+<span id="cb15-582"><a href="#cb15-582" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fu">maximo</span>(<span class="fu">rand</span>(<span class="dt">UInt32</span>, <span class="fl">128</span>))[<span class="fl">2</span>] for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>] <span class="co"># &lt;2&gt;</span></span>
+<span id="cb15-583"><a href="#cb15-583" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(a, [<span class="fl">0.0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>]) <span class="co"># &lt;3&gt;</span></span>
+<span id="cb15-584"><a href="#cb15-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-585"><a href="#cb15-585" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Inclusión de un paquete para cálculo de estadísticas básicas.</span>
+<span id="cb15-586"><a href="#cb15-586" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Definición de 100 experimentos que calculan <span class="in">`maximo`</span> sobre arreglos aleatorios.</span>
+<span id="cb15-587"><a href="#cb15-587" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cálculo del mínimo, cuantiles 0.25, 0.5, 0.75, y el máximo, para determinar el desempeño.</span>
+<span id="cb15-588"><a href="#cb15-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-589"><a href="#cb15-589" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejercicios</span></span>
+<span id="cb15-590"><a href="#cb15-590" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-591"><a href="#cb15-591" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Considere dos implementaciones de un mismo problema con distinto costo teórico, por ejemplo, la suma de los primeros $n$ enteros mediante un ciclo ($O(n)$) contra la fórmula cerrada $n(n+1)/2$ ($O(1)$). Mida ambas con <span class="in">`@benchmark`</span> para valores crecientes de $n$ y contraste el resultado empírico contra lo esperado por el análisis teórico.</span>
 <span id="cb15-592"><a href="#cb15-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-593"><a href="#cb15-593" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
+<span id="cb15-593"><a href="#cb15-593" aria-hidden="true" tabindex="-1"></a><span class="fu">## Actividades</span></span>
 <span id="cb15-594"><a href="#cb15-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-595"><a href="#cb15-595" aria-hidden="true" tabindex="-1"></a>Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.</span>
-<span id="cb15-596"><a href="#cb15-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-597"><a href="#cb15-597" aria-hidden="true" tabindex="-1"></a>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:</span>
+<span id="cb15-595"><a href="#cb15-595" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Considere dos estructuras para representar un mapa de enteros (<span class="in">`Int64`</span>) a flotantes (<span class="in">`Float64`</span>), sin llaves repetidas:</span>
+<span id="cb15-596"><a href="#cb15-596" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Un vector de pares sin ordenar (e.g., <span class="in">`Vector{Union{Nothing,Pair{Int64,Float64}}}`</span>), donde toda operación recorre linealmente el vector.</span>
+<span id="cb15-597"><a href="#cb15-597" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Un <span class="in">`Dict{Int64,Float64}`</span>, la tabla hash nativa de Julia.</span>
 <span id="cb15-598"><a href="#cb15-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-599"><a href="#cb15-599" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Título del reporte, su nombre.</span>
-<span id="cb15-600"><a href="#cb15-600" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introducción.</span>
-<span id="cb15-601"><a href="#cb15-601" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Actividad 1. Comparación de los órdenes de crecimiento.</span>
-<span id="cb15-602"><a href="#cb15-602" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Nota: poner el código cercano a la presentación de resultados.</span>
-<span id="cb15-603"><a href="#cb15-603" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conclusiones</span>
-<span id="cb15-604"><a href="#cb15-604" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.</span>
+<span id="cb15-599"><a href="#cb15-599" aria-hidden="true" tabindex="-1"></a>    Implemente, para ambas estructuras, las operaciones <span class="in">`buscar`</span>, <span class="in">`insertar!`</span> y <span class="in">`borrar!`</span> con la misma semántica de mapa (a lo más un valor por llave).</span>
+<span id="cb15-600"><a href="#cb15-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-601"><a href="#cb15-601" aria-hidden="true" tabindex="-1"></a><span class="in">    **Restricción importante:** `insertar!` y `borrar!` sobre el vector deben implementarse sin modificar el tamaño (longitud) del arreglo, es decir, sin usar `push!`, `pop!`, `deleteat!` ni operaciones equivalentes que provoquen realojamiento o desplazamiento de memoria. Esto aísla el efecto que se quiere medir (costo del recorrido y localidad de referencia) del efecto de las políticas de crecimiento dinámico de arreglos. Para lograrlo:</span></span>
+<span id="cb15-602"><a href="#cb15-602" aria-hidden="true" tabindex="-1"></a><span class="in">    - Reserve el vector con una capacidad fija desde el inicio (la $n$ máxima que va a usar en el experimento).</span></span>
+<span id="cb15-603"><a href="#cb15-603" aria-hidden="true" tabindex="-1"></a><span class="in">    - Use un valor centinela (e.g., `nothing`, o una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente "vacías".</span></span>
+<span id="cb15-604"><a href="#cb15-604" aria-hidden="true" tabindex="-1"></a><span class="in">    - `borrar!` sobrescribe la posición encontrada con el centinela; `insertar!` busca primero la llave (para actualizar) y, si no existe, busca una posición marcada como vacía para colocar el nuevo par; ambas búsquedas son recorridos lineales, nunca hay cambio de tamaño del arreglo.</span></span>
 <span id="cb15-605"><a href="#cb15-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-606"><a href="#cb15-606" aria-hidden="true" tabindex="-1"></a>Nota: no olvides revisar la rúbrica del curso.</span>
-<span id="cb15-607"><a href="#cb15-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-608"><a href="#cb15-608" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliografía</span></span>
-<span id="cb15-609"><a href="#cb15-609" aria-hidden="true" tabindex="-1"></a>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</span>
-<span id="cb15-610"><a href="#cb15-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-611"><a href="#cb15-611" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte I: Cap. 1, 2, 3</span>
+<span id="cb15-606"><a href="#cb15-606" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Mida con <span class="in">`@benchmark`</span> el tiempo de cada operación (<span class="in">`buscar`</span>, <span class="in">`insertar!`</span>, <span class="in">`borrar!`</span>) para $n$ creciente (potencias de 2 desde $2^2$ hasta el máximo práctico en su equipo), con la estructura ya poblada con $n$ pares aleatorios antes de medir. Para <span class="in">`buscar`</span> y <span class="in">`borrar!`</span> la llave a consultar debe elegirse aleatoriamente dentro del <span class="in">`setup=`</span> de cada muestra (no fija), para capturar el caso promedio y no solo el mejor o peor caso posicional. Aplique el mismo cuidado del lado del <span class="in">`Dict`</span> (considere <span class="in">`sizehint!`</span> para controlar el efecto de *rehash* al crecer).</span>
+<span id="cb15-607"><a href="#cb15-607" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Para cada una de las tres operaciones, determine el o los rangos de $n$ donde el vector es más rápido que el diccionario, y viceversa. Reporte con gráficas tiempo-vs-$n$ (escala log-log recomendada) y/o tablas.</span>
+<span id="cb15-608"><a href="#cb15-608" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Discuta sus resultados en términos de localidad de referencia (fallos de caché por saltos de puntero en el diccionario vs. recorrido contiguo en el vector) y el costo de calcular el hash y resolver colisiones.</span>
+<span id="cb15-609"><a href="#cb15-609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-610"><a href="#cb15-610" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entregable</span></span>
+<span id="cb15-611"><a href="#cb15-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-612"><a href="#cb15-612" aria-hidden="true" tabindex="-1"></a>Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.</span>
+<span id="cb15-613"><a href="#cb15-613" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-614"><a href="#cb15-614" aria-hidden="true" tabindex="-1"></a>No olvide estructurar su reporte, en particular el reporte debe cubrir los siguientes puntos:</span>
+<span id="cb15-615"><a href="#cb15-615" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-616"><a href="#cb15-616" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Título del reporte, su nombre.</span>
+<span id="cb15-617"><a href="#cb15-617" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introducción.</span>
+<span id="cb15-618"><a href="#cb15-618" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Actividad 1. Vector vs. diccionario para mapas pequeños.</span>
+<span id="cb15-619"><a href="#cb15-619" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Nota: poner el código cercano a la presentación de resultados.</span>
+<span id="cb15-620"><a href="#cb15-620" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Conclusiones</span>
+<span id="cb15-621"><a href="#cb15-621" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.</span>
+<span id="cb15-622"><a href="#cb15-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-623"><a href="#cb15-623" aria-hidden="true" tabindex="-1"></a>Nota: no olvides revisar la rúbrica del curso.</span>
+<span id="cb15-624"><a href="#cb15-624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-625"><a href="#cb15-625" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliografía</span></span>
+<span id="cb15-626"><a href="#cb15-626" aria-hidden="true" tabindex="-1"></a>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2022). Introduction to Algorithms (2nd ed.). MIT Press.</span>
+<span id="cb15-627"><a href="#cb15-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-628"><a href="#cb15-628" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parte I: Cap. 1, 2, 3</span>
 </code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

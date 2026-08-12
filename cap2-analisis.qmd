@@ -450,6 +450,20 @@ Vea la figura anterior, donde se compara $n!$ con $n^n$, observe cómo es que cu
 
  Note que hay problemas que son realmente costosos de resolver y que es necesario conocer si se comporta así siempre, o si es bajo determinado tipo de entradas. Hay problemas en las diferentes áreas de la ciencia de datos, donde veremos este tipo de costos, y habrá que saber cuándo es posible solucionarlos, o cuándo se deben obtener aproximaciones que nos acerquen a las respuestas correctas con un costo manejable, es decir, mediar entre exactitud y costo. En este curso se abordarán problemas con un costo menor, pero que por la cantidad de datos, i.e., $n$, se vuelven muy costosos y veremos cómo aprovechar supuestos como las distribuciones naturales de los datos para mejorar los costos.
 
+### Ejercicios
+
+1. Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
+    - $O(1)$ vs $O(\log n)$
+    - $O(n)$ vs $O(n \log n)$
+    - $O(n^2)$ vs $O(n^3)$
+    - $O(a^n)$ vs $O(n!)$
+    - $O(n!)$ vs $O(n^n)$
+
+    a. Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.
+    b. Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.
+    c. Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.
+    d. Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.
+
 ##  El enfoque experimental
 La notación asintótica nos permite alcanzar un lenguaje común y preciso sobre los costos de problemas y algoritmos; es de especial importancia para la evaluación de las alternativas en la literatura especializada, y elegir algoritmos aún sin la necesidad de implementación. El análisis asintótico da la posibilidad de conocer el desempeño desde diferentes perspectivas como peor caso o caso promedio, utilizando un modelo de computación, y siempre pensando en entradas lo suficientemente grandes.
 
@@ -548,17 +562,20 @@ quantile(a, [0.0, 0.25, 0.5, 0.75, 1.0]) # <3>
 
 ## Actividades
 
-1. Comparar mediante simulación en un notebook de Jupyter o Quarto los siguientes órdenes de crecimiento:
-    - $O(1)$ vs $O(\log n)$
-    - $O(n)$ vs $O(n \log n)$
-    - $O(n^2)$ vs $O(n^3)$
-    - $O(a^n)$ vs $O(n!)$
-    - $O(n!)$ vs $O(n^n)$
+1. Considere dos estructuras para representar un mapa de enteros (`Int64`) a flotantes (`Float64`), sin llaves repetidas:
+    - Un vector de pares sin ordenar (e.g., `Vector{Union{Nothing,Pair{Int64,Float64}}}`), donde toda operación recorre linealmente el vector.
+    - Un `Dict{Int64,Float64}`, la tabla hash nativa de Julia.
 
-    a. Cree una tabla donde muestre tiempos de ejecución simulados para algoritmos ficticios que tengan los órdenes de crecimiento anteriores, suponiendo que cada operación tiene un costo de 1 nanosegundo.
-    b. Use diferentes tamaños de entrada $n=100$, $n=1000$, $n=10000$ y $n=100000$.
-    c. Nota: los números pueden ser muy grandes para algunas expresiones, tome decisiones en estos casos y argumente en el reporte.
-    d. Discuta las implicaciones de costos de cómputo necesarios para manipular grandes volúmenes de información.
+    Implemente, para ambas estructuras, las operaciones `buscar`, `insertar!` y `borrar!` con la misma semántica de mapa (a lo más un valor por llave).
+
+    **Restricción importante:** `insertar!` y `borrar!` sobre el vector deben implementarse sin modificar el tamaño (longitud) del arreglo, es decir, sin usar `push!`, `pop!`, `deleteat!` ni operaciones equivalentes que provoquen realojamiento o desplazamiento de memoria. Esto aísla el efecto que se quiere medir (costo del recorrido y localidad de referencia) del efecto de las políticas de crecimiento dinámico de arreglos. Para lograrlo:
+    - Reserve el vector con una capacidad fija desde el inicio (la $n$ máxima que va a usar en el experimento).
+    - Use un valor centinela (e.g., `nothing`, o una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente "vacías".
+    - `borrar!` sobrescribe la posición encontrada con el centinela; `insertar!` busca primero la llave (para actualizar) y, si no existe, busca una posición marcada como vacía para colocar el nuevo par; ambas búsquedas son recorridos lineales, nunca hay cambio de tamaño del arreglo.
+
+2. Mida con `@benchmark` el tiempo de cada operación (`buscar`, `insertar!`, `borrar!`) para $n$ creciente (potencias de 2 desde $2^2$ hasta el máximo práctico en su equipo), con la estructura ya poblada con $n$ pares aleatorios antes de medir. Para `buscar` y `borrar!` la llave a consultar debe elegirse aleatoriamente dentro del `setup=` de cada muestra (no fija), para capturar el caso promedio y no solo el mejor o peor caso posicional. Aplique el mismo cuidado del lado del `Dict` (considere `sizehint!` para controlar el efecto de *rehash* al crecer).
+3. Para cada una de las tres operaciones, determine el o los rangos de $n$ donde el vector es más rápido que el diccionario, y viceversa. Reporte con gráficas tiempo-vs-$n$ (escala log-log recomendada) y/o tablas.
+4. Discuta sus resultados en términos de localidad de referencia (fallos de caché por saltos de puntero en el diccionario vs. recorrido contiguo en el vector) y el costo de calcular el hash y resolver colisiones.
 
 ### Entregable
 
@@ -568,7 +585,7 @@ No olvide estructurar su reporte, en particular el reporte debe cubrir los sigui
 
 - Título del reporte, su nombre.
 - Introducción.
-- Actividad 1. Comparación de los órdenes de crecimiento.
+- Actividad 1. Vector vs. diccionario para mapas pequeños.
   - Nota: poner el código cercano a la presentación de resultados.
 - Conclusiones
 - Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
