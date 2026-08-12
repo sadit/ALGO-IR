@@ -1227,14 +1227,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </dl>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  0.884702 seconds (2.02 M allocations: 137.010 MiB, 99.97% compilation time)
+<pre><code>  0.941881 seconds (2.02 M allocations: 137.010 MiB, 99.98% compilation time)
   0.000006 seconds (1 allocation: 96 bytes)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×3 Matrix{Float32}:
- 0.733125   1.32046   1.08174
- 0.848319   1.54712   1.27832
- 0.0892135  0.151094  0.15841</code></pre>
+ 1.13692   1.23526  1.16966
+ 1.22753   1.36163  1.10315
+ 0.760752  1.08487  0.957531</code></pre>
 </div>
 </div>
 <p>Tanto <code>@benchmark</code> como <code>@btime</code> aceptan interpolación de variables con el prefijo <code>$</code> para controlar si la evaluación de una expresión se debe contar como parte de lo que se quiere medir o no. Se puede combinar con el parámetro <code>setup</code> para controlar de manera precisa las entradas para evaluar cada una de las repeticiones de <code>expr</code>.</p>
@@ -1244,14 +1244,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
-<pre>BenchmarkTools.Trial: 10000 samples with 984 evaluations per sample.
- Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">47.835 ns</span> … <span class="ansi-magenta-fg"> 19.725 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span> 0.00% … 99.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">57.910 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span> 0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">74.153 ns</span> ± <span class="ansi-green-fg">275.136 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>10.26% ±  3.11%
+<pre>BenchmarkTools.Trial: 10000 samples with 988 evaluations per sample.
+ Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">46.937 ns</span> … <span class="ansi-magenta-fg">  7.753 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 98.75%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">53.144 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">67.711 ns</span> ± <span class="ansi-green-fg">193.818 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>8.90% ±  3.11%
 
-  █▇▅▄▃<span class="ansi-blue-fg">▂</span>▁▁     ▂<span class="ansi-green-fg">▇</span>▇▅▃▃▂▂▁                                       ▂
-  █████<span class="ansi-blue-fg">█</span>███▇█▇▅█<span class="ansi-green-fg">█</span>████████▇▇▇▆▅▆▇▅▆▇▇▇▇▇▇▆▆▆▆▆▇▆▆▆▇▆▆▆▆▅▆▅▅▄▅▅▅ █
-  47.8 ns<span class="ansi-bright-black-fg">       </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>       158 ns <span class="ansi-bold">&lt;</span>
+   █ ▁    <span class="ansi-blue-fg"> </span>                  <span class="ansi-green-fg"> </span>                                  
+  ▂█▆█▃▂▂▂<span class="ansi-blue-fg">▂</span>▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁<span class="ansi-green-fg">▁</span>▁▁▁▁▁▁▄▅█▆▅▃▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▂
+  46.9 ns<span class="ansi-bright-black-fg">         Histogram: frequency by time</span>         92.3 ns <span class="ansi-bold">&lt;</span>
 
  Memory estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">96 bytes</span>, allocs estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">1</span>.</pre>
 </div>
@@ -1262,13 +1262,13 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">3</span>, <span class="fl">3</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@btime</span> a <span class="op">*</span> a setup<span class="op">=</span>(a<span class="op">=$</span>a)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  47.691 ns (1 allocation: 96 bytes)</code></pre>
+<pre><code>  47.236 ns (1 allocation: 96 bytes)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×3 Matrix{Float32}:
- 0.717326  0.657367  0.860776
- 0.642168  0.651055  0.916698
- 0.768152  0.83929   1.24698</code></pre>
+ 1.2089    0.679935  1.17579
+ 0.560824  0.384641  0.625992
+ 1.31186   0.873857  1.43433</code></pre>
 </div>
 </div>
 <p>El parámetro <code>sample</code> controla el número máximo de muestras que se tomarán para el análisis, y <code>seconds</code> limita el tiempo sobre el cual se tomarán muestras; se asegura que al menos se tomará una muestra, se debe tener en cuenta que puede costar más que <code>seconds</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
@@ -1278,14 +1278,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@benchmark</span> a <span class="op">*</span> b setup<span class="op">=</span>(a<span class="op">=$</span>a, b<span class="op">=$</span>b) samples<span class="op">=</span><span class="fl">1000</span> seconds<span class="op">=</span><span class="fl">0.33</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
-<pre>BenchmarkTools.Trial: 1000 samples with 976 evaluations per sample.
- Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">61.332 ns</span> … <span class="ansi-magenta-fg">  6.023 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 98.06%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">66.520 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">85.787 ns</span> ± <span class="ansi-green-fg">189.633 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>6.88% ±  3.10%
+<pre>BenchmarkTools.Trial: 1000 samples with 979 evaluations per sample.
+ Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">60.579 ns</span> … <span class="ansi-magenta-fg">  5.843 μs</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 98.24%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">64.963 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">82.027 ns</span> ± <span class="ansi-green-fg">183.099 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>7.00% ±  3.11%
 
-  █▆<span class="ansi-blue-fg">▃</span>▁        <span class="ansi-green-fg"> </span>▅▇▄▁                                             
-  ██<span class="ansi-blue-fg">█</span>█▅▅▅▄▁▁▁▁<span class="ansi-green-fg">▁</span>████▅▅▄▅▁▄▁▁▁▄▁▁▁▁▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▄▁▁▁▄▄▄▅▅▆▆▅▅ █
-  61.3 ns<span class="ansi-bright-black-fg">       </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>       185 ns <span class="ansi-bold">&lt;</span>
+  ▇█    <span class="ansi-blue-fg"> </span>                    <span class="ansi-green-fg"> </span>                                  
+  ██▃▄▄▃<span class="ansi-blue-fg">▃</span>▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁<span class="ansi-green-fg">▁</span>▁▁▁▁▁▂▅▆▆▃▃▆▇▅▃▃▃▂▂▂▂▁▂▂▂▂▂▂▁▁▁▂ ▃
+  60.6 ns<span class="ansi-bright-black-fg">         Histogram: frequency by time</span>          108 ns <span class="ansi-bold">&lt;</span>
 
  Memory estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">96 bytes</span>, allocs estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">1</span>.</pre>
 </div>
@@ -1337,14 +1337,14 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="ansi-escaped-output">
-<pre>BenchmarkTools.Trial: 100 samples with 842 evaluations per sample.
- Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">158.728 ns</span> … <span class="ansi-magenta-fg">259.776 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">164.591 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
- Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">177.892 ns</span> ± <span class="ansi-green-fg"> 24.501 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>0.00% ± 0.00%
+<pre>BenchmarkTools.Trial: 100 samples with 870 evaluations per sample.
+ Range <span class="ansi-bright-black-fg">(</span><span class="ansi-cyan-fg ansi-bold">min</span> … <span class="ansi-magenta-fg">max</span><span class="ansi-bright-black-fg">):  </span><span class="ansi-cyan-fg ansi-bold">134.178 ns</span> … <span class="ansi-magenta-fg">165.963 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>min … max<span class="ansi-bright-black-fg">): </span>0.00% … 0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-blue-fg ansi-bold">median</span><span class="ansi-bright-black-fg">):     </span><span class="ansi-blue-fg ansi-bold">139.029 ns               </span><span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>median<span class="ansi-bright-black-fg">):    </span>0.00%
+ Time  <span class="ansi-bright-black-fg">(</span><span class="ansi-green-fg ansi-bold">mean</span> ± <span class="ansi-green-fg">σ</span><span class="ansi-bright-black-fg">):   </span><span class="ansi-green-fg ansi-bold">138.929 ns</span> ± <span class="ansi-green-fg">  3.254 ns</span>  <span class="ansi-bright-black-fg">┊</span> GC <span class="ansi-bright-black-fg">(</span>mean ± σ<span class="ansi-bright-black-fg">):  </span>0.00% ± 0.00%
 
-  ▄ ▂█<span class="ansi-blue-fg"> </span>       <span class="ansi-green-fg"> </span>                                                  
-  █▆██<span class="ansi-blue-fg">█</span>▁▇▇▅▅▅▅<span class="ansi-green-fg">█</span>▅▅▆▆▅▆▆▁▁▁▁▁▁▅▁▁▁▅▅▆▁▁▅▁▅▁▁▁▅▆▁▁▆▅▁▁▅▁▅▁▁▁▁▁▁▁▁▅ ▅
-  159 ns<span class="ansi-bright-black-fg">        </span><span class="ansi-bright-black-fg">Histogram: </span><span class="ansi-bright-black-fg ansi-bold">log(</span><span class="ansi-bright-black-fg">frequency</span><span class="ansi-bright-black-fg ansi-bold">)</span><span class="ansi-bright-black-fg"> by time</span>        257 ns <span class="ansi-bold">&lt;</span>
+                        ▆<span class="ansi-blue-fg">█</span>▁                                      
+  ▅▁▁▁▃▃▃▃▁▁▃▁▃▃▁▁▁▃▁▄▃▇█<span class="ansi-blue-fg">█</span>█▄▇▅▃▁▁▃▁▃▃▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▃ ▃
+  134 ns<span class="ansi-bright-black-fg">           Histogram: frequency by time</span>          147 ns <span class="ansi-bold">&lt;</span>
 
  Memory estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">0 bytes</span>, allocs estimate<span class="ansi-bright-black-fg">: </span><span class="ansi-yellow-fg">0</span>.</pre>
 </div>
@@ -1373,11 +1373,11 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>5-element Vector{Float64}:
-  2.0
+  1.0
   4.0
-  5.0
   6.0
- 12.0</code></pre>
+  7.0
+ 11.0</code></pre>
 </div>
 </div>
 </section>
@@ -1400,7 +1400,7 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <p><strong>Restricción importante:</strong> <code>insertar!</code> y <code>borrar!</code> sobre el vector deben implementarse sin modificar el tamaño (longitud) del arreglo, es decir, sin usar <code>push!</code>, <code>pop!</code>, <code>deleteat!</code> ni operaciones equivalentes que provoquen realojamiento o desplazamiento de memoria. Esto aísla el efecto que se quiere medir (costo del recorrido y localidad de referencia) del efecto de las políticas de crecimiento dinámico de arreglos. Para lograrlo:</p>
 <ul>
 <li>Reserve el vector con una capacidad fija desde el inicio (la <span class="math inline">\(n\)</span> máxima que va a usar en el experimento).</li>
-<li>Use un valor centinela (e.g., <code>nothing</code>, o una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente “vacías”.</li>
+<li>Use un valor centinela (e.g., una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente “vacías”, o un contador de elementos y la lógica necesaria para llevar a cabo las operaciones.</li>
 <li><code>borrar!</code> sobrescribe la posición encontrada con el centinela; <code>insertar!</code> busca primero la llave (para actualizar) y, si no existe, busca una posición marcada como vacía para colocar el nuevo par; ambas búsquedas son recorridos lineales, nunca hay cambio de tamaño del arreglo.</li>
 </ul></li>
 <li><p>Mida con <code>@benchmark</code> el tiempo de cada operación (<code>buscar</code>, <code>insertar!</code>, <code>borrar!</code>) para <span class="math inline">\(n\)</span> creciente (potencias de 2 desde <span class="math inline">\(2^2\)</span> hasta el máximo práctico en su equipo), con la estructura ya poblada con <span class="math inline">\(n\)</span> pares aleatorios antes de medir. Para <code>buscar</code> y <code>borrar!</code> la llave a consultar debe elegirse aleatoriamente dentro del <code>setup=</code> de cada muestra (no fija), para capturar el caso promedio y no solo el mejor o peor caso posicional. Aplique el mismo cuidado del lado del <code>Dict</code> (considere <code>sizehint!</code> para controlar el efecto de <em>rehash</em> al crecer).</p></li>
@@ -2465,7 +2465,7 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
 <span id="cb15-600"><a href="#cb15-600" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-601"><a href="#cb15-601" aria-hidden="true" tabindex="-1"></a><span class="in">    **Restricción importante:** `insertar!` y `borrar!` sobre el vector deben implementarse sin modificar el tamaño (longitud) del arreglo, es decir, sin usar `push!`, `pop!`, `deleteat!` ni operaciones equivalentes que provoquen realojamiento o desplazamiento de memoria. Esto aísla el efecto que se quiere medir (costo del recorrido y localidad de referencia) del efecto de las políticas de crecimiento dinámico de arreglos. Para lograrlo:</span></span>
 <span id="cb15-602"><a href="#cb15-602" aria-hidden="true" tabindex="-1"></a><span class="in">    - Reserve el vector con una capacidad fija desde el inicio (la $n$ máxima que va a usar en el experimento).</span></span>
-<span id="cb15-603"><a href="#cb15-603" aria-hidden="true" tabindex="-1"></a><span class="in">    - Use un valor centinela (e.g., `nothing`, o una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente "vacías".</span></span>
+<span id="cb15-603"><a href="#cb15-603" aria-hidden="true" tabindex="-1"></a><span class="in">    - Use un valor centinela (e.g., una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente "vacías", o un contador de elementos y la lógica necesaria para llevar a cabo las operaciones.</span></span>
 <span id="cb15-604"><a href="#cb15-604" aria-hidden="true" tabindex="-1"></a><span class="in">    - `borrar!` sobrescribe la posición encontrada con el centinela; `insertar!` busca primero la llave (para actualizar) y, si no existe, busca una posición marcada como vacía para colocar el nuevo par; ambas búsquedas son recorridos lineales, nunca hay cambio de tamaño del arreglo.</span></span>
 <span id="cb15-605"><a href="#cb15-605" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-606"><a href="#cb15-606" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Mida con <span class="in">`@benchmark`</span> el tiempo de cada operación (<span class="in">`buscar`</span>, <span class="in">`insertar!`</span>, <span class="in">`borrar!`</span>) para $n$ creciente (potencias de 2 desde $2^2$ hasta el máximo práctico en su equipo), con la estructura ya poblada con $n$ pares aleatorios antes de medir. Para <span class="in">`buscar`</span> y <span class="in">`borrar!`</span> la llave a consultar debe elegirse aleatoriamente dentro del <span class="in">`setup=`</span> de cada muestra (no fija), para capturar el caso promedio y no solo el mejor o peor caso posicional. Aplique el mismo cuidado del lado del <span class="in">`Dict`</span> (considere <span class="in">`sizehint!`</span> para controlar el efecto de *rehash* al crecer).</span>
