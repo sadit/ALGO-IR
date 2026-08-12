@@ -1,4 +1,13 @@
-# Prefacio {.unnumbered}
+---
+title: "Curso Introductorio al Análisis de Algoritmos con Julia"
+description: "Maestría en Ciencia de Datos e Información — INFOTEC"
+author: "Eric S. Téllez"
+title-block-banner: true
+format:
+  html: default
+---
+
+
 
 El *Análisis de algoritmos* es una disciplina formativa enfocada en el desempeño de los algoritmos bajo una cierta entrada. Su estudio nos permite identificar el problema algorítmico subyacente dentro de problemas reales, y por tanto, ser capaces de seleccionar, adaptar o construir una solución eficiente y eficaz para dicho problema. Una solución adecuada sobre una ingenua nos permite mejorar de manera significativa los recursos computacionales, que pueden llevar a reducción de costos de operación en un sistema o la posibilidad de procesar grandes cantidades de información de manera más eficiente.
 
@@ -6,15 +15,16 @@ El diseño, implementación y análisis de algoritmos es fundamental para formar
 
 A lo largo de los temas se abordarán los algoritmos y estructuras de manera teórica y práctica, y se motivará al estudiante a realizar sus propias implementaciones. Al terminar este curso, se pretende que el alumno sea competente para seleccionar, diseñar, implementar y analizar algoritmos sobre secuencias, conjuntos y estructuras de datos para resolver problemas optimizando los recursos disponibles, en particular, memoria y tiempo de cómputo. Durante el curso se estudiaran problemas y algoritmos simples, que suelen formar parte de algoritmos más complejos, y por lo tanto, si somos capaces de seleccionar adecuadamente estos bloques más simples, afectaremos directamente el desempeño de los sistemas. 
 
-## Contenido del libro
-Este libro esta diseñado para ser impartido en un semestre de licenciatura o maestría con un enfoque experimental, de Ingeniería en Computación o Ciencias de la Computación, así como Ciencia de Datos. Los algoritmos que se van develando desentrañan los algoritmos clásicos de Recuperación de Información, algoritmos detrás de grandes máquinas de búsqueda, sistemas de información basados en similitud, _retrieval augmented generation_ (RAG), así como de los métodos detrás de la aceleración de otras técnicas de análisis de datos como agrupamiento y reducción de dimensión no-lineal.
+## Contenido del curso
+Este curso está diseñado para ser impartido en un semestre de licenciatura o maestría con un enfoque experimental, de Ingeniería en Computación o Ciencias de la Computación, así como Ciencia de Datos. Los algoritmos que se van develando destran los algoritmos clásicos de Recuperación de Información, algoritmos detrás de grandes máquinas de búsqueda, sistemas de información basados en similitud, _retrieval augmented generation_ (RAG), así como de los métodos detrás de la aceleración de otras técnicas de análisis de datos como agrupamiento y reducción de dimensión no-lineal.
 
-- El [Cap. @sec-julia] se dedica a revisar el lenguaje de programación Julia, desde un punto de vista de alguien que podría no conocer el lenguaje, pero que definitivamente sabe programar y esta familiarizado con los conceptos generales de un lenguaje de programación moderno.
-- El [Cap. @sec-analisis] introduce los conceptos de análisis asintótico y compara ordenes de crecimiento con la idea de formar intuición.
-- En el [Cap. @sec-estructuras] nos encontramos con las estructuras de datos elementales como son las estructuras de datos lineales y de acceso aleatorio, y su organización en memoria. 
-- El [Cap. @sec-ordenamiento] esta dedicado a algoritmos de ordenamiento en el modelo de comparación, estudia algoritmos tanto de peor caso como aquellos que toman ventaja de la distribución de entrada.
-- En el [Cap. @sec-busqueda] abordamos algoritmos de búsqueda en arreglos ordenados en el modelo de comparación. De nueva cuenta se abordan algoritmos de peor caso y algoritmos que pueden sacar ventaja de instancias fáciles.
-- Finalmente, el [Cap. @sec-intersecciones] estudia algoritmos de intersección de conjuntos, los cuales son la base de sistemas de información capaces de manipular cantidades enormes de datos.
+- El [Cap. 1 — Julia](cap1-julia.qmd) se dedica a revisar el lenguaje de programación Julia, desde un punto de vista de alguien que podría no conocer el lenguaje, pero que definitivamente sabe programar y esta familiarizado con los conceptos generales de un lenguaje de programación moderno.
+- El [Cap. 2 — Análisis asintótico](cap2-analisis.qmd) introduce los conceptos de análisis asintótico y compara ordenes de crecimiento con la idea de formar intuición.
+- En el [Cap. 3 — Estructuras de datos](cap3-estructuras.qmd) nos encontramos con las estructuras de datos elementales como son las estructuras de datos lineales y de acceso aleatorio, y su organización en memoria.
+- El [Cap. 4 — Ordenamiento](cap4-ordenamiento.qmd) está dedicado a algoritmos de ordenamiento en el modelo de comparación, estudia algoritmos tanto de peor caso como aquellos que toman ventaja de la distribución de entrada.
+- En el [Cap. 5 — Búsqueda](cap5-busqueda.qmd) abordamos algoritmos de búsqueda en arreglos ordenados en el modelo de comparación. De nueva cuenta se abordan algoritmos de peor caso y algoritmos que pueden sacar ventaja de instancias fáciles.
+- El [Cap. 6 — Cadenas de texto](cap6-cadenas.qmd) estudia algoritmos de búsqueda de patrones en cadenas de símbolos, basados en autómatas finitos.
+- Finalmente, el [Cap. 7 — Intersecciones](cap7-intersecciones.qmd) estudia algoritmos de intersección de conjuntos, los cuales son la base de sistemas de información capaces de manipular cantidades enormes de datos.
 
 ## Trabajo en progreso
 

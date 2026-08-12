@@ -1,9 +1,18 @@
 ---
+title: "Algoritmos de búsqueda en el modelo de comparación"
+subtitle: "Capítulo 5 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
   exeflags: ["+1.12"]
-
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap5-busqueda.pdf"
+  pdf: default
 ---
 ```{julia}
 #| echo: false

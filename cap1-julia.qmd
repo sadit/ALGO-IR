@@ -1,11 +1,21 @@
 ---
+title: "Julia como lenguaje de programación para un curso de algoritmos"
+subtitle: "Capítulo 1 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
   exeflags: ["+1.12"]
-
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap1-julia.pdf"
+  pdf: default
 ---
-# Julia como lenguaje de programación para un curso de algoritmos {#sec-julia}
+
+# Julia como lenguaje de programación para un curso de algoritmos
 
 Nuestro objetivo es trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, los acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la fácilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.[^julia] Pero no hay porque preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.
 
@@ -84,11 +94,96 @@ Es posible usar Colab para reducir la complejidad de la instalación, ya que cue
 ### Jupyter
 Una vez instalado julia; debemos instalar el paquete `IJulia` que instalará todo lo necesario para correr Jupyter (ver la sección de `Pkg` al final de esta unidad para más información sobre paquetes). Una vez corriendo, se debe seleccionar crear un notebook específicando el kernel de Julia para utilizarlo.
 
+### Quarto
+
+[Quarto](https://quarto.org) es un sistema de publicación científica y técnica de código abierto que permite combinar texto en Markdown, código ejecutable, figuras y ecuaciones en un mismo documento. Es el sucesor espiritual de R Markdown, pero diseñado desde el inicio para ser multi-lenguaje: soporta Julia, Python, R y Observable JS de manera nativa. Este libro está escrito en Quarto, y se espera que los reportes de tareas y actividades del curso también lo estén.
+
+#### Instalación
+
+Quarto se descarga como un ejecutable independiente desde <https://quarto.org/docs/get-started/>. No depende de ningún lenguaje en particular, por lo que puede instalarse antes o después de Julia. Para verificar la instalación:
+
+```bash
+quarto --version
+```
+
+Para usar Julia como motor de ejecución, Quarto se apoya en el paquete `IJulia` (el mismo que usa Jupyter). Basta con tenerlo instalado:
+
+```julia
+using Pkg
+Pkg.add("IJulia")
+```
+
+#### Estructura de un documento `.qmd`
+
+Un archivo Quarto (extensión `.qmd`) tiene tres partes principales:
+
+1. **Encabezado YAML** — metadatos del documento (título, autor, formato de salida, engine, etc.)
+2. **Texto en Markdown** — prosa, ecuaciones LaTeX (`$...$`), listas, tablas, etc.
+3. **Bloques de código** — celdas ejecutables delimitadas por ` ```{julia} ` que se evalúan al renderizar.
+
+Un ejemplo mínimo de reporte para este curso:
+
+````markdown
+---
+title: "Tarea 1 — Análisis asintótico"
+author: "Tu Nombre"
+engine: julia
+format: html
+---
+
+## Introducción
+
+En esta tarea analizamos la complejidad del algoritmo de búsqueda lineal.
+
+```{{julia}}
+function busqueda_lineal(arr, x)
+    for (i, v) in enumerate(arr)
+        v == x && return i
+    end
+    return -1
+end
+```
+````
+
+#### Renderizado
+
+Para generar el HTML (o PDF) a partir de un archivo `.qmd`:
+
+```bash
+quarto render mi_reporte.qmd          # HTML por defecto
+quarto render mi_reporte.qmd --to pdf # PDF con LaTeX
+quarto preview mi_reporte.qmd         # servidor local con recarga automática
+```
+
+::: {.callout-tip}
+## Flujo de trabajo recomendado
+
+Usa `quarto preview` mientras escribes: abre un navegador con recarga automática cada vez que guardas el archivo, lo que agiliza mucho el ciclo de edición-visualización.
+:::
+
+::: {.callout-note}
+## Freeze y caché
+
+Quarto puede cachear los resultados de ejecución con la opción `freeze: auto` en el YAML del proyecto. Esto evita re-ejecutar celdas costosas si el código no ha cambiado — algo muy útil para notebooks con benchmarks largos.
+:::
+
+#### Publicación en GitHub Pages
+
+Una de las ventajas de Quarto es que permite publicar el reporte como un sitio web con un solo comando:
+
+```bash
+quarto publish gh-pages mi_reporte.qmd
+```
+
+Esto crea o actualiza una rama `gh-pages` en tu repositorio de GitHub y despliega el HTML automáticamente. Es la forma en que se publican las actividades de este curso (ver [Galería de actividades](galeria-actividades.qmd)).
+
 ### Ejercicios
 Según sus posibilidades de equipo:
 
 - Instale Julia 1.10, luego instale el paquete `IJulia` y ejecute Jupyter.
 - Cree un notebook con Colab con el kernel de Julia.
+- Instale Quarto y cree un documento `.qmd` con `engine: julia` que incluya al menos un bloque de código ejecutable. Renderícelo a HTML con `quarto render`.
+- (Opcional) Publique su documento en GitHub Pages con `quarto publish gh-pages`.
 
 
 ## Sintaxis y estructuras

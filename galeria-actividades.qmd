@@ -1,5 +1,10 @@
+---
+title: "Galería de actividades MCDI"
+format:
+  html: default
+---
 
-# Galería de actividades MCDI {.unnumbered}
+
 Este curso se impartió en este formato en MCDI-2025-1; el plan es modificar las actividades ligeramente con forme pasan los semestres y que la galería apoye a los nuevos estudiantes para tener ejemplos claros de lo que se solicita.
 
 ## Semestre 2025-2

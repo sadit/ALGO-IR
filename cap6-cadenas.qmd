@@ -1,8 +1,18 @@
 ---
-title: Búsqueda en cadenas de texto
+title: "Búsqueda en cadenas de texto"
+subtitle: "Capítulo 6 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap6-cadenas.pdf"
+  pdf: default
 ---
 
+# Búsqueda en cadenas de texto {#sec-cadenas}
 
 ## Objetivo {.unnumbered}
 Introducir y comparar algoritmos de búsqueda de patrones en cadenas de símbolos.
@@ -72,9 +82,9 @@ Se creará un autómata $(\{0, 1, 2, 3\}, \{A, B, C, D, R\}, 0, \{3\}, \mathcal{
 
 ![Autómatas ABR](figs/AutomataABR.png)
 
-La diferencia viene en la definición de $\mathcal{D}$. El primero puede consumir cáracter por cáracter de $T$ y reportar una ocurrencia cada vez que se toque el estado $F$ (reportar la posición en $T$ dónde ocurre). El segundo hace uso del concepto de ventana, para cada ventana solo existirá un emparejamiento si iniciando en $0$ se termina en el estado $3$. En parte, los algoritmos verán como avanzar la ventana de manera más eficaz; es posible leer las prefijos o sufijos de las ventanas, así mismo, es posible utilizar información de factores para mejorar el deslizamiento de la ventana. Para más información referirse a [NR02].
+La diferencia viene en la definición de $\mathcal{D}$. El primero puede consumir cáracter por cáracter de $T$ y reportar una ocurrencia cada vez que se toque el estado $F$ (reportar la posición en $T$ dónde ocurre). El segundo hace uso del concepto de ventana, para cada ventana solo existirá un emparejamiento si iniciando en $0$ se termina en el estado $3$. En parte, los algoritmos verán como avanzar la ventana de manera más eficaz; es posible leer las prefijos o sufijos de las ventanas, así mismo, es posible utilizar información de factores para mejorar el deslizamiento de la ventana. Para más información referirse a [@NR02].
 
-Con la representación basada en autómatas es posible consider clases de caracteres, e.g., dígitos numéricos, caracteres alfabeticos, puntuaciones, o en general conjuntos de símbolos que se deseen agrupar. Así como soportar cualquier tipo de expresión regular [NR02].
+Con la representación basada en autómatas es posible consider clases de caracteres, e.g., dígitos numéricos, caracteres alfabeticos, puntuaciones, o en general conjuntos de símbolos que se deseen agrupar. Así como soportar cualquier tipo de expresión regular [@NR02].
 
 
 ### El algoritmo _Shift-And_
@@ -168,7 +178,7 @@ julia> @time search(A, [3,1,4,1,6]);
 ```
 
 
-#€ Actividades
+## Actividades
 
 ### Actividad 0 [Sin entrega]
 

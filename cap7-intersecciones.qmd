@@ -1,9 +1,18 @@
 ---
+title: "Algoritmos de intersección y unión de conjuntos"
+subtitle: "Capítulo 7 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
   exeflags: ["+1.12"]
-
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap7-intersecciones.pdf"
+  pdf: default
 ---
 
 ```{julia}

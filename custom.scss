@@ -1,0 +1,356 @@
+/*-- scss:defaults --*/
+
+// ── Google Fonts ──────────────────────────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// ── Paleta principal: índigo/violeta profesional ───────────────────────────────
+$indigo-900:   #1e1b4b;
+$indigo-800:   #2d2a6e;
+$indigo-700:   #3730a3;
+$indigo-600:   #4338ca;
+$indigo-500:   #6366f1;
+$indigo-400:   #818cf8;
+$indigo-100:   #e0e7ff;
+$indigo-50:    #eef2ff;
+
+$violet-600:   #7c3aed;
+$violet-400:   #a78bfa;
+$violet-100:   #ede9fe;
+
+$warm-gray-50: #fafaf9;
+$warm-gray-100:#f5f5f4;
+$warm-gray-200:#e7e5e4;
+$warm-gray-600:#57534e;
+$warm-gray-800:#292524;
+
+// ── Variables de tema Quarto/Bootstrap ────────────────────────────────────────
+$primary:           $indigo-600;
+$secondary:         $violet-600;
+$body-bg:           $warm-gray-50;
+$body-color:        $warm-gray-800;
+$link-color:        $indigo-600;
+$link-hover-color:  $indigo-800;
+
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+$font-family-monospace:  'JetBrains Mono', 'Fira Code', monospace;
+$headings-font-family:   'Playfair Display', Georgia, serif;
+$headings-font-weight:   700;
+$headings-color:         $indigo-900;
+
+$font-size-root:    17px;
+$line-height-base:  1.75;
+
+$border-radius:     0.5rem;
+$border-radius-lg:  0.75rem;
+
+// Sidebar
+$sidebar-bg:        #f0f0f8;
+$sidebar-fg:        $warm-gray-800;
+
+// Navbar / header
+$navbar-bg:         $indigo-900;
+$navbar-fg:         #f0f0ff;
+$navbar-hl:         $indigo-400;
+
+/*-- scss:rules --*/
+
+// ── Tipografía ─────────────────────────────────────────────────────────────────
+h1 { font-size: 2.4rem; letter-spacing: -0.5px; line-height: 1.2; }
+h2 { font-size: 1.7rem; letter-spacing: -0.3px; border-bottom: 2px solid $indigo-100; padding-bottom: 0.3rem; margin-top: 2.2rem; }
+h3 { font-size: 1.25rem; color: $indigo-700; }
+h4 { font-size: 1.05rem; color: $violet-600; font-style: italic; }
+
+p, li { font-size: 1rem; color: $warm-gray-800; }
+
+// ── Hero/Banner de la página de inicio ────────────────────────────────────────
+.quarto-title-block {
+  background: linear-gradient(135deg, $indigo-900 0%, $indigo-700 50%, $violet-600 100%);
+  color: white !important;
+  padding: 3.5rem 2rem 3rem;
+  margin-bottom: 2.5rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  box-shadow: 0 8px 32px rgba($indigo-900, 0.18);
+
+  .title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: white !important;
+    line-height: 1.15;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  .quarto-title-meta {
+    color: $indigo-100 !important;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+
+    .quarto-title-meta-heading { color: $indigo-400 !important; }
+  }
+
+  p { color: $indigo-100 !important; }
+}
+
+// ── Barra de navegación ────────────────────────────────────────────────────────
+.navbar {
+  box-shadow: 0 2px 12px rgba($indigo-900, 0.15);
+  backdrop-filter: blur(8px);
+
+  .navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+  }
+}
+
+// ── Sidebar ────────────────────────────────────────────────────────────────────
+#quarto-sidebar {
+  border-right: 1px solid $indigo-100;
+  background: $sidebar-bg;
+
+  .sidebar-item-text {
+    font-size: 0.88rem;
+    font-family: 'Inter', sans-serif;
+    color: $warm-gray-600;
+    transition: color 0.2s;
+  }
+
+  .active > .sidebar-item-text,
+  .sidebar-item-text:hover {
+    color: $indigo-600 !important;
+    font-weight: 500;
+  }
+
+  .sidebar-chapter-summary {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: $indigo-900;
+    font-weight: 600;
+  }
+}
+
+// ── Bloques de código ──────────────────────────────────────────────────────────
+pre.sourceCode, div.sourceCode {
+  background: #1e1b4b !important;
+  border: none;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 4px 20px rgba($indigo-900, 0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative;
+
+  code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: #c4b5fd !important;  // violeta claro por defecto
+  }
+}
+
+// Etiqueta del lenguaje en el bloque de código
+div.sourceCode::before {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $indigo-400;
+  opacity: 0.75;
+}
+
+// Output de código
+div.cell-output-display, div.cell-output-stdout {
+  background: #f5f3ff;
+  border-left: 3px solid $indigo-400;
+  border-radius: 0 $border-radius $border-radius 0;
+  padding: 0.75rem 1rem;
+  margin-top: -0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: $indigo-800;
+}
+
+// Highlight de sintaxis (override para fondo oscuro)
+pre.sourceCode span.co { color: #94a3b8; font-style: italic; }  // comentarios
+pre.sourceCode span.kw { color: #f0abfc; font-weight: 600; }    // keywords
+pre.sourceCode span.fu { color: #67e8f9; }                       // funciones
+pre.sourceCode span.st { color: #86efac; }                       // strings
+pre.sourceCode span.fl,
+pre.sourceCode span.dv { color: #fda4af; }                       // números
+pre.sourceCode span.op { color: #fbbf24; }                       // operadores
+
+// ── Callout boxes ──────────────────────────────────────────────────────────────
+.callout {
+  border-radius: $border-radius-lg;
+  border-width: 0;
+  border-left-width: 4px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+  margin: 1.5rem 0;
+
+  .callout-header {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.6rem 1rem;
+  }
+
+  .callout-body {
+    padding: 0.9rem 1rem;
+    font-size: 0.97rem;
+  }
+}
+
+.callout-note {
+  background: #f0f0ff;
+  border-left-color: $indigo-500;
+  .callout-header { background: $indigo-100; color: $indigo-800; }
+}
+
+.callout-tip {
+  background: #f0fdf4;
+  border-left-color: #10b981;
+  .callout-header { background: #d1fae5; color: #065f46; }
+}
+
+.callout-warning {
+  background: #fffbeb;
+  border-left-color: #f59e0b;
+  .callout-header { background: #fef3c7; color: #92400e; }
+}
+
+.callout-important {
+  background: #fff1f2;
+  border-left-color: #f43f5e;
+  .callout-header { background: #ffe4e6; color: #9f1239; }
+}
+
+.callout-caution {
+  background: #fff7ed;
+  border-left-color: #ea580c;
+  .callout-header { background: #ffedd5; color: #7c2d12; }
+}
+
+// ── Tablas ─────────────────────────────────────────────────────────────────────
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  thead tr {
+    background: $indigo-700;
+    color: white;
+    th { padding: 0.75rem 1rem; font-weight: 600; letter-spacing: 0.03em; }
+  }
+
+  tbody {
+    tr:nth-child(even) { background: $indigo-50; }
+    tr:hover { background: $violet-100; transition: background 0.2s; }
+    td { padding: 0.65rem 1rem; }
+  }
+}
+
+// ── Links ──────────────────────────────────────────────────────────────────────
+a {
+  text-decoration: none;
+  border-bottom: 1px dotted $indigo-400;
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover {
+    border-bottom: 1px solid $indigo-600;
+    color: $indigo-800;
+  }
+}
+
+// ── Paginación de capítulos ────────────────────────────────────────────────────
+.page-navigation {
+  margin-top: 3rem;
+  border-top: 1px solid $indigo-100;
+  padding-top: 1.5rem;
+
+  .nav-page {
+    border: 1px solid $indigo-200;
+    border-radius: $border-radius;
+    background: white;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.2s;
+    color: $indigo-600;
+
+    &:hover {
+      background: $indigo-50;
+      border-color: $indigo-400;
+      box-shadow: 0 2px 8px rgba($indigo-600, 0.12);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// ── Tabla de contenidos lateral (TOC) ─────────────────────────────────────────
+#TOC {
+  font-size: 0.85rem;
+
+  .toc-active {
+    color: $indigo-600 !important;
+    font-weight: 600;
+    border-left: 2px solid $indigo-500;
+    padding-left: 0.5rem;
+  }
+
+  ul li a {
+    color: $warm-gray-600;
+    border-bottom: none;
+
+    &:hover { color: $indigo-600; }
+  }
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────────
+.nav-footer {
+  background: $indigo-900;
+  color: $indigo-100;
+  font-size: 0.85rem;
+  border-top: none;
+  padding: 1.2rem 2rem;
+
+  a { color: $indigo-400; border-bottom: none; &:hover { color: white; } }
+}
+
+// ── Badges de capítulo en el índice ───────────────────────────────────────────
+.chapter-number {
+  display: inline-block;
+  background: linear-gradient(135deg, $indigo-600, $violet-600);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .quarto-title-block .title { font-size: 1.8rem; }
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+}
+
+// ── Scroll suave & selección de texto ─────────────────────────────────────────
+html { scroll-behavior: smooth; }
+
+::selection {
+  background: $violet-100;
+  color: $indigo-900;
+}
+
+// ── Micro-animaciones ──────────────────────────────────────────────────────────
+img { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+img:hover { transform: scale(1.01); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }

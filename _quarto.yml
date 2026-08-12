@@ -2,50 +2,138 @@ lang: es
 quarto-required: ">= 1.6"
 
 project:
-  type: book
+  type: website
   output-dir: docs
-book:
-  title: "Curso Introductorio al Análisis de Algoritmos con Julia"
-  author: 
-    - name: "Eric S. Téllez"
-      url: https://sadit.github.io
-      affiliation: INFOTEC Centro de Investigación e Innovación en Tecnologías de la Información y Comunicación    
-  chapters:
-    - index.qmd
-    - cap1-julia.qmd
-    - cap2-analisis.qmd
-    - cap3-estructuras.qmd
-    - cap4-ordenamiento.qmd
-    - cap5-busqueda.qmd
-    - cap6-intersecciones.qmd
-    - refs.qmd
-  appendices:
-    - galeria-actividades.qmd
+
+website:
+  title: "Análisis de Algoritmos con Julia"
   site-url: https://sadit.github.io/ALGO-IR
   repo-url: https://github.com/sadit/ALGO-IR
-  downloads: pdf
+  repo-actions: [edit, issue]
+  search:
+    location: navbar
+    type: overlay
+
+  navbar:
+    background: "#1e1b4b"
+    foreground: "#f0f0ff"
+    logo-alt: "ALGO-IR"
+    title: false
+    left:
+      - text: "Inicio"
+        href: index.qmd
+      - text: "Capítulos"
+        menu:
+          - text: "1 · Julia"
+            href: cap1-julia.qmd
+          - text: "2 · Análisis asintótico"
+            href: cap2-analisis.qmd
+          - text: "3 · Estructuras de datos"
+            href: cap3-estructuras.qmd
+          - text: "4 · Ordenamiento"
+            href: cap4-ordenamiento.qmd
+          - text: "5 · Búsqueda"
+            href: cap5-busqueda.qmd
+          - text: "6 · Cadenas de texto"
+            href: cap6-cadenas.qmd
+          - text: "7 · Intersecciones"
+            href: cap7-intersecciones.qmd
+      - text: "Galería"
+        href: galeria-actividades.qmd
+      - text: "Referencias"
+        href: refs.qmd
+    right:
+      - icon: github
+        href: https://github.com/sadit/ALGO-IR
+        aria-label: GitHub
+
+  sidebar:
+    style: "docked"
+    background: "#f0f0f8"
+    search: false
+    contents:
+      - text: "Prefacio"
+        href: index.qmd
+      - section: "Capítulos"
+        contents:
+          - text: "1 · Julia"
+            href: cap1-julia.qmd
+          - text: "2 · Análisis asintótico"
+            href: cap2-analisis.qmd
+          - text: "3 · Estructuras de datos"
+            href: cap3-estructuras.qmd
+          - text: "4 · Ordenamiento"
+            href: cap4-ordenamiento.qmd
+          - text: "5 · Búsqueda"
+            href: cap5-busqueda.qmd
+          - text: "6 · Cadenas de texto"
+            href: cap6-cadenas.qmd
+          - text: "7 · Intersecciones"
+            href: cap7-intersecciones.qmd
+      - section: "Apéndices"
+        contents:
+          - text: "Galería de actividades"
+            href: galeria-actividades.qmd
+          - text: "Referencias"
+            href: refs.qmd
+
   page-footer:
+    left: |
+      © Eric S. Téllez — INFOTEC
     right: |
-      [![](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) <br/> Esta obra está bajo una [Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-sa/4.0/)
+      [![](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+      [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
+  open-graph: true
 
 bibliography: refs.bib
-title-block-banner: true
 highlight-style: pygments
 
 engine: julia
 
-
 format:
   html:
-    theme: default
+    theme: [lux, custom.scss]
     code-tools: true
     echo: true
+    code-fold: false
+    smooth-scroll: true
+    toc: true
+    toc-depth: 4
+    toc-location: right
+    number-sections: true
+    fig-align: center
+    fig-cap-location: bottom
+    callout-appearance: default
+    callout-icon: true
   pdf:
-    documentclass: scrreport
+    documentclass: scrartcl
+    classoption:
+      - fontsize=11pt
     echo: true
     toc: true
+    toc-depth: 4
+    number-sections: true
     colorlinks: true
+    linkcolor: myindigo
+    urlcolor: myviolet
+    citecolor: myindigo
     papersize: letter
+    geometry:
+      - left=2.5cm
+      - right=2.5cm
+      - top=3cm
+      - bottom=3cm
+    filters:
+      - margin-to-footnote.lua
+    include-in-header:
+      text: |
+        \usepackage{xcolor}
+        \definecolor{myindigo}{HTML}{4338CA}
+        \definecolor{myviolet}{HTML}{7C3AED}
+        \usepackage{microtype}
+        \usepackage{booktabs}
+        \setkomafont{disposition}{\normalfont\bfseries}
 
 execute:
   freeze: auto

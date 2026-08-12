@@ -1,9 +1,18 @@
 ---
+title: "Introducción al análisis de algoritmos con Julia"
+subtitle: "Capítulo 2 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
   exeflags: ["+1.12"]
-
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap2-analisis.pdf"
+  pdf: default
 ---
 
 ```{julia}

@@ -1,9 +1,18 @@
 ---
+title: "Estructuras de datos elementales"
+subtitle: "Capítulo 3 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
   exeflags: ["+1.12"]
-
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap3-estructuras.pdf"
+  pdf: default
 ---
 
 ```{julia}
@@ -24,12 +33,12 @@ En esta unidad se discutirán las propiedades y operaciones básicas de estructu
 
 
 ## Conjuntos
-Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, en particular, dado las posibles aplicaciones un conjunto puede tener contenido inmutable o mutable. Un conjunto puede estar vacio ($\emptyset$) o contener elementos, e.g., $\{a, b, c\}$. La operación _unión_ $\cup$ construye un nuevo conjunto a partir de otros $\{a, b\} \cup \{c\} = \{a, b, c\}$; la intersección se indica con el operador $\cap$, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. El tamaño de una colección lo representamos con barras, e.g., $|\{a, b\}| = 2$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por su negación, i.e., $d \not\in \{a, b, c\}$. Es común usar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura; desde el punto de vista de eficiencia, esto puede reducir las operaciones de manipulación de datos así como de la gestión de memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada; es una convención, no un operador en sí mismo. Note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos.
+Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, pueden tener contenido inmutable o mutable. El conjunto puede contener elementos o estar vacio ($\emptyset$). Estaremos representando los conjuntos con llaves, i.e., $A = \{a, b, c\}$; el tamaño de una colección lo representamos con barras, e.g., $|A| = 3$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por su negación, i.e., $d \not\in \{a, b, c\}$. La operación _unión_ $\cup$ construye un nuevo conjunto a partir de otros $\{a, b\} \cup \{c\} = \{a, b, c\}$; la intersección se indica con el operador $\cap$, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. Es común usar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura; desde el punto de vista de eficiencia, esto puede reducir las operaciones de manipulación de datos así como de la gestión de memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada; es una convención, no un operador en sí mismo. Note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos.
 
 Hay múltiples formas de representar conjuntos ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser una diferencia importante en el rendimiento. Las implementaciones y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.
 
 ## Tuplas y estructuras
-Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amerita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
+Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$-ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amerita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
 
 ```{julia}
 #| label: codigo-acceso-tupla
@@ -98,7 +107,7 @@ end
 Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.
 
 ## Arreglos
-Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$, reemplazará el contenido de $S$ en la celda especificada por $a$.
+Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$ (`S[i, j] = a`), reemplazará el contenido de $S$ en la celda especificada por $a$.
 
 ::: {.column-margin}
 Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.
@@ -141,7 +150,7 @@ El siguiente ejemplo define un vector $u$ de $m$ elementos y una matriz $X$ de t
 ```{julia}
 #| label: fig-getmaxdot
 #| fig-cap: |
-#|   Algoritmos para encotrar el vector columna con mayor producto en $X$ punto contra $u$.
+#|   Algoritmos para encontrar el vector columna con mayor producto en $X$ punto contra $u$.
 
 function mydot(u, x)
   s = 0f0
@@ -172,8 +181,7 @@ end
 getmaxdot(rand(Float32, 4), rand(Float32, 4, 1000))
 ```
 
-En este código puede verse como se separa el cálculo del producto punto en una función, 
-esto es porque en sí mismo es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función $getmaxdot$ se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función $mydot$ podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la $getmaxdot$ tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.
+En este código se separa el cálculo del producto punto en una función, dando la idea de que es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función `getmaxdot` se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función `mydot` podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la `getmaxdot` tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.
 
 El producto entre matrices es un caso paradigmático por su uso en la resolución de problemas prácticos, donde hay una gran cantidad de trabajo al rededor de los costos necesarios para llevarlo a cabo. En particular, el algoritmo naïve, es un algoritmo con costo cúbico, como se puede ver a continuación:
 

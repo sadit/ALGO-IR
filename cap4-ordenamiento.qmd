@@ -1,9 +1,18 @@
 ---
+title: "Algoritmos de ordenamiento"
+subtitle: "Capítulo 4 — Análisis de Algoritmos con Julia"
+author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
   exeflags: ["+1.12"]
-
+format:
+  html:
+    other-links:
+      - text: "Descargar PDF"
+        icon: file-pdf
+        href: "cap4-ordenamiento.pdf"
+  pdf: default
 ---
 
 ```{julia}
