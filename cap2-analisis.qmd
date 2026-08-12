@@ -5,7 +5,7 @@ author: "Eric S. Téllez"
 lang: es-MX
 engine: julia
 julia:
-  exeflags: ["+1.12"]
+  exeflags: ["+1.10"]
 format:
   html:
     other-links:
