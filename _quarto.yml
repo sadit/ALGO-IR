@@ -34,10 +34,10 @@ website:
             href: cap4-ordenamiento.qmd
           - text: "5 · Búsqueda"
             href: cap5-busqueda.qmd
-          - text: "6 · Cadenas de texto"
-            href: cap6-cadenas.qmd
-          - text: "7 · Intersecciones"
-            href: cap7-intersecciones.qmd
+          - text: "6 · Intersecciones"
+            href: cap6-intersecciones.qmd
+          - text: "7 · Cadenas de texto"
+            href: cap7-cadenas.qmd
       - text: "Galería"
         href: galeria-actividades.qmd
       - text: "Referencias"
@@ -66,10 +66,10 @@ website:
             href: cap4-ordenamiento.qmd
           - text: "5 · Búsqueda"
             href: cap5-busqueda.qmd
-          - text: "6 · Cadenas de texto"
-            href: cap6-cadenas.qmd
-          - text: "7 · Intersecciones"
-            href: cap7-intersecciones.qmd
+          - text: "6 · Intersecciones"
+            href: cap6-intersecciones.qmd
+          - text: "7 · Cadenas de texto"
+            href: cap7-cadenas.qmd
       - section: "Apéndices"
         contents:
           - text: "Galería de actividades"

@@ -1,6 +1,6 @@
 ---
 title: "Búsqueda en cadenas de texto"
-subtitle: "Capítulo 6 — Análisis de Algoritmos con Julia"
+subtitle: "Capítulo 7 — Análisis de Algoritmos con Julia"
 author: "Eric S. Téllez"
 lang: es-MX
 format:
@@ -8,7 +8,7 @@ format:
     other-links:
       - text: "Descargar PDF"
         icon: file-pdf
-        href: "cap6-cadenas.pdf"
+        href: "cap7-cadenas.pdf"
   pdf: default
 ---
 

@@ -23,8 +23,8 @@ Este curso está diseñado para ser impartido en un semestre de licenciatura o m
 - En el [Cap. 3 — Estructuras de datos](cap3-estructuras.qmd) nos encontramos con las estructuras de datos elementales como son las estructuras de datos lineales y de acceso aleatorio, y su organización en memoria.
 - El [Cap. 4 — Ordenamiento](cap4-ordenamiento.qmd) está dedicado a algoritmos de ordenamiento en el modelo de comparación, estudia algoritmos tanto de peor caso como aquellos que toman ventaja de la distribución de entrada.
 - En el [Cap. 5 — Búsqueda](cap5-busqueda.qmd) abordamos algoritmos de búsqueda en arreglos ordenados en el modelo de comparación. De nueva cuenta se abordan algoritmos de peor caso y algoritmos que pueden sacar ventaja de instancias fáciles.
-- El [Cap. 6 — Cadenas de texto](cap6-cadenas.qmd) estudia algoritmos de búsqueda de patrones en cadenas de símbolos, basados en autómatas finitos.
-- Finalmente, el [Cap. 7 — Intersecciones](cap7-intersecciones.qmd) estudia algoritmos de intersección de conjuntos, los cuales son la base de sistemas de información capaces de manipular cantidades enormes de datos.
+- El [Cap. 6 — Intersecciones](cap6-intersecciones.qmd) estudia algoritmos de intersección de conjuntos, los cuales son la base de sistemas de información capaces de manipular cantidades enormes de datos.
+- Finalmente, el [Cap. 7 — Cadenas de texto](cap7-cadenas.qmd) estudia algoritmos de búsqueda de patrones en cadenas de símbolos, basados en autómatas finitos.
 
 ## Trabajo en progreso
 
