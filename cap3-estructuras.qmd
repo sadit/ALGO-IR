@@ -29,16 +29,16 @@ gr() # Force GR backend to acknowledge the change
 
 ## Introducción
 
-En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. Los ejemplos de código se muestran en el lenguaje de programación Julia, pero que puede ser traducido fácilmente en otros lenguajes de programación. 
+En esta unidad se discutirán las propiedades y operaciones básicas de estructuras como conjuntos, listas, pilas, colas, arreglos, vectores, matrices y matrices dispersas. Los ejemplos de código se muestran en el lenguaje de programación Julia, pero pueden ser traducidos fácilmente a otros lenguajes de programación.
 
 
 ## Conjuntos
-Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, pueden tener contenido inmutable o mutable. El conjunto puede contener elementos o estar vacio ($\emptyset$). Estaremos representando los conjuntos con llaves, i.e., $A = \{a, b, c\}$; el tamaño de una colección lo representamos con barras, e.g., $|A| = 3$. También es útil consultar por membresia $a \in \{a, b, c\}$ o por su negación, i.e., $d \not\in \{a, b, c\}$. La operación _unión_ $\cup$ construye un nuevo conjunto a partir de otros $\{a, b\} \cup \{c\} = \{a, b, c\}$; la intersección se indica con el operador $\cap$, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. Es común usar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura; desde el punto de vista de eficiencia, esto puede reducir las operaciones de manipulación de datos así como de la gestión de memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se esta usando en cooncordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada; es una convención, no un operador en sí mismo. Note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos.
+Los _conjuntos_ son estructuras abstractas que representan una colección de elementos, pueden tener contenido inmutable o mutable. El conjunto puede contener elementos o estar vacío ($\emptyset$). Estaremos representando los conjuntos con llaves, i.e., $A = \{a, b, c\}$; el tamaño de una colección lo representamos con barras, e.g., $|A| = 3$. También es útil consultar por membresía $a \in \{a, b, c\}$ o por su negación, i.e., $d \not\in \{a, b, c\}$. La operación _unión_ $\cup$ construye un nuevo conjunto a partir de otros $\{a, b\} \cup \{c\} = \{a, b, c\}$; la intersección se indica con el operador $\cap$, e.g. $\{a, b, c\} \cap \{b, d\} = \{b\}$. Es común usar conjuntos mutables en diferentes algoritmos, esto es, que permitan inserciones y borrados sobre la misma estructura; desde el punto de vista de eficiencia, esto puede reducir las operaciones de manipulación de datos así como de la gestión de memoria. Suponga el conjunto $S = \{a, b, c\}$, la función $pop!(S, b)$ resultaría en $\{a, c\}$, y la función $push!(S, d)$ resultaría en $\{a, c, d\}$ al encadenar estas operaciones. Note que el símbolo $!$ solo se está usando en concordancia con el lenguaje de programación Julia para indicar que la función cambiaría el argumento de entrada; es una convención, no un operador en sí mismo. Note que estamos usando una sintaxis muy sencilla $fun(arg1, arg2, ...)$ para indicar la aplicación de una función u operación a una serie de argumentos.
 
 Hay múltiples formas de representar conjuntos ya que los requerimientos de los algoritmos son diversos y tener la representación correcta puede ser una diferencia importante en el rendimiento. Las implementaciones y algoritmos alrededor pueden llegar a ser muy sofisticados, dependiendo de las características que se desean, algunas de las cuales serán el centro de estudio de este curso.
 
 ## Tuplas y estructuras
-Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$-ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amerita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de carácteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
+Las _tuplas_ son colecciones abstractas ordenadas, donde incluso puede haber repetición, pueden verse como una secuencia de elementos, e.g., $S = (a, b, c)$; podemos referirnos a la $i$-ésima posición de la forma $S_i$, o incluso $S[i]$, si el contexto lo amerita, e.g., pseudo-código que pueda ser transferido a un lenguaje de programación más fácilmente. Es común que cada parte de la tupla pueda contener cierto tipo de dato, e.g., enteros, números de punto flotante, símbolos, cadenas de caracteres, etc. Una tupla es muy amena para ser representada de manera contigua en memoria. En el lenguaje de programación Julia, las tuplas se representan entre paréntesis, e.g., $(1, 2, 3)$.
 
 ```{julia}
 #| label: codigo-acceso-tupla
@@ -51,10 +51,10 @@ t[1] * t[3] - t[2]
 ```
 
 ::: {.column-margin}
-En algunos lenguajes de programación como Julia, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cuál puede ser muy beneficioso para un algoritmo en la práctico. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y puede generar fragmentación.
+En algunos lenguajes de programación como Julia, una tupla puede enviarse como _valor_ (copiar) cuando se utiliza en una función; por lo mismo, puede guardarse en el _stack_, que es la memoria _inmediata_ que se tiene en el contexto de ejecución de una función. En esos casos, se puede optimizar el manejo de memoria (alojar y liberar), lo cual puede ser muy beneficioso para un algoritmo en la práctica. El otro esquema posible es el _heap_, que es una zona de memoria que debe gestionarse (memoria dinámica); es más flexible y _duradera_ entre diferentes llamadas de funciones en un programa. Los patrones esperados son dispersos y pueden generar fragmentación.
 ::: 
 
-Una _estructura_ es una tupla con campos nombrados; es muy útilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:
+Una _estructura_ es una tupla con campos nombrados; es muy utilizada en lenguajes de programación, por ejemplo, en Julia la siguiente estructura puede representar un punto en un plano:
 
 ```{julia}
 #| label: ejemplo-estructura
@@ -67,13 +67,13 @@ struct Point
 end
 ```
 
-Note la especificación de los tipos de datos que en conjunto describirán como dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explicita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.
+Note la especificación de los tipos de datos que en conjunto describirán cómo dicha estructura se maneja por una computadora, y que en términos prácticos, es determinante para el desempeño. Es común asignar valores satelitales en programas o algoritmos, de tal forma que un elemento simple sea manipulado o utilizado de manera explícita en los algoritmos y tener asociados elementos secundarios que se vean afectados por las operaciones. Los conjuntos, tuplas y las estructuras son excelentes formas de representar datos complejos de una manera sencilla.
 
 
-En Julia, es posible definir funciones o métodos al rededor del tipo de tuplas y estructuras.
+En Julia, es posible definir funciones o métodos alrededor del tipo de tuplas y estructuras.
 
 ::: {.column-margin}
-Es importante saber que si algunos de los campos o datos de una tupla o estructura estan en el _heap_ entonces solo una parte estará en el _stack_; i.e., en el caso extremo solo serán referencias a datos en el _heap_. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.
+Es importante saber que si algunos de los campos o datos de una tupla o estructura están en el _heap_ entonces solo una parte estará en el _stack_; i.e., en el caso extremo solo serán referencias a datos en el _heap_. Esto puede llegar a complicar el manejo de memoria, pero también puede ser un comportamiento sobre el que se puede razonar y construir.
 :::
 
 ```{julia}
@@ -83,7 +83,7 @@ Es importante saber que si algunos de los campos o datos de una tupla o estructu
 
 """
   Calcula la norma de un vector representado
-  como un tupla
+  como una tupla
 """
 function norm(u::Tuple)
   s = 0f0
@@ -104,17 +104,17 @@ end
 (norm((1, 1, 1, 1)), norm(Point(1, 1)))
 ```
 
-Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llamada despacho múltiple y será un concepto común este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.
+Note que la función es diferente para cada tipo de entrada; a este comportamiento se le llama despacho múltiple y será un concepto común en este curso. En otros lenguajes de programación se implementa mediante orientación a objetos.
 
 ## Arreglos
-Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y tipicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$ (`S[i, j] = a`), reemplazará el contenido de $S$ en la celda especificada por $a$.
+Los _arreglos_ son estructuras de datos que mantienen información de un solo tipo, tienen un costo constante $O(1)$ para acceder a cualquier elemento (también llamado acceso aleatorio) y típicamente se implementan como memoria contigua en una computadora. Al igual que las tuplas, son colecciones ordenadas, las estaremos accediendo a sus elementos con la misma notación. En este curso usaremos arreglos como colecciones representadas en segmentos contiguos de memoria con dimensiones lógicas fijas. A diferencia de las tuplas, es posible reemplazar valores, entonces $S_{ij} \leftarrow a$ (`S[i, j] = a`), reemplazará el contenido de $S$ en la celda especificada por $a$.
 
 ::: {.column-margin}
-Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso esta orientado a algoritmos. En Python, estructuras similares se encuentra en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.
+Julia tiene un soporte para arreglos excepcional, el cual apenas trataremos ya que se enfoca en diferentes áreas del cómputo numérico, y nuestro curso está orientado a algoritmos. En Python, estructuras similares se encuentran en el paquete _Numeric Python_ o _numpy_; tenga en cuenta que las afirmaciones sobre el manejo de memoria y representación que estaremos usando se apegan a estos modelos, y no a las _listas_ nativas de Python.
 :::
 
-A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fija $i$ columna $j$, lo mismo que $S[i, j]$. 
-Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un _vector_ de múltiples dimensiones, un arreglo bidimensional para representar una _mátriz_ de tamaño $m \times n$, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones serán representados cuyas partes pueden ser delimitadas mediante aritmética simple, e.g., una matriz de tamaño $m \times n$ necesitará una zona de memoria de $m \times n$ elementos, y se puede acceder a la primera columna mediante en la zona $1,\dots,m$, la segunda columna en $m+1,\dots,2m$, y la $i$ésima en $(i-1)m+1,\dots,im$; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.
+A diferencia de las tuplas, pueden tener más que una dimensión. La notación para acceder a los elementos se extiende, e.g. para una matriz $S$ (arreglo bidimensional) $S_{ij}$ se refiere a la celda en la fila $i$ columna $j$, lo mismo que $S[i, j]$.
+Si pensamos en datos numéricos, un arreglo unidimensional es útil para modelar un _vector_ de múltiples dimensiones, un arreglo bidimensional para representar una _matriz_ de tamaño $m \times n$, y arreglos de dimensión mayor pueden usarse para tensores. Se representan en memoria en segmentos contiguos, y los arreglos de múltiples dimensiones se representarán de la misma forma, delimitando sus partes mediante aritmética simple, e.g., una matriz de tamaño $m \times n$ necesitará una zona de memoria de $m \times n$ elementos, y se puede acceder a la primera columna en la zona $1,\dots,m$, la segunda columna en $m+1,\dots,2m$, y la $i$-ésima en $(i-1)m+1,\dots,im$; esto es, se implementa como el acceso en lotes de tamaño fijo en un gran arreglo unidimensional que es la memoria.
 
 ::: {.column-margin}
 Esta es la manera que en general se manejan los datos en una computadora, y conocerlo de manera explícita nos permite tomar decisiones de diseño e implementación.
@@ -165,7 +165,7 @@ function getmaxdot(u::Vector, X::Matrix)
   # en la siguiente linea, @view nos permite controlar que
   # no se copien los arreglos, y en su lugar, se usen referencias
   maxdot = mydot(u, @view X[:, 1])
-  # obtiene el número de columnas e itera apartir del 2do indice 
+  # obtiene el número de columnas e itera a partir del 2do índice
   mfilas, ncols = size(X)
   for i in 2:ncols
     d = mydot(u, @view X[:, i]) 
@@ -181,9 +181,9 @@ end
 getmaxdot(rand(Float32, 4), rand(Float32, 4, 1000))
 ```
 
-En este código se separa el cálculo del producto punto en una función, dando la idea de que es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cuál asegura el uso apropiado de los accesos a memoria. En la función `getmaxdot` se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una mátriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función `mydot` podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la `getmaxdot` tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.
+En este código se separa el cálculo del producto punto en una función, dando la idea de que es una operación importante; también podemos aislar de esta forma la manera que se accede (el orden) a los vectores. La idea fue acceder columna a columna, lo cual asegura el uso apropiado de los accesos a memoria. En la función `getmaxdot` se resuelve el problema de encontrar el máximo de un arreglo, y se puede observar que sin conocimiento adicional, este requiere $O(n)$ comparaciones, para una matriz de $n$ columnas. Esto implica que cada producto punto se cuenta como $O(1)$, lo cual simplifica el razonamiento. Por la función `mydot` podemos observar que el producto punto tiene un costo de $O(m)$, por lo que la `getmaxdot` tiene un costo de $O(mn)$ operaciones lógicas y aritméticas.
 
-El producto entre matrices es un caso paradigmático por su uso en la resolución de problemas prácticos, donde hay una gran cantidad de trabajo al rededor de los costos necesarios para llevarlo a cabo. En particular, el algoritmo naïve, es un algoritmo con costo cúbico, como se puede ver a continuación:
+El producto entre matrices es un caso paradigmático por su uso en la resolución de problemas prácticos, donde hay una gran cantidad de trabajo alrededor de los costos necesarios para llevarlo a cabo. En particular, el algoritmo naïve, es un algoritmo con costo cúbico, como se puede ver a continuación:
 
 ```{julia}
 #| label: funcion-producto-matricial
@@ -215,7 +215,7 @@ display(C)
 Se pueden ver dos ciclos iterando a lo largo de filas y columnas, adicionalmente un producto punto, el cual tiene un costo lineal en la dimensión del vector, por lo que el costo es cúbico. Esta implementación es directa con la definición misma del producto matricial. Existen diferentes algoritmos para hacer esta operación más eficiente para diferentes casos o características de las matrices, siendo un área de investigación activa.
 
 ## Listas
-Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _head/cabeza_ y _tail/cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecedor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso aleatorio a los elementos; los accesos típicos son a los extremos de la lista (cabeza y cola), sucesor y predecesor.
+Las _listas_ son estructuras de datos ordenadas lineales, esto es, no se asume que los elementos se guardan de manera contigua y los accesos al $i$-ésimo elemento cuestan $O(i)$. Se soportan inserciones y borrados. Por ejemplo, sea $L = [a, b, c, d]$ una lista con cuatro elementos, $L_2 = b$, $insert!(L, 2, z)$ convertirá $L = [a, z, b, c, d]$ (note que $b$ se desplazó y no se reemplazó como se esperaría en un arreglo). La operación $deleteat!(L, 2)$ regresará la lista a su valor previo a la inserción. Estas operaciones que modifican la lista también tienen diferentes costos dependiendo de la posición, e.g., donde el inicio y final de la secuencia (también llamados _head/cabeza_ y _tail/cola_) suelen ser más eficientes que accesos aleatorios, ya que se tienen referencias a estas posiciones en memoria. Es de especial importancia la navegación por la lista mediante operaciones de sucesor $succ$ y predecesor $pred$, que pueden encadenarse para obtener acceso a los elementos. A diferencia de un arreglo, las listas no requieren una notación simple para acceso aleatorio a los elementos; los accesos típicos son a los extremos de la lista (cabeza y cola), sucesor y predecesor.
 
 ```{dot}
 //| label: fig-lista
@@ -252,9 +252,9 @@ digraph lista {
 }
 ```
 
-La @fig-lista muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el _heap_ de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos, la lista que contiene referencias al primer nodo y al último nodo. Los _nodos de de datos_ contienen los elementos de la colección y referencias al siguiente nodo, también llamado _sucesor_. El nodo _nothing_ es especial y significa que no hay más elementos.
+La @fig-lista muestra una lista ligada, que es una implementación de lista que puede crecer fácilmente, funciona en el _heap_ de memoria por lo que cada bloque requiere memoria dinámica. Cada bloque es una estructura; se pueden distinguir dos tipos: la lista, que contiene referencias al primer nodo y al último nodo, y los _nodos de datos_, que contienen los elementos de la colección y referencias al siguiente nodo, también llamado _sucesor_. El nodo _nothing_ es especial y significa que no hay más elementos.
 
-El siguiente código muestra como la definición de lista ligada.
+El siguiente código muestra la definición de una lista ligada.
 ```{julia}
 #| lst-label: lst-lista-ligada
 #| lst-cap: Código para una lista ligada simple
@@ -272,7 +272,7 @@ println(node)
 
 En el @lst-lista-ligada se ignora la referencia a _tail_ (_head_ se guarda en _node_), por lo que las operaciones sobre _tail_ requieren recorrer la lista completa, costando $O(n)$ en el peor caso para una lista de $n$ elementos.
 
-Por su manera en la cual son accedidos los datos, se tienen dos tipos de listas muy útiles: las _colas_ y las _pilas_. Las _colas_ son listas que se acceden solo por sus extremos, y emulan la política de _el primero en entrar es el primero en salir_ (first in - first out, FIFO), y es por eso que se les llama colas haciendo referencia a una cola para realizar un trámite o recibir un servicio. Las _pilas_ o _stack_ son listas con la política _el último en entrar es el primero en salir_ (last in - first out, LIFO). Mientras que cualquier lista puede ser útil para implementarlas, algunas maneras serán mejores que otras dependiendo de los requerimientos de los problemas siendo resueltos; sin embargo, es importante recordar sus políticas de acceso para comprender los algoritmos que las utilicen.
+Por la manera en que son accedidos los datos, se tienen dos tipos de listas muy útiles: las _colas_ y las _pilas_. Las _colas_ son listas que se acceden solo por sus extremos, y emulan la política de _el primero en entrar es el primero en salir_ (first in - first out, FIFO), y es por eso que se les llama colas haciendo referencia a una cola para realizar un trámite o recibir un servicio. Las _pilas_ o _stack_ son listas con la política _el último en entrar es el primero en salir_ (last in - first out, LIFO). Mientras que cualquier lista puede ser útil para implementarlas, algunas maneras serán mejores que otras dependiendo de los requerimientos de los problemas siendo resueltos; sin embargo, es importante recordar sus políticas de acceso para comprender los algoritmos que las utilicen.
 
 Entre las operaciones comunes tenemos las siguientes:
 
@@ -285,12 +285,12 @@ Entre las operaciones comunes tenemos las siguientes:
 
 - Implemente _insert!_ y _deleteat!_
 - ¿Cuál sería la implementación de _succ_ y _pred_ en una lista ligada?
-- ¿Cuales serían sus costos?
-- Añadiendo más memoria, como podemos mejorar _pred_?
+- ¿Cuáles serían sus costos?
+- Añadiendo más memoria, ¿cómo podemos mejorar _pred_?
 
 ## Grafos
 
-Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vertices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})$
+Otras estructuras de datos elementales son los _grafos_. Un grafo $G = (V, E)$ es una tupla compuesta por un conjunto de vértices $V$ y el conjunto de aristas $E$. Por ejemplo, el grafo con $A = (\{a, b, c, d\}, \{(a, b), (b, c), (c, d), (d, a)\})$
 
 ```{dot}
 //| label: fig-grafo
@@ -320,7 +320,7 @@ La estructura del grafo puede accederse mediante las funciones:
 - $in(G, v) = \{ u \mid (u, v) \in E\}$
 - $out(G, u) = \{ v \mid (u, v) \in E\}$
 
-así como el número de vertices que entran y salen como:
+así como el número de vértices que entran y salen como:
 
 - $indegree(G, v) = |in(G, v)|$.
 - $outdegree(G, u) = |out(G, u)|$.
@@ -332,7 +332,7 @@ Un grafo puede tener aristas no dirigidas, el grafo con $B=(\{a, b, c, d\}, \{\{
 //| echo: false
 //| fig-width: 60%
 //| fig-cap: |
-//|   Un grafo cuyas aristas no estan dirigidas
+//|   Un grafo cuyas aristas no están dirigidas
 
 graph lista {
   rankdir=LR;
@@ -344,12 +344,12 @@ graph lista {
 
 Por lo tanto, podremos decir que $(a, b) \in E_A$ pero $(b, a) \not\in E_A$. Por otro lado tenemos que $\{a, b\} \in E_B$, y forzando un poco la notación, $(a, b) \in E_B$, $(b, a) \in E_B$; para los conjuntos de aristas de $A$ y $B$. La estructura puede ser accedida mediante $neighbors(G, u) = \{ v \mid \{u, v\} \in E \}$.
 
-Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adjacencia.
-Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adjacencia, donde se representa cada fila o cada columna de la matriz de adjacencia como una lista de los elementos diferentes de cero. 
+Un grafo puede estar representado de diferentes maneras, por ejemplo, un arreglo bidimensional (matriz), donde $S_{ij} = 1$ si hay una arista entre los vértices $i$ y $j$; y $S_{ij} = 0$ si no existe una arista. A esta representación se le llama matriz de adyacencia.
+Si el grafo tiene pocos $1$'s vale la pena tener una representación diferente; este es el caso de las listas de adyacencia, donde se representa cada fila o cada columna de la matriz de adyacencia como una lista de los elementos diferentes de cero.
 
-Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas compimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) [@Scott2023]. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.
+Existen otras representaciones como la lista de coordenadas, _coordinate lists_ (COO), o las representaciones dispersas comprimidas, _sparse row_ (CSR) y _compressed sparse column_ (CSC) [@Scott2023]. Todas estas representaciones tratan de disminuir el uso de memoria y aprovechar la gran dispersión para realizar operaciones solo cuando sea estrictamente necesario.
 
-Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma que en una caminata sobre los vértices, a traves de las aristas y prohibiendo _regresarse_ aristas, es imposible regresar a un vértice antes visto.
+Un _árbol_ es un grafo en el cual no existen ciclos, esto es, no existe forma de, en una caminata sobre los vértices a través de las aristas y sin repetir aristas, regresar a un vértice antes visitado.
 
 ```{dot}
 //| label: fig-arbol
@@ -367,7 +367,7 @@ graph lista {
   }
 ```
 
-En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la _raíz_ del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto  contiene un camino a cada uno vértices en $V$. Cada vértice puede tener, o no, _hijos_ $children(T, u) = \{ v \mid (u, v) \in E \}$. Se dice que $u$ es un _hoja_ (leaf) si $children(T, u) = \emptyset$, e _interno_ (inner) si no es ni raíz ni hoja.
+En algunos casos, es conveniente identificar vértices especiales en un árbol $T=(V, E)$. Un vértice es la _raíz_ del árbol, $root(T)$, es especial ya que seguramente se utilizará como acceso al árbol y por tanto contiene un camino a cada uno de los vértices en $V$. Cada vértice puede tener, o no, _hijos_ $children(T, u) = \{ v \mid (u, v) \in E \}$. Se dice que $u$ es una _hoja_ (leaf) si $children(T, u) = \emptyset$, e _interno_ (inner) si no es ni raíz ni hoja.
 
 ```{dot}
 //| label: fig-arbol-dirigido
@@ -418,13 +418,13 @@ DFS((vértices, aristas), vérticeinicial, visitados)
 
 ```
 
-Las llamadas recursivas a DFS tienen el efecto de _memorizar_ el orden de visita anterior y _recordarlo_ cuando se sale de una visita anidada. Entonces, hay una memoria implicita utilizada, implementanda por el _stack_ de llamadas. La función _operación!_ es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.
+Las llamadas recursivas a DFS tienen el efecto de _memorizar_ el orden de visita anterior y _recordarlo_ cuando se sale de una visita anidada. Entonces, hay una memoria implícita utilizada, implementada por el _stack_ de llamadas. La función _operación!_ es una abstracción de cualquier cosa que deba hacerse sobre los nodos siendo visitados.
 
-El _recorrido a lo ancho_, Breadth First Search (BSF), visita los vértices locales primero que los alejados contrarío al avance voraz utilizado por DFS.
+El _recorrido a lo ancho_, Breadth First Search (BFS), visita los vértices locales antes que los alejados, contrario al avance voraz utilizado por DFS.
 
 ```julia
 #| lst-label: lst-bfs
-#| lst-cap: Psudo-código BFS
+#| lst-cap: Pseudo-código BFS
 
 function BFS(grafo, vértice, visitados, cola)
   operación!(vértice)
@@ -458,7 +458,7 @@ El BFS hace uso explícito de la memoria para guardar el orden en que se visitar
 
 ## Actividades
 
-Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times n$, para cada vector columna $q \in Q$, encontrar el vector columna de $x \in X$ que maximiza su producto punto. Dicho de otra forma, el problema consiste en asociar cada $q$ con $\arg\max \{ q \cdot x \mid x \in X \}$. Este será el problema de _encontrar el producto punto máximo_ o **top-1**. Obtenga un arreglo de identificadores de columna como resultado (_nns_) y otro con el valor del producto punto máximo (_dots_) para cada columna en $Q$.
+Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times n$, para cada vector columna $q \in Q$, encontrar el vector columna $x \in X$ que maximiza su producto punto. Dicho de otra forma, el problema consiste en asociar cada $q$ con $\arg\max \{ q \cdot x \mid x \in X \}$. Este será el problema de _encontrar el producto punto máximo_ o **top-1**. Obtenga un arreglo de identificadores de columna como resultado (_nns_) y otro con el valor del producto punto máximo (_dots_) para cada columna en $Q$.
 
 \begin{align*}
 \mathbf{Q} &= 
@@ -477,13 +477,13 @@ Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times 
 \end{pmatrix}
 \end{align*}
 
-  a. Cree el algoritmo **A1** con operaciones matriciales explicitas.
-  b. Adapte el algoritmo _getmaxdot_ de las notas (Cap. 2) para el mismo lenguaje de tu implementación para resolver el mismo problema, llamemoslo **A2**.
+  a. Cree el algoritmo **A1** con operaciones matriciales explícitas.
+  b. Adapte el algoritmo _getmaxdot_ de las notas (Cap. 2) para el mismo lenguaje de tu implementación para resolver el mismo problema, llamémoslo **A2**.
 
 1. Considere un conjunto de datos como una tupla $Q, X$.
 2. Considere las combinaciones de $m \in \{10^3, 10^6, 10^9\}$, $n \in \{10^3, 10^6, 10^9\}$, $d \in \{8, 16, 32\}$.
-3. Las matrices $Q$ y $X$ deberán ser aleatorias cuyos vectores columna esten en la esfera unitaria.
-4. Analice la memoria necesaria por cada algoritmo (**A1** y **A2**) para cada combinación en argumentos; grafique y discuta.
+3. Las matrices $Q$ y $X$ deberán ser aleatorias cuyos vectores columna estén en la esfera unitaria.
+4. Analice la memoria necesaria por cada algoritmo (**A1** y **A2**) para cada combinación de argumentos; grafique y discuta.
 5. Reporte los costos en tiempo real para $m=10^3, n=10^6$ y $d=16$ para cada **A1** y **A2**.
 6. Grafique la distribución del arreglo _dots_ para la corrida previa, i.e., $m=10^3, n=10^6$ y $d=16$.
 
