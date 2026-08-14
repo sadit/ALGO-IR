@@ -563,14 +563,14 @@ quantile(a, [0.0, 0.25, 0.5, 0.75, 1.0]) # <3>
 ## Actividades
 
 1. Considere dos estructuras para representar un mapa de enteros (`Int64`) a flotantes (`Float64`), sin llaves repetidas:
-    - Un vector de pares sin ordenar (e.g., `Vector{Union{Nothing,Pair{Int64,Float64}}}`), donde toda operación recorre linealmente el vector.
+    - Un vector de pares sin ordenar (e.g., `Vector{Pair{Int64,Float64}}`), donde toda operación recorre linealmente el vector.
     - Un `Dict{Int64,Float64}`, la tabla hash nativa de Julia.
 
     Implemente, para ambas estructuras, las operaciones `buscar`, `insertar!` y `borrar!` con la misma semántica de mapa (a lo más un valor por llave).
 
     **Restricción importante:** `insertar!` y `borrar!` sobre el vector deben implementarse sin modificar el tamaño (longitud) del arreglo, es decir, sin usar `push!`, `pop!`, `deleteat!` ni operaciones equivalentes que provoquen realojamiento o desplazamiento de memoria. Esto aísla el efecto que se quiere medir (costo del recorrido y localidad de referencia) del efecto de las políticas de crecimiento dinámico de arreglos. Para lograrlo:
     - Reserve el vector con una capacidad fija desde el inicio (la $n$ máxima que va a usar en el experimento).
-    - Use un valor centinela (e.g., una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente "vacías", o un contador de elementos y la lógica necesaria para llevar a cabo las operaciones.
+    - Use un valor centinela (e.g., una llave reservada que nunca aparezca en los datos) para marcar las posiciones lógicamente "vacías", o use un contador de elementos ocupados (añadiendo la lógica necesaria para llevar a cabo las operaciones).
     - `borrar!` sobrescribe la posición encontrada con el centinela; `insertar!` busca primero la llave (para actualizar) y, si no existe, busca una posición marcada como vacía para colocar el nuevo par; ambas búsquedas son recorridos lineales, nunca hay cambio de tamaño del arreglo.
 
 2. Mida con `@benchmark` el tiempo de cada operación (`buscar`, `insertar!`, `borrar!`) para $n$ creciente (potencias de 2 desde $2^2$ hasta el máximo práctico en su equipo), con la estructura ya poblada con $n$ pares aleatorios antes de medir. Para `buscar` y `borrar!` la llave a consultar debe elegirse aleatoriamente dentro del `setup=` de cada muestra (no fija), para capturar el caso promedio y no solo el mejor o peor caso posicional. Aplique el mismo cuidado del lado del `Dict` (considere `sizehint!` para controlar el efecto de *rehash* al crecer).
