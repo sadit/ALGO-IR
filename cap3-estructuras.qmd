@@ -521,27 +521,6 @@ Dada la matriz $Q$ de tamaño $d \times m$ y la matriz $X$ de tamaño $d \times 
 5. Reporte los costos en tiempo real para $m=10^3, n=10^6$ y $d=16$ para cada **A1** y **A2**.
 6. Grafique la distribución del arreglo _dots_ para la corrida previa, i.e., $m=10^3, n=10^6$ y $d=16$.
 
-### Actividad 2: Conjuntos — vector ordenado vs. `Set`
-
-Considere dos estructuras para representar un conjunto de enteros (`Int64`):
-
-- Un `Vector{Int64}` mantenido siempre ordenado (sin duplicados).
-- Un `Set{Int64}`, la tabla hash nativa de Julia para conjuntos.
-
-Implemente, para ambas estructuras, las siguientes operaciones:
-
-- `pertenece(conjunto, x)`: verifica si $x$ está en el conjunto.
-- `insertar!(conjunto, x)`: agrega $x$ si no está presente.
-- `union(A, B)`: regresa un nuevo conjunto con la unión de $A$ y $B$.
-- `interseccion(A, B)`: regresa un nuevo conjunto con la intersección de $A$ y $B$.
-
-Para el vector ordenado: `pertenece` debe usar búsqueda binaria ($O(\log n)$); `insertar!` debe insertar en la posición correcta para mantener el orden; y `union` e `interseccion` deben aprovechar que ambos vectores están ordenados, recorriéndolos con dos apuntadores en un solo paso (_merge_), en vez de comparar todos los pares de elementos.
-
-1. Mida con `@benchmark` el tiempo de cada operación para tamaños crecientes de los conjuntos involucrados, siguiendo la misma metodología (elementos aleatorios, `setup=` para variar la consulta en cada muestra) que usaron en la actividad de Vector vs. Diccionario del [Cap. 2](cap2-analisis.qmd).
-2. Determine los rangos de tamaño donde el vector ordenado es más rápido que el `Set` para cada operación, y viceversa.
-3. Compare específicamente `union` e `interseccion`: ¿el comportamiento relativo cambia dependiendo de si los dos conjuntos son de tamaños muy distintos entre sí (e.g., $|A| \ll |B|$) o de tamaños similares?
-4. Discuta sus resultados. Esta actividad es una antesala directa del [Cap. 6](cap6-intersecciones.qmd), donde el algoritmo de _merge_ sobre listas ordenadas será el punto de partida para resolver el problema de intersección de conjuntos a gran escala.
-
 ### Entregable
 
 Su trabajo se entregará en PDF y con el notebook fuente, se entregará en el sistema en archivos separados. El código se debe documentar, así como mantener una estructura del documento que permita a un lector interesado entender el problema, sus experimentos y metodología, así como sus conclusiones. Tenga en cuenta que los notebooks pueden alternar celdas de texto y código.
@@ -550,8 +529,7 @@ No olvide estructurar su reporte, en particular el reporte debe cubrir los sigui
 
 - Título del reporte, su nombre.
 - Introducción.
-- Actividad 1. Producto punto máximo (top-1).
-- Actividad 2. Conjuntos: vector ordenado vs. `Set`.
+- Actividad. Producto punto máximo (top-1).
 - Conclusiones
 - Lista de referencias. Nota, una lista de referencias que no fueron utilizadas en el cuerpo del texto será interpretada como una lista vacía.
 

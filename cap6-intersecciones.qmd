@@ -31,17 +31,17 @@ gr() # Force GR backend to acknowledge the change
 
 ## Problema
 
-Cómo se vió en Capítulos anteriores, un conjunto es una colección de elementos donde no hay repetición. El uso de conjuntos es fundamental para un gran número de problemas. En particular, en este capítulo representaremos conjuntos como arreglos ordenados de números enteros; esto para posicionarlo dentro de un dominio de aplicación objetivo, que es la Recuperación de Información, como parte de la representación de una la matriz dispersa muy grande, llamada _índice invertido_. 
+Como se vio en capítulos anteriores, un conjunto es una colección de elementos donde no hay repetición. El uso de conjuntos es fundamental para un gran número de problemas. En particular, en este capítulo representaremos conjuntos como arreglos ordenados de números enteros; esto para posicionarlo dentro de un dominio de aplicación objetivo, que es la Recuperación de Información, como parte de la representación de una matriz dispersa muy grande, llamada _índice invertido_. 
 
-Estaremos resolviendo los problemas de intersección y unión de conjuntos. @DLOM2000 demuestra que el costo y procedimiento de las intersecciones y uniones de conjuntos representados como arreglos ordenados, es básicamente el mismo; ya que requieren determinar la misma información. Claramente, colectar los datos para la unión y la intersección, requieren diferentes esfuerzos.
+Resolveremos los problemas de intersección y unión de conjuntos. @DLOM2000 demuestra que el costo y procedimiento de las intersecciones y uniones de conjuntos representados como arreglos ordenados es básicamente el mismo, ya que requieren determinar la misma información. Claramente, recolectar los datos para la unión y la intersección requiere diferentes esfuerzos.
 
 ### Costo del problema
 En general, dados dos conjuntos $A[1..m] = \{a_1 < a_2 < \cdots < a_m \}$ y $B[1..n] = \{b_1 < b_2 < \cdots < b_n \}$, el costo de unión es $$\log{m+n \choose m},$$ ver @hwang1971optimal.
 
-De manera más detallada, supongamos que $A \cap B = \emptyset$, esto es, el conjunto de salida será de tamaño $m+n$. De manera similar al razonamiento que se utilizó para el problema de ordenamiento, el problema puede verse como todas las posibles instancias de ordenes o permutaciones de tamaño $n+m$; removiendo la necesidad de los ordenes parciales, esto es ${n+m \choose m}$ posibles instancias de tamaño $n+m$, generadas por dos conjuntos de tamaño $n$ y $m$. Dado que estamos en un modelo basado en comparaciones, y dado el mejor algoritmo $s$ puede dividir el espacio de posibles ordenes en 2, por tanto, dicho algoritmo necesitará $$\log_2 {n+m \choose m}$$ comparaciones para resolver la unión de cualquier par de conjuntos de tamaño $m$ y $n$.
+De manera más detallada, supongamos que $A \cap B = \emptyset$; esto es, el conjunto de salida será de tamaño $m+n$. De manera similar al razonamiento que se utilizó para el problema de ordenamiento, el problema puede verse como todas las posibles instancias de órdenes o permutaciones de tamaño $n+m$; removiendo la necesidad de los órdenes parciales, esto es ${n+m \choose m}$ posibles instancias de tamaño $n+m$, generadas por dos conjuntos de tamaño $n$ y $m$. Dado que estamos en un modelo basado en comparaciones y que el mejor algoritmo puede dividir el espacio de posibles órdenes entre 2, por lo tanto, dicho algoritmo necesitará $$\log_2 {n+m \choose m}$$ comparaciones para resolver la unión de cualquier par de conjuntos de tamaño $m$ y $n$.
 
-Usando la aproximación de Stirling para coefficientes binomiales de @mackay2003information, el costo se convierte en:
-$$\log{m+n \choose m} = n\log{\frac{m+n}{n}} + m \log\frac{n+m}{m} $$
+Usando la aproximación de Stirling para coeficientes binomiales de @mackay2003information, el costo se convierte en:
+$$\log{m+n \choose m} = n\log{\frac{m+n}{n}} + m \log\frac{n+m}{m}.$$
 
 ::: {.column-margin}
 Recuerde que $\log_2 x = \frac{\log_e x}{\log e}$.
@@ -186,7 +186,7 @@ digraph lista {
 }
 ```
 
-Se hace notar que $A$ y $B$ estan ordenados, y por lo tanto, localizar $A[i]$ en $B[j]$ significa que $B[j-1] < A[i]$, por lo que intentar localizar $A[i+1]$ puede comenzar en $B[j+1]$. A continuación se muestra el código de un algoritmo de intersección usando algoritmos de búsqueda con memoria de la posición anterior.
+Se hace notar que $A$ y $B$ están ordenados, y por lo tanto, localizar $A[i]$ en $B[j]$ significa que $B[j-1] < A[i]$, por lo que intentar localizar $A[i+1]$ puede comenzar en $B[j+1]$. A continuación se muestra el código de un algoritmo de intersección usando algoritmos de búsqueda con memoria de la posición anterior.
 
 ```{julia}
 #| output: false
@@ -221,16 +221,16 @@ end
 
 @hwang1971optimal propone otro algoritmo que funciona para casos similares:
 
-1. Divide $B$ en bloques de tamaño $m$, define un arreglo _virtual_ $B'[1..n/m]$ donde $B'[i] = B[i \cdot m]$
-2. Se búsca la posición de inserción $p$ de cada $a \in A$ en $B'$, costando $\log n/m$ para cada búsqueda.
-3. Después se localiza dentro del $B$ en el $p$-ésimo bloque, i.e., $B[(p-1)m + 1 .. p\cdot m]$, por la posición de inserción del bloque, con un costo de $\log m$.
+1. Divide $B$ en bloques de tamaño $m$, define un arreglo _virtual_ $B'[1..n/m]$ donde $B'[i] = B[i \cdot m]$.
+2. Se busca la posición de inserción $p$ de cada $a \in A$ en $B'$, costando $\log(n/m)$ para cada búsqueda.
+3. Después se localiza dentro de $B$ en el $p$-ésimo bloque, i.e., $B[(p-1)m + 1 .. p\cdot m]$, la posición de inserción del bloque, con un costo de $\log m$.
 
-Entonces, se obtiene un costo de $O(m \log{n/m} + m \log m)$; esto es equivalente en el peor caso a búsquedas directas, i.e., las posiciones de inserción de $a \in A$ se encuentran distribuidas de manera uniforme en $B$. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si se hay concentración de elementos de $A$ en bloques de $B$. Para esto, es necesario un análisis de costo promedio, el cual se muestra en el artículo.
+Entonces, se obtiene un costo de $O(m \log{n/m} + m \log m)$; esto es equivalente en el peor caso a búsquedas directas, i.e., cuando las posiciones de inserción de $a \in A$ se encuentran distribuidas de manera uniforme en $B$. Sin embargo, es posible mejorar si se descartan bloques en el paso 1. Esto es, si hay concentración de elementos de $A$ en bloques de $B$. Para esto, es necesario un análisis de costo promedio, el cual se muestra en el artículo.
 
-Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inserción para iniciar la $i$-ésima búsqueda, y sacar provecho de posiciones esperadas cercanas de la posición inicial de búsqueda, i.e., podemos utilizar algoritmos de búsqueda adaptables para mejorar el desempeño.
+Incluso cuando hay concentración, podemos recordar la $(i-1)$-ésima posición de inserción para iniciar la $i$-ésima búsqueda, y sacar provecho de posiciones esperadas cercanas a la posición inicial de búsqueda, i.e., podemos utilizar algoritmos de búsqueda adaptables para mejorar el desempeño.
 
 ### Algoritmo de Baeza Yates
-@BY2004 propone un algoritmo eficiente para intersecciones de dos conjuntos. El algoritmo tiene una estrategía _dividir para vencer_:
+@BY2004 propone un algoritmo eficiente para intersecciones de dos conjuntos. El algoritmo tiene una estrategia _dividir para vencer_:
 
 1. Se toma la mediana $M$ de $A$ y se busca en $B$ obteniendo su posición de inserción $p$.
 2. El problema entonces se divide en 3 subproblemas:
@@ -241,7 +241,7 @@ Incluso cuando hay concentración, podemos recordar la $(i-1)$ posición de inse
     \end{align}
   donde $e=1$ si $A[M] = B[p]$ y $e=0$ cuando $A[M] \not= B[p]$.
 3. La unión de estos tres conjuntos es la solución $C_< \cup C_= \cup C_>$.
-4. El problema $C_=$ es trivial, y $C_<$ y $C_>$ se implementan recurriendo, ajustando los rangos de trabajo.
+4. El problema $C_=$ es trivial, y $C_<$ y $C_>$ se resuelven de forma recursiva, ajustando los rangos de trabajo.
 
 A continuación se muestra el código en Julia, usando los algoritmos de búsqueda del Cap. 5.
 
@@ -270,8 +270,8 @@ end
 1. Punto de entrada.
 2. Búsqueda de la posición de inserción de la mediana de $A$ en $B$.
 3. Recurrencia para el problema $C_<$.
-4. Añadir al resultado el valor de la mediana si es que se encontró en $B$; es importante que este paso este entre las recurrencias para que _output_ sea un arreglo ordenado.
-5. Recurencia para el problema $C_>$.
+4. Añadir al resultado el valor de la mediana si es que se encontró en $B$; es importante que este paso esté entre las recurrencias para que _output_ sea un arreglo ordenado.
+5. Recurrencia para el problema $C_>$.
 
 
 ```{julia}
@@ -291,10 +291,10 @@ El algoritmo de Baeza Yates es óptimo en el peor caso y es capaz de aprovechar 
 ## Operaciones con tres o más conjuntos
 Los algoritmos y costos hasta ahora revisados se cumplen para dos conjuntos; se mencionaron diferentes algoritmos, algunos de ellos especializados por características como las proporciones de los conjuntos de entrada. 
 
-En particular, es importante hacer notar que ni el problema ni las aplicaciones estan limitadas a dos conjuntos, y por tanto, es importante algoritmos y estrategías para resolver $\bigcup_i A_i$ así como $\bigcap_i A_i$.
+En particular, es importante hacer notar que ni el problema ni las aplicaciones están limitadas a dos conjuntos y, por lo tanto, son importantes los algoritmos y estrategias para resolver $\bigcup_i A_i$ así como $\bigcap_i A_i$.
 
 ### Algoritmo SvS
-Dado $C = A \cap B$ es un hecho que $|C| \leq min \{|A|, |B|\}$. Recordando, que hay maneras relativamente simples y eficientes de resolver la intersección cuando $m \ll n$; por tanto, cuando tenemos más de dos conjuntos podemos aplicar la estrategía _Small vs Small (SvS)_, que consisten en intersectar los $k$ conjuntos por pares intersectando el par de arreglos más pequeños cada vez.
+Dado que $C = A \cap B$, es un hecho que $|C| \leq \min \{|A|, |B|\}$. Recordando que hay maneras relativamente simples y eficientes de resolver la intersección cuando $m \ll n$, cuando tenemos más de dos conjuntos podemos aplicar la estrategia _Small vs Small (SvS)_, que consiste en intersectar los $k$ conjuntos por pares intersectando el par de arreglos más pequeños cada vez.
 
 ```{julia}
 #| output: false
@@ -333,9 +333,9 @@ end
 ### Algoritmo de Barbay y Kenyon
 
 
-Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. @DLOPM2001, @BLOL2006, y @BLOLS2010 muestran algoritmos de intersección basados en búsqueda adaptables para aprovechar instancias simples. Estos estudios se basan en contribuciones teóricas de los mismos autores: @DLOM2000, @DLOPM2001, @BK2002 y @BY2004.
+Existe otra familia de algoritmos, basados en búsquedas adaptativas que pueden llegar a mejorar el desempeño bajo cierto tipo de entradas. @DLOPM2001, @BLOL2006 y @BLOLS2010 muestran algoritmos de intersección basados en búsquedas adaptativas para aprovechar instancias simples. Estos estudios se basan en contribuciones teóricas de los mismos autores: @DLOM2000, @DLOPM2001, @BK2002 y @BY2004.
 
-El algoritmo de @BLOL2006 trabaja sobre los $k$ conjuntos de entrada, representados como arreglos ordenados de números enteros. Es un algoritmo simple pero poderoso: hace uso de búsquedas adaptivas con memoria para guardar las posiciones donde se avanza, de tal forma que no se recalculen posiciones. Las diferentes estrategias para revisar los conjuntos pueden dar diferentes desempeños, como se valida en @BLOLS2010, donde además de hacer una gran variedad de experimentos sobre diferentes algoritmos de búsqueda, se introducen variantes en el orden de acceso de cada conjunto.
+El algoritmo de @BLOL2006 trabaja sobre los $k$ conjuntos de entrada, representados como arreglos ordenados de números enteros. Es un algoritmo simple pero poderoso: hace uso de búsquedas adaptativas con memoria para guardar las posiciones donde se avanza, de tal forma que no se recalculen posiciones. Las diferentes estrategias para revisar los conjuntos pueden dar diferentes desempeños, como se valida en @BLOLS2010, donde además de hacer una gran variedad de experimentos sobre diferentes algoritmos de búsqueda, se introducen variantes en el orden de acceso de cada conjunto.
 
 A continuación se muestra el código del algoritmo base:
 
@@ -377,12 +377,12 @@ function bk!(output, L, P, findpos::Function=doublingsearch)  # <1>
     output
 end
 ```
-1. El algoritmo de Barbay & Kenyon recibe: i) `output` el conjunto de salida. ii) `L` la lista de conjuntos (representados como arreglos ordenados). iii) `P` arreglo de posiciones _actuales_ para cada arreglo. iv) findpos` función de búsqueda.
+1. El algoritmo de Barbay & Kenyon recibe: i) `output` el conjunto de salida. ii) `L` la lista de conjuntos (representados como arreglos ordenados). iii) `P` arreglo de posiciones _actuales_ para cada arreglo. iv) `findpos` función de búsqueda.
 2. Número de conjuntos en `L`.
-3. `el` es el elemento siendo búscado en todos los arreglos. 
+3. `el` es el elemento siendo buscado en todos los arreglos. 
 4. `c` número de listas que contienen `el`.
-5. Búscando la posición de inserción de `el` en `L[i]`, comenzando en `P[i]`.
-6. Esta igualdad implica que hay interección.
+5. Buscando la posición de inserción de `el` en `L[i]`, comenzando en `P[i]`.
+6. Esta igualdad implica que hay intersección.
 7. Reiniciando `el` y `c` y actualizando `P[i]`.
 
 ```{julia}
@@ -395,7 +395,7 @@ end
 
 ```
 
-De manera particular, @BLOLS2010 presentan un estudio experimental sobre los algoritmos presentados en el área durante la decada de 2000 a 2010, dichos algoritmos se parametrizaron de maneras que nos permiten aprender diferentes características de cada uno de ellos, dependiendo de los algoritmos de búsqueda que usan, la arquitectura computacional donde se evalúa, y el número de conjuntos siendo procesados.
+De manera particular, @BLOLS2010 presentan un estudio experimental sobre los algoritmos presentados en el área durante la década de 2000 a 2010, dichos algoritmos se parametrizaron de maneras que nos permiten aprender diferentes características de cada uno de ellos, dependiendo de los algoritmos de búsqueda que usan, la arquitectura computacional donde se evalúa, y el número de conjuntos siendo procesados.
 
 ## Recursos audio-visuales de la unidad
 
@@ -413,19 +413,19 @@ Parte 2: Algoritmos de intersección y algunas aplicaciones
 
 2. Implementación de algoritmos:
     - Implementa los algoritmos de Melding (ME), Baeza-Yates (BY) y de Barbay & Kenyon (BK).
-    - Implementa BY parametrizando con algoritmos de búsqueda: bisección, y búsqueda no acotada $B_1$ y $B_2$ (ver Unidad 4).
+    - Implementa BY parametrizando con algoritmos de búsqueda: bisección y búsqueda no acotada $B_1$ y $B_2$ (ver Capítulo 5).
 
 3. Experimentación:
     - Calcula las intersecciones para los datos de cada grupo de listas ($A$, $B$, y $C$).
     - Acumula el tiempo en segundos y el número de comparaciones para cada operación, es posible que necesites repetir varias veces el procedimiento para medir tiempos de manera fiable.
-    - Crea gráficos boxplot para cada cada conjunto de listas con los siguientes aspectos, incluye en cada gráfica todos los algoritmos para que sean fáciles de comparar:
+    - Crea gráficos boxplot para cada conjunto de listas con los siguientes aspectos, incluye en cada gráfica todos los algoritmos para que sean fáciles de comparar:
         - Tiempo en segundos de los tres experimentos, por algoritmo.
         - Número de comparaciones de los tres experimentos, por algoritmo.
         - Longitudes de las intersecciones resultantes para $A$, $B$, $C$, este también es un gráfico de control, úsalo para detectar posibles errores.
 
 4. Análisis:
     - Analiza los resultados obtenidos en los gráficos boxplot. Examina las diferencias en tiempo, número de comparaciones y longitud de las intersecciones entre los distintos algoritmos y conjuntos de listas.
-    - Discuta cualquier tendencia, anomalía o patrón interesante observado. Reflexiona sobre cómo los diferentes algoritmos afectan el rendimiento y la eficiencia en las operaciones de intersección.
+    - Discute cualquier tendencia, anomalía o patrón interesante observado. Reflexiona sobre cómo los diferentes algoritmos afectan el rendimiento y la eficiencia en las operaciones de intersección.
 
 ### Entregable
 
