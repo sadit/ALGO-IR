@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -75,10 +78,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1c9a5655c78e0129248869a68a7a7db0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3184e3922d0c4f76efe41c59ea013278.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-76f6d379fd4e2b33b3d387d855064d92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-19149a0c0eeed7fb16c9ff30e1d29c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -318,71 +321,7 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En esta página</h2>
-   
-  <ul>
-  <li><a href="#julia-como-lenguaje-de-programación-para-un-curso-de-algoritmos" id="toc-julia-como-lenguaje-de-programación-para-un-curso-de-algoritmos" class="nav-link active" data-scroll-target="#julia-como-lenguaje-de-programación-para-un-curso-de-algoritmos"><span class="header-section-number">1</span> Julia como lenguaje de programación para un curso de algoritmos</a>
-  <ul>
-  <li><a href="#sec-julia" id="toc-sec-julia" class="nav-link" data-scroll-target="#sec-julia"><span class="header-section-number">1.1</span> El lenguaje de programación Julia</a></li>
-  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="header-section-number">1.2</span> Instalación</a></li>
-  <li><a href="#manos-a-la-obra" id="toc-manos-a-la-obra" class="nav-link" data-scroll-target="#manos-a-la-obra"><span class="header-section-number">1.3</span> Manos a la obra</a>
-  <ul class="collapse">
-  <li><a href="#creando-el-famoso-hola-mundo" id="toc-creando-el-famoso-hola-mundo" class="nav-link" data-scroll-target="#creando-el-famoso-hola-mundo"><span class="header-section-number">1.3.1</span> Creando el famoso “Hola mundo”</a></li>
-  <li><a href="#colab" id="toc-colab" class="nav-link" data-scroll-target="#colab"><span class="header-section-number">1.3.2</span> Colab</a></li>
-  <li><a href="#jupyter" id="toc-jupyter" class="nav-link" data-scroll-target="#jupyter"><span class="header-section-number">1.3.3</span> Jupyter</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">1.3.4</span> Quarto</a>
-  <ul class="collapse">
-  <li><a href="#instalación-1" id="toc-instalación-1" class="nav-link" data-scroll-target="#instalación-1"><span class="header-section-number">1.3.4.1</span> Instalación</a></li>
-  <li><a href="#estructura-de-un-documento-.qmd" id="toc-estructura-de-un-documento-.qmd" class="nav-link" data-scroll-target="#estructura-de-un-documento-.qmd"><span class="header-section-number">1.3.4.2</span> Estructura de un documento <code>.qmd</code></a></li>
-  <li><a href="#renderizado" id="toc-renderizado" class="nav-link" data-scroll-target="#renderizado"><span class="header-section-number">1.3.4.3</span> Renderizado</a></li>
-  <li><a href="#publicación-en-github-pages" id="toc-publicación-en-github-pages" class="nav-link" data-scroll-target="#publicación-en-github-pages"><span class="header-section-number">1.3.4.4</span> Publicación en GitHub Pages</a></li>
-  </ul></li>
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">1.3.5</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#sintaxis-y-estructuras" id="toc-sintaxis-y-estructuras" class="nav-link" data-scroll-target="#sintaxis-y-estructuras"><span class="header-section-number">1.4</span> Sintaxis y estructuras</a>
-  <ul class="collapse">
-  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="header-section-number">1.4.1</span> Funciones</a></li>
-  <li><a href="#expresiones-y-operadores" id="toc-expresiones-y-operadores" class="nav-link" data-scroll-target="#expresiones-y-operadores"><span class="header-section-number">1.4.2</span> Expresiones y operadores</a></li>
-  <li><a href="#comentarios-en-el-código" id="toc-comentarios-en-el-código" class="nav-link" data-scroll-target="#comentarios-en-el-código"><span class="header-section-number">1.4.3</span> Comentarios en el código</a></li>
-  <li><a href="#documentación-del-código" id="toc-documentación-del-código" class="nav-link" data-scroll-target="#documentación-del-código"><span class="header-section-number">1.4.4</span> Documentación del código</a>
-  <ul class="collapse">
-  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo"><span class="header-section-number">1.4.4.1</span> Ejemplo</a></li>
-  <li><a href="#definición-de-variables" id="toc-definición-de-variables" class="nav-link" data-scroll-target="#definición-de-variables"><span class="header-section-number">1.4.4.2</span> Definición de variables</a></li>
-  <li><a href="#literales" id="toc-literales" class="nav-link" data-scroll-target="#literales"><span class="header-section-number">1.4.4.3</span> Literales</a></li>
-  </ul></li>
-  <li><a href="#control-de-flujo" id="toc-control-de-flujo" class="nav-link" data-scroll-target="#control-de-flujo"><span class="header-section-number">1.4.5</span> Control de flujo</a>
-  <ul class="collapse">
-  <li><a href="#ciclos" id="toc-ciclos" class="nav-link" data-scroll-target="#ciclos"><span class="header-section-number">1.4.5.1</span> Ciclos</a></li>
-  </ul></li>
-  <li><a href="#tuplas-y-arreglos-en-julia" id="toc-tuplas-y-arreglos-en-julia" class="nav-link" data-scroll-target="#tuplas-y-arreglos-en-julia"><span class="header-section-number">1.4.6</span> Tuplas y arreglos en Julia</a></li>
-  <li><a href="#diccionarios-y-conjuntos-en-julia" id="toc-diccionarios-y-conjuntos-en-julia" class="nav-link" data-scroll-target="#diccionarios-y-conjuntos-en-julia"><span class="header-section-number">1.4.7</span> Diccionarios y conjuntos en Julia</a></li>
-  </ul></li>
-  <li><a href="#el-flujo-de-compilación-de-julia" id="toc-el-flujo-de-compilación-de-julia" class="nav-link" data-scroll-target="#el-flujo-de-compilación-de-julia"><span class="header-section-number">1.5</span> El flujo de compilación de Julia</a></li>
-  <li><a href="#ejemplos-de-funciones" id="toc-ejemplos-de-funciones" class="nav-link" data-scroll-target="#ejemplos-de-funciones"><span class="header-section-number">1.6</span> Ejemplos de funciones</a></li>
-  <li><a href="#definición-de-estructuras" id="toc-definición-de-estructuras" class="nav-link" data-scroll-target="#definición-de-estructuras"><span class="header-section-number">1.7</span> Definición de estructuras</a></li>
-  <li><a href="#arreglos" id="toc-arreglos" class="nav-link" data-scroll-target="#arreglos"><span class="header-section-number">1.8</span> Arreglos</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-1" id="toc-ejercicios-1" class="nav-link" data-scroll-target="#ejercicios-1"><span class="header-section-number">1.8.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#paquetes-y-módulos" id="toc-paquetes-y-módulos" class="nav-link" data-scroll-target="#paquetes-y-módulos"><span class="header-section-number">1.9</span> Paquetes y módulos</a>
-  <ul class="collapse">
-  <li><a href="#pkg-en-repl" id="toc-pkg-en-repl" class="nav-link" data-scroll-target="#pkg-en-repl"><span class="header-section-number">1.9.1</span> Pkg en REPL</a>
-  <ul class="collapse">
-  <li><a href="#manejo-de-ambientes" id="toc-manejo-de-ambientes" class="nav-link" data-scroll-target="#manejo-de-ambientes"><span class="header-section-number">1.9.1.1</span> Manejo de ambientes</a></li>
-  <li><a href="#saliendo-del-modo-pkg" id="toc-saliendo-del-modo-pkg" class="nav-link" data-scroll-target="#saliendo-del-modo-pkg"><span class="header-section-number">1.9.1.2</span> Saliendo del modo Pkg</a></li>
-  </ul></li>
-  <li><a href="#usando-pkg-desde-el-modo-normal-de-julia-fuera-del-modo-pkg-del-repl" id="toc-usando-pkg-desde-el-modo-normal-de-julia-fuera-del-modo-pkg-del-repl" class="nav-link" data-scroll-target="#usando-pkg-desde-el-modo-normal-de-julia-fuera-del-modo-pkg-del-repl"><span class="header-section-number">1.9.2</span> Usando <code>Pkg</code> desde el modo normal de Julia (fuera del modo Pkg del REPL)</a></li>
-  </ul></li>
-  <li><a href="#otras-estrategias-para-la-organización-de-código" id="toc-otras-estrategias-para-la-organización-de-código" class="nav-link" data-scroll-target="#otras-estrategias-para-la-organización-de-código"><span class="header-section-number">1.10</span> Otras estrategias para la organización de código</a>
-  <ul class="collapse">
-  <li><a href="#aislamiento-y-alcance-scoping" id="toc-aislamiento-y-alcance-scoping" class="nav-link" data-scroll-target="#aislamiento-y-alcance-scoping"><span class="header-section-number">1.10.1</span> Aislamiento y alcance (Scoping)</a></li>
-  </ul></li>
-  <li><a href="#recursos-para-aprender-más-sobre-el-lenguaje" id="toc-recursos-para-aprender-más-sobre-el-lenguaje" class="nav-link" data-scroll-target="#recursos-para-aprender-más-sobre-el-lenguaje"><span class="header-section-number">1.11</span> Recursos para aprender más sobre el lenguaje</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sadit/ALGO-IR/edit/main/cap1-julia.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/sadit/ALGO-IR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="cap1-julia.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="cap1-julia.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -412,7 +351,70 @@ window.Quarto = {
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#julia-como-lenguaje-de-programación-para-un-curso-de-algoritmos" id="toc-julia-como-lenguaje-de-programación-para-un-curso-de-algoritmos"><span class="header-section-number">1</span> Julia como lenguaje de programación para un curso de algoritmos</a>
+  <ul>
+  <li><a href="#sec-julia" id="toc-sec-julia"><span class="header-section-number">1.1</span> El lenguaje de programación Julia</a></li>
+  <li><a href="#instalación" id="toc-instalación"><span class="header-section-number">1.2</span> Instalación</a></li>
+  <li><a href="#manos-a-la-obra" id="toc-manos-a-la-obra"><span class="header-section-number">1.3</span> Manos a la obra</a>
+  <ul>
+  <li><a href="#creando-el-famoso-hola-mundo" id="toc-creando-el-famoso-hola-mundo"><span class="header-section-number">1.3.1</span> Creando el famoso “Hola mundo”</a></li>
+  <li><a href="#colab" id="toc-colab"><span class="header-section-number">1.3.2</span> Colab</a></li>
+  <li><a href="#jupyter" id="toc-jupyter"><span class="header-section-number">1.3.3</span> Jupyter</a></li>
+  <li><a href="#quarto" id="toc-quarto"><span class="header-section-number">1.3.4</span> Quarto</a>
+  <ul>
+  <li><a href="#instalación-1" id="toc-instalación-1"><span class="header-section-number">1.3.4.1</span> Instalación</a></li>
+  <li><a href="#estructura-de-un-documento-.qmd" id="toc-estructura-de-un-documento-.qmd"><span class="header-section-number">1.3.4.2</span> Estructura de un documento <code>.qmd</code></a></li>
+  <li><a href="#renderizado" id="toc-renderizado"><span class="header-section-number">1.3.4.3</span> Renderizado</a></li>
+  <li><a href="#publicación-en-github-pages" id="toc-publicación-en-github-pages"><span class="header-section-number">1.3.4.4</span> Publicación en GitHub Pages</a></li>
+  </ul></li>
+  <li><a href="#ejercicios" id="toc-ejercicios"><span class="header-section-number">1.3.5</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#sintaxis-y-estructuras" id="toc-sintaxis-y-estructuras"><span class="header-section-number">1.4</span> Sintaxis y estructuras</a>
+  <ul>
+  <li><a href="#funciones" id="toc-funciones"><span class="header-section-number">1.4.1</span> Funciones</a></li>
+  <li><a href="#expresiones-y-operadores" id="toc-expresiones-y-operadores"><span class="header-section-number">1.4.2</span> Expresiones y operadores</a></li>
+  <li><a href="#comentarios-en-el-código" id="toc-comentarios-en-el-código"><span class="header-section-number">1.4.3</span> Comentarios en el código</a></li>
+  <li><a href="#documentación-del-código" id="toc-documentación-del-código"><span class="header-section-number">1.4.4</span> Documentación del código</a>
+  <ul>
+  <li><a href="#ejemplo" id="toc-ejemplo"><span class="header-section-number">1.4.4.1</span> Ejemplo</a></li>
+  <li><a href="#definición-de-variables" id="toc-definición-de-variables"><span class="header-section-number">1.4.4.2</span> Definición de variables</a></li>
+  <li><a href="#literales" id="toc-literales"><span class="header-section-number">1.4.4.3</span> Literales</a></li>
+  </ul></li>
+  <li><a href="#control-de-flujo" id="toc-control-de-flujo"><span class="header-section-number">1.4.5</span> Control de flujo</a>
+  <ul>
+  <li><a href="#ciclos" id="toc-ciclos"><span class="header-section-number">1.4.5.1</span> Ciclos</a></li>
+  </ul></li>
+  <li><a href="#tuplas-y-arreglos-en-julia" id="toc-tuplas-y-arreglos-en-julia"><span class="header-section-number">1.4.6</span> Tuplas y arreglos en Julia</a></li>
+  <li><a href="#diccionarios-y-conjuntos-en-julia" id="toc-diccionarios-y-conjuntos-en-julia"><span class="header-section-number">1.4.7</span> Diccionarios y conjuntos en Julia</a></li>
+  </ul></li>
+  <li><a href="#el-flujo-de-compilación-de-julia" id="toc-el-flujo-de-compilación-de-julia"><span class="header-section-number">1.5</span> El flujo de compilación de Julia</a></li>
+  <li><a href="#ejemplos-de-funciones" id="toc-ejemplos-de-funciones"><span class="header-section-number">1.6</span> Ejemplos de funciones</a></li>
+  <li><a href="#definición-de-estructuras" id="toc-definición-de-estructuras"><span class="header-section-number">1.7</span> Definición de estructuras</a></li>
+  <li><a href="#arreglos" id="toc-arreglos"><span class="header-section-number">1.8</span> Arreglos</a>
+  <ul>
+  <li><a href="#ejercicios-1" id="toc-ejercicios-1"><span class="header-section-number">1.8.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#paquetes-y-módulos" id="toc-paquetes-y-módulos"><span class="header-section-number">1.9</span> Paquetes y módulos</a>
+  <ul>
+  <li><a href="#pkg-en-repl" id="toc-pkg-en-repl"><span class="header-section-number">1.9.1</span> Pkg en REPL</a>
+  <ul>
+  <li><a href="#manejo-de-ambientes" id="toc-manejo-de-ambientes"><span class="header-section-number">1.9.1.1</span> Manejo de ambientes</a></li>
+  <li><a href="#saliendo-del-modo-pkg" id="toc-saliendo-del-modo-pkg"><span class="header-section-number">1.9.1.2</span> Saliendo del modo Pkg</a></li>
+  </ul></li>
+  <li><a href="#usando-pkg-desde-el-modo-normal-de-julia-fuera-del-modo-pkg-del-repl" id="toc-usando-pkg-desde-el-modo-normal-de-julia-fuera-del-modo-pkg-del-repl"><span class="header-section-number">1.9.2</span> Usando <code>Pkg</code> desde el modo normal de Julia (fuera del modo Pkg del REPL)</a></li>
+  </ul></li>
+  <li><a href="#otras-estrategias-para-la-organización-de-código" id="toc-otras-estrategias-para-la-organización-de-código"><span class="header-section-number">1.10</span> Otras estrategias para la organización de código</a>
+  <ul>
+  <li><a href="#aislamiento-y-alcance-scoping" id="toc-aislamiento-y-alcance-scoping"><span class="header-section-number">1.10.1</span> Aislamiento y alcance (Scoping)</a></li>
+  </ul></li>
+  <li><a href="#recursos-para-aprender-más-sobre-el-lenguaje" id="toc-recursos-para-aprender-más-sobre-el-lenguaje"><span class="header-section-number">1.11</span> Recursos para aprender más sobre el lenguaje</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sadit/ALGO-IR/edit/main/cap1-julia.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/sadit/ALGO-IR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="cap1-julia.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="cap1-julia.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
 <section id="julia-como-lenguaje-de-programación-para-un-curso-de-algoritmos" class="level1 page-columns page-full" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Julia como lenguaje de programación para un curso de algoritmos</h1>
 <p>Nuestro objetivo es trabajar sobre algoritmos, por lo que cualquier lenguaje que pueda expresar todo lo computable, puede ser adecuado. Pero dado que nuestro enfoque será experimental, y nuestra metodología incluye medir la factibilidad y desempeño de cada algoritmo en términos reales, entonces necesitamos un lenguaje donde las instrucciones, el acceso a memoria, y la manipulación de la misma sea controlable. En este caso, y mediando con la facilidad de aprendizaje y la productividad, este curso utiliza el lenguaje de programación Julia.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Pero no hay por qué preocuparse por aprender un nuevo lenguaje, el curso utiliza ejemplos en Julia y utiliza una variante de su sintaxis como pseudo-código, pero las actividades se esperan tanto en Julia como en Python.</p>
@@ -1214,11 +1216,11 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
 <h2 data-number="1.5" class="anchored" data-anchor-id="el-flujo-de-compilación-de-julia"><span class="header-section-number">1.5</span> El flujo de compilación de Julia</h2>
 <p>Basta con escribir una línea de código en el REPL de Julia y esta se compilará y ejecutará en el contexto actual, usando el ámbito de variables. Esto es conveniente para comenzar a trabajar, sin embargo, es importante conocer el flujo de compilación para tenerlo en cuenta mientras se codifica, y así generar código eficiente. En particular, la creación de funciones y evitar la <em>inestabilidad</em> de los tipos de las variables es un paso hacia la generación de código eficiente. También es importante evitar el alojamiento de memoria dinámica siempre que sea posible. A continuación se mostrará el análisis de un código simple a diferentes niveles, mostrando que el lenguaje nos permite observar la generación de código, que finalmente nos da cierto control y nos permite verificar que lo que se está implementando es lo que se especifica en el código. Esto no es posible en lenguajes como Python.</p>
 <div id="40" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">let</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a>    <span class="cn">e</span> <span class="op">=</span> <span class="fl">1.1</span></span>
-<span id="cb51-3"><a href="#cb51-3"></a>    <span class="fu">println</span>(<span class="cn">e</span><span class="op">*</span><span class="cn">e</span>)</span>
-<span id="cb51-4"><a href="#cb51-4"></a>    <span class="pp">@code_typed</span> <span class="cn">e</span><span class="op">*</span><span class="cn">e</span></span>
-<span id="cb51-5"><a href="#cb51-5"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-label="1"></a><span class="kw">let</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-label="2"></a>    <span class="cn">e</span> <span class="op">=</span> <span class="fl">1.1</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-label="3"></a>    <span class="fu">println</span>(<span class="cn">e</span><span class="op">*</span><span class="cn">e</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-label="4"></a>    <span class="pp">@code_typed</span> <span class="cn">e</span><span class="op">*</span><span class="cn">e</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-label="5"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.2100000000000002</code></pre>
 </div>
@@ -1740,16 +1742,16 @@ Set([50, 200, 20, 30, 40, 100])</code></pre>
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {

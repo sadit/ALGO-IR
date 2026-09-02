@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -94,10 +97,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1c9a5655c78e0129248869a68a7a7db0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3184e3922d0c4f76efe41c59ea013278.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-76f6d379fd4e2b33b3d387d855064d92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-19149a0c0eeed7fb16c9ff30e1d29c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -127,7 +130,7 @@ div.csl-indent {
 <style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -337,44 +340,7 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En esta página</h2>
-   
-  <ul>
-  <li><a href="#sec-estructuras" id="toc-sec-estructuras" class="nav-link active" data-scroll-target="#sec-estructuras"><span class="header-section-number">1</span> Estructuras de datos elementales</a>
-  <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">1.1</span> Introducción</a></li>
-  <li><a href="#conjuntos" id="toc-conjuntos" class="nav-link" data-scroll-target="#conjuntos"><span class="header-section-number">1.2</span> Conjuntos</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">1.2.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#tuplas-y-estructuras" id="toc-tuplas-y-estructuras" class="nav-link" data-scroll-target="#tuplas-y-estructuras"><span class="header-section-number">1.3</span> Tuplas y estructuras</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-1" id="toc-ejercicios-1" class="nav-link" data-scroll-target="#ejercicios-1"><span class="header-section-number">1.3.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#arreglos" id="toc-arreglos" class="nav-link" data-scroll-target="#arreglos"><span class="header-section-number">1.4</span> Arreglos</a>
-  <ul class="collapse">
-  <li><a href="#matrices-dispersas" id="toc-matrices-dispersas" class="nav-link" data-scroll-target="#matrices-dispersas"><span class="header-section-number">1.4.1</span> Matrices dispersas</a></li>
-  <li><a href="#ejercicios-2" id="toc-ejercicios-2" class="nav-link" data-scroll-target="#ejercicios-2"><span class="header-section-number">1.4.2</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">1.5</span> Listas</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-3" id="toc-ejercicios-3" class="nav-link" data-scroll-target="#ejercicios-3"><span class="header-section-number">1.5.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#grafos" id="toc-grafos" class="nav-link" data-scroll-target="#grafos"><span class="header-section-number">1.6</span> Grafos</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-4" id="toc-ejercicios-4" class="nav-link" data-scroll-target="#ejercicios-4"><span class="header-section-number">1.6.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">1.7</span> Actividades</a>
-  <ul class="collapse">
-  <li><a href="#actividad-1-producto-punto-máximo-top-1" id="toc-actividad-1-producto-punto-máximo-top-1" class="nav-link" data-scroll-target="#actividad-1-producto-punto-máximo-top-1"><span class="header-section-number">1.7.1</span> Actividad 1: Producto punto máximo (top-1)</a></li>
-  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">1.7.2</span> Entregable</a></li>
-  </ul></li>
-  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía"><span class="header-section-number">1.8</span> Bibliografía</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sadit/ALGO-IR/edit/main/cap3-estructuras.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/sadit/ALGO-IR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="cap3-estructuras.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="cap3-estructuras.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -404,7 +370,43 @@ window.Quarto = {
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#sec-estructuras" id="toc-sec-estructuras"><span class="header-section-number">1</span> Estructuras de datos elementales</a>
+  <ul>
+  <li><a href="#introducción" id="toc-introducción"><span class="header-section-number">1.1</span> Introducción</a></li>
+  <li><a href="#conjuntos" id="toc-conjuntos"><span class="header-section-number">1.2</span> Conjuntos</a>
+  <ul>
+  <li><a href="#ejercicios" id="toc-ejercicios"><span class="header-section-number">1.2.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#tuplas-y-estructuras" id="toc-tuplas-y-estructuras"><span class="header-section-number">1.3</span> Tuplas y estructuras</a>
+  <ul>
+  <li><a href="#ejercicios-1" id="toc-ejercicios-1"><span class="header-section-number">1.3.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#arreglos" id="toc-arreglos"><span class="header-section-number">1.4</span> Arreglos</a>
+  <ul>
+  <li><a href="#matrices-dispersas" id="toc-matrices-dispersas"><span class="header-section-number">1.4.1</span> Matrices dispersas</a></li>
+  <li><a href="#ejercicios-2" id="toc-ejercicios-2"><span class="header-section-number">1.4.2</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#listas" id="toc-listas"><span class="header-section-number">1.5</span> Listas</a>
+  <ul>
+  <li><a href="#ejercicios-3" id="toc-ejercicios-3"><span class="header-section-number">1.5.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#grafos" id="toc-grafos"><span class="header-section-number">1.6</span> Grafos</a>
+  <ul>
+  <li><a href="#ejercicios-4" id="toc-ejercicios-4"><span class="header-section-number">1.6.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#actividades" id="toc-actividades"><span class="header-section-number">1.7</span> Actividades</a>
+  <ul>
+  <li><a href="#actividad-1-producto-punto-máximo-top-1" id="toc-actividad-1-producto-punto-máximo-top-1"><span class="header-section-number">1.7.1</span> Actividad 1: Producto punto máximo (top-1)</a></li>
+  <li><a href="#entregable" id="toc-entregable"><span class="header-section-number">1.7.2</span> Entregable</a></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía"><span class="header-section-number">1.8</span> Bibliografía</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sadit/ALGO-IR/edit/main/cap3-estructuras.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/sadit/ALGO-IR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="cap3-estructuras.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="cap3-estructuras.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
 <section id="sec-estructuras" class="level1 page-columns page-full" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Estructuras de datos elementales</h1>
 <section id="introducción" class="level2" data-number="1.1">
@@ -1363,16 +1365,16 @@ Scott, Jennifer, y Miroslav Tůma. 2023. <span>“An Introduction to Sparse Matr
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {

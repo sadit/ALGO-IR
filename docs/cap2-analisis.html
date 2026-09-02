@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -75,10 +78,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1c9a5655c78e0129248869a68a7a7db0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3184e3922d0c4f76efe41c59ea013278.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-76f6d379fd4e2b33b3d387d855064d92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-19149a0c0eeed7fb16c9ff30e1d29c55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -322,60 +325,7 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En esta página</h2>
-   
-  <ul>
-  <li><a href="#sec-analisis" id="toc-sec-analisis" class="nav-link active" data-scroll-target="#sec-analisis"><span class="header-section-number">1</span> Introducción al análisis de algoritmos con Julia</a>
-  <ul>
-  <li><a href="#concepto-de-algoritmo-y-estructura-de-datos" id="toc-concepto-de-algoritmo-y-estructura-de-datos" class="nav-link" data-scroll-target="#concepto-de-algoritmo-y-estructura-de-datos"><span class="header-section-number">1.1</span> Concepto de algoritmo y estructura de datos</a></li>
-  <li><a href="#modelos-de-cómputo" id="toc-modelos-de-cómputo" class="nav-link" data-scroll-target="#modelos-de-cómputo"><span class="header-section-number">1.2</span> Modelos de cómputo</a>
-  <ul class="collapse">
-  <li><a href="#máquina-de-turing" id="toc-máquina-de-turing" class="nav-link" data-scroll-target="#máquina-de-turing"><span class="header-section-number">1.2.1</span> Máquina de Turing</a></li>
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">1.2.2</span> Ejercicios</a></li>
-  <li><a href="#modelos-funcionales" id="toc-modelos-funcionales" class="nav-link" data-scroll-target="#modelos-funcionales"><span class="header-section-number">1.2.3</span> Modelos funcionales</a></li>
-  <li><a href="#máquina-de-acceso-aleatorio-ram" id="toc-máquina-de-acceso-aleatorio-ram" class="nav-link" data-scroll-target="#máquina-de-acceso-aleatorio-ram"><span class="header-section-number">1.2.4</span> Máquina de acceso aleatorio (RAM)</a></li>
-  </ul></li>
-  <li><a href="#sobre-la-importancia-del-modelo-de-cómputo-en-el-curso" id="toc-sobre-la-importancia-del-modelo-de-cómputo-en-el-curso" class="nav-link" data-scroll-target="#sobre-la-importancia-del-modelo-de-cómputo-en-el-curso"><span class="header-section-number">1.3</span> Sobre la importancia del modelo de cómputo en el curso</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-1" id="toc-ejercicios-1" class="nav-link" data-scroll-target="#ejercicios-1"><span class="header-section-number">1.3.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#tipos-de-análisis" id="toc-tipos-de-análisis" class="nav-link" data-scroll-target="#tipos-de-análisis"><span class="header-section-number">1.4</span> Tipos de análisis</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-2" id="toc-ejercicios-2" class="nav-link" data-scroll-target="#ejercicios-2"><span class="header-section-number">1.4.1</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#notación-asintótica" id="toc-notación-asintótica" class="nav-link" data-scroll-target="#notación-asintótica"><span class="header-section-number">1.5</span> Notación asintótica</a>
-  <ul class="collapse">
-  <li><a href="#notación-theta" id="toc-notación-theta" class="nav-link" data-scroll-target="#notación-theta"><span class="header-section-number">1.5.1</span> Notación <span class="math inline">\(\Theta\)</span></a></li>
-  <li><a href="#notación-o" id="toc-notación-o" class="nav-link" data-scroll-target="#notación-o"><span class="header-section-number">1.5.2</span> Notación <span class="math inline">\(O\)</span></a></li>
-  <li><a href="#notación-omega" id="toc-notación-omega" class="nav-link" data-scroll-target="#notación-omega"><span class="header-section-number">1.5.3</span> Notación <span class="math inline">\(\Omega\)</span></a></li>
-  <li><a href="#ejercicios-3" id="toc-ejercicios-3" class="nav-link" data-scroll-target="#ejercicios-3"><span class="header-section-number">1.5.4</span> Ejercicios</a></li>
-  <li><a href="#apoyo-audio-visual" id="toc-apoyo-audio-visual" class="nav-link" data-scroll-target="#apoyo-audio-visual"><span class="header-section-number">1.5.5</span> Apoyo audio-visual</a></li>
-  <li><a href="#órdenes-de-crecimiento" id="toc-órdenes-de-crecimiento" class="nav-link" data-scroll-target="#órdenes-de-crecimiento"><span class="header-section-number">1.5.6</span> Órdenes de crecimiento</a>
-  <ul class="collapse">
-  <li><a href="#costo-constante-logaritmo-y-lineal" id="toc-costo-constante-logaritmo-y-lineal" class="nav-link" data-scroll-target="#costo-constante-logaritmo-y-lineal"><span class="header-section-number">1.5.6.1</span> Costo constante, logaritmo y lineal</a></li>
-  <li><a href="#costo-n-log-n-y-polinomial" id="toc-costo-n-log-n-y-polinomial" class="nav-link" data-scroll-target="#costo-n-log-n-y-polinomial"><span class="header-section-number">1.5.6.2</span> Costo <span class="math inline">\(n \log n\)</span> y polinomial</a></li>
-  <li><a href="#exponencial" id="toc-exponencial" class="nav-link" data-scroll-target="#exponencial"><span class="header-section-number">1.5.6.3</span> Exponencial</a></li>
-  <li><a href="#crecimiento-factorial" id="toc-crecimiento-factorial" class="nav-link" data-scroll-target="#crecimiento-factorial"><span class="header-section-number">1.5.6.4</span> Crecimiento factorial</a></li>
-  <li><a href="#un-poco-más-sobre-funciones-de-muy-alto-costo" id="toc-un-poco-más-sobre-funciones-de-muy-alto-costo" class="nav-link" data-scroll-target="#un-poco-más-sobre-funciones-de-muy-alto-costo"><span class="header-section-number">1.5.6.5</span> Un poco más sobre funciones de muy alto costo</a></li>
-  </ul></li>
-  <li><a href="#ejercicios-4" id="toc-ejercicios-4" class="nav-link" data-scroll-target="#ejercicios-4"><span class="header-section-number">1.5.7</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#el-enfoque-experimental" id="toc-el-enfoque-experimental" class="nav-link" data-scroll-target="#el-enfoque-experimental"><span class="header-section-number">1.6</span> El enfoque experimental</a>
-  <ul class="collapse">
-  <li><a href="#metodología-experimental" id="toc-metodología-experimental" class="nav-link" data-scroll-target="#metodología-experimental"><span class="header-section-number">1.6.1</span> Metodología experimental</a></li>
-  <li><a href="#ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo." id="toc-ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo." class="nav-link" data-scroll-target="#ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo."><span class="header-section-number">1.6.2</span> Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</a></li>
-  <li><a href="#ejercicios-5" id="toc-ejercicios-5" class="nav-link" data-scroll-target="#ejercicios-5"><span class="header-section-number">1.6.3</span> Ejercicios</a></li>
-  </ul></li>
-  <li><a href="#actividades" id="toc-actividades" class="nav-link" data-scroll-target="#actividades"><span class="header-section-number">1.7</span> Actividades</a>
-  <ul class="collapse">
-  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">1.7.1</span> Entregable</a></li>
-  </ul></li>
-  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía"><span class="header-section-number">1.8</span> Bibliografía</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sadit/ALGO-IR/edit/main/cap2-analisis.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/sadit/ALGO-IR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="cap2-analisis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="cap2-analisis.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -405,7 +355,59 @@ window.Quarto = {
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#sec-analisis" id="toc-sec-analisis"><span class="header-section-number">1</span> Introducción al análisis de algoritmos con Julia</a>
+  <ul>
+  <li><a href="#concepto-de-algoritmo-y-estructura-de-datos" id="toc-concepto-de-algoritmo-y-estructura-de-datos"><span class="header-section-number">1.1</span> Concepto de algoritmo y estructura de datos</a></li>
+  <li><a href="#modelos-de-cómputo" id="toc-modelos-de-cómputo"><span class="header-section-number">1.2</span> Modelos de cómputo</a>
+  <ul>
+  <li><a href="#máquina-de-turing" id="toc-máquina-de-turing"><span class="header-section-number">1.2.1</span> Máquina de Turing</a></li>
+  <li><a href="#ejercicios" id="toc-ejercicios"><span class="header-section-number">1.2.2</span> Ejercicios</a></li>
+  <li><a href="#modelos-funcionales" id="toc-modelos-funcionales"><span class="header-section-number">1.2.3</span> Modelos funcionales</a></li>
+  <li><a href="#máquina-de-acceso-aleatorio-ram" id="toc-máquina-de-acceso-aleatorio-ram"><span class="header-section-number">1.2.4</span> Máquina de acceso aleatorio (RAM)</a></li>
+  </ul></li>
+  <li><a href="#sobre-la-importancia-del-modelo-de-cómputo-en-el-curso" id="toc-sobre-la-importancia-del-modelo-de-cómputo-en-el-curso"><span class="header-section-number">1.3</span> Sobre la importancia del modelo de cómputo en el curso</a>
+  <ul>
+  <li><a href="#ejercicios-1" id="toc-ejercicios-1"><span class="header-section-number">1.3.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#tipos-de-análisis" id="toc-tipos-de-análisis"><span class="header-section-number">1.4</span> Tipos de análisis</a>
+  <ul>
+  <li><a href="#ejercicios-2" id="toc-ejercicios-2"><span class="header-section-number">1.4.1</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#notación-asintótica" id="toc-notación-asintótica"><span class="header-section-number">1.5</span> Notación asintótica</a>
+  <ul>
+  <li><a href="#notación-theta" id="toc-notación-theta"><span class="header-section-number">1.5.1</span> Notación <span class="math inline">\(\Theta\)</span></a></li>
+  <li><a href="#notación-o" id="toc-notación-o"><span class="header-section-number">1.5.2</span> Notación <span class="math inline">\(O\)</span></a></li>
+  <li><a href="#notación-omega" id="toc-notación-omega"><span class="header-section-number">1.5.3</span> Notación <span class="math inline">\(\Omega\)</span></a></li>
+  <li><a href="#ejercicios-3" id="toc-ejercicios-3"><span class="header-section-number">1.5.4</span> Ejercicios</a></li>
+  <li><a href="#apoyo-audio-visual" id="toc-apoyo-audio-visual"><span class="header-section-number">1.5.5</span> Apoyo audio-visual</a></li>
+  <li><a href="#órdenes-de-crecimiento" id="toc-órdenes-de-crecimiento"><span class="header-section-number">1.5.6</span> Órdenes de crecimiento</a>
+  <ul>
+  <li><a href="#costo-constante-logaritmo-y-lineal" id="toc-costo-constante-logaritmo-y-lineal"><span class="header-section-number">1.5.6.1</span> Costo constante, logaritmo y lineal</a></li>
+  <li><a href="#costo-n-log-n-y-polinomial" id="toc-costo-n-log-n-y-polinomial"><span class="header-section-number">1.5.6.2</span> Costo <span class="math inline">\(n \log n\)</span> y polinomial</a></li>
+  <li><a href="#exponencial" id="toc-exponencial"><span class="header-section-number">1.5.6.3</span> Exponencial</a></li>
+  <li><a href="#crecimiento-factorial" id="toc-crecimiento-factorial"><span class="header-section-number">1.5.6.4</span> Crecimiento factorial</a></li>
+  <li><a href="#un-poco-más-sobre-funciones-de-muy-alto-costo" id="toc-un-poco-más-sobre-funciones-de-muy-alto-costo"><span class="header-section-number">1.5.6.5</span> Un poco más sobre funciones de muy alto costo</a></li>
+  </ul></li>
+  <li><a href="#ejercicios-4" id="toc-ejercicios-4"><span class="header-section-number">1.5.7</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#el-enfoque-experimental" id="toc-el-enfoque-experimental"><span class="header-section-number">1.6</span> El enfoque experimental</a>
+  <ul>
+  <li><a href="#metodología-experimental" id="toc-metodología-experimental"><span class="header-section-number">1.6.1</span> Metodología experimental</a></li>
+  <li><a href="#ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo." id="toc-ejemplo-del-cálculo-de-máximo-de-un-arreglo-y-diferentes-tipos-de-costo."><span class="header-section-number">1.6.2</span> Ejemplo del cálculo de máximo de un arreglo y diferentes tipos de costo.</a></li>
+  <li><a href="#ejercicios-5" id="toc-ejercicios-5"><span class="header-section-number">1.6.3</span> Ejercicios</a></li>
+  </ul></li>
+  <li><a href="#actividades" id="toc-actividades"><span class="header-section-number">1.7</span> Actividades</a>
+  <ul>
+  <li><a href="#entregable" id="toc-entregable"><span class="header-section-number">1.7.1</span> Entregable</a></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía"><span class="header-section-number">1.8</span> Bibliografía</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sadit/ALGO-IR/edit/main/cap2-analisis.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/sadit/ALGO-IR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="cap2-analisis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="cap2-analisis.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
 <section id="sec-analisis" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introducción al análisis de algoritmos con Julia</h1>
 <p>Este capítulo introduce los fundamentos de análisis de algoritmos. Se introduce el concepto de modelo de cómputo y la notación asintótica, preparándonos para usar el lenguaje común en el análisis de algoritmos. También se mostrarán algunos de los órdenes de crecimiento más representativos, que nos permitirán comparar algoritmos que resuelvan una tarea dada, así como catalogarlos con respecto a los recursos de cómputo necesarios para ejecutarlos.</p>
@@ -1536,16 +1538,16 @@ O(g(n)) &amp;=  \left\{ f(n)  \mid \text{ existen las constantes positivas }c \t
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {

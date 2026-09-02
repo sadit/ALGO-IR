@@ -100,7 +100,7 @@ format:
     smooth-scroll: true
     toc: true
     toc-depth: 4
-    toc-location: right
+    toc-location: body
     number-sections: true
     fig-align: center
     fig-cap-location: bottom
