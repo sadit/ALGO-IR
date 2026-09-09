@@ -92,7 +92,7 @@ Es importante saber que si algunos de los campos o datos de una tupla o estructu
 function norm(u::Tuple)
   s = 0f0
   for i in eachindex(u)
-    s = u[i]^2
+    s += u[i]^2
   end
   sqrt(s)
 end

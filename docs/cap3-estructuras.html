@@ -459,7 +459,7 @@ window.Quarto = {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">norm</span>(u<span class="op">::</span><span class="dt">Tuple</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> <span class="fl">0f0</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(u)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> u[i]<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> u[i]<span class="op">^</span><span class="fl">2</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(s)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
@@ -474,7 +474,7 @@ window.Quarto = {
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>(<span class="fu">norm</span>((<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>)), <span class="fu">norm</span>(<span class="fu">Point</span>(<span class="fl">1</span>, <span class="fl">1</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="funcion-norma" class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(1.0, 1.4142135f0)</code></pre>
+<pre><code>(2.0f0, 1.4142135f0)</code></pre>
 <p>Funciones sobre diferentes tipos de datos</p>
 </div>
 </div>
@@ -602,7 +602,7 @@ Figura&nbsp;1: Esquema de una matriz en memoria.
 <div id="fig-getmaxdot" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-getmaxdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre><code>(287, 1.7285968f0)</code></pre>
+<pre><code>(972, 1.2252071f0)</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-getmaxdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2: Algoritmos para encontrar el vector columna con mayor producto en <span class="math inline">\(X\)</span> punto contra <span class="math inline">\(u\)</span>.
@@ -636,11 +636,11 @@ Figura&nbsp;2: Algoritmos para encontrar el vector columna con mayor producto en
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(C)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="funcion-producto-matricial" class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float32}:
- 0.141282  0.141282  0.141282  0.0  0.0
- 0.415116  0.415116  0.415116  0.0  0.0
- 0.409624  0.409624  0.409624  0.0  0.0
- 1.13451   1.13451   1.13451   0.0  0.0
- 0.877045  0.877045  0.877045  0.0  0.0</code></pre>
+ 1.01732   1.01732   1.01732   0.0  0.0
+ 1.25866   1.25866   1.25866   0.0  0.0
+ 0.702255  0.702255  0.702255  0.0  0.0
+ 0.424609  0.424609  0.424609  0.0  0.0
+ 1.27654   1.27654   1.27654   0.0  0.0</code></pre>
 <p>Funciones sobre diferentes tipos de datos</p>
 </div>
 </div>
@@ -1818,7 +1818,7 @@ Scott, Jennifer, y Miroslav Tůma. 2023. <span>“An Introduction to Sparse Matr
 <span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">norm</span>(u<span class="op">::</span><span class="dt">Tuple</span>)</span>
 <span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> <span class="fl">0f0</span></span>
 <span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(u)</span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> u[i]<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> u[i]<span class="op">^</span><span class="fl">2</span></span>
 <span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
 <span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(s)</span>
 <span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
