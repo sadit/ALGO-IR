@@ -196,6 +196,145 @@ Para analizar @lst-insertion-sort, es importante notar que el ciclo más externo
 
 En el _peor caso_ de insertion sort, el algoritmo no puede parar de manera prematura, e.g., un arreglo en orden reverso, el ciclo `for` se ejecutará $n-1$ veces, mientras que el ciclo `while` deberá revisar el subarreglo completo en cada iteración, sumando un costo de $i$ operaciones en cada iteración, i.e., $\sum_{i=1}^n i$, esta forma produce un _triángulo_, resultando en un costo $O(n^2)$.
 
+### Heap sort
+
+El algoritmo de ordenamiento por _heap_ o _heap sort_ utiliza una estructura de datos implícita llamada _heap_ binario (_binary heap_). Un _heap_ binario puede visualizarse como un árbol binario casi completo mapeado directamente sobre las posiciones de un arreglo continuo. Para ser considerado un _heap_, el arreglo debe mantener una propiedad estructural jerárquica conocida como la **propiedad del _heap_**: el valor de cada nodo padre siempre debe ser mayor o igual al de sus hijos (conocido como _max-heap_) o menor o igual al de sus hijos (_min-heap_).
+
+El ejemplo a continuación construye un **_max-heap_**. La decisión de usar un _max-heap_ se debe a que la estrategia del algoritmo para ordenar el arreglo en forma ascendente consiste en asegurar sistemáticamente que el elemento de mayor valor quede en la raíz (la posición 1 del arreglo). Una vez obtenido el máximo, éste se intercambia con el último elemento disponible en la parte desordenada del arreglo y se aísla, reduciendo el tamaño del problema de manera iterativa.
+
+A diferencia de _insertion sort_ o _bubble sort_, su costo en el peor de los casos es de $O(n \log n)$, haciéndolo asintóticamente óptimo para ordenamiento por comparación.
+
+```{julia}
+#| lst-label: lst-heapsort
+#| lst-cap: Algoritmo _heap sort_
+
+function heapify!(A, n, i)
+  largest = i
+  l = 2i      # <1>
+  r = 2i + 1
+
+  if l <= n && A[l] > A[largest]
+      largest = l
+  end
+  if r <= n && A[r] > A[largest]
+      largest = r
+  end
+  if largest != i
+      A[i], A[largest] = A[largest], A[i]  # <2>
+      heapify!(A, n, largest)              # <3>
+  end
+end
+
+function heap_sort!(A)
+  n = length(A)
+  for i in n ÷ 2 : -1 : 1 # <4>
+      heapify!(A, n, i)
+  end
+  for i in n : -1 : 2     # <5>
+      A[1], A[i] = A[i], A[1]
+      heapify!(A, i - 1, 1)
+  end
+  
+  A
+end
+
+heap_sort!([6, 8, 3, 7, 4, 1, 2, 5])
+```
+1. Los hijos izquierdo y derecho de un nodo $i$ en un arreglo indexado desde 1.
+2. Intercambio de elementos para cumplir la propiedad de _max-heap_.
+3. Llamada recursiva para propagar el cambio hacia abajo.
+4. Fase de construcción del _heap_ (_build heap_); los nodos hoja ya cumplen la propiedad.
+5. Fase de extracción del máximo, colocándolo al final del arreglo e ignorándolo en el tamaño restante.
+
+```{julia}
+#| echo: false
+
+# this code is a sanity check
+for i in 1:1000   #hide
+  A = rand(100)  #hide
+  heap_sort!(A) #hide
+  @assert issorted(A) #hide
+end
+```
+
+A pesar de su cota $O(n \log n)$, _heap sort_ suele ser más lento en la práctica que _quick sort_ o _merge sort_ debido a su baja localidad de referencia y al número de operaciones adicionales para mantener el _heap_.
+
+#### Ejercicios
+
+1. ¿Cuáles son las ventajas y desventajas de _heap sort_?
+2. Modifique la implementación para que ordene en orden descendente utilizando un _min-heap_.
+
+### Merge sort
+
+_Merge sort_ es el algoritmo clásico del paradigma de _dividir para vencer_. Divide el arreglo en mitades, ordena recursivamente cada una y luego fusiona (_merge_) los dos subarreglos resultantes. Al igual que _heap sort_, tiene un costo de $O(n \log n)$ garantizado.
+
+```{julia}
+#| lst-label: lst-mergesort
+#| lst-cap: Algoritmo _merge sort_
+
+function merge!(A, low, mid, high, temp)
+  for i in low:high      # <1>
+      temp[i] = A[i]
+  end
+  i = low
+  j = mid + 1
+  k = low
+  while i <= mid && j <= high  # <2>
+      if temp[i] <= temp[j]
+          A[k] = temp[i]
+          i += 1
+      else
+          A[k] = temp[j]
+          j += 1
+      end
+      k += 1
+  end
+  while i <= mid         # <3>
+      A[k] = temp[i]
+      i += 1
+      k += 1
+  end
+end
+
+function merge_sort!(A, low=1, high=length(A), temp=similar(A)) # <4>
+  if low < high
+      mid = low + (high - low) ÷ 2
+      merge_sort!(A, low, mid, temp)
+      merge_sort!(A, mid + 1, high, temp)
+      merge!(A, low, mid, high, temp) # <5>
+  end
+  
+  A
+end
+
+merge_sort!([6, 8, 3, 7, 4, 1, 2, 5])
+```
+1. Copiamos los elementos a un arreglo temporal en el mismo rango.
+2. Comparamos los frentes de ambas mitades ordenadas y los escribimos en su posición original.
+3. Vaciamos los elementos restantes de la mitad izquierda (la derecha ya está en su posición final por omisión).
+4. El arreglo temporal `temp` es pre-asignado de tamaño idéntico a `A` para evitar múltiples reservas de memoria.
+5. Fusión de las partes en un tiempo lineal al tamaño del rango.
+
+```{julia}
+#| echo: false
+
+# this code is a sanity check
+for i in 1:1000   #hide
+  A = rand(100)  #hide
+  merge_sort!(A) #hide
+  @assert issorted(A) #hide
+end
+```
+
+La gran ventaja de _merge sort_ es que, a diferencia de _quick sort_, su costo en peor caso es siempre $O(n \log n)$ y es un algoritmo de ordenamiento estable. El costo principal radica en la memoria extra necesaria ($O(n)$) y en las copias adicionales durante la fusión.
+
+#### Ejercicios
+
+1. ¿Cuáles son las ventajas y desventajas de _merge sort_?
+2. ¿Por qué _merge sort_ se puede utilizar eficientemente en algoritmos paralelos mientras que otros pueden tener muchas dificultades?
+3. ¿Cómo se puede reducir la memoria extra necesaria de _merge sort_?
+
+
 ### Quick sort
 
 _Quick sort_ [ver @Cormen22, Cap. 7] es un algoritmo tipo _dividir para vencer_; esto es, un algoritmo que divide un problema grande en instancias pequeñas más sencillas. Es uno de los algoritmos más veloces en la práctica por su buen manejo de memoria, aun cuando tiene un peor caso cuadrático, en promedio el costo es $O(n \log n)$.
@@ -258,7 +397,29 @@ El código @lst-qsort es relativamente simple, usa recurrencias sobre _qsort!_ s
 
 El peor de los casos en _qsort!_ es debido a una mala selección del pivote, de tal forma que $$|A[low:piv-1]| \ll |A[piv+1:high]|,$$ o lo contrario en toda selección, en el extremo uno de los subarreglos puede verse como de tamaño constante o cero, i.e., selección de pivote como el _mínimo_ o el _máximo_. Esta estrategia reduce a _qsort!_ a un costo $O(n^2)$.
 
-Si se realiza un particionado donde $$|A[low:piv-1]| \approx |A[piv+1:high]|,$$ entonces tenemos un algoritmo $O(n \log n)$; ya que hace una división en dos partes casi iguales en cada recurrencia a _qsort!_, y esto solo puede profundizar $\log n$ veces, y en cada nivel _part!_ tiene un costo lineal.
+Si se realiza un particionado perfecto donde $$|A[low:piv-1]| \approx |A[piv+1:high]|,$$ tenemos un comportamiento óptimo; la recursión se divide en dos partes casi iguales y la profundidad máxima del árbol de llamadas será $\log_2 n$. Como en cada nivel la función _part!_ realiza un esfuerzo lineal $O(n)$, el costo total de la ejecución es $O(n \log n)$.
+
+Para comprender por qué el **caso promedio** también es de $O(n \log n)$, considere que no es estrictamente necesario un particionado balanceado para lograr alta eficiencia. Incluso si la partición resultara constantemente desbalanceada de manera proporcional, por ejemplo, dividiendo siempre el arreglo en una fracción de $1/10$ y $9/10$, la altura del árbol de recursividad sería $\log_{10/9} n$, lo cual sigue siendo asintóticamente $O(\log n)$. En cualquier nivel del árbol, el costo de particionar las sublistas no superará a $O(n)$, por lo que el trabajo total en todo el árbol seguirá acotado por $O(n \log n)$.
+
+En términos más formales, dado que nuestra implementación elige el pivote de forma aleatoria, cualquier índice para la posición final del pivote tiene la misma probabilidad $1/n$. La ecuación de recurrencia que define el costo esperado $\mathbb{E}[T(n)]$ es el promedio sobre las $n$ posibles divisiones:
+$$ \mathbb{E}[T(n)] = \Theta(n) + \frac{1}{n} \sum_{k=0}^{n-1} \left( \mathbb{E}[T(k)] + \mathbb{E}[T(n-k-1)] \right) $$
+La solución matemática de esta sumatoria demuestra que $\mathbb{E}[T(n)] = \Theta(n \log n)$. 
+
+::: {.callout-tip title="Intuición para resolver la recurrencia"}
+Resolver la ecuación anterior puede parecer intimidante debido a la sumatoria, pero se basa en simplificaciones y trucos algebraicos clásicos:
+
+1. **Simetría:** Note que $\mathbb{E}[T(k)]$ y $\mathbb{E}[T(n-k-1)]$ generan exactamente los mismos sumandos en direcciones opuestas. La ecuación se reduce a $\mathbb{E}[T(n)] = \Theta(n) + \frac{2}{n} \sum_{k=0}^{n-1} \mathbb{E}[T(k)]$.
+2. **Eliminación de la fracción:** Multiplicando por $n$ ambos lados, obtenemos $n \mathbb{E}[T(n)] = n \Theta(n) + 2 \sum_{k=0}^{n-1} \mathbb{E}[T(k)]$.
+3. **Restado telescópico:** Para eliminar la sumatoria, podemos construir la misma ecuación para $n-1$, es decir $(n-1)\mathbb{E}[T(n-1)]$, y luego restarla a la ecuación de $n$. Al hacerlo, casi toda la sumatoria se cancela dejando un solo término $\mathbb{E}[T(n-1)]$.
+4. **Números Armónicos:** Al agrupar y dividir la ecuación resultante entre $n(n+1)$, la recurrencia toma la forma recurrente iterativa $\frac{\mathbb{E}[T(n)]}{n+1} = \frac{\mathbb{E}[T(n-1)]}{n} + \Theta\left(\frac{1}{n}\right)$. La expansión natural de estos incrementos corresponde a la serie armónica $H_n = \sum_{i=1}^n \frac{1}{i}$, cuyo crecimiento asintótico es bien sabido que está acotado por $\ln n$. Al multiplicar de vuelta por $n+1$, surge el factor $\Theta(n \log n)$.
+:::
+
+Además de esta excelente cota teórica probabilística, las operaciones de _quick sort_ ocurren completamente en su propio espacio (_in-place_) con bucles muy pequeños. Esto beneficia tremendamente la localidad de referencia en el caché del procesador, explicando por qué suele vencer en velocidad a algoritmos con la misma cota como _merge sort_ o _heap sort_ en pruebas reales de laboratorio.
+
+#### Ejercicios
+
+1. Evalúe la implementación de _quick sort_ y compárela con _bubble sort adaptativo_.
+2. Modifique la función _part!_ para elegir el pivote utilizando el método de la "mediana de tres" (elija tres elementos al azar y use su mediana como pivote).
 
 ## Skip list
 Una _skip list_ [@skiplists] es una lista ligada con capacidades de búsqueda eficiente con garantías probabilísticas, esto es que se cumplen con alta probabilidad. Para esto, la idea es que cada dato tiene asociado un arreglo de punteros o referencias hacia nodos sucesores, i.e., los nodos a nivel $i$ se conectan con el siguiente nodo a nivel $i$. En el nivel más bajo, la _skip list_ es una simple lista ligada, mientras que sube, se vuelve más dispersa dando saltos más largos. 
@@ -300,15 +461,9 @@ A diferencia de la versión basada en arreglos, una _skip list_ es capaz de acep
 
 ### Ejercicios:
 
-1. Investigue, implemente y pruebe _merge sort_.
-  1.1 ¿Cuáles son las ventajas y desventajas de _merge sort_?
-  1.2 ¿Por qué _merge sort_ se puede utilizar en algoritmos paralelos y otros pueden tener muchas dificultades?
-  1.3 ¿Cómo se puede reducir la memoria extra necesaria de _merge sort_?
-2. Investigue, implemente y pruebe _heap sort_.
-  2.1 ¿Cuáles son las ventajas y desventajas de _heap sort_?
-3. ¿Cuál es el costo en memoria de una _skip list_?
-  3.1 Investigue, implemente y pruebe una _skip list_.
-4. Investigue, implemente y pruebe un árbol binario de búsqueda.
+1. ¿Cuál es el costo en memoria de una _skip list_?
+  1.1 Investigue, implemente y pruebe una _skip list_.
+2. Investigue, implemente y pruebe un árbol binario de búsqueda.
 
 ## Lecturas
 Las lecturas de este tema corresponden al capítulo 5 de [@Knuth98], en específico 5.2 _Internal sorting_. También se recomienda leer y comprender la parte II de [@Cormen22], que corresponde a _Sorting and order statistics_, en particular Cap. 6 y 7, así como el Cap. 8.1. El artículo de Wikipedia <https://en.wikipedia.org/wiki/Sorting_algorithm> también puede ser consultado con la idea de encontrar una explicación rápida de los algoritmos.
@@ -326,15 +481,18 @@ En [@Cook80] se realiza una comparación del desempeño de varios algoritmos par
 
 ## Actividades
 
-1. Implementa y compara los siguientes algoritmos de ordenamiento:
-  - heapsort
-  - mergesort
-  - quicksort
-  - bubblesort adaptativo
+### Actividad 1: Explotando la localidad y tamaños de instancia
 
-2. Utiliza los diferentes archivos proporcionados, los cuales tienen diferentes niveles de desorden y mide tanto el número de comparaciones como el tiempo necesario para ordenarlos.
-3. Por cada archivo de datos, compara todos los métodos implementados mediante figuras o tablas de datos (número de comparaciones y tiempo por separado).
-4. Discute tus resultados.
+Aunque algoritmos como _insertion sort_ o _adaptive bubble sort_ tienen costos asintóticos subóptimos ($O(n^2)$) para su peor caso, su simplicidad y localidad en los accesos de memoria los hace muy eficientes para instancias pequeñas o arreglos que se encuentran "casi ordenados". Por el contrario, algoritmos recursivos óptimos como _quick sort_ o _merge sort_ tienen un _overhead_ asociado por las llamadas a funciones y uso de memoria adicional que los penalizan con arreglos pequeños.
+
+El objetivo de esta actividad empírica es determinar empíricamente los umbrales de tamaño donde los algoritmos adaptativos y simples superan a los algoritmos óptimos $O(n \log n)$.
+
+1. Escriba un generador de datos para crear instancias aleatorias de tamaño variable $n \in \{4, 8, 16, 32, 64, 128, 256, 512\}$. **No** utilice datos pre-cargados ni archivos; debe generar los arreglos en su código.
+2. Escriba un generador secundario para instancias "casi ordenadas". Puede lograr esto generando un arreglo ordenado y aplicando un número de intercambios equivalente al 5% o 10% del tamaño $n$.
+3. Mida y compare los tiempos reales de ejecución (usando herramientas como `@benchmark` en Julia) y el número de comparaciones de _insertion sort_, _adaptive bubble sort_, _quick sort_, _merge sort_ y _heap sort_ en todos los tamaños descritos.
+4. Identifique y reporte mediante gráficas y tablas el "punto de cruce", es decir, el tamaño $n$ en el cual _quick sort_ y _merge sort_ comienzan a superar consistentemente a _insertion sort_ para las instancias puramente aleatorias.
+5. Reporte si el umbral cambia (y cuánto) para el caso de las instancias casi ordenadas.
+6. Discuta los hallazgos en términos de complejidad asintótica y cómo las constantes y la localidad de la memoria actúan en la práctica.
 
 
 ### Entregable
